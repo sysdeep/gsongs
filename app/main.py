@@ -3,7 +3,7 @@
 
 from vendor import auto
 from flask import Flask, render_template
-
+from . import storage
 
 app = Flask(__name__)
 
@@ -12,7 +12,10 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 	# return("Hello World!")
-	return render_template("index.html")
+	data = {
+		"singers": storage.Singer.select()
+	}
+	return render_template("index.html", **data)
 
 
 
