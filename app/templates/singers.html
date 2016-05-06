@@ -35,9 +35,17 @@
 
 	<ul>
 	{% for singer in singers %}
-		<li>{{ singer.name }}</li>
+		<li>{{ singer.name }} [<a href="remove_singer/{{ singer.id }}">x</a>]</li>
 	{% endfor %}
 	</ul>
+
+
+
+
+	<form method="GET" action="create_singer">
+		<input type="text" name="name">
+		<input type="submit" name="go" value="save">
+	</form>
 
 
 

@@ -137,6 +137,12 @@ class Song(Base):
 
 
 
+# def singer_create(name):
+# 	Singer.create(name=name, updated=sql_date())
+
+
+
+
 # def user_create(name, passwd, level=1, sname=""):
 # 	log.debug("user_create - name: {}, pass: {}, level: {}, sname: {}".format(name, passwd, level, sname))
 # 	Users.create(name=name, passwd=passwd, level=level, sname=sname, created=sql_date(), updated=sql_date())

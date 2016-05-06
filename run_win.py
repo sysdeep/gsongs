@@ -10,5 +10,5 @@
 from app.main import app
 
 # app = create_app()
-app.run(debug=True)
-# app.run(debug=False)
+# app.run(debug=True)
+app.run(debug=False)
