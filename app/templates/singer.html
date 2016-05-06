@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Singer{% endblock %}
+
+
+
+
+{% block content %}
+
+	<h1>Singer</h1>
+	
+
+
+	<table class="table table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>created</th>
+				<th>updated</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr>
+					<td>{{ singer.id }}</td>
+					<td>{{ singer.name }}</td>
+					<td>{{ singer.created }}</td>
+					<td>{{ singer.updated }}</td>
+				</tr>
+		</tbody>
+	</table>
+
+
+
+	<a href="/singers" class="btn btn-default">Back</a>
+	{# <a href="/singer_edit/{{ singer.id }}" class="btn btn-warning">Edit</a> #}
+
+
+
+	<form class="form-horizontal" action="/singer_update" method="POST">
+  		<div class="form-group">
+    		<label for="name" class="col-sm-2 control-label">Name</label>
+    		<div class="col-sm-10">
+      			<input type="text" class="form-control" id="name" name="name" placeholder="name" value="{{ singer.name }}">
+    		</div>
+  		</div>
+
+		<input type="hidden" name="id" value="{{ singer.id }}">
+
+  		<div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-10">
+      			<button type="submit" class="btn btn-default">Save</button>
+    		</div>
+  		</div>
+	</form>
+
+
+
+{% endblock %}

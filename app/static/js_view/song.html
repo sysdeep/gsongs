@@ -1,0 +1,60 @@
+<h1>Song</h1>
+
+
+
+<table class="table table-bordered table-condensed">
+	<tbody>
+		<tr>
+			<td>Исполнитель</td>
+			<td>[[ data.song.singer.name ]]</td>
+		</tr>
+
+		<tr>
+			<td>Автор</td>
+			<td>[[ data.song.author ]]</td>
+		</tr>
+
+		<tr>
+			<td>Название</td>
+			<td>[[ data.song.name ]]</td>
+		</tr>
+
+		<tr>
+			<td>Альбом</td>
+			<td>[[ data.song.album ]]</td>
+		</tr>
+
+		<tr>
+			<td>Описание</td>
+			<td>[[ data.song.description ]]</td>
+		</tr>
+
+		<tr>
+			<td>Жанр</td>
+			<td>[[ data.song.genre ]]</td>
+		</tr>
+
+		<tr>
+			<td>Создание</td>
+			<td>[[ data.song.created ]]</td>
+		</tr>
+
+		<tr>
+			<td>Обновление</td>
+			<td>[[ data.song.updated ]]</td>
+		</tr>
+
+		<tr>
+			<td>api</td>
+			<td>[[ data.song.api ]]</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<button class="btn btn-primary" ng-click="edit()">Edit</button>
+
+<pre>
+[[ data.song.text ]]
+</pre>
+

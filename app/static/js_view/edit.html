@@ -1,0 +1,84 @@
+<div class="page-header">
+  	<h3 ng-if="song_id == 0">Создание новой записи</h3>
+  	<h3 ng-if="song_id != 0">Изменение записи</h3>
+</div>
+
+
+
+<form class="form-horizontal">
+	
+	<div class="form-group">
+		<label for="inputSinger" class="col-sm-2 control-label">Исполнитель</label>
+		<div class="col-sm-10">
+			<select ng-model="data.song.singer" ng-options="singer as singer.name for singer in data.singers track by singer._id"></select>
+			<!--
+			<input type="text" class="form-control" id="inputSinger" placeholder="Исполнитель" ng-model="data.song.singer">
+			-->
+		</div>
+	</div>
+
+	[[ data.singer ]]
+
+	<div class="form-group">
+		<label for="inputName" class="col-sm-2 control-label">Название</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputName" placeholder="Название" ng-model="data.song.name">
+		</div>
+	</div>
+
+
+	
+	<div class="form-group">
+		<label for="inputAuthor" class="col-sm-2 control-label">Автор</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputAuthor" placeholder="Автор" ng-model="data.song.author">
+		</div>
+	</div>
+
+
+
+	<div class="form-group">
+		<label for="inputAlbum" class="col-sm-2 control-label">Альбом</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputAlbum" placeholder="Альбом" ng-model="data.song.album">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="inputGenre" class="col-sm-2 control-label">Жанр</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputGenre" placeholder="Жанр" ng-model="data.song.genre">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="inputDescription" class="col-sm-2 control-label">Описание</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="3" id="inputDescription" placeholder="Описание" ng-model="data.song.description"></textarea>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="inputText" class="col-sm-2 control-label">Текст</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="5" id="inputText" placeholder="Текст" ng-model="data.song.text"></textarea>
+		</div>
+	</div>
+
+	<hr>
+  
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-primary" ng-click="save()">Сохранить</button>
+		</div>
+	</div>
+</form>
+
+
+
+
+<pre>
+	[[ data.song ]]
+</pre>

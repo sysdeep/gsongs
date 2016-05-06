@@ -1,0 +1,57 @@
+<h1>Исполнитель - [[find_singer_name()]]</h1>
+
+
+
+<button class="btn btn-primary" ng-click="refresh()">Refresh</button>
+<button class="btn btn-success" ng-click="add()">Add</button>
+
+<hr>
+
+
+
+
+<input type="text" class="form-control" ng-model="data.filter.search.quick" placeholder="Быстрый поиск по всем полям">
+
+<hr>
+
+<table class="table table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th>Исполнитель</th>
+			<th>Автор</th>
+			<th>Название</th>
+			<th>Альбом</th>
+			<!-- <th>Текст</th> -->
+			<th>Описание</th>
+			<th>Жанр</th>
+			<!-- <th>Метки</th> -->
+			<!-- <th>Создание</th> -->
+			<!-- <th>Обновление</th> -->
+			<!-- <th>api</th> -->
+			<th>options</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="song in data.songs" ng-click11111111111111="show_song(song)">
+			<td>[[ song.singer.name ]]</td>
+			<td>[[ song.author ]]</td>
+			<td>[[ song.name ]]</td>
+			<td>[[ song.album ]]</td>
+			<!-- <td>[[ song.text ]]</td> -->
+			<td>[[ song.description ]]</td>
+			<td>[[ song.genre ]]</td>
+			<!-- <td>[[ song.tags ]]</td> -->
+			<!-- <td>[[ song.created ]]</td> -->
+			<!-- <td>[[ song.updated ]]</td> -->
+			<!-- <td>[[ song.api ]]</td> -->
+			<td>
+				<a href="javascript: void(0)" title="" ng-click="show_song(song)">&nbsp<i class="fa fa-folder-open-o"></i>&nbsp</a>
+				|
+				<a href="javascript: void(0)" title="" ng-click="edit_song(song)">&nbsp<i class="fa fa-pencil"></i>&nbsp</a>
+				|
+				<a href="javascript: void(0)" title="" ng-click="remove_song(song)">&nbsp<i class="fa fa-trash-o"></i>&nbsp</a>
+
+			</td>
+		</tr>
+	</tbody>
+</table>
