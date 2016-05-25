@@ -14,18 +14,18 @@
 		console.log($routeParams.singer_id);
 
 		// svcData.get_singer(self.singer_id);
-		svcData.get_songs_singer(self.singer_id);
+		// svcData.get_songs_singer(self.singer_id);
 
 
-		$scope.find_singer_name = function(){
-			var name = "";
-			angular.forEach(svcData.data.singers, function(singer){
-				if( singer._id == self.singer_id )
-					name = singer.name
-			});
+		// $scope.find_singer_name = function(){
+		// 	var name = "";
+		// 	angular.forEach(svcData.data.singers, function(singer){
+		// 		if( singer._id == self.singer_id )
+		// 			name = singer.name
+		// 	});
 
-			return name;
-		}
+		// 	return name;
+		// }
 
 
 

@@ -34,11 +34,32 @@
 			controller: "MainCtrl"
 		});
 
-
-		$routeProvider.when("/edit/:song_id", {
-			templateUrl : "/static/js_view/edit.html",
-			controller: "EditCtrl"
+		$routeProvider.when("/singers/", {
+			templateUrl : "/static/js_view/singers.html",
+			controller: "SingersCtrl"
 		});
+
+
+
+		$routeProvider.when("/songs/", {
+			templateUrl : "/static/js_view/songs.html",
+			controller: "SongsCtrl"
+		});
+
+
+		$routeProvider.when("/song_edit/:song_id", {
+			templateUrl : "/static/js_view/song_edit.html",
+			controller: "SongEditCtrl"
+		});
+
+
+
+		$routeProvider.when("/singer/:singer_id", {
+			templateUrl : "/static/js_view/singer.html",
+			controller: "SingerCtrl"
+		});
+
+
 
 		$routeProvider.when("/song/:song_id", {
 			templateUrl : "/js_view/songs/song.html",
@@ -46,35 +67,9 @@
 		});
 
 
-		$routeProvider.when("/singer/:singer_id", {
-			templateUrl : "/js_view/songs/singer.html",
-			controller: "SingerCtrl"
-		});
 
-		$routeProvider.when("/singers/", {
-			templateUrl : "/static/js_view/singers.html",
-			controller: "SingersCtrl"
-		});
 
-		// $routeProvider.when("/logs", {
-		//     templateUrl : "./views/partial/logs.html",
-		//     controller: "LogsCtrl"
-		// });
-
-		// $routeProvider.when("/events", {
-		//     templateUrl : "/static/js_view/events.html",
-		//     controller: "EventsCtrl"
-		// });
-
-		// $routeProvider.when("/logs", {
-		//     templateUrl : "/static/js_view/logs.html",
-		//     controller: "LogsCtrl"
-		// });
-
-		// $routeProvider.when("/data_files", {
-		//     templateUrl : "/static/js_view/data_files.html",
-		//     controller: "DataFilesCtrl"
-		// });
+		
 
 		$routeProvider.otherwise({redirectTo: '/main'});
 	}]);

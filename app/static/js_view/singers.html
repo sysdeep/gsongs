@@ -42,23 +42,25 @@
 
 	</div>
 	<div class="col-md-4">
-		<button class="btn btn-primary" ng-click="refresh()">Refresh</button>
-		<button class="btn btn-success" ng-click="add_singer()">Add</button>
+		<button class="btn btn-primary" ng-click="refresh()">Обновить</button>
+		<button class="btn btn-success" ng-click="add_singer()">Добавить</button>
 
 
 		<div ng-show="data.singer_edit">
 
 			<h5 class="page-header">
-				Создание/Изменение записи
+				<span ng-if="singer_edit.id">Изменение записи</span>
+				<span ng-if="!singer_edit.id">Создание записи</span>
 			</h5>
 			<form>
 	  		
 	  			<div class="form-group">
-	    			<label for="singer_name">Name</label>
-	    			<input type="text" class="form-control" id="singer_name" placeholder="Name" ng-model="singer_edit.name">
+	    			<label for="singer_name">Название</label>
+	    			<input type="text" class="form-control" id="singer_name" placeholder="Название" ng-model="singer_edit.name">
 	  			</div>
 	  		
-	  			<button type="submit" class="btn btn-default" ng-click="save_singer()">Save</button>
+	  			<button type="submit" class="btn btn-primary" ng-click="save_singer()">Сохранить</button>
+	  			<button type="submit" class="btn btn-default" ng-click="cancel()">Отмена</button>
 			</form>
 
 		</div>
@@ -69,4 +71,3 @@
 
 
 
-[[ data.singer ]]

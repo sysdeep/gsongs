@@ -50,6 +50,11 @@
 			svcData.remove_singer(singer);
 		}
 
+
+		$scope.cancel = function(){
+			svcData.data.singer_edit = false;
+		}
+
 		// var self = this;
 		// self.singer_id = $routeParams.singer_id;
 

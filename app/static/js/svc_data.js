@@ -66,31 +66,7 @@
 
 		set_default_song();
 
-		// function get_log_files(){
-		//     data.log_files_loaded = false;
-		//     $http.get("/log_files").success(function (response) {
-		//         data.log_files = response;
-		//         get_log_file(data.log_files[0]);
-		//         $rootScope.$broadcast("logs_loaded");
-		//         data.log_files_loaded = true;
-		//     }).error(function(response){
-		//         console.log("error");
-		//         console.log(response);
-		//         data.log_files_loaded = true;
-		//     });
-		// }
-
-		// function get_log_file(file){
-		//     data.log_file_loaded = false;
-		//     $http.post("/log_file", {file: file}).success(function (response) {
-		//         data.log_content = response;
-		//         data.log_file_loaded = true;
-		//     }).error(function(response){
-		//         console.log("error");
-		//         console.log(response);
-		//         data.log_file_loaded = true;
-		//     });
-		// }
+		
 
 
 		function get_songs(){
@@ -132,16 +108,17 @@
 		function create_song(){
 			// data.song.singer = data.singer.name;
 			// data.song.singer_id = data.singer._id;
-			$http.post("/songs/create_song", data.song).success(function(response){
+			console.log(data.song);
+			$http.post("/create_song", data.song).success(function(response){
 				console.log("ok");
 				console.log(response);
-				data.song._id = response._id;
-				data.song.created = response.created;
-				data.song.updated = response.updated;
-				data.songs_need_update = true;
+				// data.song._id = response._id;
+				// data.song.created = response.created;
+				// data.song.updated = response.updated;
+				// data.songs_need_update = true;
 				notify.n_success("Запись создана успешно");
-				$location.path( "/song/"+data.song._id );
-				get_singers();
+				// $location.path( "/song/"+data.song._id );
+				// get_singers();
 			}).error(function(response){
 				console.log("error");
 				console.log(response);

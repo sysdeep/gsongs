@@ -67,6 +67,11 @@ def create_singer():
 
 
 
+
+
+
+
+
 @app.route("/remove_singer", methods=["POST"])
 def remove_singer():
 
@@ -110,7 +115,41 @@ def get_songs():
 
 
 
+@app.route("/create_song", methods=["POST"])
+def create_song():
 
+	
+	in_data = request.get_json()
+
+
+	print(in_data)
+
+
+	song = storage.Song()
+	song.singer = in_data["singer"]
+	song.name = in_data["name"]
+	song.author = in_data["author"]
+	song.album = in_data["album"]
+	song.text = in_data["text"]
+	song.description = in_data["description"]
+	song.genre = in_data["genre"]
+	song.save()
+	# singer = storage.Singer(name=in_data["name"])
+	# singer.save()
+	
+	# singer 	= peewee.ForeignKeyField(db_column='singer_id', rel_model=Singer, to_field='id')
+	# genre 	= peewee.CharField(db_column='genre')
+	# created	= peewee.DateTimeField(db_column='created', default=sql_date)
+	# updated	= peewee.DateTimeField(db_column='updated', default=sql_date)
+
+
+
+	# print(singer.id)
+	# print(singer.name)
+	# in_data["id"] = singer.id
+
+
+	return jsonify(result=in_data)
 
 
 
@@ -168,33 +207,33 @@ def about():
 	return render_template("about.html")
 
 
-@app.route("/singers")
-def singers():
-	data = {
-		"singers": storage.Singer.select()
-	}
-	return render_template("singers.html", **data)	
+# @app.route("/singers")
+# def singers():
+# 	data = {
+# 		"singers": storage.Singer.select()
+# 	}
+# 	return render_template("singers.html", **data)	
 
 
-@app.route("/create_singer")
-def create_singer():
-	name = request.args.get('name', '')
-	storage.Singer.create(name=name)
-	return redirect(url_for('singers'))
+# @app.route("/create_singer")
+# def create_singer():
+# 	name = request.args.get('name', '')
+# 	storage.Singer.create(name=name)
+# 	return redirect(url_for('singers'))
 
 
 
 
-@app.route("/remove_singer/<id>")
-def remove_singer(id):
+# @app.route("/remove_singer/<id>")
+# def remove_singer(id):
 
-	# print(id)
+# 	# print(id)
 
-	singer = storage.Singer.get(storage.Singer.id == id)
-	singer.delete_instance()
+# 	singer = storage.Singer.get(storage.Singer.id == id)
+# 	singer.delete_instance()
 
 
-	return redirect(url_for('singers'))
+# 	return redirect(url_for('singers'))
 
 
 
