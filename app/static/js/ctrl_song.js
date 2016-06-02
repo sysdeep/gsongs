@@ -10,14 +10,21 @@
         $scope.data.current_view = "song";
 
         console.log($routeParams.song_id);
+        var song_id = $routeParams.song_id;
 
 
-        svcData.get_song($routeParams.song_id);
+        // svcData.get_song($routeParams.song_id);
 
-
-        $scope.edit = function(){
-            $location.path( "/edit/"+svcData.data.song._id );
+        var search_result = svcData.data.songs.filter(function(song){return song.id == song_id});
+        if(search_result.length > 0){
+            console.log("found");
+            console.log(search_result[0]);
+            svcData.data.song = search_result[0];
         }
+
+        // $scope.edit = function(){
+        //     $location.path( "/edit/"+svcData.data.song._id );
+        // }
 
 
 

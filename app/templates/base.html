@@ -120,6 +120,8 @@
 	<div class="container" ng-cloak>
 
 		
+		{% block content %}{% endblock %}
+
 		<ng-view></ng-view>
 
 
@@ -148,8 +150,8 @@
 	<script src="/static/js/ctrl_singer.js?version={{ VERSION }}"></script>
 	<script src="/static/js/ctrl_songs.js?version={{ VERSION }}"></script>
 	<script src="/static/js/ctrl_song_edit.js?version={{ VERSION }}"></script>
+	<script src="/static/js/ctrl_song.js?version={{ VERSION }}"></script>
 	{#
-	<script src="/js/songs/ctrl_song.js?version={{ VERSION }}"></script>
 	<script src="/js/songs/ctrl_singer.js?version={{ VERSION }}"></script>
 	#}
 

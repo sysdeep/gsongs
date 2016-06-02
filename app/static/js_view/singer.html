@@ -1,4 +1,4 @@
-<h1>Исполнитель - [[find_singer_name()]]</h1>
+<h1>Исполнитель - [[ data.singer.name ]]</h1>
 
 
 
@@ -6,7 +6,6 @@
 <button class="btn btn-success" ng-click="add()">Add</button>
 
 <hr>
-
 
 
 
@@ -32,8 +31,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="song in data.songs" ng-click11111111111111="show_song(song)">
-			<td>[[ song.singer.name ]]</td>
+		<tr ng-repeat="song in singer_songs" ng-click11111111111111="show_song(song)">
+			<td>[[ data.singer.name ]]</td>
 			<td>[[ song.author ]]</td>
 			<td>[[ song.name ]]</td>
 			<td>[[ song.album ]]</td>

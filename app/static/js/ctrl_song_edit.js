@@ -15,7 +15,7 @@
         $scope.song_id = $routeParams.song_id;
 
         if( $scope.song_id != 0 ){
-            svcData.get_song($scope.song_id);
+            // svcData.get_song($scope.song_id);
             self.mode = "edit";
             // $scope.data.current_view = "update";
         }else{

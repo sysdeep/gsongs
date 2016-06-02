@@ -1,12 +1,11 @@
 <h1>Song</h1>
 
 
-
 <table class="table table-bordered table-condensed">
 	<tbody>
 		<tr>
 			<td>Исполнитель</td>
-			<td>[[ data.song.singer.name ]]</td>
+			<td>[[ data.song.singer ]]</td>
 		</tr>
 
 		<tr>
@@ -52,7 +51,7 @@
 </table>
 
 
-<button class="btn btn-primary" ng-click="edit()">Edit</button>
+<a class="btn btn-primary" href="#/song_edit/[[ data.song.id ]]">Edit</a>
 
 <pre>
 [[ data.song.text ]]

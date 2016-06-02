@@ -8,10 +8,24 @@
 	app.controller("SingerCtrl", function($scope, $location, $routeParams, svcData){
 		$scope.data = svcData.data;
 		$scope.data.current_view = "singer";
+		$scope.singer_songs = [];
 		var self = this;
 		self.singer_id = $routeParams.singer_id;
 
 		console.log($routeParams.singer_id);
+
+
+		//--- search singer
+		var search_result = svcData.data.singers.filter(function(singer){return singer.id == self.singer_id});
+		if(search_result.length > 0){
+			svcData.data.singer = search_result[0];
+		}
+
+
+		//--- singer songs
+		$scope.singer_songs = svcData.data.songs.filter(function(song){	return song.singer == self.singer_id});
+
+
 
 		// svcData.get_singer(self.singer_id);
 		// svcData.get_songs_singer(self.singer_id);

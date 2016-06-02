@@ -1,5 +1,5 @@
 <h1>Main</h1>
-
+<!-- 
 <button class="btn btn-primary" ng-click="refresh()">Refresh</button>
 <button class="btn btn-success" ng-click="add()">Add</button>
 
@@ -19,13 +19,13 @@
 			<th>Автор</th>
 			<th>Название</th>
 			<th>Альбом</th>
-			<!-- <th>Текст</th> -->
+			<th>Текст</th>
 			<th>Описание</th>
 			<th>Жанр</th>
-			<!-- <th>Метки</th> -->
-			<!-- <th>Создание</th> -->
-			<!-- <th>Обновление</th> -->
-			<!-- <th>api</th> -->
+			<th>Метки</th>
+			<th>Создание</th>
+			<th>Обновление</th>
+			<th>api</th>
 			<th>options</th>
 		</tr>
 	</thead>
@@ -33,7 +33,7 @@
 		<tr ng-repeat="song in songs_filtered()" ng-click11111111111111="show_song(song)">
 			<td>
 				<a href="#/singer/[[ song.singer._id ]]">
-				<!-- <a href="javascript: void(0)" title="" ng-click="select_singer(song.singer)"> -->
+				<a href="javascript: void(0)" title="" ng-click="select_singer(song.singer)">
 					[[ song.singer.name ]]
 				</a>
 			</td>
@@ -42,13 +42,13 @@
 				<a href="javascript: void(0)" title="" ng-click="show_song(song)">[[ song.name ]]</a>
 			</td>
 			<td>[[ song.album ]]</td>
-			<!-- <td>[[ song.text ]]</td> -->
+			<td>[[ song.text ]]</td>
 			<td>[[ song.description ]]</td>
 			<td>[[ song.genre ]]</td>
-			<!-- <td>[[ song.tags ]]</td> -->
-			<!-- <td>[[ song.created ]]</td> -->
-			<!-- <td>[[ song.updated ]]</td> -->
-			<!-- <td>[[ song.api ]]</td> -->
+			<td>[[ song.tags ]]</td>
+			<td>[[ song.created ]]</td>
+			<td>[[ song.updated ]]</td>
+			<td>[[ song.api ]]</td>
 			<td>
 				<a href="javascript: void(0)" title="" ng-click="show_song(song)">&nbsp<i class="fa fa-folder-open-o"></i>&nbsp</a>
 				|
@@ -59,4 +59,4 @@
 			</td>
 		</tr>
 	</tbody>
-</table>
+</table> -->

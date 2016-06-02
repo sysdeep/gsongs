@@ -69,46 +69,27 @@
 		
 
 
+
+
+
+
+		//--- songs -----------------------------------------------------------
 		function get_songs(){
 			data.songs_loaded = false;
 			$http.get("/get_songs").success(function (response) {
 				data.songs = response.songs;
 				data.songs_loaded = true;
-				data.songs_need_update = false;
-				notify.n_success("Список загружен");
-
+				// notify.n_success("Список загружен");
 			}).error(function(response){
 				console.log("error");
 				console.log(response);
-				data.songs_loaded = true;
-				data.songs_need_update = true;
-
-				notify.n_error(JSON.stringify(response), "Ошибка загрузки списка");
+				data.songs_loaded = false;
+				// notify.n_error(JSON.stringify(response), "Ошибка загрузки списка");
 			});
 		}
-
-
-
-		function get_song(id){
-			data.song_loaded = false;
-
-			$http.get("/songs/get_song/"+id).success(function (response) {
-				data.song = response;
-				data.song_loaded = true;
-			}).error(function(response){
-				console.log("error");
-				console.log(response);
-				data.song_loaded = true;
-				notify.n_error(JSON.stringify(response), "Ошибка загрузки записи");
-			});
-		}
-
 
 
 		function create_song(){
-			// data.song.singer = data.singer.name;
-			// data.song.singer_id = data.singer._id;
-			console.log(data.song);
 			$http.post("/create_song", data.song).success(function(response){
 				console.log("ok");
 				console.log(response);
@@ -127,15 +108,10 @@
 		}
 
 		function update_song(){
-			// data.song.singer = data.singer.name;
-			// data.song.singer_id = data.singer._id;
-			$http.post("/songs/update_song", data.song).success(function(response){
+			$http.post("/update_song", data.song).success(function(response){
 				console.log("ok");
-				data.song.updated = response.updated;
-				data.songs_need_update = true;
-				notify.n_success("Запись обновлена успешно");
-				$location.path( "/song/"+data.song._id );
-				get_singers();
+				console.log(response);
+				// notify.n_success("Запись обновлена успешно");
 			}).error(function(response){
 				console.log("error");
 				console.log(response);
@@ -146,20 +122,18 @@
 
 
 		function remove_song(){
-			$http.post("/songs/remove_song", data.song).success(function(response){
-				console.log("ok");
-				// data.songs_need_update = true;
-
-
+			$http.post("remove_song", data.song).success(function(response){
 				var index = data.songs.indexOf(data.song);
 				data.songs.splice(index, 1);
-				notify.n_success("Запись удалена успешно");
+				data.song = {};
+				// notify.n_success("Запись удалена успешно");
 			}).error(function(response){
 				console.log("error");
 				console.log(response);
 				notify.n_error(JSON.stringify(response), "Ошибка удаления записи");
 			});
 		}
+		//--- songs -----------------------------------------------------------
 
 
 
@@ -169,8 +143,7 @@
 
 
 
-
-
+		//--- singers ---------------------------------------------------------
 		function get_singers(){
 			$http.get("/get_singers").success(function (response) {
 				data.singers = response.singers;
@@ -180,41 +153,6 @@
 				console.log(response);
 			});
 		}
-
-
-		function get_singer(id){
-			data.singer_loaded = false;
-
-			$http.get("/songs/get_singer/"+id).success(function (response) {
-				data.singer = response;
-				data.singer_loaded = true;
-				notify.n_success("Загрузка записи исполнителя - успешно");
-				// _cb(null, response);
-			}).error(function(response){
-				console.log("error");
-				console.log(response);
-				data.singer_loaded = true;
-				notify.n_error(JSON.stringify(response), "Ошибка загрузки записи исполнителя");
-				// _cb("error", response);
-			});
-		}
-
-
-		function get_songs_singer(singer_id){
-			data.songs_loaded = false;
-
-			$http.post("/songs/get_songs_singer/", {_id: singer_id}).success(function (response) {
-				data.songs = response;
-				data.songs_loaded = true;
-				notify.n_success("Загрузка списка песен для исполнителя - успешно");
-			}).error(function(response){
-				console.log("error");
-				console.log(response);
-				data.songs_loaded = true;
-				notify.n_error(JSON.stringify(response), "Ошибка загрузки списка песен для исполнителя");
-			});
-		}
-
 
 
 
@@ -257,7 +195,7 @@
 				notify.n_error(JSON.stringify(response), "Заданный исполнитель удалён неуспешно");
 			});
 		}
-
+		//--- singers ---------------------------------------------------------
 
 
 
@@ -271,17 +209,12 @@
 		return {
 			"data"				: data,
 			"get_songs"			: get_songs,
-			"get_song"			: get_song,
 			"set_default_song"	: set_default_song,
 			"create_song"		: create_song,
 			"update_song"		: update_song,
 			"remove_song"		: remove_song,
 
-
 			"get_singers"		: get_singers,
-			// "select_singer"		: select_singer
-			"get_singer"		: get_singer,
-			"get_songs_singer"			: get_songs_singer,
 			"create_singer"		: create_singer,
 			"update_singer"		: update_singer,
 			"remove_singer"		: remove_singer
