@@ -8,6 +8,9 @@
 	app.controller("SingersCtrl", function($scope, $location, $routeParams, svcData){
 		$scope.data = svcData.data;
 		$scope.data.current_view = "singers";
+		$scope.singer_for_remove = null;
+		$scope.is_show_remove = false;
+		$scope.singer_songs = [];
 
 		// $scope.singer_edit = {
 		// 	id: 0,
@@ -46,8 +49,21 @@
 
 
 
-		$scope.remove_singer = function(singer){
-			svcData.remove_singer(singer);
+		$scope.show_remove_singer = function(singer){
+			$scope.singer_for_remove = singer;
+			$scope.is_show_remove = true;
+			$scope.singer_songs = svcData.data.songs.filter(function(song){return song.singer == singer.id});
+
+		}
+		$scope.remove_singer = function(){
+			svcData.remove_singer($scope.singer_for_remove);
+			$scope.singer_for_remove = {};
+			$scope.is_show_remove = false;
+		}
+
+		$scope.remove_singer_cancel = function(){
+			$scope.singer_for_remove = {};
+			$scope.is_show_remove = false;
 		}
 
 
@@ -55,49 +71,7 @@
 			svcData.data.singer_edit = false;
 		}
 
-		// var self = this;
-		// self.singer_id = $routeParams.singer_id;
-
-		// console.log($routeParams.singer_id);
-
-		// // svcData.get_singer(self.singer_id);
-		// svcData.get_songs_singer();
-
-
-
-		// if(svcData.data.songs_need_update)
-		// 	svcData.get_songs();
-
-
-
-		// $scope.refresh = function(){
-		// 	svcData.get_songs();
-		// }
-
-
-		// $scope.show_song = function(song){
-		// 	console.log(song);
-		// 	// svcData.data.current_song = song;
-		// 	$location.path( "/song/"+song._id );
-		// }
-
-		// $scope.edit_song = function(song){
-		// 	// svcData.data.song = song;
-		// 	$location.path( "/edit/"+song._id );
-		// }
-
-		// $scope.remove_song = function(song){
-		// 	svcData.data.song = song;
-		// 	// $location.path( "/song/"+song._id );
-		// 	svcData.remove_song();
-		// 	// $location.path( "/main/" );
-
-		// }
-
-		// $scope.add = function(){
-		// 	// svcData.set_default_song();
-		// 	$location.path( "/edit/0" );
-		// }
+		
 
 
 
@@ -126,13 +100,25 @@
 
 
 
-		// function filter_row(song){
 
-		// }
 
-		// $scope.refresh_limit = function(){
-		// 	svcData.get_logs_limit();
-		// }
+
+		/**
+		 * сортировка
+		 * @type {Boolean}
+		 */
+		var sort_dir = true;
+		$scope.sort = function(field){
+			svcData.data.singers.sort(function(o1, o2){
+				if( sort_dir ){
+					return o1[field] > o2[field] ? 1 : o1[field] < o2[field] ? -1 : 0;
+				}else{
+					return o1[field] > o2[field] ? -1 : o1[field] < o2[field] ? 1 : 0;
+				}
+			});			
+			sort_dir = !sort_dir;
+		};
+
 	});
 
 

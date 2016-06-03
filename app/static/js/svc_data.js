@@ -14,16 +14,17 @@
 			"current_view": "",
 
 			"songs": [],
-			// "songs_count": 0,
 			"songs_loaded": false,
-			"songs_need_update": true,
 
 			"song": {},
+			"song_edit" : {},
 			"song_loaded": false,
 			
 
 			"singers": [],
+			"singers_cache": {},
 			"singers_loaded": false,
+
 			"singer_edit": false,
 
 			"singer": {},
@@ -45,8 +46,8 @@
 		};
 
 
-		function set_default_song(){
-			data.song = {
+		function get_default_song(){
+			var song = {
 				// _id			: 0,
 				singer		: "",					// исполнитель
 				author		: "",					// автор
@@ -60,11 +61,15 @@
 			    updated		: "",					// дата изменения
 			    api 		: 1
 			};
+
+			return song;
 		}
 
+		function set_default_song(){
+			data.song = set_default_song();
+		}
 
-
-		set_default_song();
+		// set_default_song();
 
 		
 
@@ -90,16 +95,10 @@
 
 
 		function create_song(){
-			$http.post("/create_song", data.song).success(function(response){
-				console.log("ok");
-				console.log(response);
-				// data.song._id = response._id;
-				// data.song.created = response.created;
-				// data.song.updated = response.updated;
-				// data.songs_need_update = true;
+			$http.post("/create_song", data.song_edit).success(function(response){
+				angular.copy(data.song_edit, data.song);
+				data.songs.push(data.song);
 				notify.n_success("Запись создана успешно");
-				// $location.path( "/song/"+data.song._id );
-				// get_singers();
 			}).error(function(response){
 				console.log("error");
 				console.log(response);
@@ -108,10 +107,9 @@
 		}
 
 		function update_song(){
-			$http.post("/update_song", data.song).success(function(response){
-				console.log("ok");
-				console.log(response);
-				// notify.n_success("Запись обновлена успешно");
+			$http.post("/update_song", data.song_edit).success(function(response){
+				angular.copy(data.song_edit, data.song);
+				notify.n_success("Запись обновлена успешно");
 			}).error(function(response){
 				console.log("error");
 				console.log(response);
@@ -147,7 +145,9 @@
 		function get_singers(){
 			$http.get("/get_singers").success(function (response) {
 				data.singers = response.singers;
-				notify.n_success("Список исполнителей загружен");
+				data.singers_cache = {};
+				data.singers.forEach(function(singer){data.singers_cache[singer.id] = singer.name});
+				// notify.n_success("Список исполнителей загружен");
 			}).error(function(response){
 				console.log("error");
 				console.log(response);
@@ -209,7 +209,7 @@
 		return {
 			"data"				: data,
 			"get_songs"			: get_songs,
-			"set_default_song"	: set_default_song,
+			"get_default_song"	: get_default_song,
 			"create_song"		: create_song,
 			"update_song"		: update_song,
 			"remove_song"		: remove_song,

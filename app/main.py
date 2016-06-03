@@ -43,6 +43,8 @@ def get_singers():
 	singers = storage.Singer.select().dicts()
 	data = []
 	for singer in singers:
+		singer["created"] = str(singer["created"])
+		singer["updated"] = str(singer["updated"])
 		data.append(singer)
 	return jsonify(singers=data)
 
@@ -67,6 +69,7 @@ def update_singer():
 
 	singer = storage.Singer.get(storage.Singer.id == in_data["id"])
 	singer.name = in_data["name"]
+	singer.updated = storage.sql_date()
 	singer.save()
 
 	return jsonify(singer=in_data)
@@ -95,6 +98,8 @@ def get_songs():
 	songs = storage.Song.select().dicts()
 	data = []
 	for song in songs:
+		song["created"] = str(song["created"])
+		song["updated"] = str(song["updated"])
 		data.append(song)
 	return jsonify(songs=data)
 
@@ -114,6 +119,8 @@ def create_song():
 	song.description = in_data["description"]
 	song.genre = in_data["genre"]
 	song.save()
+
+	# print("----->", song.id)
 
 	return jsonify(result=in_data)
 

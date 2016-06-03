@@ -4,13 +4,15 @@
 </div>
 
 
+[[ data.song_edit ]]
 
 <form class="form-horizontal">
 	
 	<div class="form-group">
 		<label for="inputSinger" class="col-sm-2 control-label">Исполнитель</label>
 		<div class="col-sm-10">
-			<select ng-model="data.song.singer" ng-options="singer.id as singer.name for singer in data.singers track by singer.id"></select>
+			<!-- <select ng-model="data.song.singer" ng-options="singer.id as singer.name for singer in data.singers track by singer.id"></select> -->
+			<select ng-model="data.song_edit.singer" ng-options="singer.id as singer.name  for singer in data.singers"></select>
 			<!--
 			<input type="text" class="form-control" id="inputSinger" placeholder="Исполнитель" ng-model="data.song.singer">
 			-->
@@ -22,7 +24,7 @@
 	<div class="form-group">
 		<label for="inputName" class="col-sm-2 control-label">Название</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inputName" placeholder="Название" ng-model="data.song.name">
+			<input type="text" class="form-control" id="inputName" placeholder="Название" ng-model="data.song_edit.name">
 		</div>
 	</div>
 
@@ -31,7 +33,7 @@
 	<div class="form-group">
 		<label for="inputAuthor" class="col-sm-2 control-label">Автор</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inputAuthor" placeholder="Автор" ng-model="data.song.author">
+			<input type="text" class="form-control" id="inputAuthor" placeholder="Автор" ng-model="data.song_edit.author">
 		</div>
 	</div>
 
@@ -40,7 +42,7 @@
 	<div class="form-group">
 		<label for="inputAlbum" class="col-sm-2 control-label">Альбом</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inputAlbum" placeholder="Альбом" ng-model="data.song.album">
+			<input type="text" class="form-control" id="inputAlbum" placeholder="Альбом" ng-model="data.song_edit.album">
 		</div>
 	</div>
 
@@ -48,7 +50,7 @@
 	<div class="form-group">
 		<label for="inputGenre" class="col-sm-2 control-label">Жанр</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inputGenre" placeholder="Жанр" ng-model="data.song.genre">
+			<input type="text" class="form-control" id="inputGenre" placeholder="Жанр" ng-model="data.song_edit.genre">
 		</div>
 	</div>
 
@@ -56,14 +58,14 @@
 	<div class="form-group">
 		<label for="inputDescription" class="col-sm-2 control-label">Описание</label>
 		<div class="col-sm-10">
-			<textarea class="form-control" rows="3" id="inputDescription" placeholder="Описание" ng-model="data.song.description"></textarea>
+			<textarea class="form-control" rows="3" id="inputDescription" placeholder="Описание" ng-model="data.song_edit.description"></textarea>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label for="inputText" class="col-sm-2 control-label">Текст</label>
 		<div class="col-sm-10">
-			<textarea class="form-control" rows="5" id="inputText" placeholder="Текст" ng-model="data.song.text"></textarea>
+			<textarea class="form-control" rows="5" id="inputText" placeholder="Текст" ng-model="data.song_edit.text"></textarea>
 		</div>
 	</div>
 
