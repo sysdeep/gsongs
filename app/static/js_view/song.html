@@ -1,59 +1,67 @@
-<h1>Song</h1>
+<h1 class="page-header">Песенка: <span>[[ data.song.name ]]</span></h1>
 
 
-<table class="table table-bordered table-condensed">
-	<tbody>
-		<tr>
-			<td>Исполнитель</td>
-			<td>[[ data.song.singer ]]</td>
-		</tr>
+<div class="row">
+	<div class="col-md-5">
+		
+		<table class="table table-bordered table-condensed">
+			<tbody>
+				<tr>
+					<td>Исполнитель</td>
+					<td><a href="#/singer/[[ data.song.singer ]]">[[ data.song.singer | get_singer_name ]]</a></td>
+				</tr>
 
-		<tr>
-			<td>Автор</td>
-			<td>[[ data.song.author ]]</td>
-		</tr>
+				<tr>
+					<td>Автор</td>
+					<td>[[ data.song.author ]]</td>
+				</tr>
 
-		<tr>
-			<td>Название</td>
-			<td>[[ data.song.name ]]</td>
-		</tr>
+				<tr>
+					<td>Название</td>
+					<td>[[ data.song.name ]]</td>
+				</tr>
 
-		<tr>
-			<td>Альбом</td>
-			<td>[[ data.song.album ]]</td>
-		</tr>
+				<tr>
+					<td>Альбом</td>
+					<td>[[ data.song.album ]]</td>
+				</tr>
 
-		<tr>
-			<td>Описание</td>
-			<td>[[ data.song.description ]]</td>
-		</tr>
+				<tr>
+					<td>Описание</td>
+					<td>[[ data.song.description ]]</td>
+				</tr>
 
-		<tr>
-			<td>Жанр</td>
-			<td>[[ data.song.genre ]]</td>
-		</tr>
+				<tr>
+					<td>Жанр</td>
+					<td>[[ data.song.genre ]]</td>
+				</tr>
 
-		<tr>
-			<td>Создание</td>
-			<td>[[ data.song.created ]]</td>
-		</tr>
+				<tr>
+					<td>Создание</td>
+					<td>[[ data.song.created ]]</td>
+				</tr>
 
-		<tr>
-			<td>Обновление</td>
-			<td>[[ data.song.updated ]]</td>
-		</tr>
+				<tr>
+					<td>Обновление</td>
+					<td>[[ data.song.updated ]]</td>
+				</tr>
 
-		<tr>
-			<td>api</td>
-			<td>[[ data.song.api ]]</td>
-		</tr>
-	</tbody>
-</table>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="col-md-7">
+		
+		<pre>
+			[[ data.song.text ]]
+			</pre>
+
+	</div>
+</div>
 
 
-<a class="btn btn-primary" href="#/song_edit/[[ data.song.id ]]">Edit</a>
 
-<pre>
-[[ data.song.text ]]
-</pre>
+
+<a class="btn btn-primary" href="#/song_edit/[[ data.song.id ]]">Изменить</a>
+
 
