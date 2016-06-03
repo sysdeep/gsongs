@@ -25,7 +25,10 @@
 			}
 		}else{
 			self.mode = "add";
-			$scope.song_edit = svcData.get_default_song();
+			svcData.data.song_edit = svcData.get_default_song();
+			if(svcData.data.singer.id){
+				svcData.data.song_edit.singer = svcData.data.singer.id;
+			}
 		}
 
 

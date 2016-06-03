@@ -12,7 +12,6 @@
 		var self = this;
 		self.singer_id = $routeParams.singer_id;
 
-		console.log($routeParams.singer_id);
 
 
 		//--- search singer

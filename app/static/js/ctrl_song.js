@@ -20,6 +20,11 @@
             console.log("found");
             console.log(search_result[0]);
             svcData.data.song = search_result[0];
+
+            var search_singer = svcData.data.singers.filter(function(singer){return singer.id == svcData.data.song.singer});
+            if(search_singer.length > 0){
+                svcData.data.singer = search_singer[0];
+            }
         }
 
         // $scope.edit = function(){
