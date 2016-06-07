@@ -15,7 +15,7 @@ DIR_UP2 	= os.path.dirname(DIR_UP1)
 
 DB_FILE 		= os.path.join(DIR_UP2, "storage.db")
 
-print("используемый файл базы данных: {}".format(DB_FILE))
+# print("используемый файл базы данных: {}".format(DB_FILE))
 
 db = peewee.SqliteDatabase(DB_FILE)
 
