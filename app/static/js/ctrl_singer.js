@@ -9,6 +9,7 @@
 		$scope.data = svcData.data;
 		$scope.data.current_view = "singer";
 		$scope.singer_songs = [];
+		$scope.filter_name = "";
 		var self = this;
 		self.singer_id = $routeParams.singer_id;
 
@@ -24,6 +25,35 @@
 		//--- singer songs
 		$scope.singer_songs = svcData.data.songs.filter(function(song){	return song.singer == self.singer_id});
 
+
+
+		$scope.filtered = function(){
+			var o_data = [];
+			var add_flag = true;
+
+			angular.forEach($scope.singer_songs, function(song){
+				add_flag = true;
+
+				if($scope.filter_name){
+
+					var name_search = $scope.filter_name.toLowerCase();			// в нижнем регистре
+					var name_item = song.name.toLowerCase();					// в нижнем регистре
+
+					//-- если нет совпадения - не добавляем
+					if( name_item.indexOf(name_search) == -1 )	add_flag = false;
+				}
+
+
+
+				if(add_flag){
+					o_data.push(song);
+				}
+			})
+
+
+
+			return o_data;
+		}
 
 
 		// svcData.get_singer(self.singer_id);
