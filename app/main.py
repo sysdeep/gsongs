@@ -218,4 +218,4 @@ def nika2016():
 	data = {
 		"VERSION": VERSION
 	}
-	return render_template("nika/index.html", **data)
+	return render_template("nika2016/index.html", **data)
