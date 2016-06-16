@@ -209,3 +209,13 @@ def remove_song():
 
 
 
+
+
+
+@app.route("/nika2016")
+def nika2016():
+	
+	data = {
+		"VERSION": VERSION
+	}
+	return render_template("nika/index.html", **data)
