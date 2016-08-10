@@ -1,3 +1,3 @@
 @echo off
 
-g:\Python34\python.exe run_win.py
+g:\Python35\python.exe run_win.py

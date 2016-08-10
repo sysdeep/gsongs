@@ -141,17 +141,22 @@
 
 
 
-
+	<!-- vendors -->
 	<script src="/static/vendor/jquery/jquery.min.js?version={{ VERSION }}"></script>
 	<script src="/static/vendor/angular/angular.min.js?version={{ VERSION }}"></script>
 	<script src="/static/vendor/angular-route/angular-route.min.js?version={{ VERSION }}"></script>
 	<script src="/static/vendor/angular-ui-notification/angular-ui-notification.min.js?version={{ VERSION }}"></script>
-	{#
-	<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js', _external=True) }}"></script>
-	<script src="{{ url_for('static', filename='vendors/notify.min.js', _external=True) }}"></script>
-	#}
+	<!-- vendors -->
+	
 
+
+	<!-- app -->
 	<script src="/static/js/app.js?version={{ VERSION }}"></script>
+
+	<script src="/static/js/singers/singers.module.js?version={{ VERSION }}"></script>
+	<script src="/static/js/singers/singers.svc.js?version={{ VERSION }}"></script>
+
+
 	<script src="/static/js/svc_data.js?version={{ VERSION }}"></script>
 	<script src="/static/js/ctrl_main.js?version={{ VERSION }}"></script>
 	<script src="/static/js/ctrl_singers.js?version={{ VERSION }}"></script>
@@ -162,6 +167,7 @@
 	{#
 	<script src="/js/songs/ctrl_singer.js?version={{ VERSION }}"></script>
 	#}
+	<!-- app -->
 
 	{% block ext_inc_body %}{% endblock %}
 

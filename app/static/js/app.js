@@ -2,18 +2,30 @@
 	"use strict";
 
 
+	var app = angular.module("songsApp", [
+		"ngRoute", 
+		"ui-notification",
+		"app.singers"
+	]);
 
 
-	var app = angular.module("songsApp", ["ngRoute"
-		, "ui-notification"
-		]);
 
 
 
-	app.config(['$interpolateProvider', function ($interpolateProvider) {
-			$interpolateProvider.startSymbol('[[');
-			$interpolateProvider.endSymbol(']]');
-		}]);
+
+	function config_interpolate($interpolateProvider) {
+		$interpolateProvider.startSymbol('[[');
+		$interpolateProvider.endSymbol(']]');
+	};
+
+	app.config(['$interpolateProvider', config_interpolate]);
+
+
+
+
+
+
+
 
 	app.config(function(NotificationProvider) {
 		NotificationProvider.setOptions({
