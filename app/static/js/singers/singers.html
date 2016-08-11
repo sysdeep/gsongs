@@ -1,4 +1,4 @@
-<h1 class="page-header">Список исполнителей 2</h1>
+<h1 class="page-header">Список исполнителей</h1>
 
 
 <div class="row">
@@ -28,7 +28,7 @@
 						<!-- <a href="javascript: void(0)" title="" ng-click="show_song(song)">&nbsp<i class="fa fa-folder-open-o"></i>&nbsp</a>
 						| -->
 
-						<a href="javascript: void(0)" title="" ng-click="edit_singer(singer)">&nbsp<i class="fa fa-pencil"></i> изменить&nbsp</a>
+						<a href="javascript: void(0)" title="" ng-click="show_edit_singer(singer)">&nbsp<i class="fa fa-pencil"></i> изменить&nbsp</a>
 						|
 						<a href="javascript: void(0)" title="" ng-click="show_remove_singer(singer)">&nbsp<i class="fa fa-trash-o"></i> удалить&nbsp</a>
 
@@ -39,41 +39,26 @@
 
 	</div>
 	<div class="col-md-4">
-		<button class="btn btn-primary" ng-click="refresh()">Обновить</button>
-		<button class="btn btn-success" ng-click="add_singer()">Добавить</button>
-
-
-		<div ng-show="data.singer_edit">
-
-			<h5 class="page-header">
-				<span ng-if="singer_edit.id">Изменение записи</span>
-				<span ng-if="!singer_edit.id">Создание записи</span>
-			</h5>
-			<form>
-	  		
-	  			<div class="form-group">
-	    			<label for="singer_name">Название</label>
-	    			<input type="text" class="form-control" id="singer_name" placeholder="Название" ng-model="singer_edit.name">
-	  			</div>
-	  		
-	  			<button type="submit" class="btn btn-primary" ng-click="save_singer()">Сохранить</button>
-	  			<button type="submit" class="btn btn-default" ng-click="cancel()">Отмена</button>
-			</form>
-
-		</div>
+		<button class="btn btn-primary" ng-click="refresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Обновить</button>
+		<button class="btn btn-success" ng-click="show_add_singer()"><i class="fa fa-plus" aria-hidden="true"></i> Добавить</button>
 
 
 
-		<div ng-if="is_show_remove">
-			<p>Вы собираетесь удалить испольнителя: <span>[[ singer_for_remove.name ]]</span></p>
-			<a href="javascript: void(0)" ng-click="remove_singer()">удалить</a>
-			|
-			<a href="javascript: void(0)" ng-click="remove_singer_cancel()">отмена</a>
-			<p>Данный исполнитель связан с песнями: <span>[[ singer_songs.length ]]</span></p>
-			<ul>
-				<li ng-repeat="song in singer_songs">[[ song.name ]]</li>
-			</ul>
-		</div>
+
+
+
+		<!--
+			<div ng-if="is_show_remove">
+				<p>Вы собираетесь удалить испольнителя: <span>[[ singer_for_remove.name ]]</span></p>
+				<a href="javascript: void(0)" ng-click="remove_singer()">удалить</a>
+				|
+				<a href="javascript: void(0)" ng-click="remove_singer_cancel()">отмена</a>
+				<p>Данный исполнитель связан с песнями: <span>[[ singer_songs.length ]]</span></p>
+				<ul>
+					<li ng-repeat="song in singer_songs">[[ song.name ]]</li>
+				</ul>
+			</div>
+		-->
 
 
 	</div>
@@ -82,3 +67,67 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="singer_modal_template">
+	<h4>
+		<span ng-if="data.singer_edit.id">Изменение записи исполнителя</span>
+		<span ng-if="!data.singer_edit.id">Создание записи исполнителя</span>
+	</h4>
+
+	<form>
+		<div class="form-group">
+			<label for="singer_name">Название</label>
+			<input type="text" class="form-control" id="singer_name" placeholder="Название" ng-model="data.singer_edit.name">
+		</div>
+	</form>
+
+	<hr>
+	<div class="row">
+		<div class="col-md-6">
+			<button class="btn btn-default btn-block" ng-click="closeThisDialog()"><i class="fa fa-ban" aria-hidden="true"></i> Отмена</button>
+		</div>
+		<div class="col-md-6">
+			<button class="btn btn-primary btn-block" ng-click="save_singer()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить</button>
+		</div>
+	</div>
+
+</script>
+
+
+
+
+
+
+<script type="text/ng-template" id="remove_singer_modal_template">
+	<h4>Подтверждение удаления исполнителя</h4>
+
+	<div class="alert alert-danger" role="alert">
+		<p>Вы собираетесь удалить исполнителя: <strong>[[ data.singer_edit.name ]]</strong></p>
+	</div>
+
+	<hr>
+	<div class="row">
+		<div class="col-md-6">
+			<button class="btn btn-default btn-block" ng-click="closeThisDialog()"><i class="fa fa-ban" aria-hidden="true"></i> Отмена</button>
+		</div>
+		<div class="col-md-6">
+			<button class="btn btn-danger btn-block" ng-click="remove_singer()"><i class="fa fa-trash-o" aria-hidden="true"></i> Удалить</button>
+		</div>
+	</div>
+
+</script>

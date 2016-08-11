@@ -5,6 +5,7 @@
 	var app = angular.module("songsApp", [
 		"ngRoute", 
 		"ui-notification",
+		"ngDialog",
 		"app.singers"
 	]);
 
@@ -49,10 +50,10 @@
 		});
 
 		//--- singers
-		$routeProvider.when("/singers/", {
-			templateUrl : "/static/js_view/singers.html",
-			controller: "SingersCtrl"
-		});
+		// $routeProvider.when("/singers/", {
+		// 	templateUrl : "/static/js_view/singers.html",
+		// 	controller: "SingersCtrl"
+		// });
 
 		//--- songs
 		$routeProvider.when("/songs/", {

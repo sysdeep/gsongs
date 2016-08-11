@@ -11,7 +11,7 @@
 
 
 		//--- singers
-		$routeProvider.when("/singers2", {
+		$routeProvider.when("/singers", {
 			templateUrl : "/static/js/singers/singers.html",
 			controller: "SingersCtrl"
 		});

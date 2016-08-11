@@ -23,6 +23,11 @@
 	<link href="/static/vendor/angular-ui-notification/angular-ui-notification.min.css?version={{ VERSION }}" rel="stylesheet">
 	<link href="/static/vendor/font-awesome/css/font-awesome.min.css?version={{ VERSION }}" rel="stylesheet">
 
+	<!-- ngDialog -->
+	<link href="/static/vendor/ng-dialog/css/ngDialog.min.css?version={{ VERSION }}" rel="stylesheet" media="screen">
+	<link href="/static/vendor/ng-dialog/css/ngDialog-theme-default.min.css?version={{ VERSION }}" rel="stylesheet" media="screen">
+
+
 
 	<!-- <link href="{{ url_for('static', filename='css/style.css', _external=True) }}" rel="stylesheet" media="screen"> -->
 	<link href="/static/css/style.css" rel="stylesheet" media="screen">
@@ -146,6 +151,7 @@
 	<script src="/static/vendor/angular/angular.min.js?version={{ VERSION }}"></script>
 	<script src="/static/vendor/angular-route/angular-route.min.js?version={{ VERSION }}"></script>
 	<script src="/static/vendor/angular-ui-notification/angular-ui-notification.min.js?version={{ VERSION }}"></script>
+	<script src="/static/vendor/ng-dialog/js/ngDialog.min.js?version={{ VERSION }}"></script>
 	<!-- vendors -->
 	
 
@@ -155,11 +161,14 @@
 
 	<script src="/static/js/singers/singers.module.js?version={{ VERSION }}"></script>
 	<script src="/static/js/singers/singers.svc.js?version={{ VERSION }}"></script>
+	<script src="/static/js/singers/singers.ctrl.js?version={{ VERSION }}"></script>
 
 
 	<script src="/static/js/svc_data.js?version={{ VERSION }}"></script>
 	<script src="/static/js/ctrl_main.js?version={{ VERSION }}"></script>
-	<script src="/static/js/ctrl_singers.js?version={{ VERSION }}"></script>
+
+	<!-- <script src="/static/js/ctrl_singers.js?version={{ VERSION }}"></script> -->
+	
 	<script src="/static/js/ctrl_singer.js?version={{ VERSION }}"></script>
 	<script src="/static/js/ctrl_songs.js?version={{ VERSION }}"></script>
 	<script src="/static/js/ctrl_song_edit.js?version={{ VERSION }}"></script>
