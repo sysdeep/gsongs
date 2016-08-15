@@ -3,11 +3,11 @@
 
 
 	var app = angular.module("app.singers");
-	app.controller("SingersCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "ngDialog", SingersCtrl]);
+	app.controller("SingersCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "ngDialog", "notify", SingersCtrl]);
 
 
 
-	function SingersCtrl($scope, $location, $routeParams, SingersSvc, ngDialog){
+	function SingersCtrl($scope, $location, $routeParams, SingersSvc, ngDialog, notify){
 		var svc = SingersSvc;
 		$scope.data = svc.data;
 		var singer_modal 	= null;
@@ -33,7 +33,9 @@
 		// $scope.singer_edit = {};
 
 		$scope.refresh = function(){
-			svc.get_singers();
+			svc.get_singers().then(function(){
+				notify.n_success("Список исполнителей загружен");
+			});
 		}
 
 		// $scope.add_singer = function(){

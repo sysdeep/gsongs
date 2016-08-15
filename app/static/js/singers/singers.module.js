@@ -17,8 +17,8 @@
 		});
 
 		//--- singer page with songs
-		$routeProvider.when("/singer2/:singer_id", {
-			templateUrl : "/static/js_view/singer.html",
+		$routeProvider.when("/singer/:singer_id", {
+			templateUrl : "/static/js/singers/singer.html",
 			controller: "SingerCtrl"
 		});
 		

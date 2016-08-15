@@ -6,7 +6,8 @@
 		"ngRoute", 
 		"ui-notification",
 		"ngDialog",
-		"app.singers"
+		"app.singers",
+		"app.songs"
 	]);
 
 
@@ -28,17 +29,17 @@
 
 
 
-	app.config(function(NotificationProvider) {
-		NotificationProvider.setOptions({
-			delay: 10000,
-			startTop: 20,
-			startRight: 10,
-			verticalSpacing: 10,
-			horizontalSpacing: 10,
-			positionX: 'left',
-			positionY: 'bottom'
-		});
-	});
+	// app.config(function(NotificationProvider) {
+	// 	NotificationProvider.setOptions({
+	// 		delay: 10000,
+	// 		startTop: 20,
+	// 		startRight: 10,
+	// 		verticalSpacing: 10,
+	// 		horizontalSpacing: 10,
+	// 		positionX: 'left',
+	// 		positionY: 'bottom'
+	// 	});
+	// });
 
 
 	app.config(["$routeProvider", function($routeProvider){
@@ -56,30 +57,25 @@
 		// });
 
 		//--- songs
-		$routeProvider.when("/songs/", {
-			templateUrl : "/static/js_view/songs.html",
-			controller: "SongsCtrl"
-		});
+		// $routeProvider.when("/songs/", {
+		// 	templateUrl : "/static/js_view/songs.html",
+		// 	controller: "SongsCtrl"
+		// });
 
 		//--- edit song
-		$routeProvider.when("/song_edit/:song_id", {
-			templateUrl : "/static/js_view/song_edit.html",
-			controller: "SongEditCtrl"
-		});
+		// $routeProvider.when("/song_edit/:song_id", {
+		// 	templateUrl : "/static/js_view/song_edit.html",
+		// 	controller: "SongEditCtrl"
+		// });
 
 		//--- singer page with songs
-		$routeProvider.when("/singer/:singer_id", {
-			templateUrl : "/static/js_view/singer.html",
-			controller: "SingerCtrl"
-		});
+		// $routeProvider.when("/singer/:singer_id", {
+		// 	templateUrl : "/static/js_view/singer.html",
+		// 	controller: "SingerCtrl"
+		// });
 
 
-		//--- song page
-		$routeProvider.when("/song/:song_id", {
-			templateUrl : "/static/js_view/song.html",
-			controller: "SongCtrl"
-		});
-
+	
 
 
 
@@ -96,57 +92,13 @@
 		svcData.get_singers();
 		svcData.get_songs();
 
-		// $rootScope.select_singer = function(singer){
-		// 	svcData.data.singer = singer;
-		// 	$location.path( "/singer/"+singer._id );
-		// }
-
-
-		// Notification("hello");
-		// Notification("hello");
-		// Notification("hello");
-		// Notification("hello");
-
-		// notify.n_info("");
-		// notify.n_info("info");
-		// notify.n_info("info", "INFO");
-		// notify.n_primary("primary");
-		// notify.n_success("success");
-		// notify.n_warning("warning");
-		// notify.n_error("error");
+		
 
 	});
 
 
 
-	/**
-	 * обёртка над Notification
-	 * https://github.com/alexcrack/angular-ui-notification
-	 */
-	app.factory("notify", function(Notification){
-		return {
-			n_info: function(text, title){
-				Notification.info({message: text || "---", title: title || ""});
-			},
-
-			n_primary: function(text, title){
-				Notification.primary({message: text || "---", title: title || ""});
-			},
-
-			n_success: function(text, title){
-				Notification.success({message: text || "---", title: title || ""});
-			},
-
-			n_warning: function(text, title){
-				Notification.warning({message: text || "---", title: title || ""});
-			},
-
-			n_error: function(text, title){
-				Notification.error({message: text || "---", title: title || ""});
-			}
-		};
-	});
-
+	
 
 
 

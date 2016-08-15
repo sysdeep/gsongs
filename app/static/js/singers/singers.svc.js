@@ -161,7 +161,14 @@
 
 
 
-
+		function find_singer_name(singer_id){
+			var result = data.singers.filter(function(item){return item.id == singer_id});
+			if(result.length > 0){
+				return result[0]["name"];
+			}else{
+				return "---";
+			}
+		}
 
 
 
@@ -177,7 +184,9 @@
 
 			"create_singer"		: create_singer,
 			"update_singer"		: update_singer,
-			"remove_singer"		: remove_singer
+			"remove_singer"		: remove_singer,
+
+			"find_singer_name"	: find_singer_name
 		}
 
 
