@@ -10,7 +10,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/asfdddfO'
-VERSION = "0.0.1"
+VERSION = "1.0.0"
 
 USERNAME = "diver"
 PASSWORD = "deep"
