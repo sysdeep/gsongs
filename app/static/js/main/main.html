@@ -1,0 +1,53 @@
+
+
+
+
+
+<div class="row">
+	<div class="col-md-2">
+		
+		<h4 class="page-header">Исполнители</h4>
+		<ul class="list-unstyled">
+			<li ng-repeat="singer in singers_data.singers">
+				<a href="javascript: void(0)" ng-click="show_songs(singer)">[[ singer.name ]]</a>
+				<!-- <a href="#/singer/[[ singer.id ]]">(page)</a> -->
+			</li>
+		</ul>
+
+
+	</div>
+	<div class="col-md-10">
+		<h4 class="page-header">Песенки исполнителя: <span>[[ data.singer.name ]]</span></h4>
+
+		<table class="table table-bordered table-condensed" ng-if="singer_songs.length > 0">
+			<thead>
+				<tr>
+					<th>Название</th>
+					<th>Автор</th>
+					<th>Альбом</th>
+					<th>Описание</th>
+					<th>Жанр</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="song in singer_songs">
+					<td>
+						<a href="#/song/[[ song.id ]]" title="">[[ song.name ]]</a>
+					</td>
+					<td>[[ song.author ]]</td>
+					<td>[[ song.album ]]</td>
+					<td>[[ song.description ]]</td>
+					<td>[[ song.genre ]]</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+
+		<div ng-if="singers_data.singer_current.id">
+			<a class="btn btn-success" href="#/singer/[[ singers_data.singer_current.id ]]">перейти на страницу исполнителя</a>
+		</div>
+	</div>
+</div>
+
