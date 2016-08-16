@@ -25,20 +25,7 @@
 
 
 
-
-
-
-
-
 	app.config(["$routeProvider", function($routeProvider){
-
-		
-
-
-
-
-		
-
 		$routeProvider.otherwise({redirectTo: '/main'});
 	}]);
 
@@ -61,26 +48,6 @@
 
 
 
-
-
-	/**
-	 * search singer name by id
-	 */
-	// app.filter("get_singer_name", ["$rootScope", function($rootScope){
-	// 	return function(singer_id){
-			
-	// 		console.log("-->", singer_id);
-	// 		var search_result = $rootScope.data.singers.filter(function(singer){return singer.id == singer_id});
-
-	// 		if(search_result.length > 0){
-	// 			return search_result[0]["name"];
-	// 		}
-
-	// 		return "";
-
-			
-	// 	};
-	// }]);
 
 
 	

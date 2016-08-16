@@ -68,8 +68,13 @@
 		  
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary" ng-click="save()">Сохранить</button>
-					
+					<button class="btn btn-warning" ng-click="go_back()" title="перейти назад">
+						<i class="fa fa-arrow-left" aria-hidden="true"></i> Назад
+					</button>
+
+					<button type="submit" class="btn btn-primary" ng-click="save()" title="сохранить запись">
+						<i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить
+					</button>
 				</div>
 			</div>
 		</form>

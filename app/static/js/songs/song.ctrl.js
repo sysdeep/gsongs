@@ -10,9 +10,7 @@
 	function SongCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify){
 		var svc 			= SongsSvc;
 		$scope.data 		= svc.data;
-		// var singer_modal 	= null;
-		// var remove_modal 	= null;
-		var song_id = $routeParams.song_id;
+		var song_id 		= $routeParams.song_id;
 
 
 
@@ -26,22 +24,20 @@
 
 			if(search_result.length > 0){
 				svc.data.song_current = search_result[0];
+				SingersSvc.set_current(svc.data.song_current.singer);
 			}else{
 				svc.data.song_current = {};
 			}
 		});
 
 
-
-		// $scope.refresh = function(){
-		// 	svc.get_songs().then(function(){
-		// 		notify.n_success("Список песенок загружен");
-		// 	});
-		// }
-
 		
 		$scope.find_singer_name = SingersSvc.find_singer_name;
 		
+
+
+
+
 
 
 		

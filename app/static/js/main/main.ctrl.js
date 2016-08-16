@@ -9,7 +9,12 @@
 
 	function MainCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify){
 
-		console.log("main");
+		$scope.singer_songs 	= [];
+		$scope.singers_data 	= {};
+		$scope.songs_data 		= {};
+		$scope.is_selected 		= false;
+
+
 		SingersSvc.need_singers()
 		.then(SongsSvc.need_songs)
 		.then(function(){
@@ -17,21 +22,9 @@
 			$scope.songs_data = SongsSvc.data;
 		});
 
-		// var svc = SingersSvc;
-		// $scope.data = svc.data;
-		// var singer_modal 	= null;
-		// var remove_singer_modal 	= null;
-
-
-		// $scope.data = svcData.data;
-		// $scope.data.current_view = "main";
-		// $scope.singer_songs = [];
-		// var svc = svcData;
-		// svc.data.singer = {};
-
-
 
 		$scope.show_songs = function(singer){
+			$scope.is_selected 		= true;
 			SingersSvc.data.singer_current = singer;
 			$scope.singer_songs = SongsSvc.data.songs.filter(function(song){return song.singer == singer.id});
 		}

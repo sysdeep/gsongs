@@ -17,7 +17,6 @@
 
 
 
-	// function SingersSvc($http, $q, notify){
 	function SingersSvc($http, $q){
 
 		var data = {
@@ -29,11 +28,6 @@
 			"singer_current"	: null,
 			"singer_edit"		: null,
 
-
-			// "singer_edit": false,
-
-			// "singer": {},
-			// "singer_loaded": false,
 
 
 			"filter": {
@@ -171,6 +165,16 @@
 		}
 
 
+		function set_current(singer_id){
+			var result = data.singers.filter(function(item){return item.id == singer_id});
+			if(result.length > 0){
+				data.singer_current = result[0];
+			}else{
+				data.singer_current = {};
+			}	
+		}
+
+
 
 
 
@@ -186,7 +190,8 @@
 			"update_singer"		: update_singer,
 			"remove_singer"		: remove_singer,
 
-			"find_singer_name"	: find_singer_name
+			"find_singer_name"	: find_singer_name,
+			"set_current"		: set_current
 		}
 
 

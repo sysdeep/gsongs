@@ -1,4 +1,6 @@
-<h1 class="page-header">Песенка: <span>[[ data.song_current.name ]]</span></h1>
+<h1 class="page-header">
+	Песенка: <span>[[ find_singer_name(data.song_current.singer) ]]</span> - <span>[[ data.song_current.name ]]</span>
+</h1>
 
 
 
@@ -50,15 +52,19 @@
 			</tbody>
 		</table>
 
-		<a class="btn btn-primary" href="#/song_edit/[[ data.song_current.id ]]">Изменить</a>
-		<a href="#/song_edit/0" class="btn btn-success">Добавить</a>
+		<a class="btn btn-primary" href="#/song_edit/[[ data.song_current.id ]]" title="перейти к редактированию">
+			<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
+		</a>
+		<a href="#/song_edit/0" class="btn btn-success" title="перейти к созданию">
+			<i class="fa fa-plus" aria-hidden="true"></i> Добавить
+		</a>
 
 	</div>
 	<div class="col-md-7">
 		
-		<pre>
-			[[ data.song_current.text ]]
-			</pre>
+<pre>
+[[ data.song_current.text ]]
+</pre>
 
 	</div>
 </div>

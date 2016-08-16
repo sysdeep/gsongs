@@ -3,11 +3,11 @@
 
 
 	var app = angular.module("app.songs");
-	app.controller("SongEditCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify", SongEditCtrl]);
+	app.controller("SongEditCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify", "$window", SongEditCtrl]);
 
 
 
-	function SongEditCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify){
+	function SongEditCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify, $window){
 		var svc 			= SongsSvc;
 		$scope.data 		= svc.data;
 		// var singer_modal 	= null;
@@ -82,6 +82,16 @@
 		}
 
 		
+		$scope.go_back = function(){
+			$window.history.back();
+		}
+
+
+
+
+
+
+
 	}
 
 
