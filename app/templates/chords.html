@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="ru">
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+	<meta http-equiv="content-language" content="ru" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="nia" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>Chords</title>
+
+
+
+
+	<!-- bootstrap -->
+	<link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/static/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+
+	<!-- angular notify -->
+	<link href="/static/vendor/angular-ui-notification/angular-ui-notification.min.css?version={{ VERSION }}" rel="stylesheet">
+	<link href="/static/vendor/font-awesome/css/font-awesome.min.css?version={{ VERSION }}" rel="stylesheet">
+
+	<!-- ngDialog -->
+	<link href="/static/vendor/ng-dialog/css/ngDialog.min.css?version={{ VERSION }}" rel="stylesheet" media="screen">
+	<link href="/static/vendor/ng-dialog/css/ngDialog-theme-default.min.css?version={{ VERSION }}" rel="stylesheet" media="screen">
+
+
+	<link href="/static/css/style.css" rel="stylesheet" media="screen">
+
+
+
+
+
+
+</head>
+<body style="margin-top: 60px;" >
+
+
+	<div class="container" ng-cloak ng-controller="main_ctrl">
+
+		<div class="row">
+			<div class="col-md-4">
+				
+				<ul>
+					<li ng-repeat="main_ch in get_main()">
+						<a href="javascript: void(0)" ng-click="select_main(main_ch)">[[ main_ch ]]</a>
+					</li>
+				</ul>
+
+			</div>
+			<div class="col-md-4">
+				<ul>
+					<li ng-repeat="ch in chords">
+						<a href="javascript: void(0)" ng-click="select_ch(ch)">[[ ch ]]</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<ul>
+					<li ng-repeat="vari in variants">
+						[[ vari ]]
+<pre>
+[[ vari | chf]]
+</pre>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		
+	</div>
+
+
+
+
+
+	<!-- vendors -->
+	<script src="/static/vendor/angular/angular.min.js?version={{ VERSION }}"></script>
+
+
+
+
+	<script type="text/javascript">
+
+		var app = angular.module("app", []);
+		function config_interpolate($interpolateProvider) {
+			$interpolateProvider.startSymbol('[[');
+			$interpolateProvider.endSymbol(']]');
+		};
+
+		app.config(['$interpolateProvider', config_interpolate]);
+
+
+
+		app.run(function($rootScope, $http){
+			$rootScope.chords_base = {};
+			$http.get("/static/js/chords.json").success(function(response){
+				console.log(response);
+				$rootScope.chords_base = response;
+			})
+		})
+
+
+		app.controller("main_ctrl", function($rootScope, $scope){
+			$scope.chords = [];
+			$scope.selected_main_ch = "";
+			$scope.selected_ch = "";
+			$scope.variants = [];
+
+
+			$scope.get_main = function(){
+				return Object.keys($rootScope.chords_base);
+			}
+
+
+			$scope.select_main = function(main_ch){
+				$scope.selected_main_ch = main_ch;
+				var chords = $rootScope.chords_base[main_ch];
+				$scope.chords = Object.keys(chords);
+			}
+
+			$scope.select_ch = function(ch){
+				console.log(ch);
+				$scope.selected_ch = ch;
+				var chords = $rootScope.chords_base[$scope.selected_main_ch];
+				console.log(chords);
+				var variants = chords[ch];
+				$scope.variants = variants;
+			}
+		});
+
+
+
+		app.filter("chf", function(){
+
+			var len_g = 14;
+			function make_line(value){
+				var text = "";
+				if(value == "X"){
+
+					for(var p=1; p<len_g; p++){
+						if(p == 1){
+							text += "X";
+						}else{
+							text += "-";
+						}
+					}
+
+				}else{
+					for(var p=1; p<len_g; p++){
+						if(p == value){
+							text += value;
+						}else{
+							text += "-";
+						}
+					}					
+				}
+
+				return text;
+
+			}
+
+			return function(line){
+				var text = "";
+
+				var line_array = line.split(",");
+
+				for(var i=0; i<line_array.length; i++){
+					var line_value = line_array[i];
+					text += make_line(line_value) + "\n";
+
+
+
+
+				}
+
+
+				return text;
+			}
+		})
+
+	</script>
+
+
+</body>
+</html>

@@ -74,6 +74,15 @@ def login_post():
 def about():
 	# return("Hello World!")
 	return render_template("about.html")
+
+
+@app.route("/chords")
+def chords_page():
+
+	data = {
+		"VERSION": VERSION
+	}
+	return render_template("chords.html", **data)
 #--- main ---------------------------------------------------------------------
 
 
