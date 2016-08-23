@@ -110,10 +110,12 @@
 			if( svc.data.singer_edit.id == 0 ){
 				svc.create_singer().then(function(){
 					singer_modal.close();
+					notify.n_success("Исполнитель создан");
 				});
 			}else{
 				svc.update_singer().then(function(){
 					singer_modal.close();
+					notify.n_success("Исполнитель обновлён");
 				});
 			}
 		}
@@ -137,6 +139,7 @@
 		$scope.remove_singer = function(){
 			svc.remove_singer().then(function(){
 				remove_singer_modal.close();
+				notify.n_success("Исполнитель удалён");
 			});
 		}
 		//--- remove singer ---------------------------------------------------

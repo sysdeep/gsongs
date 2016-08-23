@@ -97,19 +97,21 @@ def get_singers():
 
 @app.route("/create_singer", methods=["POST"])
 def create_singer():
-	
 	in_data = request.get_json()
+	singer = storage.Singer.create(name=in_data["name"])
+	last_singer = storage.Singer.select().order_by(storage.Singer.id.desc()).get()
 
-	singer = storage.Singer(name=in_data["name"])
-	singer.save()
-
+	in_data["id"] = last_singer.id
+	in_data["created"] = str(last_singer.created)
+	in_data["updated"] = str(last_singer.updated)
 	return jsonify(singer=in_data)
+
+
+
 
 
 @app.route("/update_singer", methods=["POST"])
 def update_singer():
-
-	
 	in_data = request.get_json()
 
 	singer = storage.Singer.get(storage.Singer.id == in_data["id"])
@@ -117,7 +119,13 @@ def update_singer():
 	singer.updated = storage.sql_date()
 	singer.save()
 
+	in_data["updated"] = str(singer.updated)
+
 	return jsonify(singer=in_data)
+
+
+
+
 
 
 @app.route("/remove_singer", methods=["POST"])

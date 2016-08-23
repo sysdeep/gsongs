@@ -91,23 +91,17 @@
 
 
 
-
-
-
-
-
-
 		function create_singer(){
 			var def = $q.defer();
 			$http.post("/create_singer", data.singer_edit).success(function(response){
-				// data.singer = response;
-				// data.singers.push(data.singer);
-				// notify.n_success("Заданный исполнитель создан успешно");
-				get_singers();
-				// data.singer_edit = false;
+				data.singer_edit.id = response.singer.id;
+				data.singer_edit.created = response.singer.created;
+				data.singer_edit.updated = response.singer.updated;
+				angular.copy(data.singer_edit, data.singer_current);
+				data.singers.push(data.singer_current);
 				def.resolve();
 			}).error(function(response){
-				// notify.n_error(JSON.stringify(response), "Заданный исполнитель создан неуспешно");
+				console.log(response);
 				def.reject();
 			});
 
@@ -115,18 +109,15 @@
 		}
 
 
+
 		function update_singer(){
 			var def = $q.defer();
 			$http.post("/update_singer", data.singer_edit).success(function(response){
-				// data.singer_edit.name = response.name;
-				// data.singer = angular.copy(response);
-				// data.singers.push(data.singer);
-				// notify.n_success("Заданный исполнитель обновлён успешно");
-				get_singers();
-				// data.singer_edit = false;
+				data.singer_edit.updated = response.singer.updated;
+				angular.copy(data.singer_edit, data.singer_current);
 				def.resolve();
 			}).error(function(response){
-				// notify.n_error(JSON.stringify(response), "Заданный исполнитель обновлён неуспешно");
+				console.log(response);
 				def.reject();
 			});
 
@@ -138,15 +129,12 @@
 		function remove_singer(singer){
 			var def = $q.defer();
 			$http.post("/remove_singer", data.singer_edit).success(function(response){
-				// data.singer = {};
-				// var index = data.singers.indexOf(response);
-				// data.singers.splice(index, 1);
-				// notify.n_success("Заданный исполнитель удалён успешно");
-				get_singers();
+				var index = data.singers.indexOf(data.singer_current);
+				data.singers.splice(index, 1);
 				def.resolve();
 			}).error(function(response){
+				console.log(response);
 				def.reject();
-				// notify.n_error(JSON.stringify(response), "Заданный исполнитель удалён неуспешно");
 			});
 			return def.promise;
 		}
