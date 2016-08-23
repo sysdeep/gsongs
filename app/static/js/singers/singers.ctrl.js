@@ -8,10 +8,11 @@
 
 
 	function SingersCtrl($scope, $location, $routeParams, SingersSvc, ngDialog, notify){
-		var svc = SingersSvc;
-		$scope.data = svc.data;
-		var singer_modal 	= null;
-		var remove_singer_modal 	= null;
+		var svc 				= SingersSvc;
+		$scope.data 			= svc.data;
+		var singer_modal 		= null;
+		var remove_singer_modal = null;
+		var char_bar_search 	= null;
 
 
 
@@ -122,6 +123,13 @@
 						add_flag = false;
 				}
 
+				if(char_bar_search != null){
+					var singer_name = singer.name;
+					if(singer_name[0].toUpperCase() != char_bar_search)
+						add_flag = false;
+				}
+
+
 
 				if(add_flag) o_data.push(singer);
 			});
@@ -149,6 +157,31 @@
 			});			
 			sort_dir = !sort_dir;
 		};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		$scope.select_char = function(ch){
+			if(char_bar_search === null){
+				char_bar_search = ch;
+			}else{
+				char_bar_search = null;
+			}
+		}
+
+
+
+
 
 	}
 

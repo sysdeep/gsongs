@@ -1,0 +1,20 @@
+<div class="chars_bar">
+	<div class="chars_line">
+		<a class="char_item" href="javascript: void(0)"
+			ng-repeat="ch in self.chars_ru" 
+			ng-class="{'char_item_active': self.is_active(ch)}"  
+			ng-click="self.set_selection(ch)"
+		>
+			[[ ch ]]
+		</a>
+	</div>
+	<div class="chars_line">
+		<a class="char_item" href="javascript: void(0)"
+			ng-repeat="ch in self.chars_en" 
+			ng-class="{'char_item_active': self.is_active(ch)}"  
+			ng-click="self.set_selection(ch)"
+		>
+			[[ ch ]]
+		</a>
+	</div>
+</div>

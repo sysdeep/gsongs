@@ -8,3 +8,10 @@ body{
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+
+
+
+.chars_line{text-align: center}
+.char_item{margin-right: 10px; margin-left: 10px;}
+.char_item_active{color: red; font-weight: bold;}
