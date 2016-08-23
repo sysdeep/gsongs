@@ -1,80 +1,60 @@
-<h1 class="page-header">Список исполнителей</h1>
+<h1 class="page-header">
+	Список исполнителей
+	<small>[[ data.singers.length ]]</small>
+</h1>
+
 
 
 <div class="row">
-	<div class="col-md-8">
-		
-		<input type="text" class="form-control" ng-model="data.filter.search.singer" placeholder="Быстрый поиск">
-
-		<hr>
-
-		<table class="table table-bordered table-condensed">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th><a href="javascript: void(0)" ng-click="sort('name')">Исполнитель</a></th>
-					<th><a href="javascript: void(0)" ng-click="sort('created')">Создание</a></th>
-					<th><a href="javascript: void(0)" ng-click="sort('updated')">Обновление</a></th>
-					<th>Опции</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="singer in singers_filtered()">
-					<td>[[ singer.id ]]</td>
-					<td><a href="#/singer/[[ singer.id ]]">[[ singer.name ]]</a></td>
-					<td>[[ singer.created | date:'yyyy-MM-dd' ]]</td>
-					<td>[[ singer.updated ]]</td>
-					<td>
-						<!-- <a href="javascript: void(0)" title="" ng-click="show_song(song)">&nbsp<i class="fa fa-folder-open-o"></i>&nbsp</a>
-						| -->
-
-						<a href="javascript: void(0)" title="" ng-click="show_edit_singer(singer)">&nbsp<i class="fa fa-pencil"></i> изменить&nbsp</a>
-						|
-						<a href="javascript: void(0)" title="" ng-click="show_remove_singer(singer)">&nbsp<i class="fa fa-trash-o"></i> удалить&nbsp</a>
-
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
+	<div class="col-md-6">
+		<input type="text" class="form-control" ng-model="data.filter.search.singer" placeholder="быстрый поиск">
 	</div>
-	<div class="col-md-4">
-		<button class="btn btn-primary" ng-click="refresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Обновить</button>
-		<button class="btn btn-success" ng-click="show_add_singer()"><i class="fa fa-plus" aria-hidden="true"></i> Добавить</button>
-
-
-
-
-
-
-		<!--
-			<div ng-if="is_show_remove">
-				<p>Вы собираетесь удалить испольнителя: <span>[[ singer_for_remove.name ]]</span></p>
-				<a href="javascript: void(0)" ng-click="remove_singer()">удалить</a>
-				|
-				<a href="javascript: void(0)" ng-click="remove_singer_cancel()">отмена</a>
-				<p>Данный исполнитель связан с песнями: <span>[[ singer_songs.length ]]</span></p>
-				<ul>
-					<li ng-repeat="song in singer_songs">[[ song.name ]]</li>
-				</ul>
-			</div>
-		-->
-
-
+	<div class="col-md-6">
+		<div class="pull-right">
+			<button class="btn btn-primary" ng-click="refresh()" title="обновить список">
+				<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
+			</button>
+			<button class="btn btn-success" ng-click="show_add_singer()" title="отобразить диалог добавления">
+				<i class="fa fa-plus" aria-hidden="true"></i> Добавить
+			</button>
+		</div>
 	</div>
 </div>
 
 
+<br>		
 
 
+<table class="table table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th><a href="javascript: void(0)" ng-click="sort('name')">Исполнитель</a></th>
+			<th><a href="javascript: void(0)" ng-click="sort('created')">Создание</a></th>
+			<th><a href="javascript: void(0)" ng-click="sort('updated')">Обновление</a></th>
+			<th>Опции</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="singer in singers_filtered()">
+			<td>[[ singer.id ]]</td>
+			<td><a href="#/singer/[[ singer.id ]]">[[ singer.name ]]</a></td>
+			<td>[[ singer.created | date:'yyyy-MM-dd' ]]</td>
+			<td>[[ singer.updated ]]</td>
+			<td>
+				<!-- <a href="javascript: void(0)" title="" ng-click="show_song(song)">&nbsp<i class="fa fa-folder-open-o"></i>&nbsp</a>
+				| -->
 
+				<a href="javascript: void(0)" title="" ng-click="show_edit_singer(singer)">&nbsp<i class="fa fa-pencil"></i> изменить&nbsp</a>
+				|
+				<a href="javascript: void(0)" title="" ng-click="show_remove_singer(singer)">&nbsp<i class="fa fa-trash-o"></i> удалить&nbsp</a>
 
+			</td>
+		</tr>
+	</tbody>
+</table>
 
-
-
-
-
-
+	
 
 
 
