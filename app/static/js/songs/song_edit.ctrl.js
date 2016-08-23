@@ -73,10 +73,12 @@
 			if( $scope.mode == "add" ){
 				svc.create_song().then(function(){
 					notify.n_success("Создание песенки - успешно");
+					$location.path("/song/"+svc.data.song_edit.id);
 				});
 			}else{
 				svc.update_song().then(function(){
 					notify.n_success("Обновление песенки - успешно");
+					$location.path("/song/"+svc.data.song_edit.id);
 				});
 			}
 		}

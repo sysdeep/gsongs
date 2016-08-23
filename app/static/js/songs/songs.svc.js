@@ -85,9 +85,7 @@
 				data.songs.splice(index, 1);
 				defer.resolve();
 			}).error(function(response){
-				console.log("error");
 				console.log(response);
-				// notify.n_error(JSON.stringify(response), "Ошибка удаления записи");
 				defer.reject();
 			});
 
@@ -97,13 +95,14 @@
 		function create_song(){
 			var defer = $q.defer();
 			$http.post("/create_song", data.song_edit).success(function(response){
+				data.song_edit.id = response.result.id;
+				data.song_edit.updated = response.result.updated;
+				data.song_edit.created = response.result.created;
 				angular.copy(data.song_edit, data.song_current);
 				data.songs.push(data.song_current);
 				defer.resolve();
 			}).error(function(response){
-				console.log("error");
 				console.log(response);
-				// notify.n_error(JSON.stringify(response), "Ошибка создания записи");
 				defer.reject();
 			});
 
@@ -113,12 +112,11 @@
 		function update_song(){
 			var defer = $q.defer();
 			$http.post("/update_song", data.song_edit).success(function(response){
+				data.song_edit.updated = response.result.updated;
 				angular.copy(data.song_edit, data.song_current);
 				defer.resolve();
 			}).error(function(response){
 				console.log("error");
-				console.log(response);
-				// notify.n_error(JSON.stringify(response), "Ошибка обновления записи");
 				defer.reject();
 			});
 

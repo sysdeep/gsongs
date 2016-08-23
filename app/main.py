@@ -173,7 +173,10 @@ def create_song():
 	song.genre = in_data["genre"]
 	song.save()
 
-	# print("----->", song.id)
+	last_song = storage.Song.select().order_by(storage.Song.id.desc()).get()
+	in_data["id"] = last_song.id
+	in_data["created"] = str(last_song.created)
+	in_data["updated"] = str(last_song.updated)
 
 	return jsonify(result=in_data)
 
@@ -195,6 +198,7 @@ def update_song():
 		song.description = in_data["description"]
 		song.genre = in_data["genre"]
 		song.save()
+		in_data["updated"] = str(song.updated)
 		return jsonify(result=in_data)
 	except:
 		song = None
