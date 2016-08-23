@@ -29,17 +29,10 @@
 			"singer_edit"		: null,
 
 
-
 			"filter": {
 				"search": {
-					// "quick": "",				// по всем полям
 					"singer": ""				// только по исполниелю
 				},
-				// "date_start": "0000-00-00",
-				// "date_end": "3000-12-31",
-
-				// "time_start": "00:00:00",
-				// "time_end": "23:59:59",
 			}
 			
 		};
@@ -138,7 +131,6 @@
 			});
 			return def.promise;
 		}
-		//--- singers ---------------------------------------------------------
 
 
 
@@ -163,7 +155,25 @@
 		}
 
 
+		function validate(singer){
+			var name = singer.name;
 
+			//--- name null
+			if(name.length == 0)	return "поле name - пустое";
+
+			//--- name limit 100
+			if(name.length > 100)	return "поле name - слишком длинное";
+
+			//--- name uniq
+			var search_result = data.singers.filter(function(row){return row.name.toUpperCase() == name.toUpperCase()});
+			if(search_result.length > 0){
+				var found_singer = search_result[0];
+				if(found_singer.id != singer.id) return "поле name - не уникально";
+			}
+
+
+			return "";
+		}
 
 
 		return {
@@ -179,7 +189,9 @@
 			"remove_singer"		: remove_singer,
 
 			"find_singer_name"	: find_singer_name,
-			"set_current"		: set_current
+			"set_current"		: set_current,
+
+			"validate"			: validate
 		}
 
 

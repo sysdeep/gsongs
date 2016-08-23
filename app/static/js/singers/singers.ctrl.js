@@ -20,17 +20,7 @@
 		});
 
 
-		// $scope.data.current_view = "singers";
-		// $scope.singer_for_remove = null;
-		// $scope.is_show_remove = false;
-		// $scope.singer_songs = [];
-
-		// $scope.singer_edit = {
-		// 	id: 0,
-		// 	name: ""
-		// };
-
-		// $scope.singer_edit = {};
+	
 
 		$scope.refresh = function(){
 			svc.get_singers().then(function(){
@@ -38,48 +28,7 @@
 			});
 		}
 
-		// $scope.add_singer = function(){
-		// 	svcData.data.singer = {
-		// 		id: 0,
-		// 		name: ""
-		// 	};
-		// 	$scope.singer_edit = angular.copy(svcData.data.singer);
-		// 	svcData.data.singer_edit = true;
-		// }
-
-		// $scope.edit_singer = function(singer){
-		// 	svcData.data.singer = singer;
-		// 	$scope.singer_edit = angular.copy(svcData.data.singer);
-		// 	svcData.data.singer_edit = true;
-		// }
-
-
-		
-
-
-
-		// $scope.show_remove_singer = function(singer){
-		// 	$scope.singer_for_remove = singer;
-		// 	$scope.is_show_remove = true;
-		// 	$scope.singer_songs = svcData.data.songs.filter(function(song){return song.singer == singer.id});
-
-		// }
-		// $scope.remove_singer = function(){
-		// 	svcData.remove_singer($scope.singer_for_remove);
-		// 	$scope.singer_for_remove = {};
-		// 	$scope.is_show_remove = false;
-		// }
-
-		// $scope.remove_singer_cancel = function(){
-		// 	$scope.singer_for_remove = {};
-		// 	$scope.is_show_remove = false;
-		// }
-
-
-		// $scope.cancel = function(){
-		// 	svcData.data.singer_edit = false;
-		// }
-
+	
 		
 
 		//--- edit singer -----------------------------------------------------
@@ -107,6 +56,14 @@
 
 
 		$scope.save_singer = function(){
+
+			var validation_result = svc.validate(svc.data.singer_edit);
+			if(validation_result){
+				notify.n_warning(validation_result);
+				return false;
+			}
+
+
 			if( svc.data.singer_edit.id == 0 ){
 				svc.create_singer().then(function(){
 					singer_modal.close();

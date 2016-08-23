@@ -38,24 +38,27 @@
 	<tbody>
 		<tr ng-repeat="singer in singers_filtered()">
 			<td>[[ singer.id ]]</td>
-			<td><a href="#/singer/[[ singer.id ]]">[[ singer.name ]]</a></td>
+			<td>
+				<a href="#/singer/[[ singer.id ]]" title="перейти на страницу исполнителя">
+					[[ singer.name ]]
+				</a>
+			</td>
 			<td>[[ singer.created | date:'yyyy-MM-dd' ]]</td>
 			<td>[[ singer.updated ]]</td>
 			<td>
-				<!-- <a href="javascript: void(0)" title="" ng-click="show_song(song)">&nbsp<i class="fa fa-folder-open-o"></i>&nbsp</a>
-				| -->
-
-				<a href="javascript: void(0)" title="" ng-click="show_edit_singer(singer)">&nbsp<i class="fa fa-pencil"></i> изменить&nbsp</a>
+				<a href="javascript: void(0)" ng-click="show_edit_singer(singer)" title="изменить запись">
+					<i class="fa fa-pencil"></i> изменить
+				</a>
 				|
-				<a href="javascript: void(0)" title="" ng-click="show_remove_singer(singer)">&nbsp<i class="fa fa-trash-o"></i> удалить&nbsp</a>
-
+				<a href="javascript: void(0)" ng-click="show_remove_singer(singer)" title="отобразить запрос удаления">
+					<i class="fa fa-trash-o"></i> удалить
+				</a>
 			</td>
 		</tr>
 	</tbody>
 </table>
 
 	
-
 
 
 
