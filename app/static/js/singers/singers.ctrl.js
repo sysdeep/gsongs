@@ -3,18 +3,18 @@
 
 
 	var app = angular.module("app.singers");
-	app.controller("SingersCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "ngDialog", "notify", SingersCtrl]);
+	app.controller("SingersCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "ngDialog", "notify", "utils", SingersCtrl]);
 
 
 
-	function SingersCtrl($scope, $location, $routeParams, SingersSvc, ngDialog, notify){
+	function SingersCtrl($scope, $location, $routeParams, SingersSvc, ngDialog, notify, utils){
 		var svc 				= SingersSvc;
 		$scope.data 			= svc.data;
 		var singer_modal 		= null;
 		var remove_singer_modal = null;
 		var char_bar_search 	= null;
 
-
+		// utils.set_active_main_menu("main_menu_singers");
 
 		svc.need_singers().then(function(){
 

@@ -6,22 +6,27 @@
         		<img alt="Brand" src="...">
       		</a> -->
       		<span class="navbar-brand">
-      			<span>[[ find_singer_name(data.song_current.singer) ]]</span> - <span>[[ data.song_current.name ]]</span>
+      			<span>[[ singer.name ]]</span> - <span>[[ data.song_current.name ]]</span>
       		</span>
 
 
     	</div>
 
 
-    	<ul class="nav navbar-nav">
+    	<!-- <ul class="nav navbar-nav">
     		<li>
     			<a href="#/singer/[[ data.song_current.singer ]]">
     				На страницу исполнителя
     			</a>
     		</li>
-    	</ul>
+    	</ul> -->
 
     	<ul class="nav navbar-nav navbar-right">
+    		<li>
+	  			<a href="javascript: void(0)" ng-click="go_back()" title="перейти на предыдущую страницу">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i> Назад
+				</a>
+			</li>
 	  		<li>
 	  			<a href="#/song_edit/[[ data.song_current.id ]]" title="перейти к редактированию">
 					<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
@@ -42,12 +47,6 @@
 
 
 
-<!--
-<h1 class="page-header">
-	<span>[[ find_singer_name(data.song_current.singer) ]]</span> - <span>[[ data.song_current.name ]]</span>
-</h1>
--->
-
 
 <div class="row">
 	<div class="col-md-5">
@@ -56,7 +55,9 @@
 			<tbody>
 				<tr>
 					<td>Исполнитель</td>
-					<td><a href="#/singer/[[ data.song_current.singer ]]">[[ find_singer_name(data.song_current.singer) ]]</a></td>
+					<td>
+						<lsinger cdata="singer"></lsinger>
+					</td>
 				</tr>
 
 				<tr>
@@ -98,6 +99,8 @@
 		</table>
 
 
+	
+
 
 		<!--
 		<a class="btn btn-primary" href="#/song_edit/[[ data.song_current.id ]]" title="перейти к редактированию">
@@ -107,6 +110,22 @@
 			<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 		</a>
 		-->
+
+
+
+
+		<h4 class="page-header">Другие песни исполнителя</h4>
+
+		
+
+		<ul>
+			<li ng-repeat="song in singer_songs">
+
+				<lsong cdata="song"></lsong>
+			</li>
+		</ul>
+
+
 
 	</div>
 	<div class="col-md-7">

@@ -86,17 +86,17 @@
 
 
 
-				<li ng-class="{active: data.current_view == 'edit'}">
+				<li class="main_menu main_menu_create">
 					<a href="#/song_edit/0" title="создание новой песенки">
 						<strong><i class="fa fa-plus" aria-hidden="true"></i> Создание</strong>
 					</a>
 				</li>
-				<li ng-class="{active: data.current_view == 'singers'}">
+				<li class="main_menu main_menu_singers">
 					<a href="#/singers" title="список исполнителей">
 						<strong><i class="fa fa-users" aria-hidden="true"></i> Исполнители</strong>
 					</a>
 				</li>
-				<li ng-class="{active: data.current_view == 'songs'}">
+				<li class="main_menu main_menu_songs">
 					<a href="#/songs" title="список песенок">
 						<strong><i class="fa fa-align-center" aria-hidden="true"></i> Песенки</strong>
 					</a>
@@ -170,6 +170,8 @@
 	<!-- common -->
 	<script src="/static/js/common/notify.js?version={{ VERSION }}"></script>
 	<script src="/static/js/common/chars.component.js?version={{ VERSION }}"></script>
+	<script src="/static/js/common/components.js?version={{ VERSION }}"></script>
+	<script src="/static/js/common/utils.js?version={{ VERSION }}"></script>
 
 
 	<!-- main -->

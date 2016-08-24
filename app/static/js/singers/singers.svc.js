@@ -174,6 +174,11 @@
 			}
 		}
 
+		function find_singer(singer_id){
+			var result = data.singers.filter(function(item){return item.id == singer_id});
+			return (result.length > 0)? result[0] : {};
+		}
+
 
 		function set_current(singer_id){
 			var result = data.singers.filter(function(item){return item.id == singer_id});
@@ -219,6 +224,7 @@
 			"remove_singer"		: remove_singer,
 
 			"find_singer_name"	: find_singer_name,
+			"find_singer"		: find_singer,
 			"set_current"		: set_current,
 
 			"validate"			: validate,
