@@ -46,17 +46,12 @@
 		}
 
 		function __show_singer_modal(){
-			singer_modal = ngDialog.open({
-				template: 'singer_modal_template' ,
-				// className: 'ngdialog-theme-plain'
-				className: 'ngdialog-theme-default',
-				scope: $scope,
-			});
+			singer_modal = ngDialog.open(svc.make_modal_edit($scope));
 		}
 
 
 
-		$scope.save_singer = function(){
+		$scope.modal_edit_save = function(){
 
 			var validation_result = svc.validate(svc.data.singer_edit);
 			if(validation_result){

@@ -3,14 +3,16 @@
 
 
 	var app = angular.module("app.singers");
-	app.controller("SingerCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify", SingerCtrl]);
+	app.controller("SingerCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify", 
+		// "singers_modal_edit", 
+		SingerCtrl]);
 
 
 
 	function SingerCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify){
 		var svc 			= SingersSvc;
 		$scope.data 		= svc.data;
-		// var singer_modal 	= null;
+		var modal_edit 		= null;
 		// var remove_singer_modal 	= null;
 		var singer_id = $routeParams.singer_id;
 
@@ -65,6 +67,33 @@
 			return o_data;
 		}
 
+
+
+
+
+
+
+
+		$scope.show_edit = function(){
+			svc.data.singer_edit = angular.copy(svc.data.singer_current);
+			modal_edit = ngDialog.open(svc.make_modal_edit($scope));
+			
+			// singers_modal_edit.open(svc.data.singer_edit );
+		}
+
+		$scope.modal_edit_save = function(){
+			var validation_result = svc.validate(svc.data.singer_edit);
+			if(validation_result){
+				notify.n_warning(validation_result);
+				return false;
+			}
+
+
+			svc.update_singer().then(function(){
+				modal_edit.close();
+				notify.n_success("Исполнитель обновлён");
+			});
+		}
 
 
 		// $scope.data.current_view = "singers";

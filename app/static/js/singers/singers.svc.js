@@ -10,6 +10,14 @@
 
 
 
+
+
+
+
+
+
+
+
 	var app = angular.module("app.singers");
 
 
@@ -18,6 +26,28 @@
 
 
 	function SingersSvc($http, $q){
+
+
+
+	// function modal_edit_ctrl(){
+	// 	var self = this;
+
+	// 	console.log("modal_edit_ctrl");
+	// 	console.log(data.singers);
+	// }
+
+	function make_modal_edit(scope){
+
+		return {
+			templateUrl: "/static/js/singers/modal_edit.html",
+			// controller: [modal_edit_ctrl],
+			// controllerAs: "self",
+			className: 'ngdialog-theme-default',
+			scope: scope
+		}
+	}
+
+
 
 		var data = {
 
@@ -191,7 +221,11 @@
 			"find_singer_name"	: find_singer_name,
 			"set_current"		: set_current,
 
-			"validate"			: validate
+			"validate"			: validate,
+
+
+
+			"make_modal_edit"		: make_modal_edit
 		}
 
 

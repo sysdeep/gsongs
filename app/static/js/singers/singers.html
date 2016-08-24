@@ -71,34 +71,6 @@
 
 
 
-<script type="text/ng-template" id="singer_modal_template">
-	<h4>
-		<span ng-if="data.singer_edit.id">Изменение записи исполнителя</span>
-		<span ng-if="!data.singer_edit.id">Создание записи исполнителя</span>
-	</h4>
-
-	<form>
-		<div class="form-group">
-			<label for="singer_name">Название</label>
-			<input type="text" class="form-control" id="singer_name" placeholder="Название" ng-model="data.singer_edit.name">
-		</div>
-	</form>
-
-	<hr>
-	<div class="row">
-		<div class="col-md-6">
-			<button class="btn btn-default btn-block" ng-click="closeThisDialog()"><i class="fa fa-ban" aria-hidden="true"></i> Отмена</button>
-		</div>
-		<div class="col-md-6">
-			<button class="btn btn-primary btn-block" ng-click="save_singer()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить</button>
-		</div>
-	</div>
-
-</script>
-
-
-
-
 
 
 <script type="text/ng-template" id="remove_singer_modal_template">
