@@ -1,28 +1,48 @@
-<h1 class="page-header">
-	Список исполнителей
-	<small>[[ data.singers.length ]]</small>
-</h1>
+<nav class="navbar navbar-default">
+  	<div class="container-fluid">
+    	
+    	<div class="navbar-header">
+      		<!-- <a class="navbar-brand" href="#">
+        		<img alt="Brand" src="...">
+      		</a> -->
+      		<span class="navbar-brand">
+      			Список исполнителей
+      		</span>
+
+
+    	</div>
+
+
+    	<form class="navbar-form navbar-left" role="search">
+  			<div class="form-group">
+    			<input type="text" class="form-control" placeholder="Быстрый поиск названию" ng-model="data.filter.search.singer">
+  			</div>
+		</form>
+
+    	<ul class="nav navbar-nav navbar-right">
+	  		<li>
+	  			<a href="javascript: void(0)" ng-click="refresh()" title="обновить список">
+					<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
+				</a>
+			</li>
+			<li>
+				<a href="javascript: void(0)" ng-click="show_add_singer()" title="отобразить диалог добавления">
+					<i class="fa fa-plus" aria-hidden="true"></i> Добавить
+				</a>
+			</li>
+  		</ul>
+
+
+
+
+  	</div>
+</nav>
+
+
 
 
 <chars select="select_char(char_value)"></chars>
 
-<br>
-
-<div class="row">
-	<div class="col-md-6">
-		<input type="text" class="form-control" ng-model="data.filter.search.singer" placeholder="быстрый поиск">
-	</div>
-	<div class="col-md-6">
-		<div class="pull-right">
-			<button class="btn btn-primary" ng-click="refresh()" title="обновить список">
-				<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
-			</button>
-			<button class="btn btn-success" ng-click="show_add_singer()" title="отобразить диалог добавления">
-				<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-			</button>
-		</div>
-	</div>
-</div>
 
 
 
