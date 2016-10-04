@@ -83,6 +83,13 @@ def chords_page():
 		"VERSION": VERSION
 	}
 	return render_template("chords.html", **data)
+
+
+@app.route("/service")
+def service_page():
+	# return("Hello World!")
+	return render_template("service.html")
+
 #--- main ---------------------------------------------------------------------
 
 
