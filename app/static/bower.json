@@ -1,0 +1,21 @@
+{
+  "name": "gsongs_static",
+  "homepage": "https://github.com/sysdeep/gsongs",
+  "authors": [
+    "Diver - home(win) <sysdeep@yandex.ru>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.1",
+    "angular-route": "^1.5.8"
+  }
+}

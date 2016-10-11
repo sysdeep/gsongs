@@ -1,6 +1,7 @@
 logs/*
 # vendor/*
 .idea
+app/static/bower_components
 
 ### Python template
 # Byte-compiled / optimized / DLL files
