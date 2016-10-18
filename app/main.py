@@ -88,7 +88,12 @@ def chords_page():
 @app.route("/service")
 def service_page():
 	# return("Hello World!")
-	return render_template("service.html")
+	return render_template("service/main.html")
+
+@app.route("/service/todo")
+def service_todo_page():
+	# return("Hello World!")
+	return render_template("service/todo.html")
 
 #--- main ---------------------------------------------------------------------
 
