@@ -2,16 +2,15 @@
 # -*- coding: utf-8 -*-
 
 from vendor import auto
-
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 
-from . import storage
-from . import ctrl_service
-import json
+from . import VERSION, storage, ctrl_service, ctrl_todo
+
+
+
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/asfdddfO'
-VERSION = "1.0.0"
 
 USERNAME = "diver"
 PASSWORD = "deep"
@@ -86,23 +85,17 @@ def chords_page():
 	return render_template("chords.html", **data)
 
 
-# @app.route("/service")
-# def service_page():
-# 	# return("Hello World!")
-# 	return render_template("service/main.html")
-
-# @app.route("/service/todo")
-# def service_todo_page():
-# 	# return("Hello World!")
-# 	return render_template("service/todo.html")
 
 
-app.add_url_rule("/service", 			view_func=ctrl_service.service_page)
-app.add_url_rule("/service/todo", 		view_func=ctrl_service.todo_page)
-app.add_url_rule("/service/todo_get", 	view_func=ctrl_service.todo_json_get)
-app.add_url_rule("/service/todo_add", 	view_func=ctrl_service.todo_json_add, 	methods=["POST"])
-app.add_url_rule("/service/todo_update", 	view_func=ctrl_service.todo_json_update, 	methods=["POST"])
-app.add_url_rule("/service/todo_remove", 	view_func=ctrl_service.todo_json_remove, 	methods=["POST"])
+#--- service
+app.add_url_rule("/service", 				view_func=ctrl_service.service_page)
+
+#--- todo
+app.add_url_rule("/service/todo", 			view_func=ctrl_todo.todo_page)
+app.add_url_rule("/service/todo_get", 		view_func=ctrl_todo.todo_json_get)
+app.add_url_rule("/service/todo_add", 		view_func=ctrl_todo.todo_json_add, 		methods=["POST"])
+app.add_url_rule("/service/todo_update", 	view_func=ctrl_todo.todo_json_update, 	methods=["POST"])
+app.add_url_rule("/service/todo_remove", 	view_func=ctrl_todo.todo_json_remove, 	methods=["POST"])
 
 #--- main ---------------------------------------------------------------------
 
