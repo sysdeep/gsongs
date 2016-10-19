@@ -1,6 +1,6 @@
 (function(){
 
-	var app = angular.module("app.todo", ['ngMaterial']);
+	var app = angular.module("app.todo", []);
 
 
 
@@ -16,6 +16,14 @@
 	};
 
 	app.config(['$interpolateProvider', config_interpolate]);
+
+
+	app.factory('jQuery', [
+        '$window',
+        function ($window) {
+            return $window.jQuery;
+        }
+    ]);
 
 
 })();

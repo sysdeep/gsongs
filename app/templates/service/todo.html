@@ -7,45 +7,14 @@
 
 {% block content %}
 
-	<div ng-app="app.todo" ng-cloak ng-controller="Ctrl as self">
 
+	<div ng-app="app.todo" ng-cloak>
 
-		<md-list>
-			<md-subheader class="md-no-sticky">Single Action Checkboxes</md-subheader>
-
-
-
-			<md-list-item ng-repeat="item in self.data.todos">
-    			<p> [[ item.name ]] </p>
-    			<md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
-    			<md-button class="md-secondary" ng-click="self.show_edit($event)">Edit</md-button>
-  			</md-list-item>
-
-
-  			<md-list-item>
-  				<md-button class="md-secondary" ng-click="doSecondaryAction($event)">More Info</md-button>
-  			</md-list-item>
-
-
-
-
-  			<md-divider></md-divider>
-
-
-		</md-list>
-		[[ self.data ]]
-
-
+		<todo-list></todo-list>
 
 	</div>
 
-
-	TODO
 	
-
-
-
-	<a href="https://material.angularjs.org/latest/">https://material.angularjs.org/latest/</a>
 
 
 {% endblock %}
@@ -56,7 +25,7 @@
 {% block ext_inc_body %}
 
 	<script src="/static/app.todo/app.js?version={{ VERSION }}"></script>
-	<script src="/static/app.todo/svc.js?version={{ VERSION }}"></script>
-	<script src="/static/app.todo/ctrl.js?version={{ VERSION }}"></script>
+
+	<script src="/static/app.todo/comp.list.js?version={{ VERSION }}"></script>
 
 {% endblock %}
