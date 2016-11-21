@@ -1,4 +1,4 @@
-<h1>List</h1>
+<h1>Список задач</h1>
 
 
 <table class="table table-bordered table-condensed">
@@ -33,8 +33,62 @@
 </table>
 
 
+
+
+<div class="panel panel-default" ng-repeat="item in self.items">
+  	<div class="panel-heading">
+    	<h3 class="panel-title">
+    		[[ item.title ]]
+    		<span class="pull-right">
+    			<a href="javascript: void(0)" ng-click="self.edit(item)">edit</a>
+				|
+				<a href="javascript: void(0)" ng-click="self.remove(item)">remove</a>
+    		</span>
+    	</h3>
+  	</div>
+  	<div class="panel-body">
+  		<div class="row">
+  			<div class="col-md-8">
+    			[[ item.description ]]
+  			</div>
+  			<div class="col-md-4">
+  				<ul>
+  					<li>[[ item.created ]]</li>
+  					<li>[[ item.updated ]]</li>
+  					<li>[[ item.status ]]</li>
+  					<li>[[ item.priority ]]</li>
+  				</ul>
+  			</div>
+  		</div>
+    	
+  	</div>
+</div>
+
+
+
+
+
+
+
+
+
 <button class="btn btn-primary" ng-click="self.add()">add</button>
 <button class="btn btn-primary" ng-click="self.refresh()">refresh</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -56,7 +110,10 @@
 
 					<div class="form-group">
 						<label for="item_status">Status</label>
-						<input type="text" class="form-control" id="item_status" placeholder="status" ng-model="self.item_edit.status">
+						<select class="form-control" id="item_status"
+							ng-model="self.item_edit.status"
+							ng-options="key as value for (key, value) in self.statuses"
+						></select>
 					</div>
 
 					<div class="form-group">
@@ -69,6 +126,8 @@
 						<textarea class="form-control" id="item_description" placeholder="description" ng-model="self.item_edit.description"></textarea>
 					</div>
 				</form>
+
+				<pre>[[ self.item_edit ]]</pre>
 			</div>
 			
 			<div class="modal-footer">
