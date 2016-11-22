@@ -14,12 +14,12 @@
 	}
 
 
-	var STATUSES = {
-		0 	: "Новое",
-		1 	: "В работе",
-		2 	: "Завершено",
-		3 	: "Отменено"
-	}
+	var STATUSES = [
+		"Новое",
+		"В работе",
+		"Завершено",
+		"Отменено"
+	]
 
 
 	var ctrl = function(jQuery, $http){
@@ -28,7 +28,8 @@
 		self.item_edit 		= null;
 		self.item_current 	= null;
 		var modal 			= jQuery("#edit_modal");
-		self.statuses 		= STATUSES;
+		// self.statuses 		= STATUSES;
+		self.statuses 		= STATUSES.map(function(row, i){return {index: i, name: row}});
 
 
 		
