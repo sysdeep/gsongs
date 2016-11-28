@@ -1,0 +1,37 @@
+{% extends "service/base.html" %}
+
+{% block title %}DB Tools{% endblock %}
+
+
+
+
+{% block content %}
+
+<p>
+	Файл базы данных: {{ DB_FILE }}
+</p>
+
+<a href="/service/db_backup">backup</a>
+	
+
+
+{% endblock %}
+
+
+
+
+{% block ext_inc_body %}
+
+	<script type="text/javascript">
+		$("document").ready(function(){
+			$(".menu_service_db").addClass("active");
+		});
+	</script>
+
+	<!--
+	<script src="/static/app.todo/app.js?version={{ VERSION }}"></script>
+
+	<script src="/static/app.todo/comp.list.js?version={{ VERSION }}"></script>
+-->
+
+{% endblock %}
