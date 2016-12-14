@@ -24,6 +24,7 @@ def db_page():
 		
 	#--- список всех файлов в каталоге backups
 	files = os.listdir(storage.DIR_BACKUPS)
+	files.sort()
 	
 	data = {
 		"VERSION" 		: VERSION,
