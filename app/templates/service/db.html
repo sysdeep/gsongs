@@ -15,6 +15,21 @@
 	
 
 
+<ul>
+	{% for file in SHARED_FILES %}
+	<li>
+		{{ file }}
+		(
+			<a href="/service/db_download/{{ file }}" >download</a>
+			|
+			<a href="/service/db_remove/{{ file }}" >remove</a>
+		)
+	</li>
+	{% endfor %}
+</ul>
+
+
+
 {% endblock %}
 
 

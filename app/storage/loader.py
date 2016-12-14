@@ -10,13 +10,20 @@ import time
 
 
 
-
+#--- main
 SELF_DIR 	= os.path.dirname(os.path.abspath(__file__))
 DIR_UP1 	= os.path.dirname(SELF_DIR)
 DIR_UP2 	= os.path.dirname(DIR_UP1)
-DIR_UP3 	= os.path.dirname(DIR_UP2)
+DB_DIR 	    = os.path.dirname(DIR_UP2)
+FILE_NAME   = "storage.db"
+DB_FILE 		= os.path.join(DB_DIR, FILE_NAME)
 
-DB_FILE 		= os.path.join(DIR_UP3, "storage.db")
+
+#--- db files bacups
+DIR_BACKUPS = os.path.join(DB_DIR, "backups")
+
+
+
 
 
 db = peewee.SqliteDatabase(DB_FILE)

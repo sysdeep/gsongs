@@ -99,7 +99,10 @@ app.add_url_rule("/service/todo_remove", 	view_func=ctrl_todo.todo_json_remove, 
 
 
 #--- db
-app.add_url_rule("/service/db", 			view_func=ctrl_db.db_page)
+app.add_url_rule("/service/db", 						view_func=ctrl_db.db_page)
+app.add_url_rule("/service/db_backup", 					view_func=ctrl_db.db_backup)
+app.add_url_rule("/service/db_download/<file_name>", 	view_func=ctrl_db.db_download)
+app.add_url_rule("/service/db_remove/<file_name>", 		view_func=ctrl_db.db_remove)
 
 
 #--- main ---------------------------------------------------------------------

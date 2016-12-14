@@ -1,20 +1,93 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+import time
+from shutil import make_archive
+from zipfile import ZipFile
 
 from vendor import auto
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_file
 
 from . import storage, VERSION
 
 
+
+
+
+
 def db_page():
+	"""страница для обслуживания базы данных"""
+	
+	#--- проверка и создание папки backups
+	if not os.path.exists(storage.DIR_BACKUPS):
+		os.mkdir(storage.DIR_BACKUPS)
+		
+	#--- список всех файлов в каталоге backups
+	files = os.listdir(storage.DIR_BACKUPS)
+	
 	data = {
-		"VERSION" 	: VERSION,
-		"DB_FILE" 	: storage.DB_FILE
+		"VERSION" 		: VERSION,
+		"DB_FILE" 		: storage.DB_FILE,
+		"SHARED_FILES"	: files
 	}
 	return render_template("service/db.html", **data)
 
 
+
+
+
+
+def db_backup():
+	"""создание backup для базы данных"""
+	
+	#--- исходный файл
+	src_file = storage.DB_FILE
+	
+	#--- новый файл
+	now_time = time.strftime( "%Y.%m.%d-%H.%M.%S" )			# дата
+	dest_file = os.path.join(storage.DIR_BACKUPS, storage.FILE_NAME + "." + now_time)
+	
+	#--- создание архива
+	with ZipFile(dest_file+".zip", "w") as zfile:
+		zfile.write(src_file)
+	
+	#--- redirect
+	return redirect("/service/db")
+	
+
+
+
+
+
+def db_download(file_name):
+	"""скачивание заданного файла"""
+	
+	#--- полный путь
+	file_path = os.path.join(storage.DIR_BACKUPS, file_name)
+	
+	if os.path.exists(file_path):
+		return send_file(file_path)
+	else:
+		return redirect("/service/db")
+
+
+
+
+	
+def db_remove(file_name):
+	"""удаление заданного файла"""
+	
+	#--- полный путь
+	file_path = os.path.join(storage.DIR_BACKUPS, file_name)
+	
+	if os.path.exists(file_path):
+		os.remove(file_path)
+		
+	return redirect("/service/db")
+		
+		
+		
+		
 # def todo_json_get():
 # 	items = storage.Todo.select()
 	
