@@ -14,18 +14,28 @@
 	}
 
 
+	var STATUSES = [
+		"Новое",
+		"В работе",
+		"Завершено",
+		"Отменено"
+	]
+
+
 	var ctrl = function(jQuery, $http){
 		var self 			= this;
 		self.items 			= [];
 		self.item_edit 		= null;
 		self.item_current 	= null;
 		var modal 			= jQuery("#edit_modal");
+		// self.statuses 		= STATUSES;
+		self.statuses 		= STATUSES.map(function(row, i){return {index: i, name: row}});
 
 
 		
 
 
-
+		//--- actions ---------------------------------------------------------
 		self.refresh = function(){
 			self.items = [];
 			get_items().success(function(response){
@@ -86,6 +96,15 @@
 				self.items.splice(index, 1);
 			})
 		}
+		//--- actions ---------------------------------------------------------
+
+
+
+
+		//--- view data -------------------------------------------------------
+		
+		//--- view data -------------------------------------------------------
+
 
 
 

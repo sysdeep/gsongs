@@ -4,7 +4,7 @@
 from vendor import auto
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 
-from . import VERSION, storage, ctrl_service, ctrl_todo
+from . import VERSION, storage, ctrl_service, ctrl_todo, ctrl_db
 
 
 
@@ -96,6 +96,14 @@ app.add_url_rule("/service/todo_get", 		view_func=ctrl_todo.todo_json_get)
 app.add_url_rule("/service/todo_add", 		view_func=ctrl_todo.todo_json_add, 		methods=["POST"])
 app.add_url_rule("/service/todo_update", 	view_func=ctrl_todo.todo_json_update, 	methods=["POST"])
 app.add_url_rule("/service/todo_remove", 	view_func=ctrl_todo.todo_json_remove, 	methods=["POST"])
+
+
+#--- db
+app.add_url_rule("/service/db", 						view_func=ctrl_db.db_page)
+app.add_url_rule("/service/db_backup", 					view_func=ctrl_db.db_backup)
+app.add_url_rule("/service/db_download/<file_name>", 	view_func=ctrl_db.db_download)
+app.add_url_rule("/service/db_remove/<file_name>", 		view_func=ctrl_db.db_remove)
+
 
 #--- main ---------------------------------------------------------------------
 

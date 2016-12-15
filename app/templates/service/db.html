@@ -1,0 +1,79 @@
+{% extends "service/base.html" %}
+
+{% block title %}DB Tools{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="page-header">
+  <h1>Обслуживание базы данных</h1>
+</div>
+
+<div class="panel panel-primary">
+  	<div class="panel-heading">
+    	<h3 class="panel-title">
+    		Файл базы данных: <strong>{{ DB_FILE }}</strong>
+    	</h3>
+  	</div>
+  	
+  	<div class="panel-body">
+    	<div class="row">
+    		<div class="col-md-8">
+    			<ul>
+					{% for file in SHARED_FILES %}
+					<li>
+						{{ file }}
+						(
+							<a href="/service/db_download/{{ file }}" title="скачать архив базы">
+								download
+							</a>
+							|
+							<a href="/service/db_remove/{{ file }}" title="удалить архив базы">
+								remove
+							</a>
+						)
+					</li>
+					{% endfor %}
+				</ul>
+
+    			
+    		</div>
+    		<div class="col-md-4">
+    			<a href="/service/db_backup" class="btn btn-primary" title="создать архив базы">
+    				<i class="fa fa-briefcase" aria-hidden="true"></i> backup
+    			</a>
+    		</div>
+    	</div>
+  	</div>
+</div>
+
+
+
+	
+
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block ext_inc_body %}
+
+	<script type="text/javascript">
+		$("document").ready(function(){
+			$(".menu_service_db").addClass("active");
+		});
+	</script>
+
+	<!--
+	<script src="/static/app.todo/app.js?version={{ VERSION }}"></script>
+
+	<script src="/static/app.todo/comp.list.js?version={{ VERSION }}"></script>
+-->
+
+{% endblock %}
