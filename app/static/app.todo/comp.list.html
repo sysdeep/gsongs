@@ -33,6 +33,11 @@
 </table>
 
 
+
+<ul class="list-group">
+	<li class="list-group-item" ng-repeat="item in self.items">[[ item.title ]]</li>
+</ul>
+
 <button class="btn btn-primary" ng-click="self.add()">add</button>
 <button class="btn btn-primary" ng-click="self.refresh()">refresh</button>
 
