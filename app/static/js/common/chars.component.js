@@ -13,7 +13,7 @@
 
 
 
-	var app = angular.module("songsApp");
+	var app = angular.module("app.common");
 
 
 	function ctrl(){

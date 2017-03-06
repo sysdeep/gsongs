@@ -2,10 +2,11 @@
 	"use strict";
 
 
-	var app = angular.module("songsApp", [
+	var app = angular.module("app", [
 		"ngRoute", 
 		"ui-notification",
 		"ngDialog",
+		"app.common",
 		"app.singers",
 		"app.songs",
 		"app.main"

@@ -6,7 +6,7 @@
 	<div class="col-md-3">
 		<h4 class="page-header">
 			Исполнители
-			<span class="pull-right">[[ singers_data.singers.length ]]</span>
+			<span class="pull-right badge">[[ self.singers.length ]]</span>
 		</h4>
 
 		<input type="text" class="form-control" ng-model="singer_filter" placeholder="быстрый поиск">
@@ -14,9 +14,11 @@
 		<br>
 
 		<ul class="list-unstyled">
-			<li ng-repeat="singer in singers_data.singers | filter:singer_filter">
-				<a href="javascript: void(0)" ng-click="show_songs(singer)" title="отобразить список песенок для этого исполнителя">
+			<li ng-repeat="singer in self.singers | filter:singer_filter">
+				<a href="javascript: void(0)" ng-click="self.show_songs(singer)" title="отобразить список песенок для этого исполнителя">
 					[[ singer.name ]]
+					
+					<i ng-if="singer.id == self.singer.id" class="fa fa-arrow-left" aria-hidden="true"></i>
 				</a>
 			</li>
 		</ul>
@@ -28,10 +30,10 @@
 	<div class="col-md-5">
 		<h4 class="page-header">
 			Песни исполнителя: 
-			<a href="#/singer/[[ singers_data.singer_current.id ]]" title="перейти на страницу исполнителя">
-				[[ singers_data.singer_current.name ]]
+			<a href="#/singer/[[ self.singer.id ]]" title="перейти на страницу исполнителя">
+				[[ self.singer.name ]]
 			</a>
-			<span class="pull-right">[[ singer_songs.length ]]</span>
+			<span class="pull-right badge">[[ self.singer_songs.length ]]</span>
 		</h4>
 
 		<input type="text" class="form-control" ng-model="song_filter.name" placeholder="быстрый поиск">
@@ -39,7 +41,7 @@
 		<br>
 			
 		<ul class="list-unstyled">
-			<li ng-repeat="song in singer_songs | filter:song_filter">
+			<li ng-repeat="song in self.singer_songs | filter:song_filter">
 				<a href="#/song/[[ song.id ]]" title="перейти к странице песни">
 					[[ song.name ]]
 				</a>
@@ -49,10 +51,13 @@
 	</div>
 
 	<div class="col-md-4">
-		<h4 class="page-header">Недавно добавленные</h4>
+		<h4 class="page-header">
+			Последние добавленные
+			<span class="pull-right badge">[[ self.last_songs.length ]]</span>
+		</h4>
 		<ul>
-			<li ng-repeat="song in last_songs">
-				<a href="#/singer/[[ song.singer ]]" title="перейти к странице исполнителя">[[ get_singer_name(song.singer) ]]</a>
+			<li ng-repeat="song in self.last_songs">
+				<a href="#/singer/[[ song.singer ]]" title="перейти к странице исполнителя">[[ self.get_singer_name(song.singer) ]]</a>
 				-
 				<a href="#/song/[[ song.id ]]" title="перейти к странице песни">[[ song.name ]]</a>
 			</li>

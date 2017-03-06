@@ -11,8 +11,9 @@
 
 		//--- main
 		$routeProvider.when("/main", {
-			templateUrl : "/static/js/main/main.html",
-			controller: "MainCtrl"
+			templateUrl 	: "/static/js/main/main.html",
+			controller		: "MainCtrl",
+			controllerAs	: "self"
 		});
 		
 	}]);

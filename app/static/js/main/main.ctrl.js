@@ -2,40 +2,49 @@
 	"use strict";
 
 
-	var app = angular.module("app.main");
-	app.controller("MainCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify", MainCtrl]);
+	var app = angular.module("app.main").controller("MainCtrl", MainCtrl);
 
+
+	MainCtrl.$inject = ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify"]
 
 
 	function MainCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify){
+		var self = this;
 		var last_count 			= 10;
-		$scope.singer_songs 	= [];
-		$scope.singers_data 	= {};
-		$scope.songs_data 		= {};
-		$scope.is_selected 		= false;
-		$scope.last_songs 		= [];
+		
+		
+		self.singers	= [];
+		self.songs		= [];
+		
+		self.singer 		= null;
+		self.singer_songs 	= [];
+		// self.singers_data 	= {};
+		// self.songs_data 		= {};
+		// self.is_selected 		= false;
+		self.last_songs 		= [];
 
 
 		SingersSvc.need_singers()
-		.then(SongsSvc.need_songs)
-		.then(function(){
-			$scope.singers_data = SingersSvc.data;
-			$scope.songs_data = SongsSvc.data;
+			.then(SongsSvc.need_songs)
+			.then(function(){
+				self.singers	= SingersSvc.data.singers;
+				self.songs		= SongsSvc.data.songs;
+				// self.singers_data	= SingersSvc.data;
+				// self.songs_data 	= SongsSvc.data;
 
-			$scope.last_songs = __found_last(angular.copy(SongsSvc.data.songs));
+				self.last_songs = __found_last(self.songs);
 
-		});
+			});
 
 
-		$scope.show_songs = function(singer){
-			$scope.is_selected 		= true;
-			SingersSvc.data.singer_current = singer;
-			$scope.singer_songs = SongsSvc.data.songs.filter(function(song){return song.singer == singer.id});
+		self.show_songs = function(singer){
+			self.singer = singer;
+			self.singer_songs = self.songs.filter(function(song){return song.singer == self.singer.id});
 		}
 
 
 
-		$scope.get_singer_name = function(singer_id){
+		self.get_singer_name = function(singer_id){
 			return SingersSvc.find_singer_name(singer_id);
 		}
 
