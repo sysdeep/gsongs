@@ -34,25 +34,25 @@
 		
 
 
-		//--- remove  ---------------------------------------------------------
-		$scope.show_remove = function(song){
-			svc.data.song_current = song;
-			svc.data.song_edit = angular.copy(svc.data.song_current);
-			remove_modal = ngDialog.open({
-				template: 'remove_modal_template' ,
-				className: 'ngdialog-theme-default',
-				scope: $scope,
-			});
-		}
+		// //--- remove  ---------------------------------------------------------
+		// $scope.show_remove = function(song){
+		// 	svc.data.song_current = song;
+		// 	svc.data.song_edit = angular.copy(svc.data.song_current);
+		// 	remove_modal = ngDialog.open({
+		// 		template: 'remove_modal_template' ,
+		// 		className: 'ngdialog-theme-default',
+		// 		scope: $scope,
+		// 	});
+		// }
 
 
-		$scope.remove_song = function(){
-			svc.remove_song().then(function(){
-				remove_modal.close();
-				notify.n_success("Песенка удалена");
-			});
-		}
-		//--- remove  ---------------------------------------------------------
+		// $scope.remove_song = function(){
+		// 	svc.remove_song().then(function(){
+		// 		remove_modal.close();
+		// 		notify.n_success("Песенка удалена");
+		// 	});
+		// }
+		// //--- remove  ---------------------------------------------------------
 
 
 

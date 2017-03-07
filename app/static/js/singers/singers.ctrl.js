@@ -4,22 +4,22 @@
 
 	var app = angular.module("app.singers").controller("SingersCtrl", SingersCtrl);
 
-	SingersCtrl.$inject = ["$scope", "$location", "$routeParams", "SingersSvc", "ngDialog", "notify", "utils"];	
+	SingersCtrl.$inject = ["$scope", "$location", "$routeParams", "SingersSvc", "notify"];	
 
 
 
-	function SingersCtrl($scope, $location, $routeParams, SingersSvc, ngDialog, notify, utils){
+	function SingersCtrl($scope, $location, $routeParams, SingersSvc, notify ){
 		var self 				= this;
 		self.singers 			= [];
 
-		
+
 		var svc 				= SingersSvc;
 		$scope.data 			= svc.data;
 		var singer_modal 		= null;
 		var remove_singer_modal = null;
 		var char_bar_search 	= null;
 
-		// utils.set_active_main_menu("main_menu_singers");
+		// .set_active_main_menu("main_menu_singers");
 
 		SingersSvc.need_singers().then(function(){
 			self.singers = SingersSvc.data.singers;
@@ -38,70 +38,70 @@
 	
 		
 
-		//--- edit singer -----------------------------------------------------
-		$scope.show_add_singer = function(){
-			svc.data.singer_current = svc.get_default_singer();
-			svc.data.singer_edit = angular.copy(svc.data.singer_current);
-			__show_singer_modal();
-		}
+		// //--- edit singer -----------------------------------------------------
+		// $scope.show_add_singer = function(){
+		// 	svc.data.singer_current = svc.get_default_singer();
+		// 	svc.data.singer_edit = angular.copy(svc.data.singer_current);
+		// 	__show_singer_modal();
+		// }
 
-		$scope.show_edit_singer = function(singer){
-			svc.data.singer_current = singer;
-			svc.data.singer_edit = angular.copy(svc.data.singer_current);
-			__show_singer_modal();
-		}
+		// $scope.show_edit_singer = function(singer){
+		// 	svc.data.singer_current = singer;
+		// 	svc.data.singer_edit = angular.copy(svc.data.singer_current);
+		// 	__show_singer_modal();
+		// }
 
-		function __show_singer_modal(){
-			singer_modal = ngDialog.open(svc.make_modal_edit($scope));
-		}
-
-
-
-		$scope.modal_edit_save = function(){
-
-			var validation_result = svc.validate(svc.data.singer_edit);
-			if(validation_result){
-				notify.n_warning(validation_result);
-				return false;
-			}
-
-
-			if( svc.data.singer_edit.id == 0 ){
-				svc.create_singer().then(function(){
-					singer_modal.close();
-					notify.n_success("Исполнитель создан");
-				});
-			}else{
-				svc.update_singer().then(function(){
-					singer_modal.close();
-					notify.n_success("Исполнитель обновлён");
-				});
-			}
-		}
-		//--- edit singer -----------------------------------------------------
+		// function __show_singer_modal(){
+		// 	singer_modal = ngDialog.open(svc.make_modal_edit($scope));
+		// }
 
 
 
-		//--- remove singer ---------------------------------------------------
-		$scope.show_remove_singer = function(singer){
-			svc.data.singer_current = singer;
-			svc.data.singer_edit = angular.copy(svc.data.singer_current);
-			remove_singer_modal = ngDialog.open({
-				template: 'remove_singer_modal_template' ,
-				// className: 'ngdialog-theme-plain'
-				className: 'ngdialog-theme-default',
-				scope: $scope,
-			});
-		}
+		// $scope.modal_edit_save = function(){
+
+		// 	var validation_result = svc.validate(svc.data.singer_edit);
+		// 	if(validation_result){
+		// 		notify.n_warning(validation_result);
+		// 		return false;
+		// 	}
 
 
-		$scope.remove_singer = function(){
-			svc.remove_singer().then(function(){
-				remove_singer_modal.close();
-				notify.n_success("Исполнитель удалён");
-			});
-		}
-		//--- remove singer ---------------------------------------------------
+		// 	if( svc.data.singer_edit.id == 0 ){
+		// 		svc.create_singer().then(function(){
+		// 			singer_modal.close();
+		// 			notify.n_success("Исполнитель создан");
+		// 		});
+		// 	}else{
+		// 		svc.update_singer().then(function(){
+		// 			singer_modal.close();
+		// 			notify.n_success("Исполнитель обновлён");
+		// 		});
+		// 	}
+		// }
+		// //--- edit singer -----------------------------------------------------
+
+
+
+		// //--- remove singer ---------------------------------------------------
+		// $scope.show_remove_singer = function(singer){
+		// 	svc.data.singer_current = singer;
+		// 	svc.data.singer_edit = angular.copy(svc.data.singer_current);
+		// 	remove_singer_modal = ngDialog.open({
+		// 		template: 'remove_singer_modal_template' ,
+		// 		// className: 'ngdialog-theme-plain'
+		// 		className: 'ngdialog-theme-default',
+		// 		scope: $scope,
+		// 	});
+		// }
+
+
+		// $scope.remove_singer = function(){
+		// 	svc.remove_singer().then(function(){
+		// 		remove_singer_modal.close();
+		// 		notify.n_success("Исполнитель удалён");
+		// 	});
+		// }
+		// //--- remove singer ---------------------------------------------------
 
 
 

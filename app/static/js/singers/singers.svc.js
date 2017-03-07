@@ -189,12 +189,13 @@
 
 
 
-		function remove_singer(singer){
+		function remove(singer){
 			var def = $q.defer();
-			$http.post("/remove_singer", data.singer_edit).success(function(response){
-				var index = data.singers.indexOf(data.singer_current);
+			$http.post("/remove_singer", singer).success(function(response){
+				var index = data.singers.indexOf(singer);
 				data.singers.splice(index, 1);
 				def.resolve();
+				data.singer_current = null;
 			}).error(function(response){
 				console.log(response);
 				def.reject();
@@ -274,10 +275,10 @@
 
 			"create_singer"		: create_singer,
 			"update_singer"		: update_singer,
-			"remove_singer"		: remove_singer,
 
 			"create"			: create,
 			"update"			: update,
+			"remove"			: remove,
 
 			"find_singer_name"	: find_singer_name,
 			"find_singer"		: find_singer,

@@ -81,10 +81,10 @@
 				<a href="#/singer_edit/[[ singer.id ]]" title="изменить запись">
 					<i class="fa fa-pencil"></i> изменить
 				</a>
-				|
+				<!-- |
 				<a href="javascript: void(0)" ng-click="show_remove_singer(singer)" title="отобразить запрос удаления">
 					<i class="fa fa-trash-o"></i> удалить
-				</a>
+				</a> -->
 			</td>
 		</tr>
 	</tbody>
@@ -98,23 +98,3 @@
 
 
 
-
-
-<script type="text/ng-template" id="remove_singer_modal_template">
-	<h4>Подтверждение удаления исполнителя</h4>
-
-	<div class="alert alert-danger" role="alert">
-		<p>Вы собираетесь удалить исполнителя: <strong>[[ data.singer_edit.name ]]</strong></p>
-	</div>
-
-	<hr>
-	<div class="row">
-		<div class="col-md-6">
-			<button class="btn btn-default btn-block" ng-click="closeThisDialog()"><i class="fa fa-ban" aria-hidden="true"></i> Отмена</button>
-		</div>
-		<div class="col-md-6">
-			<button class="btn btn-danger btn-block" ng-click="remove_singer()"><i class="fa fa-trash-o" aria-hidden="true"></i> Удалить</button>
-		</div>
-	</div>
-
-</script>

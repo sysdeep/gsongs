@@ -18,8 +18,9 @@
 				controllerAs 	: "self"
 			})
 			.when("/singer/:singer_id", {									//--- singer page with songs
-				templateUrl : "/static/js/singers/singer.html",
-				controller: "SingerCtrl"
+				templateUrl 	: "/static/js/singers/singer.html",
+				controller 		: "SingerCtrl",
+				controllerAs 	: "self"
 			})
 			.when("/singer_edit/:singer_id", {									//--- singer page with songs
 				templateUrl  	: "/static/js/singers/singer_edit.html",

@@ -6,7 +6,7 @@
         		<img alt="Brand" src="...">
       		</a> -->
       		<span class="navbar-brand">
-      			<span>[[ singer.name ]]</span> - <span>[[ data.song_current.name ]]</span>
+      			<span>[[ self.singer.name ]]</span> - <span>[[ self.item.name ]]</span>
       		</span>
 
 
@@ -15,7 +15,7 @@
 
     	<!-- <ul class="nav navbar-nav">
     		<li>
-    			<a href="#/singer/[[ data.song_current.singer ]]">
+    			<a href="#/singer/[[ self.item.singer ]]">
     				На страницу исполнителя
     			</a>
     		</li>
@@ -23,12 +23,12 @@
 
     	<ul class="nav navbar-nav navbar-right">
     		<li>
-	  			<a href="javascript: void(0)" ng-click="go_back()" title="перейти на предыдущую страницу">
+	  			<a href="javascript: void(0)" ng-click="self.go_back()" title="перейти на предыдущую страницу">
 					<i class="fa fa-arrow-left" aria-hidden="true"></i> Назад
 				</a>
 			</li>
 	  		<li>
-	  			<a href="#/song_edit/[[ data.song_current.id ]]" title="перейти к редактированию">
+	  			<a href="#/song_edit/[[ self.item.id ]]" title="перейти к редактированию">
 					<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
 				</a>
 			</li>
@@ -56,54 +56,54 @@
 				<tr>
 					<td>Исполнитель</td>
 					<td>
-						<lsinger cdata="singer"></lsinger>
+						<lsinger cdata="self.singer"></lsinger>
 					</td>
 				</tr>
 
 				<tr>
 					<td>Автор</td>
-					<td>[[ data.song_current.author ]]</td>
+					<td>[[ self.item.author ]]</td>
 				</tr>
 
 				<tr>
 					<td>Название</td>
-					<td>[[ data.song_current.name ]]</td>
+					<td>[[ self.item.name ]]</td>
 				</tr>
 
 				<tr>
 					<td>Альбом</td>
-					<td>[[ data.song_current.album ]]</td>
+					<td>[[ self.item.album ]]</td>
 				</tr>
 
 				<tr>
 					<td>Описание</td>
-					<td>[[ data.song_current.description ]]</td>
+					<td>[[ self.item.description ]]</td>
 				</tr>
 
 				<tr>
 					<td>Жанр</td>
-					<td>[[ data.song_current.genre ]]</td>
+					<td>[[ self.item.genre ]]</td>
 				</tr>
 
 				<tr>
 					<td>Создание</td>
-					<td>[[ data.song_current.created ]]</td>
+					<td>[[ self.item.created ]]</td>
 				</tr>
 
 				<tr>
 					<td>Обновление</td>
-					<td>[[ data.song_current.updated ]]</td>
+					<td>[[ self.item.updated ]]</td>
 				</tr>
 
 			</tbody>
 		</table>
 
 
-	
+		<button class="btn btn-danger" ng-click="self.show_remove()">Удалить</button>
 
 
 		<!--
-		<a class="btn btn-primary" href="#/song_edit/[[ data.song_current.id ]]" title="перейти к редактированию">
+		<a class="btn btn-primary" href="#/song_edit/[[ self.item.id ]]" title="перейти к редактированию">
 			<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
 		</a>
 		<a href="#/song_edit/0" class="btn btn-success" title="перейти к созданию">
@@ -119,7 +119,7 @@
 		
 
 		<ul>
-			<li ng-repeat="song in singer_songs">
+			<li ng-repeat="song in self.singer_songs">
 
 				<lsong cdata="song"></lsong>
 			</li>
@@ -131,7 +131,7 @@
 	<div class="col-md-7">
 		
 <pre>
-[[ data.song_current.text ]]
+[[ self.item.text ]]
 </pre>
 
 	</div>
@@ -143,3 +143,6 @@
 
 
 
+<modal-remove ng-if="self.is_modal_remove" on-close="self.is_modal_remove = false" on-remove="self.remove()">
+	Удалить песенку <strong>[[ self.item.name ]]</strong>?
+</modal-remove>

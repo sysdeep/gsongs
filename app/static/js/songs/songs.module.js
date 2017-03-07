@@ -16,8 +16,9 @@
 			controller: "SongsCtrl"
 		})
 		.when("/song/:song_id", {
-			templateUrl : "/static/js/songs/song.html",
-			controller: "SongCtrl"
+			templateUrl 	: "/static/js/songs/song.html",
+			controller 		: "SongCtrl",
+			controllerAs 	: "self"
 		})
 		.when("/song_edit/:song_id", {
 			templateUrl : "/static/js/songs/song_edit.html",

@@ -78,12 +78,13 @@
 		}
 
 
-		function remove_song(){
+		function remove(song){
 			var defer = $q.defer();
-			$http.post("/remove_song", data.song_current).success(function(response){
-				var index = data.songs.indexOf(data.song_current);
+			$http.post("/remove_song", song).success(function(response){
+				var index = data.songs.indexOf(song);
 				data.songs.splice(index, 1);
 				defer.resolve();
+				data.song_current = null;
 			}).error(function(response){
 				console.log(response);
 				defer.reject();
@@ -145,7 +146,15 @@
 		}
 
 
-
+		function find_current(id){
+			var results = data.songs.filter(function(item){return item.id == id});
+			if(results.length > 0){
+				data.song_current = results[0];
+			}else{
+				data.song_current = null;
+			}
+			return data.song_current;
+		}
 
 
 
@@ -159,7 +168,10 @@
 
 			"create_song"		: create_song,
 			"update_song"		: update_song,
-			"remove_song"		: remove_song
+			"remove"			: remove,
+
+
+			"find_current"		: find_current
 		}
 
 

@@ -3,7 +3,7 @@
     	
     	<div class="navbar-header">
       		<span class="navbar-brand">
-      			[[ data.singer_current.name ]]
+      			Исполнитель - [[ self.item.name ]]
       		</span>
     	</div>
 
@@ -21,7 +21,7 @@
 
 		<form class="navbar-form navbar-left" role="search">
   			<div class="form-group">
-    			<input type="text" class="form-control" placeholder="Быстрый поиск названию" ng-model="filter_name">
+    			<input type="text" class="form-control" placeholder="Быстрый поиск названию" ng-model="self.filter_name">
   			</div>
 		</form>
 
@@ -29,7 +29,7 @@
 
     	<ul class="nav navbar-nav navbar-right">
 	  		<li>
-	  			<a href="javascript: void(0)" ng-click="show_edit()" title="изменить данные исполнителя">
+	  			<a href="#/singer_edit/[[ self.item.id ]]" title="изменить данные исполнителя">
 					<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
 				</a>
 			</li>
@@ -60,7 +60,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="song in filtered()">
+		<tr ng-repeat="song in self.filtered()">
 			<td><a href="#/song/[[ song.id ]]" title="перейти к странице песни">[[ song.name ]]</a></td>
 			<td>[[ song.author ]]</td>
 			<td>[[ song.album ]]</td>
@@ -69,3 +69,12 @@
 		</tr>
 	</tbody>
 </table>
+
+
+<button class="btn btn-danger" ng-click="self.show_remove()">Удалить</button>
+
+
+
+<modal-remove ng-if="self.is_modal_remove" on-close="self.is_modal_remove = false" on-remove="self.remove()">
+	Удалить исполнителя?
+</modal-remove>
