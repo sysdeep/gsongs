@@ -2,12 +2,17 @@
 	"use strict";
 
 
-	var app = angular.module("app.singers");
-	app.controller("SingersCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "ngDialog", "notify", "utils", SingersCtrl]);
+	var app = angular.module("app.singers").controller("SingersCtrl", SingersCtrl);
+
+	SingersCtrl.$inject = ["$scope", "$location", "$routeParams", "SingersSvc", "ngDialog", "notify", "utils"];	
 
 
 
 	function SingersCtrl($scope, $location, $routeParams, SingersSvc, ngDialog, notify, utils){
+		var self 				= this;
+		self.singers 			= [];
+
+		
 		var svc 				= SingersSvc;
 		$scope.data 			= svc.data;
 		var singer_modal 		= null;
@@ -16,15 +21,16 @@
 
 		// utils.set_active_main_menu("main_menu_singers");
 
-		svc.need_singers().then(function(){
-
+		SingersSvc.need_singers().then(function(){
+			self.singers = SingersSvc.data.singers;
 		});
 
 
 	
 
-		$scope.refresh = function(){
-			svc.get_singers().then(function(){
+		self.refresh = function(){
+			SingersSvc.get_singers().then(function(){
+				self.singers = SingersSvc.data.singers;
 				notify.n_success("Список исполнителей загружен");
 			});
 		}
@@ -102,12 +108,12 @@
 
 
 
-		$scope.singers_filtered = function(){
+		self.singers_filtered = function(){
 
 			var o_data = [];
 			
 
-			angular.forEach(svc.data.singers, function(singer){
+			angular.forEach(self.singers, function(singer){
 				var add_flag = true;
 
 				//-- search
@@ -142,7 +148,7 @@
 		 * @type {Boolean}
 		 */
 		var sort_dir = true;
-		$scope.sort = function(field){
+		self.sort = function(field){
 			svc.data.singers.sort(function(o1, o2){
 				if( sort_dir ){
 					return o1[field] > o2[field] ? 1 : o1[field] < o2[field] ? -1 : 0;
@@ -166,7 +172,7 @@
 
 
 
-		$scope.select_char = function(ch){
+		self.select_char = function(ch){
 			if(char_bar_search === null){
 				char_bar_search = ch;
 			}else{

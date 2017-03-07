@@ -21,12 +21,16 @@
 
     	<ul class="nav navbar-nav navbar-right">
 	  		<li>
-	  			<a href="javascript: void(0)" ng-click="refresh()" title="обновить список">
+	  			<a href="javascript: void(0)" ng-click="self.refresh()" title="обновить список">
 					<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
 				</a>
 			</li>
 			<li>
-				<a href="javascript: void(0)" ng-click="show_add_singer()" title="отобразить диалог добавления">
+				<!-- <a href="javascript: void(0)" ng-click="show_add_singer()" title="отобразить диалог добавления">
+					<i class="fa fa-plus" aria-hidden="true"></i> Добавить
+				</a> -->
+
+				<a href="#/singer_edit/0" title="отобразить диалог добавления">
 					<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 				</a>
 			</li>
@@ -41,7 +45,7 @@
 
 
 
-<chars select="select_char(char_value)"></chars>
+<chars select="self.select_char(char_value)"></chars>
 
 
 
@@ -54,14 +58,14 @@
 	<thead>
 		<tr>
 			<th>id</th>
-			<th><a href="javascript: void(0)" ng-click="sort('name')">Исполнитель</a></th>
-			<th><a href="javascript: void(0)" ng-click="sort('created')">Создание</a></th>
-			<th><a href="javascript: void(0)" ng-click="sort('updated')">Обновление</a></th>
+			<th><a href="javascript: void(0)" ng-click="self.sort('name')">Исполнитель</a></th>
+			<th><a href="javascript: void(0)" ng-click="self.sort('created')">Создание</a></th>
+			<th><a href="javascript: void(0)" ng-click="self.sort('updated')">Обновление</a></th>
 			<th>Опции</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="singer in singers_filtered()">
+		<tr ng-repeat="singer in self.singers_filtered()">
 			<td>[[ singer.id ]]</td>
 			<td>
 				<a href="#/singer/[[ singer.id ]]" title="перейти на страницу исполнителя">
@@ -71,7 +75,10 @@
 			<td>[[ singer.created | date:'yyyy-MM-dd' ]]</td>
 			<td>[[ singer.updated ]]</td>
 			<td>
-				<a href="javascript: void(0)" ng-click="show_edit_singer(singer)" title="изменить запись">
+				<!-- <a href="javascript: void(0)" ng-click="show_edit_singer(singer)" title="изменить запись">
+					<i class="fa fa-pencil"></i> изменить
+				</a> -->
+				<a href="#/singer_edit/[[ singer.id ]]" title="изменить запись">
 					<i class="fa fa-pencil"></i> изменить
 				</a>
 				|

@@ -10,17 +10,22 @@
 	app.config(["$routeProvider", function($routeProvider){
 
 
-		//--- singers
-		$routeProvider.when("/singers", {
-			templateUrl : "/static/js/singers/singers.html",
-			controller: "SingersCtrl"
-		});
-
-		//--- singer page with songs
-		$routeProvider.when("/singer/:singer_id", {
-			templateUrl : "/static/js/singers/singer.html",
-			controller: "SingerCtrl"
-		});
+		
+		$routeProvider
+			.when("/singers", {												//--- singers
+				templateUrl 	: "/static/js/singers/singers.html",	
+				controller 		: "SingersCtrl",
+				controllerAs 	: "self"
+			})
+			.when("/singer/:singer_id", {									//--- singer page with songs
+				templateUrl : "/static/js/singers/singer.html",
+				controller: "SingerCtrl"
+			})
+			.when("/singer_edit/:singer_id", {									//--- singer page with songs
+				templateUrl  	: "/static/js/singers/singer_edit.html",
+				controller 		: "SingerEditCtrl",
+				controllerAs 	: "self"
+			});
 		
 	}]);
 
