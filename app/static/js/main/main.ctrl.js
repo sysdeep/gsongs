@@ -18,10 +18,8 @@
 		
 		self.singer 		= null;
 		self.singer_songs 	= [];
-		// self.singers_data 	= {};
-		// self.songs_data 		= {};
-		// self.is_selected 		= false;
-		self.last_songs 		= [];
+
+		self.last_songs 	= [];
 
 
 		SingersSvc.need_singers()
@@ -29,9 +27,7 @@
 			.then(function(){
 				self.singers	= SingersSvc.data.singers;
 				self.songs		= SongsSvc.data.songs;
-				// self.singers_data	= SingersSvc.data;
-				// self.songs_data 	= SongsSvc.data;
-
+				
 				self.last_songs = __found_last(self.songs);
 
 			});
