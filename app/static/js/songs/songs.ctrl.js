@@ -2,85 +2,48 @@
 	"use strict";
 
 
-	var app = angular.module("app.songs");
-	app.controller("SongsCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify", SongsCtrl]);
+	angular.module("app.songs").controller("SongsCtrl", SongsCtrl);
 
+	SongsCtrl.$inject = ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify"]
+
+	
 
 
 	function SongsCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify){
-		var svc 			= SongsSvc;
-		$scope.data 		= svc.data;
-		// var singer_modal 	= null;
-		var remove_modal 	= null;
+		var self 			= this;
+
+		self.songs 			= [];
+		self.singers 		= [];
+
+		var cached_singers 	= {};
 
 
 
-		svc.need_songs()
-		.then(SingersSvc.need_singers)
-		.then(function(){
+		SongsSvc.need_songs()
+			.then(SingersSvc.need_singers)
+			.then(function(){
+				self.songs = SongsSvc.data.songs;
+				SingersSvc.data.singers.forEach(function(singer){
+					cached_singers[singer.id] = singer.name;
+				})
+				
+			});
 
-		});
 
 
-
-		$scope.refresh = function(){
-			svc.get_songs().then(function(){
+		self.refresh = function(){
+			SongsSvc.get_songs().then(function(){
+				self.songs = SongsSvc.data.songs;
 				notify.n_success("Список песенок загружен");
 			});
 		}
 
-		
-		$scope.find_singer_name = SingersSvc.find_singer_name;
-		
 
-
-		// //--- remove  ---------------------------------------------------------
-		// $scope.show_remove = function(song){
-		// 	svc.data.song_current = song;
-		// 	svc.data.song_edit = angular.copy(svc.data.song_current);
-		// 	remove_modal = ngDialog.open({
-		// 		template: 'remove_modal_template' ,
-		// 		className: 'ngdialog-theme-default',
-		// 		scope: $scope,
-		// 	});
-		// }
-
-
-		// $scope.remove_song = function(){
-		// 	svc.remove_song().then(function(){
-		// 		remove_modal.close();
-		// 		notify.n_success("Песенка удалена");
-		// 	});
-		// }
-		// //--- remove  ---------------------------------------------------------
-
-
-
-
-
-
-		$scope.singers_filtered = function(){
-
-			var o_data = [];
-			
-
-			angular.forEach(svc.data.singers, function(singer){
-				var add_flag = true;
-
-				//-- search
-				if(svc.data.filter.search.singer.length > 0){
-					var s_s = singer.name.toLowerCase();
-					var d_s = svc.data.filter.search.singer.toLowerCase();
-					if(s_s.indexOf(d_s) == -1)
-						add_flag = false;
-				}
-
-
-				if(add_flag) o_data.push(singer);
-			});
-			return o_data;
-
+		self.find_singer_name = function(singer_id){
+			return cached_singers[singer_id];
 		}
+		
+		
 
 
 
@@ -92,8 +55,8 @@
 		 * @type {Boolean}
 		 */
 		var sort_dir = true;
-		$scope.sort = function(field){
-			svc.data.singers.sort(function(o1, o2){
+		self.sort = function(field){
+			self.songs.sort(function(o1, o2){
 				if( sort_dir ){
 					return o1[field] > o2[field] ? 1 : o1[field] < o2[field] ? -1 : 0;
 				}else{

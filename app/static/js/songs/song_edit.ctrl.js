@@ -2,92 +2,72 @@
 	"use strict";
 
 
-	var app = angular.module("app.songs");
-	app.controller("SongEditCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "ngDialog", "notify", "$window", SongEditCtrl]);
+	angular.module("app.songs").controller("SongEditCtrl", SongEditCtrl);
+
+	SongEditCtrl.$inject = ["$routeParams", "SingersSvc", "SongsSvc", "CommonSvc"];
 
 
 
-	function SongEditCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, ngDialog, notify, $window){
-		var svc 			= SongsSvc;
-		$scope.data 		= svc.data;
-		// var singer_modal 	= null;
-		// var remove_modal 	= null;
+
+
+
+	function SongEditCtrl($routeParams, SingersSvc, SongsSvc, CommonSvc){
+		var self 			= this;
+	
 		var song_id = $routeParams.song_id;
-		$scope.mode = "edit";
+
+		self.current = null;
+		self.item = null;
+		self.singers = [];
 
 
-		svc.need_songs()
-		.then(SingersSvc.need_singers)
-		.then(function(){
+		SongsSvc.need_songs()
+			.then(SingersSvc.need_singers)
+			.then(function(){
 
-			$scope.singers = SingersSvc.data.singers;
+				self.singers = SingersSvc.data.singers;
 
-			if( song_id == 0 ){
-				$scope.mode = "add";
+				if( song_id == 0 ){
+					self.current = SongsSvc.get_default();
 
-				svc.data.song_current = svc.get_default_song();
-				svc.data.song_edit = angular.copy(svc.data.song_current);
-				
+					if(SingersSvc.data.singer_current){
+						var singer_id = SingersSvc.data.singer_current.id;
+					}else{
+						var singer_id = 0;
+					}
 
-				if(SingersSvc.data.singer_current){
-					var singer_id = SingersSvc.data.singer_current.id;
+					self.current.singer = singer_id;
+					
 				}else{
-					var singer_id = 0;
+
+					self.current = SongsSvc.find_current(song_id);
 				}
-				// if(SingersSvc.data.singer_current.id){
-				// 	svc.data.song_edit.singer = SingersSvc.data.singer.id;
-				// }
-				svc.data.song_edit.singer = singer_id;
 
-
-				
-			}else{
-				$scope.mode = "edit";
-				var search_result = svc.data.songs.filter(function(song){return song.id == song_id});
-				if(search_result.length > 0){
-					svc.data.song_current = search_result[0];
-					svc.data.song_edit = angular.copy(svc.data.song_current);
-				}
-			}
-
-
+				self.item = angular.copy(self.current);
 
 
 		});
 
 
 
-		// $scope.refresh = function(){
-		// 	svc.get_songs().then(function(){
-		// 		notify.n_success("Список песенок загружен");
-		// 	});
-		// }
-
-		
-		$scope.find_singer_name = SingersSvc.find_singer_name;
-		
 
 
-
-		$scope.save = function(){
-			if( $scope.mode == "add" ){
-				svc.create_song().then(function(){
-					notify.n_success("Создание песенки - успешно");
-					$location.path("/song/"+svc.data.song_edit.id);
+		self.save = function(){
+			if( self.item.id == 0 ){
+				SongsSvc.create(self.item).then(function(){
+					CommonSvc.n_success("Создание песенки - успешно");
+					CommonSvc.go_back();
 				});
 			}else{
-				svc.update_song().then(function(){
-					notify.n_success("Обновление песенки - успешно");
-					$location.path("/song/"+svc.data.song_edit.id);
+				SongsSvc.update(self.item).then(function(){
+					CommonSvc.n_success("Обновление песенки - успешно");
+					CommonSvc.go_back();
 				});
 			}
 		}
 
 		
-		$scope.go_back = function(){
-			$window.history.back();
-		}
-
+		
 
 
 

@@ -93,13 +93,13 @@
 			return defer.promise;
 		}
 
-		function create_song(){
+		function create(song){
 			var defer = $q.defer();
-			$http.post("/create_song", data.song_edit).success(function(response){
-				data.song_edit.id = response.result.id;
-				data.song_edit.updated = response.result.updated;
-				data.song_edit.created = response.result.created;
-				angular.copy(data.song_edit, data.song_current);
+			$http.post("/create_song", song).success(function(response){
+				song.id = response.result.id;
+				song.updated = response.result.updated;
+				song.created = response.result.created;
+				data.song_current = angular.copy(song);
 				data.songs.push(data.song_current);
 				defer.resolve();
 			}).error(function(response){
@@ -110,11 +110,11 @@
 			return defer.promise;
 		}
 
-		function update_song(){
+		function update(song){
 			var defer = $q.defer();
-			$http.post("/update_song", data.song_edit).success(function(response){
-				data.song_edit.updated = response.result.updated;
-				angular.copy(data.song_edit, data.song_current);
+			$http.post("/update_song", song).success(function(response){
+				song.updated = response.result.updated;
+				angular.copy(song, data.song_current);
 				defer.resolve();
 			}).error(function(response){
 				console.log("error");
@@ -126,9 +126,9 @@
 
 
 
-		function get_default_song(){
+		function get_default(){
 			var song = {
-				// _id			: 0,
+				id			: 0,
 				singer		: "",					// исполнитель
 				author		: "",					// автор
 			    name 		: "",					// название песни
@@ -164,10 +164,10 @@
 			"get_songs"		: get_songs,
 			"need_songs"		: need_songs,
 
-			"get_default_song"	: get_default_song,
+			"get_default"		: get_default,
 
-			"create_song"		: create_song,
-			"update_song"		: update_song,
+			"create"			: create,
+			"update"			: update,
 			"remove"			: remove,
 
 

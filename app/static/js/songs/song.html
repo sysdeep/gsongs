@@ -99,17 +99,13 @@
 		</table>
 
 
-		<button class="btn btn-danger" ng-click="self.show_remove()">Удалить</button>
 
+		<button-back></button-back>
 
-		<!--
-		<a class="btn btn-primary" href="#/song_edit/[[ self.item.id ]]" title="перейти к редактированию">
-			<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
-		</a>
-		<a href="#/song_edit/0" class="btn btn-success" title="перейти к созданию">
-			<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-		</a>
-		-->
+		<div class="pull-right">
+			<button-remove ng-click="self.show_remove()"></button-remove>
+			<lbutton-edit href="#/song_edit/[[ self.item.id ]]"></lbutton-edit>
+		</div>
 
 
 

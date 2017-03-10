@@ -46,32 +46,62 @@
 
 
 
+<div class="row">
+	<div class="col-md-6">
+		
+		<dl class="dl-horizontal">
+  			<dt>Название</dt>
+  			<dd>[[ self.item.name ]]</dd>
+
+  			<dt>Создание</dt>
+  			<dd>[[ self.item.created ]]</dd>
+
+  			<dt>Обновление</dt>
+  			<dd>[[ self.item.updated ]]</dd>
+		</dl>
+
+
+		<button-back></button-back>
+
+		<div class="pull-right">
+			<button-remove ng-click="self.show_remove()"></button-remove>
+			<lbutton-edit href="#/singer_edit/[[ self.item.id ]]"></lbutton-edit>
+		</div>
+
+	</div>
+	<div class="col-md-6">
+		<table class="table table-bordered table-condensed">
+			<thead>
+				<tr>
+					<th>Название</th>
+					<!-- <th>Автор</th>
+					<th>Альбом</th>
+					<th>Описание</th>
+					<th>Жанр</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="song in self.filtered()">
+					<td><a href="#/song/[[ song.id ]]" title="перейти к странице песни">[[ song.name ]]</a></td>
+					<!-- <td>[[ song.author ]]</td>
+					<td>[[ song.album ]]</td>
+					<td>[[ song.description ]]</td>
+					<td>[[ song.genre ]]</td> -->
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="pull-right">
+			<lbutton-create href="#/song_edit/0"></lbutton-create>
+		</div>
+		
+	</div>
+</div>
 
 
 
-<table class="table table-bordered table-condensed">
-	<thead>
-		<tr>
-			<th>Название</th>
-			<th>Автор</th>
-			<th>Альбом</th>
-			<th>Описание</th>
-			<th>Жанр</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="song in self.filtered()">
-			<td><a href="#/song/[[ song.id ]]" title="перейти к странице песни">[[ song.name ]]</a></td>
-			<td>[[ song.author ]]</td>
-			<td>[[ song.album ]]</td>
-			<td>[[ song.description ]]</td>
-			<td>[[ song.genre ]]</td>
-		</tr>
-	</tbody>
-</table>
 
 
-<button class="btn btn-danger" ng-click="self.show_remove()">Удалить</button>
 
 
 

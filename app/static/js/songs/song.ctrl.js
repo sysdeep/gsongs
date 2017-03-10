@@ -23,10 +23,8 @@
 			.then(function(){
 
 				self.item = SongsSvc.find_current(song_id);
-				
-				SingersSvc.set_current(self.item.singer);
 
-				self.singer = SingersSvc.find_singer(self.item.singer);
+				self.singer = SingersSvc.find_current(self.item.singer);
 
 				self.singer_songs = SongsSvc.data.songs.filter(function(song){
 					return (song.singer == self.item.singer) && (song.id != self.item.id);

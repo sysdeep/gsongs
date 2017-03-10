@@ -2,12 +2,9 @@
 	"use strict";
 
 
-	var app = angular.module("app.singers");
-	app.controller("SingerCtrl", ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "CommonSvc", "notify", 
-		// "singers_modal_edit", 
-		SingerCtrl]);
+	angular.module("app.singers").controller("SingerCtrl", SingerCtrl);
 
-
+	SingerCtrl.$inject = ["$scope", "$location", "$routeParams", "SingersSvc", "SongsSvc", "CommonSvc", "notify"]
 
 	function SingerCtrl($scope, $location, $routeParams, SingersSvc, SongsSvc, CommonSvc, notify){
 		var self 			= this;

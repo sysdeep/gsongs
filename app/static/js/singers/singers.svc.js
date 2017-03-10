@@ -105,7 +105,7 @@
 
 
 
-		function get_default_singer(){
+		function get_default(){
 			return {
 				"id" 	: 0,
 				"name"	: ""
@@ -149,43 +149,43 @@
 		}
 
 
-		/**
-		 * DEPRICATED
-		 */
-		function create_singer(){
-			var def = $q.defer();
-			$http.post("/create_singer", data.singer_edit).success(function(response){
-				data.singer_edit.id = response.singer.id;
-				data.singer_edit.created = response.singer.created;
-				data.singer_edit.updated = response.singer.updated;
-				angular.copy(data.singer_edit, data.singer_current);
-				data.singers.push(data.singer_current);
-				def.resolve();
-			}).error(function(response){
-				console.log(response);
-				def.reject();
-			});
+		// /**
+		//  * DEPRICATED
+		//  */
+		// function create_singer(){
+		// 	var def = $q.defer();
+		// 	$http.post("/create_singer", data.singer_edit).success(function(response){
+		// 		data.singer_edit.id = response.singer.id;
+		// 		data.singer_edit.created = response.singer.created;
+		// 		data.singer_edit.updated = response.singer.updated;
+		// 		angular.copy(data.singer_edit, data.singer_current);
+		// 		data.singers.push(data.singer_current);
+		// 		def.resolve();
+		// 	}).error(function(response){
+		// 		console.log(response);
+		// 		def.reject();
+		// 	});
 
-			return def.promise;
-		}
+		// 	return def.promise;
+		// }
 
 
-		/**
-		 * DEPRICATED
-		 */
-		function update_singer(){
-			var def = $q.defer();
-			$http.post("/update_singer", data.singer_edit).success(function(response){
-				data.singer_edit.updated = response.singer.updated;
-				angular.copy(data.singer_edit, data.singer_current);
-				def.resolve();
-			}).error(function(response){
-				console.log(response);
-				def.reject();
-			});
+		// /**
+		//  * DEPRICATED
+		//  */
+		// function update_singer(){
+		// 	var def = $q.defer();
+		// 	$http.post("/update_singer", data.singer_edit).success(function(response){
+		// 		data.singer_edit.updated = response.singer.updated;
+		// 		angular.copy(data.singer_edit, data.singer_current);
+		// 		def.resolve();
+		// 	}).error(function(response){
+		// 		console.log(response);
+		// 		def.reject();
+		// 	});
 
-			return def.promise;
-		}
+		// 	return def.promise;
+		// }
 
 
 
@@ -226,20 +226,27 @@
 			}
 		}
 
+
+
+
+		/**
+		 * !!! DEPRICATED - use find_current
+		 * 
+		 */
 		function find_singer(singer_id){
 			var result = data.singers.filter(function(item){return item.id == singer_id});
 			return (result.length > 0)? result[0] : {};
 		}
 
 
-		function set_current(singer_id){
-			var result = data.singers.filter(function(item){return item.id == singer_id});
-			if(result.length > 0){
-				data.singer_current = result[0];
-			}else{
-				data.singer_current = {};
-			}	
-		}
+		// function set_current(singer_id){
+		// 	var result = data.singers.filter(function(item){return item.id == singer_id});
+		// 	if(result.length > 0){
+		// 		data.singer_current = result[0];
+		// 	}else{
+		// 		data.singer_current = {};
+		// 	}	
+		// }
 
 
 		function validate(singer){
@@ -271,10 +278,10 @@
 
 			"find_current"		: find_current,
 
-			"get_default_singer"	: get_default_singer,
+			"get_default"	: get_default,
 
-			"create_singer"		: create_singer,
-			"update_singer"		: update_singer,
+			// "create_singer"		: create_singer,
+			// "update_singer"		: update_singer,
 
 			"create"			: create,
 			"update"			: update,
@@ -282,7 +289,7 @@
 
 			"find_singer_name"	: find_singer_name,
 			"find_singer"		: find_singer,
-			"set_current"		: set_current,
+			// "set_current"		: set_current,
 
 			"validate"			: validate,
 

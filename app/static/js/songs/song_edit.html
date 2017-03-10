@@ -1,9 +1,11 @@
 <div class="page-header">
-  	<h1 ng-if="mode == 'add'">Создание новой записи</h1>
-  	<h1 ng-if="mode == 'edit'">Изменение записи: <span>[[ data.song_current.name ]]</span></h1>
+  	<h1 ng-if="self.item.id == 0">Создание новой записи</h1>
+  	<h1 ng-if="self.item.id != 0">Изменение записи: <span>[[ self.current.name ]]</span></h1>
 </div>
 
-
+<!-- <pre>
+[[ self.item | json ]]
+</pre> -->
 
 <div class="row">
 	<div class="col-md-6">
@@ -13,7 +15,7 @@
 				<label for="inputSinger" class="col-sm-2 control-label">Исполнитель</label>
 				<div class="col-sm-10">
 					<!-- <select ng-model="data.song.singer" ng-options="singer.id as singer.name for singer in data.singers track by singer.id"></select> -->
-					<select class="form-control" ng-model="data.song_edit.singer" ng-options="singer.id as singer.name  for singer in singers"></select>
+					<select class="form-control" ng-model="self.item.singer" ng-options="singer.id as singer.name  for singer in self.singers"></select>
 					<!--
 					<input type="text" class="form-control" id="inputSinger" placeholder="Исполнитель" ng-model="data.song.singer">
 					-->
@@ -24,7 +26,7 @@
 			<div class="form-group">
 				<label for="inputName" class="col-sm-2 control-label">Название</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputName" placeholder="Название" ng-model="data.song_edit.name">
+					<input type="text" class="form-control" id="inputName" placeholder="Название" ng-model="self.item.name">
 				</div>
 			</div>
 
@@ -33,7 +35,7 @@
 			<div class="form-group">
 				<label for="inputAuthor" class="col-sm-2 control-label">Автор</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputAuthor" placeholder="Автор" ng-model="data.song_edit.author">
+					<input type="text" class="form-control" id="inputAuthor" placeholder="Автор" ng-model="self.item.author">
 				</div>
 			</div>
 
@@ -42,7 +44,7 @@
 			<div class="form-group">
 				<label for="inputAlbum" class="col-sm-2 control-label">Альбом</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputAlbum" placeholder="Альбом" ng-model="data.song_edit.album">
+					<input type="text" class="form-control" id="inputAlbum" placeholder="Альбом" ng-model="self.item.album">
 				</div>
 			</div>
 
@@ -50,7 +52,7 @@
 			<div class="form-group">
 				<label for="inputGenre" class="col-sm-2 control-label">Жанр</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputGenre" placeholder="Жанр" ng-model="data.song_edit.genre">
+					<input type="text" class="form-control" id="inputGenre" placeholder="Жанр" ng-model="self.item.genre">
 				</div>
 			</div>
 
@@ -58,14 +60,14 @@
 			<div class="form-group">
 				<label for="inputDescription" class="col-sm-2 control-label">Описание</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="3" id="inputDescription" placeholder="Описание" ng-model="data.song_edit.description"></textarea>
+					<textarea class="form-control" rows="3" id="inputDescription" placeholder="Описание" ng-model="self.item.description"></textarea>
 				</div>
 			</div>
 
 			
 
 			<hr>
-		  
+		  <!-- 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button class="btn btn-warning" ng-click="go_back()" title="перейти назад">
@@ -76,14 +78,20 @@
 						<i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить
 					</button>
 				</div>
-			</div>
+			</div> -->
 		</form>
+
+
+		<button-back></button-back>
+		<div class="pull-right">
+			<button-save ng-click="self.save()"></button-save>
+		</div>
 	</div>
 	<div class="col-md-6">
 		<form class="form-horizontal">
 	
 			<div class="form-group">
-					<textarea class="form-control" rows="25" id="inputText" placeholder="Текст" ng-model="data.song_edit.text"></textarea>
+					<textarea class="form-control" rows="25" id="inputText" placeholder="Текст" ng-model="self.item.text"></textarea>
 			</div>
 
 		</form>

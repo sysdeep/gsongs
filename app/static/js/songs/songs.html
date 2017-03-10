@@ -1,6 +1,6 @@
 <h1 class="page-header">
 	Все песенки
-	<small>[[ data.songs.length ]]</small>
+	<small>[[ self.songs.length ]]</small>
 </h1>
 
 
@@ -9,16 +9,14 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<input type="text" class="form-control" ng-model="data.filter.search.quick" placeholder="быстрый поиск">
+		<input type="text" class="form-control" ng-model="filter_search_quick.name" placeholder="быстрый поиск">
 	</div>
 	<div class="col-md-6">
 		<div class="pull-right">
-			<button class="btn btn-primary" ng-click="refresh()" title="загрузить список">
+			<button class="btn btn-primary" ng-click="self.refresh()" title="загрузить список">
 				<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
 			</button>
-			<a class="btn btn-success" href="#/song_edit/0" title="перейти на страницу создания">
-				<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-			</a>
+			<lbutton-create href="#/song_edit/0"></lbutton-create>
 		</div>
 	</div>
 </div>
@@ -29,14 +27,14 @@
 <table class="table table-bordered table-condensed">
 	<thead>
 		<tr>
-			<th>id</th>
-			<th>Исполнитель</th>
-			<th>Автор</th>
-			<th>Название</th>
-			<th>Альбом</th>
+			<th><a href="javascript: void(0)" ng-click="self.sort('id')">id</a></th>
+			<th><a href="javascript: void(0)" ng-click="self.sort('singer')">Исполнитель</a></th>
+			<!-- <th>Автор</th> -->
+			<th><a href="javascript: void(0)" ng-click="self.sort('name')">Название</a></th>
+			<!-- <th>Альбом</th> -->
 			<!-- <th>Текст</th> -->
-			<th>Описание</th>
-			<th>Жанр</th>
+			<!-- <th>Описание</th> -->
+			<!-- <th>Жанр</th> -->
 			<!-- <th>Метки</th> -->
 			<!-- <th>Создание</th> -->
 			<!-- <th>Обновление</th> -->
@@ -45,23 +43,23 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="song in data.songs | filter:data.filter.search.quick">
+		<tr ng-repeat="song in self.songs | filter:filter_search_quick">
 			<td>[[ song.id ]]</td>
 			<td>
 				<a href="#/singer/[[ song.singer ]]">
 				<!-- <a href="javascript: void(0)" title="" ng-click="select_singer(song.singer)"> -->
-					[[ find_singer_name(song.singer) ]]
+					[[ self.find_singer_name(song.singer) ]]
 				</a>
 			</td>
-			<td>[[ song.author ]]</td>
+			<!-- <td>[[ song.author ]]</td> -->
 			<td>
 				<a href="#/song/[[ song.id ]]" title="">[[ song.name ]]</a>
 				<!-- <a href="javascript: void(0)" title="" ng-click="show_song(song)">[[ song.name ]]</a> -->
 			</td>
-			<td>[[ song.album ]]</td>
+			<!-- <td>[[ song.album ]]</td> -->
 			<!-- <td>[[ song.text ]]</td> -->
-			<td>[[ song.description ]]</td>
-			<td>[[ song.genre ]]</td>
+			<!-- <td>[[ song.description ]]</td>
+			<td>[[ song.genre ]]</td> -->
 			<!-- <td>[[ song.tags ]]</td> -->
 			<!-- <td>[[ song.created ]]</td> -->
 			<!-- <td>[[ song.updated ]]</td> -->
