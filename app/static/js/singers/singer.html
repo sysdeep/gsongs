@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<!-- <nav class="navbar navbar-default">
   	<div class="container-fluid">
     	
     	<div class="navbar-header">
@@ -6,7 +6,7 @@
       			Исполнитель - [[ self.item.name ]]
       		</span>
     	</div>
-
+ -->
 
 		<!-- 
     	<ul class="nav navbar-nav">
@@ -19,15 +19,15 @@
     	-->
 
 
-		<form class="navbar-form navbar-left" role="search">
+		<!-- <form class="navbar-form navbar-left" role="search">
   			<div class="form-group">
     			<input type="text" class="form-control" placeholder="Быстрый поиск названию" ng-model="self.filter_name">
   			</div>
-		</form>
+		</form> -->
 
 
 
-    	<ul class="nav navbar-nav navbar-right">
+    	<!-- <ul class="nav navbar-nav navbar-right">
 	  		<li>
 	  			<a href="#/singer_edit/[[ self.item.id ]]" title="изменить данные исполнителя">
 					<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
@@ -38,11 +38,19 @@
 					<i class="fa fa-plus" aria-hidden="true"></i> Добавить песню
 				</a>
 			</li>
-  		</ul>
+  		</ul> -->
 
-  	</div>
+<!--   	</div>
 </nav>
 
+ -->
+
+
+
+
+<div class="page-header">
+	<h3>Исполнитель - [[ self.item.name ]]</h3>
+</div>
 
 
 
@@ -70,10 +78,29 @@
 
 	</div>
 	<div class="col-md-6">
+
+
+		<div class="row">
+			<div class="col-md-6">
+				<form>
+		  			<div class="form-group">
+		    			<input type="text" class="form-control" placeholder="Быстрый поиск названию" ng-model="self.filter_name">
+		  			</div>
+				</form>
+		
+			</div>
+			<div class="col-md-6">
+				<div class="pull-right">
+					<lbutton-create href="#/song_edit/0"></lbutton-create>
+				</div>
+			</div>
+		</div>
+		
+
 		<table class="table table-bordered table-condensed">
 			<thead>
 				<tr>
-					<th>Название</th>
+					<th><a href="javascript: void(0)" ng-click="self.sort('name')">Название</a></th>
 					<!-- <th>Автор</th>
 					<th>Альбом</th>
 					<th>Описание</th>
@@ -91,9 +118,9 @@
 			</tbody>
 		</table>
 
-		<div class="pull-right">
+		<!-- <div class="pull-right">
 			<lbutton-create href="#/song_edit/0"></lbutton-create>
-		</div>
+		</div> -->
 		
 	</div>
 </div>

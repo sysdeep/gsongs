@@ -79,7 +79,21 @@
 
 
 
-
+		/**
+		 * сортировка
+		 * @type {Boolean}
+		 */
+		var sort_dir = true;
+		self.sort = function(field){
+			self.songs.sort(function(o1, o2){
+				if( sort_dir ){
+					return o1[field] > o2[field] ? 1 : o1[field] < o2[field] ? -1 : 0;
+				}else{
+					return o1[field] > o2[field] ? -1 : o1[field] < o2[field] ? 1 : 0;
+				}
+			});			
+			sort_dir = !sort_dir;
+		};
 
 
 
