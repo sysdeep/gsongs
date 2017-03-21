@@ -42,15 +42,24 @@ def db_backup():
 	"""создание backup для базы данных"""
 	
 	#--- исходный файл
-	src_file = storage.DB_FILE
+	db_dir = os.path.dirname(storage.DB_FILE)
+	db_name = os.path.basename(storage.DB_FILE)
 	
 	#--- новый файл
 	now_time = time.strftime( "%Y.%m.%d-%H.%M.%S" )			# дата
 	dest_file = os.path.join(storage.DIR_BACKUPS, storage.FILE_NAME + "." + now_time)
 	
+	backup_file_name = storage.FILE_NAME + "qqq." + now_time
+
+	cwd = os.getcwd()
+	
 	#--- создание архива
-	with ZipFile(dest_file+".zip", "w") as zfile:
-		zfile.write(src_file)
+	with ZipFile(dest_file + ".zip", "w") as zfile:
+		#--- перемещаемся в каталог базы данных(штоб путь в архиве был нормальный)
+		os.chdir(db_dir)
+		zfile.write(db_name)
+
+	os.chdir(cwd)
 	
 	#--- redirect
 	return redirect("/service/db")
