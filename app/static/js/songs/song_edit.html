@@ -8,12 +8,12 @@
 </pre> -->
 
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-5">
 		<form class="form-horizontal">
 	
 			<div class="form-group">
-				<label for="inputSinger" class="col-sm-2 control-label">Исполнитель</label>
-				<div class="col-sm-10">
+				<label for="inputSinger" class="col-sm-3 control-label">Исполнитель</label>
+				<div class="col-sm-9">
 					<!-- <select ng-model="data.song.singer" ng-options="singer.id as singer.name for singer in data.singers track by singer.id"></select> -->
 					<select class="form-control" ng-model="self.item.singer" ng-options="singer.id as singer.name  for singer in self.singers"></select>
 					<!--
@@ -24,8 +24,8 @@
 
 
 			<div class="form-group">
-				<label for="inputName" class="col-sm-2 control-label">Название</label>
-				<div class="col-sm-10">
+				<label for="inputName" class="col-sm-3 control-label">Название</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="inputName" placeholder="Название" ng-model="self.item.name">
 				</div>
 			</div>
@@ -33,8 +33,8 @@
 
 			
 			<div class="form-group">
-				<label for="inputAuthor" class="col-sm-2 control-label">Автор</label>
-				<div class="col-sm-10">
+				<label for="inputAuthor" class="col-sm-3 control-label">Автор</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="inputAuthor" placeholder="Автор" ng-model="self.item.author">
 				</div>
 			</div>
@@ -42,24 +42,24 @@
 
 
 			<div class="form-group">
-				<label for="inputAlbum" class="col-sm-2 control-label">Альбом</label>
-				<div class="col-sm-10">
+				<label for="inputAlbum" class="col-sm-3 control-label">Альбом</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="inputAlbum" placeholder="Альбом" ng-model="self.item.album">
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<label for="inputGenre" class="col-sm-2 control-label">Жанр</label>
-				<div class="col-sm-10">
+				<label for="inputGenre" class="col-sm-3 control-label">Жанр</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="inputGenre" placeholder="Жанр" ng-model="self.item.genre">
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<label for="inputDescription" class="col-sm-2 control-label">Описание</label>
-				<div class="col-sm-10">
+				<label for="inputDescription" class="col-sm-3 control-label">Описание</label>
+				<div class="col-sm-9">
 					<textarea class="form-control" rows="3" id="inputDescription" placeholder="Описание" ng-model="self.item.description"></textarea>
 				</div>
 			</div>
@@ -87,11 +87,11 @@
 			<button-save ng-click="self.save()"></button-save>
 		</div>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-7">
 		<form class="form-horizontal">
 	
 			<div class="form-group">
-					<textarea class="form-control" rows="25" id="inputText" placeholder="Текст" ng-model="self.item.text"></textarea>
+				<textarea class="form-control mono" rows="25" id="inputText" placeholder="Текст" ng-model="self.item.text"></textarea>
 			</div>
 
 		</form>

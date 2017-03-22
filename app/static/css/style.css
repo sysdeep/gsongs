@@ -1,6 +1,10 @@
+@import 'ubuntu/ubuntu.css';
+
 body{
 	/*padding-top: 20px;*/
 	padding-bottom: 20px;
+
+	font-family: 'UbuntuRegular', Arial, sans-serif;
 }
 
 
@@ -10,6 +14,9 @@ body{
 }
 
 
+.mono{
+	font-family: 'UbuntuMonoRegular';
+}
 
 
 .chars_line{text-align: center}
