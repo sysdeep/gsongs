@@ -4,7 +4,7 @@
 from vendor import auto
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 
-from . import VERSION, storage, ctrl_service, ctrl_todo, ctrl_db
+from . import VERSION, storage, ctrl_service, ctrl_todo, ctrl_db, ctrl_chords
 
 
 
@@ -77,7 +77,7 @@ def about():
 
 
 @app.route("/chords")
-def chords_page():
+def chords_page111():
 
 	data = {
 		"VERSION": VERSION
@@ -104,6 +104,9 @@ app.add_url_rule("/service/db_backup", 					view_func=ctrl_db.db_backup)
 app.add_url_rule("/service/db_download/<file_name>", 	view_func=ctrl_db.db_download)
 app.add_url_rule("/service/db_remove/<file_name>", 		view_func=ctrl_db.db_remove)
 
+
+#--- chords
+app.add_url_rule("/service/chords",						view_func=ctrl_chords.chords_page)
 
 #--- main ---------------------------------------------------------------------
 
