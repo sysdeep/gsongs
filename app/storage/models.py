@@ -49,7 +49,13 @@ class Song(Base):
 		db_table = 'songs'
 
 
+class Category(Base):
+	id 		= peewee.IntegerField(db_column='id', primary_key=True)
+	name 	= peewee.CharField(db_column='name')
 
+
+	class Meta:
+		db_table = "categoryes"
 
 
 

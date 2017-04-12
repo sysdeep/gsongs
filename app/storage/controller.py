@@ -23,6 +23,8 @@ def init_db():
 	if not Todo.table_exists():
 		Todo.create_table()
 
+	# if not Category.table_exists():
+	# 	Category.create_table()
 
 
 
