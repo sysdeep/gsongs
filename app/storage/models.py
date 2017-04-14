@@ -49,13 +49,24 @@ class Song(Base):
 		db_table = 'songs'
 
 
-class Category(Base):
-	id 		= peewee.IntegerField(db_column='id', primary_key=True)
-	name 	= peewee.CharField(db_column='name')
+# class Category(Base):
+# 	id 		= peewee.IntegerField(db_column='id', primary_key=True)
+# 	name 	= peewee.CharField(db_column='name')
+
+
+# 	class Meta:
+# 		db_table = "categoryes"
+
+
+class Tag(Base):
+	id 				= peewee.IntegerField(db_column='id', primary_key=True)
+	name 			= peewee.CharField(db_column='name')
+	created			= peewee.DateTimeField(db_column='created', default=sql_date)
+	updated			= peewee.DateTimeField(db_column='updated', default=sql_date)
 
 
 	class Meta:
-		db_table = "categoryes"
+		db_table = "tags"
 
 
 

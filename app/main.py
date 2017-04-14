@@ -4,7 +4,7 @@
 from vendor import auto
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 
-from . import VERSION, storage, ctrl_service, ctrl_todo, ctrl_db, ctrl_chords
+from . import VERSION, storage, ctrl_service, ctrl_todo, ctrl_db, ctrl_chords, ctrl_tags
 
 
 
@@ -87,6 +87,11 @@ def chords_page111():
 
 
 
+
+#--- tags
+app.add_url_rule("/get_tags", 				view_func=ctrl_tags.get_tags)
+
+
 #--- service
 app.add_url_rule("/service", 				view_func=ctrl_service.service_page)
 
@@ -103,6 +108,8 @@ app.add_url_rule("/service/db", 						view_func=ctrl_db.db_page)
 app.add_url_rule("/service/db_backup", 					view_func=ctrl_db.db_backup)
 app.add_url_rule("/service/db_download/<file_name>", 	view_func=ctrl_db.db_download)
 app.add_url_rule("/service/db_remove/<file_name>", 		view_func=ctrl_db.db_remove)
+
+
 
 
 #--- chords

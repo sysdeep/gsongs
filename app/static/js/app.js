@@ -9,7 +9,8 @@
 		"app.common",
 		"app.singers",
 		"app.songs",
-		"app.main"
+		"app.main",
+		"app.tags"
 	]);
 
 
