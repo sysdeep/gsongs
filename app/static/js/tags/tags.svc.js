@@ -65,52 +65,55 @@
 
 
 
-		// function get_default(){
-		// 	return {
-		// 		"id" 	: 0,
-		// 		"name"	: ""
-		// 	}
-		// }
+		function get_default(){
+			return {
+				"id" 	: 0,
+				"name"	: ""
+			}
+		}
 
 
 
 
-		// function create(sdata){
-		// 	var def = $q.defer();
-		// 	$http.post("/create_singer", sdata).success(function(response){
-		// 		sdata.id = response.singer.id;
-		// 		sdata.created = response.singer.created;
-		// 		sdata.updated = response.singer.updated;
-		// 		data.singer_current = angular.copy(sdata);
-		// 		data.singers.push(data.singer_current);
-		// 		def.resolve();
-		// 	}).error(function(response){
-		// 		console.log(response);
-		// 		def.reject();
-		// 	});
+		function create(sdata){
+			return $http.post("/create_tag", sdata);
+			// var def = $q.defer();
+			// $http.post("/create_tag", sdata).success(function(response){
+			// 	sdata.id = response.singer.id;
+			// 	sdata.created = response.singer.created;
+			// 	sdata.updated = response.singer.updated;
+			// 	data.singer_current = angular.copy(sdata);
+			// 	data.singers.push(data.singer_current);
+			// 	def.resolve();
+			// }).error(function(response){
+			// 	console.log(response);
+			// 	def.reject();
+			// });
 
-		// 	return def.promise;
-		// }
-
-
-
-		// function update(sdata){
-		// 	var def = $q.defer();
-		// 	$http.post("/update_singer", sdata).success(function(response){
-		// 		sdata.updated = response.singer.updated;
-		// 		angular.copy(sdata, data.singer_current);
-		// 		def.resolve();
-		// 	}).error(function(response){
-		// 		console.log(response);
-		// 		def.reject();
-		// 	});
-
-		// 	return def.promise;
-		// }
+			// return def.promise;
+		}
 
 
 
-		// function remove(singer){
+		function update(sdata){
+			return $http.post("/update_tag", sdata);
+			// var def = $q.defer();
+			// $http.post("/update_singer", sdata).success(function(response){
+			// 	sdata.updated = response.singer.updated;
+			// 	angular.copy(sdata, data.singer_current);
+			// 	def.resolve();
+			// }).error(function(response){
+			// 	console.log(response);
+			// 	def.reject();
+			// });
+
+			// return def.promise;
+		}
+
+
+
+		function remove(tag){
+			return $http.post("/remove_tag", tag);
 		// 	var def = $q.defer();
 		// 	$http.post("/remove_singer", singer).success(function(response){
 		// 		var index = data.singers.indexOf(singer);
@@ -122,8 +125,35 @@
 		// 		def.reject();
 		// 	});
 		// 	return def.promise;
-		// }
+		}
 
+
+		function add_song_tag(song_id, tag_id){
+			var send_data = {
+				"song_id" 	: song_id,
+				"tag_id" 	: tag_id
+			}
+			return $http.post("/add_song_tag", send_data);
+		}
+
+
+		function remove_song_tag(song_id, tag_id){
+			var send_data = {
+				"song_id" 	: song_id,
+				"tag_id" 	: tag_id
+			}
+			return $http.post("/remove_song_tag", send_data);
+		}
+
+
+		function get_song_tags(song_id){
+			return $http.get("/get_song_tags/" + song_id);
+		}
+
+
+		function get_tag_songs(tag_id){
+			return $http.get("/get_tag_songs/" + tag_id);
+		}
 
 
 		// function find_current(id){
@@ -199,14 +229,21 @@
 
 			// "find_current"		: find_current,
 
-			// "get_default"	: get_default,
+			"get_default"	: get_default,
 
 			// // "create_singer"		: create_singer,
 			// // "update_singer"		: update_singer,
 
-			// "create"			: create,
-			// "update"			: update,
-			// "remove"			: remove,
+			"create"			: create,
+			"update"			: update,
+			"remove"			: remove,
+
+
+			"add_song_tag"		: add_song_tag,
+			"remove_song_tag"	: remove_song_tag,
+			"get_song_tags"		: get_song_tags,
+
+			"get_tag_songs"		: get_tag_songs
 
 			// "find_singer_name"	: find_singer_name,
 			// "find_singer"		: find_singer,

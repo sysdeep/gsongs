@@ -11,14 +11,68 @@
 	function TagsCtrl($scope, $location, $routeParams, TagsSvc, notify ){
 		var self 				= this;
 		self.tags 				= [];
+		self.tag_current 		= null;
+		self.tag_edit 			= null;
+		self.is_edit 			= false;
 
 
 
-		TagsSvc.get_tags().then(function(){
-			self.tags = TagsSvc.data.tags;
-		});
+		load_tags();
+
+		function load_tags(){
+			TagsSvc.get_tags().then(function(){
+				self.tags = TagsSvc.data.tags;
+			});	
+		}
 
 		
+
+
+		self.show_create = function(){
+			self.tag_current 	= TagsSvc.get_default();
+			self.tag_edit 		= angular.copy(self.tag_current);
+			self.is_edit 		= true;
+		}
+		
+		self.show_edit = function(tag){
+			self.tag_current	= tag;
+			self.tag_edit 		= angular.copy(self.tag_current);
+			self.is_edit 		= true;
+		}
+
+
+		self.show_remove = function(tag){
+			self.tag_current	= tag;
+			self.tag_edit 		= angular.copy(self.tag_current);
+			// self.is_edit 		= true;
+			// __remove_tag();
+			console.log("Make remove prompt!!!");
+		}
+
+		self.save = function(){
+			if(self.tag_edit.id == 0){
+				TagsSvc.create(self.tag_edit).then(function(response){
+					load_tags();
+					self.is_edit = false;
+				});
+			}else{
+				TagsSvc.update(self.tag_edit).then(function(response){
+					load_tags();
+					self.is_edit = false;
+				});
+			}
+		}
+
+		function __remove_tag(){
+			TagsSvc.remove(self.tag_edit).then(function(response){
+				load_tags();
+				self.is_edit = false;
+			});
+		}
+
+
+
+
 
 		// self.singers 			= [];
 

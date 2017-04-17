@@ -90,6 +90,18 @@ def chords_page111():
 
 #--- tags
 app.add_url_rule("/get_tags", 				view_func=ctrl_tags.get_tags)
+app.add_url_rule("/create_tag",				view_func=ctrl_tags.create_tag, methods=["POST"])
+app.add_url_rule("/update_tag",				view_func=ctrl_tags.update_tag, methods=["POST"])
+app.add_url_rule("/remove_tag",				view_func=ctrl_tags.remove_tag, methods=["POST"])
+
+
+
+#--- song tags
+app.add_url_rule("/get_song_tags/<song_id>",	view_func=ctrl_tags.get_song_tags)
+app.add_url_rule("/add_song_tag",				view_func=ctrl_tags.add_song_tag, methods=["POST"])
+app.add_url_rule("/remove_song_tag",			view_func=ctrl_tags.remove_song_tag, methods=["POST"])
+
+app.add_url_rule("/get_tag_songs/<tag_id>",	view_func=ctrl_tags.get_tag_songs)
 
 
 #--- service

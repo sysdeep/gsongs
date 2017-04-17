@@ -123,6 +123,27 @@
 
 
 
+		<h4 class="page-header">Tags</h4>
+
+		<div class="row">
+			<div class="col-md-6">
+				<ul>
+					<li ng-repeat="tag in self.free_tags">
+						<a href="javascript: void(0)" ng-click="self.add_tag(tag)">[[ tag.name ]]</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<ul>
+					<li ng-repeat="tag in self.song_tags">
+						<a href="javascript: void(0)" ng-click="self.remove_tag(tag)">[[ tag.name ]]</a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+
+
 	</div>
 	<div class="col-md-7">
 		

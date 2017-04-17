@@ -1,4 +1,4 @@
-<h3 class="page-header">Список тэгов</h3>
+<h3 class="page-header">Список песенок для тега [[ self.tag.name ]]</h3>
 
 
 
@@ -13,13 +13,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="tag in self.tags">
-					<td>[[ tag.id ]]</td>
-					<td><a href="/#/tag/[[ tag.id ]]">[[ tag.name ]]</a></td>
+				<tr ng-repeat="song in self.songs">
+					<td>[[ song.id ]]</td>
+					<td><a href="/#/song/[[ song.id ]]">[[ song.name ]]</a></td>
 					<td>
-						<a href="javascript: void(0)" ng-click="self.show_edit(tag)">edit</a>
-						|
-						<a href="javascript: void(0)" ng-click="self.show_remove(tag)">remove</a>
+						<a href="/#/singer/[[ self.get_singer(song.singer).id ]]">[[ self.get_singer(song.singer).name ]]</a>
 					</td>
 				</tr>
 			</tbody>

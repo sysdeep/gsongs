@@ -26,67 +26,84 @@ def get_tags():
 	return jsonify(tags=data)
 
 
-
-
-
-
-# def db_backup():
-# 	"""создание backup для базы данных"""
+def create_tag():
+	in_data = request.get_json()
+	tag = storage.Tag.create(name=in_data["name"])
 	
-# 	#--- исходный файл
-# 	db_dir = os.path.dirname(storage.DB_FILE)
-# 	db_name = os.path.basename(storage.DB_FILE)
-	
-# 	#--- новый файл
-# 	now_time = time.strftime( "%Y.%m.%d-%H.%M.%S" )			# дата
-# 	dest_file = os.path.join(storage.DIR_BACKUPS, storage.FILE_NAME + "." + now_time)
-	
-# 	backup_file_name = storage.FILE_NAME + "qqq." + now_time
-
-# 	cwd = os.getcwd()
-	
-# 	#--- создание архива
-# 	with ZipFile(dest_file + ".zip", "w") as zfile:
-# 		#--- перемещаемся в каталог базы данных(штоб путь в архиве был нормальный)
-# 		os.chdir(db_dir)
-# 		zfile.write(db_name)
-
-# 	os.chdir(cwd)
-	
-# 	#--- redirect
-# 	return redirect("/service/db")
-	
+	result = {"created": 1}
+	return jsonify(tag=result)
 
 
 
 
+def update_tag():
+	in_data = request.get_json()
 
-# def db_download(file_name):
-# 	"""скачивание заданного файла"""
-	
-# 	#--- полный путь
-# 	file_path = os.path.join(storage.DIR_BACKUPS, file_name)
-	
-# 	if os.path.exists(file_path):
-# 		return send_file(file_path)
-# 	else:
-# 		return redirect("/service/db")
+	tag = storage.Tag.get(storage.Tag.id == in_data["id"])
+	tag.name = in_data["name"]
+	tag.updated = storage.sql_date()
+	tag.save()
 
+	in_data["updated"] = str(tag.updated)
 
+	return jsonify(tag=in_data)
 
 
+
+
+def remove_tag():
 	
-# def db_remove(file_name):
-# 	"""удаление заданного файла"""
-	
-# 	#--- полный путь
-# 	file_path = os.path.join(storage.DIR_BACKUPS, file_name)
-	
-# 	if os.path.exists(file_path):
-# 		os.remove(file_path)
-		
-# 	return redirect("/service/db")
-		
-		
-		
-	
+	in_data = request.get_json()
+
+	tag = storage.Tag.get(storage.Tag.id == in_data["id"])
+	tag.delete_instance()
+
+	return jsonify(tag=in_data)
+
+
+
+
+
+
+
+
+
+
+#--- song tags ----------------------------------------------------------------
+def add_song_tag():
+	in_data = request.get_json()
+
+	storage.RTagSong.create(id_song=in_data["song_id"], id_tag=in_data["tag_id"])
+
+	return jsonify(result=in_data)
+
+
+def remove_song_tag():
+	in_data = request.get_json()
+
+	record = storage.RTagSong.get(id_song=in_data["song_id"], id_tag=in_data["tag_id"])
+	record.delete_instance()
+
+	return jsonify(result=in_data)
+
+
+def get_song_tags(song_id):
+
+	result = []
+	for row in storage.RTagSong.select().where(storage.RTagSong.id_song == song_id):
+		result.append(row.id_tag)
+
+
+	return jsonify(result=result)
+#--- song tags ----------------------------------------------------------------
+
+
+#--- tag songs ----------------------------------------------------------------
+def get_tag_songs(tag_id):
+
+	result = []
+	for row in storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id):
+		result.append(row.id_song)
+
+	return jsonify(result=result)
+#--- tag songs ----------------------------------------------------------------

@@ -4,28 +4,31 @@
 
 	angular.module("app.songs").controller("SongEditCtrl", SongEditCtrl);
 
-	SongEditCtrl.$inject = ["$routeParams", "SingersSvc", "SongsSvc", "CommonSvc"];
+	SongEditCtrl.$inject = ["$routeParams", "SingersSvc", "SongsSvc", "CommonSvc", "TagsSvc"];
 
 
 
 
 
 
-	function SongEditCtrl($routeParams, SingersSvc, SongsSvc, CommonSvc){
+	function SongEditCtrl($routeParams, SingersSvc, SongsSvc, CommonSvc, TagsSvc){
 		var self 			= this;
 	
 		var song_id = $routeParams.song_id;
 
-		self.current = null;
-		self.item = null;
-		self.singers = [];
+		self.current 	= null;
+		self.item 		= null;
+		self.singers 	= [];
+		// self.tags 		= [];
 
 
 		SongsSvc.need_songs()
 			.then(SingersSvc.need_singers)
+			// .then(TagsSvc.need_tags)
 			.then(function(){
 
 				self.singers = SingersSvc.data.singers;
+				// self.tags = TagsSvc.data.tags;
 
 				if( song_id == 0 ){
 					self.current = SongsSvc.get_default();
