@@ -70,10 +70,23 @@ class Tag(Base):
 
 
 
+# class RTagSong(Base):
+# 	id 				= peewee.IntegerField(db_column='id', primary_key=True)
+# 	id_tag			= peewee.IntegerField(db_column='id_tag')
+# 	id_song			= peewee.IntegerField(db_column='id_song')
+# 	created			= peewee.DateTimeField(db_column='created', default=sql_date)
+# 	updated			= peewee.DateTimeField(db_column='updated', default=sql_date)
+
+
+# 	class Meta:
+# 		db_table = "rtagsong"
+
+
+
 class RTagSong(Base):
 	id 				= peewee.IntegerField(db_column='id', primary_key=True)
-	id_tag			= peewee.IntegerField(db_column='id_tag')
-	id_song			= peewee.IntegerField(db_column='id_song')
+	id_tag			= peewee.ForeignKeyField(Tag, db_column='id_tag')
+	id_song			= peewee.ForeignKeyField(Song, db_column='id_song')
 	created			= peewee.DateTimeField(db_column='created', default=sql_date)
 	updated			= peewee.DateTimeField(db_column='updated', default=sql_date)
 

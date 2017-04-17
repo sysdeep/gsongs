@@ -91,7 +91,8 @@ def get_song_tags(song_id):
 
 	result = []
 	for row in storage.RTagSong.select().where(storage.RTagSong.id_song == song_id):
-		result.append(row.id_tag)
+		# print(row.id_tag)
+		result.append(row.id_tag.id)
 
 
 	return jsonify(result=result)
@@ -101,9 +102,23 @@ def get_song_tags(song_id):
 #--- tag songs ----------------------------------------------------------------
 def get_tag_songs(tag_id):
 
-	result = []
-	for row in storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id):
-		result.append(row.id_song)
 
+
+
+
+
+	songs_ids = []
+	for row in storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id):
+		# print("--->", row)
+		songs_ids.append(row.id_song.id)
+
+	# print(songs_ids)
+	# # for song in storage.Song.select().where(storage.Song.id in songs_ids):
+	# for song in storage.Song.select().where(storage.Song.id << songs_ids).join(storage.Singer):
+	# 	print(song.name)
+	# 	print(dir(song))
+
+
+	result = songs_ids
 	return jsonify(result=result)
 #--- tag songs ----------------------------------------------------------------
