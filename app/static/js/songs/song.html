@@ -127,6 +127,7 @@
 
 		<div class="row">
 			<div class="col-md-6">
+				<strong>Доступные</strong>
 				<ul>
 					<li ng-repeat="tag in self.free_tags">
 						<a href="javascript: void(0)" ng-click="self.add_tag(tag)">[[ tag.name ]]</a>
@@ -134,6 +135,7 @@
 				</ul>
 			</div>
 			<div class="col-md-6">
+				<strong>Выбранные</strong>
 				<ul>
 					<li ng-repeat="tag in self.song_tags">
 						<a href="javascript: void(0)" ng-click="self.remove_tag(tag)">[[ tag.name ]]</a>
