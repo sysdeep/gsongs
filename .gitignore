@@ -1,6 +1,7 @@
 logs/*
 # vendor/*
 .idea
+node_modules
 app/static/bower_components
 
 ### Python template
