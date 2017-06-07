@@ -1,4 +1,6 @@
+var path = require("path");
 var webpack = require('webpack');
+
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -7,13 +9,15 @@ var webpack = require('webpack');
 var config = {
 	entry: {
 
-        "gsongs": __dirname + 'app/static/srcv/gsongs/app.js',
+        "gsongs":           path.join(__dirname, "app", "static", "srcv", "gsongs", "app.js"),
+        //  __dirname + 'app/static/srcv/gsongs/app.js',
 		// 'polyfills': './src/polyfills.ts',
 		// 'vendor': './src/vendor.ts',
 		
 	},
 	output: {
-		path: __dirname + 'app/static/build',
+		path: path.join(__dirname, "app", "static", "build"),
+		// path: __dirname + 'app/static/build',
 		filename: '[name].js',
 		// filename: 'templates.js',
 	},

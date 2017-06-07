@@ -32,6 +32,18 @@ def index():
 	}
 	return render_template("index.html", **data)
 
+@app.route("/vapp")
+def vapp():
+	
+	if "username" not in session:
+		return redirect(url_for("login"))
+
+
+	data = {
+		"VERSION": VERSION
+	}
+	return render_template("gsongs_vue.html", **data)
+
 @app.route("/login")
 def login():
 	# return("Hello World!")
