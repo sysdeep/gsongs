@@ -22,7 +22,7 @@ var config = {
 		// filename: 'templates.js',
 	},
 	resolve: {
-		extensions: ['.js'],
+		// extensions: ['.js'],
 		alias: { vue: 'vue/dist/vue.js' }
 	},
 	module: {
@@ -39,27 +39,29 @@ var config = {
 				test: /\.(css|html)$/,
 				loader: 'raw-loader'
 			},
-			//     {
-			// 	// HTML LOADER
-			// 	// Reference: https://github.com/webpack/raw-loader
-			// 	// Allow loading html through js
-			// 	test: /\.html$/,
-			// 	loader: 'raw'
-			// },
-			//   {
-			//     test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-			//     loader: 'file-loader?name=assets/[name].[hash].[ext]'
-			//   },
-			//   {
-			//     test: /\.css$/,
-			//     // exclude: helpers.root('src', 'app'),
-			//     loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
-			//   },
-			//   {
-			//     test: /\.css$/,
-			//     // include: helpers.root('src', 'app'),
-			//     loader: 'raw-loader'
-			//   }
+
+
+			{
+				test: /\.(png|jpg|gif|svg)$/,
+				loader: 'file-loader',
+				options: {
+					name: '[name].[ext]?[hash]'
+				}
+			},
+			{
+				test: /\.vue$/,
+				loader: 'vue-loader',
+				// query: {
+                //     presets: ['es2015']
+                // },
+				options: {
+					loaders: {
+						js: 'babel-loader?presets[]=es2015'
+					}
+					// other vue-loader options go here
+				}
+			}
+			
 		]
 	},
 	// plugins: [
@@ -92,7 +94,8 @@ switch(ENV){
 	case "build":
 		// config.entry["projects"] = entries["projects"];
 		config.devtool = 'source-map';
-		config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool}));
+		config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool, compress: {	warnings: false	}}));
+		config.plugins.push(new webpack.LoaderOptionsPlugin({minimize: true}))
 		break;
 }
 module.exports = config;

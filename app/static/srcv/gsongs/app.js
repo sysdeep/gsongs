@@ -2,14 +2,18 @@ import Vue from "vue";
 import VueRouter from 'vue-router'
 
 
-import component_menu from "./menu/menu";
-import page_main from "./page_main/page_main";
-import page_singers from "./page_singers/page_singers";
+// import component_menu from "./menu/menu";
+// import page_main from "./page_main/page_main";
+// import page_singers from "./page_singers/page_singers";
+import component_menu from "./Menu.vue";
+import page_main from "./PageMain.vue";
+import page_singers from "./PageSingers.vue";
+import page_songs from "./PageSongs.vue";
 
 
 const page_create_song = {template: "<p>page_create_song</p>"};
 // const page_singers = {template: "<p>page_singers</p>"};
-const page_songs = {template: "<p>page_songs</p>"};
+// const page_songs = {template: "<p>page_songs</p>"};
 const page_tags = {template: "<p>page_tags</p>"};
 
 
@@ -40,6 +44,8 @@ const app = new Vue({
         console.log("app created");
     },
 
+
+    
 
     components: {
         "mainMenu": component_menu
