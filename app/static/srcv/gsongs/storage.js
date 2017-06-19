@@ -22,7 +22,6 @@ export default {
 
 
 function fetch_singers() {
-    console.log("fetch singers");
     var defer = Q.defer();
 
     state.singers_loaded = false;
@@ -38,7 +37,6 @@ function fetch_singers() {
 
 
 function fetch_songs() {
-    console.log("fetch songs")
     var defer = Q.defer();
 
     state.songs_loaded = false;
@@ -55,7 +53,6 @@ function fetch_songs() {
 
 
 function need_singers() {
-    console.log("need singers");
     var defer = Q.defer();
 
     if (state.singers_loaded) {
@@ -65,25 +62,29 @@ function need_singers() {
         return fetch_singers();
     }
 
-
 }
 
 
 function need_songs() {
-    console.log("need songs");
-    // console.log(this);
     let defer = Q.defer();
-
-
     if (state.songs_loaded) {
         defer.resolve();
         return defer.promise;
     } else {
-
-        console.log("123");
         return fetch_songs();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

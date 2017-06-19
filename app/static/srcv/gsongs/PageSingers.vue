@@ -103,9 +103,10 @@ export default {
 
 
     created: function(){
-        if(this.state.singers_loaded == false){
-            storage.fetch_singers();
-        }
+        storage.need_singers();
+        // if(this.state.singers_loaded == false){
+        //     storage.fetch_singers();
+        // }
     },
 
 

@@ -117,9 +117,10 @@ export default {
 
 
     created: function(){
-        if(this.state.songs_loaded == false){
-            storage.fetch_songs();
-        }
+        storage.need_songs();
+        // if(this.state.songs_loaded == false){
+        //     storage.fetch_songs();
+        // }
     },
 
 
