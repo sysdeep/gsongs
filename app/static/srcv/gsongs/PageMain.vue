@@ -72,16 +72,16 @@
 
 <script>
 import storage from "./storage";
-import Q from "q";
+// import Q from "q";
 
 
-function delay() {
-	console.log("delay");
-	let deferred = Q.defer();
+// function delay() {
+// 	console.log("delay");
+// 	let deferred = Q.defer();
 
-	setTimeout(deferred.resolve, 1000);
-	return deferred.promise;
-}
+// 	setTimeout(deferred.resolve, 1000);
+// 	return deferred.promise;
+// }
 
 
 export default {

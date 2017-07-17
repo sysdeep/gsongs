@@ -14,6 +14,8 @@ var config = {
 		// 'polyfills': './src/polyfills.ts',
 		// 'vendor': './src/vendor.ts',
 		
+		"vendor"	: ["vue", "axios"]
+		
 	},
 	output: {
 		path: path.join(__dirname, "app", "static", "build"),
@@ -23,7 +25,8 @@ var config = {
 	},
 	resolve: {
 		// extensions: ['.js'],
-		alias: { vue: 'vue/dist/vue.js' }
+		// alias: { vue: 'vue/dist/vue.js' }
+		alias: { 'vue$': 'vue/dist/vue.esm.js' }
 	},
 	module: {
 		rules: [
@@ -67,11 +70,13 @@ var config = {
 	// plugins: [
 	//   new webpack.optimize.UglifyJsPlugin(),
 	// ]
-	plugins : []
+	plugins : [
+		new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' })
+	]
 };
-var entries = {
-	"projects": './public/srcv/projects/app.js',
-}
+// var entries = {
+// 	"projects": './public/srcv/projects/app.js',
+// }
 // var entries = {
 // 	"protos2": {
 // 		"protos2": './public/src/protos2/protos_page/app.js',
@@ -95,7 +100,7 @@ switch(ENV){
 		// config.entry["projects"] = entries["projects"];
 		config.devtool = 'source-map';
 		config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool, compress: {	warnings: false	}}));
-		config.plugins.push(new webpack.LoaderOptionsPlugin({minimize: true}))
+		// config.plugins.push(new webpack.LoaderOptionsPlugin({minimize: true}))
 		break;
 }
 module.exports = config;
