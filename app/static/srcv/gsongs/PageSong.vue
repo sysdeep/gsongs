@@ -1,5 +1,5 @@
 <template>
-    <div v-if="song">
+    <div v-if="is_ready">
 
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -99,12 +99,15 @@
                 <div class="pull-right">
                     <!--<button-remove ng-click="self.show_remove()"></button-remove>
                     <lbutton-edit href="#/song_edit/[[ self.item.id ]]"></lbutton-edit>-->
+
+                    <button-remove @click="show_remove"></button-remove>
+                    <router-link class="btn btn-primary" :to="/song_edit/ + song.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link>
                 </div>
     
                 <h4 class="page-header">Другие песни исполнителя</h4>
     
                 <ul>
-                    <li v-for="song in singer_songs">
+                    <li v-for="(song, index) in singer_songs" :key="index">
                         <lsong :cdata="song"></lsong>
                     </li>
                 </ul>
@@ -141,11 +144,12 @@
             </div>
         </div>
     
-        <!--<modal-remove ng-if="self.is_modal_remove" on-close="self.is_modal_remove = false" on-remove="self.remove()">
-            Удалить песенку
-            <strong>[[ self.item.name ]]</strong>?
+      
+
+
+        <modal-remove :showed="is_modal_remove" @on-cancel="is_modal_remove = false" @on-apply="remove_song" @closed="remove_modal_closed">
+            <p>Удалить песенку: {{ song.name }} ?</p>
         </modal-remove>
-    -->
     </div>
 </template>
 
@@ -153,47 +157,82 @@
 
 <script>
 import storage from "./storage";
+import net from "./net";
+import {go_back} from "./utils";
+
+
+
 export default {
     data: function(){
         return {
             "state"     : storage.state,
+            "id"        : null,
+            "is_ready"  : false,
 
             "song"      : null,
             "singer"    : null,
-            "singer_songs"  : []
+            "singer_songs"  : [],
+
+            "is_modal_remove"   : false
         }
     },
 
 
     created: function(){
-        let song_id = this.$route.params.id;
-
-        storage.need_songs()
-            .then(storage.need_singers)
-            .then(()=>{
-                let song = this.state.songs.find(item => item.id == song_id);
-                let singer_id = song.singer;
-                let singer = this.state.singers.find(item => item.id == singer_id);
-
-                this.singer = singer;
-                this.song = song;
-
-                this.singer_songs = this.state.songs.filter(item => item.singer == singer_id);
-
-                console.log(this.song)
-                console.log(this.singer)
-            });
+        this.refresh();
     },
 
 
 
-    beforeRouteUpdate (to, from, next) {
+    
+    watch: {
+        "$route": function(to, from){
+            this.refresh();
+        }
+    },
 
-        console.log(to);
-        console.log(from);
-        next();
-        // react to route changes...
-        // don't forget to call next()
-    } 
+    methods: {
+        refresh: function(){
+            this.id = this.$route.params.id;
+            console.log("refresh");
+
+            storage.need_songs()
+                .then(storage.need_singers)
+                .then(()=>{
+                    let song = this.state.songs.find(item => item.id == this.id);
+                    let singer_id = song.singer;
+                    let singer = this.state.singers.find(item => item.id == singer_id);
+
+                    this.singer = singer;
+                    this.song = song;
+
+                    this.singer_songs = this.state.songs.filter(item => (item.singer == singer_id) && (item.id != this.id));
+
+                    this.is_ready = true;
+                });
+        },
+
+
+
+
+        show_remove: function(){
+            this.is_modal_remove = true;
+        },
+
+        remove_song: function(){
+            net.remove_song(this.song).then((response)=>{
+                let index = this.state.songs.indexOf(this.song);
+                this.state.songs.splice(index, 1);
+                this.is_removed = true;
+                this.is_modal_remove = false;
+            })
+        },
+
+        remove_modal_closed: function(){
+            if(this.is_removed){
+                go_back();
+            }
+        }
+    }
 }
 </script>

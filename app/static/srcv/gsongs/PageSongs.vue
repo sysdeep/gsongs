@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="is_ready">
         <h1 class="page-header">
             Все песенки
             <small>{{ state.songs.length }}</small>
@@ -46,12 +46,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="song in songs_filtered">
+                <tr v-for="(song, index) in songs_filtered" :key="index">
                     <td>{{ song.id }}</td>
                     <td>
                         <router-link :to="/singer/ + song.singer">
                             <!-- <a href="javascript: void(0)" title="" ng-click="select_singer(song.singer)"> -->
                             <!--{{ self.find_singer_name(song.singer) }}-->
+                            {{ get_singer(song.singer) }}
                         </router-link>
                     </td>
                     <!-- <td>{{ song.author }}</td> -->
@@ -68,6 +69,9 @@
                     <!-- <td>{{ song.updated }}</td> -->
                     <!-- <td>{{ song.api }}</td> -->
                     <td>
+                        <router-link :to="/song_edit/ + song.id">
+                            <i class="fa fa-pencil"></i> изменить
+                            </router-link>
                         <!--<a href="#/song/{{ song.id }}" title="">&nbsp
                             <i class="fa fa-folder-open-o"></i>&nbsp</a>
                         |
@@ -109,18 +113,29 @@ import storage from "./storage";
 export default {
     data: () => {
         return {
-            "state": storage.state,
+            "state"         : storage.state,
+            "is_ready"      : false,
 
-            "search_name": ""
+            "search_name"   : "",
+
+
+            "singers_map"   : {}        // id: name
         }
     },
 
 
     created: function(){
-        storage.need_songs();
-        // if(this.state.songs_loaded == false){
-        //     storage.fetch_songs();
-        // }
+        storage.need_songs()
+            .then(storage.need_singers)
+            .then(()=>{
+
+                var smap = {};
+                this.state.singers.forEach(item => {
+                    smap[item.id] = item.name
+                })
+                this.singers_map = smap;
+                this.is_ready = true;
+            });
     },
 
 
@@ -138,6 +153,14 @@ export default {
     methods: {
         refresh: function(){
             storage.fetch_songs();
+        },
+
+        get_singer: function(singer_id){
+            // let singer = this.state.singers.find(item => item.id == singer_id);
+            // return singer;
+
+            let singer_name = this.singers_map[singer_id];
+            return singer_name? singer_name : "---";
         }
     }
 

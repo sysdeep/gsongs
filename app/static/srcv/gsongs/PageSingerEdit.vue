@@ -72,6 +72,8 @@
 
 <script>
     import storage from "./storage";
+    import {go_back} from "./utils";
+    import net from "./net";
     
     export default {
         
@@ -110,10 +112,22 @@
         
         methods: {
             save: function(){
+                console.log("save");
                 if(this.singer.id == 0){
-                    // create
+                    net.create_singer(this.singer).then((response)=>{
+                        let singer = Object.assign({}, this.singer);
+                        singer.updated = response.data.singer.updated;
+                        singer.created = response.data.singer.created;
+                        singer.id      = response.data.singer.id;
+                        this.state.singers.push(singer);
+                        this.$router.push("/singer/" + singer.id);
+                    });
                 }else{
-                    //update
+                    net.update_singer(this.singer).then((response)=>{
+                        Object.assign(this.singer_current, this.singer);
+                        this.singer_current.updated = response.data.singer.updated;
+                        go_back();
+                    });
                 }
             }
         }

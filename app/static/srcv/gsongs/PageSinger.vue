@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="is_ready">
     
         <div class="page-header">
             <h3>Исполнитель - {{ singer.name }}</h3>
@@ -21,10 +21,10 @@
     
                 <button-back></button-back>
     
-                <!--<div class="pull-right">
-                    <button-remove ng-click="self.show_remove()"></button-remove>
-                    <lbutton-edit href="#/singer_edit/[[ self.item.id ]]"></lbutton-edit>
-                </div>-->
+                <div class="pull-right">
+                    <button-remove @click="show_remove" :disabled="singer_songs.length > 0"></button-remove>
+                    <router-link class="btn btn-primary" :to="/singer_edit/ + singer.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link>
+                </div>
     
             </div>
             <div class="col-md-6">
@@ -41,6 +41,7 @@
                     <div class="col-md-6">
                         <div class="pull-right">
                             <!--<lbutton-create href="#/song_edit/0"></lbutton-create>-->
+                            
                         </div>
                     </div>
                 </div>
@@ -58,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="song in filtered_songs">
+                        <tr v-for="(song, index) in filtered_songs" :key="index">
                             <td>
                                 <router-link :to="/song/ + song.id" title="перейти к странице песни">{{ song.name }}</router-link>
                             </td>
@@ -80,6 +81,11 @@
         <modal-remove ng-if="self.is_modal_remove" on-close="self.is_modal_remove = false" on-remove="self.remove()">
             Удалить исполнителя?
         </modal-remove>-->
+    
+    
+        <modal-remove :showed="is_modal_remove" @on-cancel="is_modal_remove = false" @on-apply="remove_singer" @closed="remove_modal_closed">
+            <p>Удалить исполнителя: {{ singer.name }} ?</p>
+        </modal-remove>
     </div>
 </template>
 
@@ -92,6 +98,9 @@
 
 <script>
 import storage from "./storage";
+import net from "./net";
+import {go_back} from "./utils";
+
 export default {
     data: function () {
         return {
@@ -104,7 +113,12 @@ export default {
                 "updated": "---"
             },
 
-            "filter_songs": ""
+            "filter_songs": "",
+
+
+            "is_modal_remove"   : false,
+            "is_removed"        : false,
+            "is_ready"          : false
         }
     },
 
@@ -118,6 +132,8 @@ export default {
 
                 //--- singer songs
                 this.singer_songs = this.state.songs.filter(song => song.singer == singer_id);
+
+                this.is_ready = true;
             });
     },
 
@@ -135,6 +151,25 @@ export default {
     methods: {
         act_sort: function(field){
             console.log("need implement act_sort!!!")
+        },
+
+        show_remove: function(){
+            this.is_modal_remove = true;
+        },
+
+        remove_singer: function(){
+            net.remove_singer(this.singer).then((response)=>{
+                let index = this.state.singers.indexOf(this.singer);
+                this.state.singers.splice(index, 1);
+                this.is_removed = true;
+                this.is_modal_remove = false;
+            })
+        },
+
+        remove_modal_closed: function(){
+            if(this.is_removed){
+                go_back();
+            }
         }
     }
 }

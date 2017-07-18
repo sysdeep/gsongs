@@ -4,6 +4,7 @@ import page_singer from "./PageSinger.vue";
 import page_songs from "./PageSongs.vue";
 import page_song from "./PageSong.vue";
 import page_singer_edit from "./PageSingerEdit.vue";
+import page_song_edit from "./PageSongEdit.vue";
 
 
 
@@ -20,6 +21,7 @@ export const routes = [
     { path: '/singer_edit/:id', component: page_singer_edit },
     { path: '/songs', component: page_songs },
     { path: '/song/:id', component: page_song },
+    { path: '/song_edit/:id', component: page_song_edit },
     { path: '/tags', component: page_tags },
 ];
 
