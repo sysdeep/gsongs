@@ -39,6 +39,53 @@ const net_factory =  {
 
     remove_song: function(idata){
         return axios.post("/remove_song", idata);
+    },
+
+
+    get_tags: function(){
+        return axios.get("/get_tags");
+    },
+
+    update_tag: function(idata){
+        return axios.post("/update_tag", idata);
+    },
+
+    create_tag: function(idata){
+        return axios.post("/create_tag", idata);
+    },
+
+    remove_tag: function(idata){
+        return axios.post("/remove_tag", idata);
+    },
+
+
+    get_tag_songs: function(tag_id){
+        return axios.get("/get_tag_songs/" + tag_id);
+    },
+
+
+    get_song_tags: function(song_id){
+        return axios.get("/get_song_tags/" + song_id);
+    },
+
+
+
+
+    add_song_tag: function(song_id, tag_id){
+        let send_data = {
+            "song_id" 	: song_id,
+            "tag_id" 	: tag_id
+        }
+        return axios.post("/add_song_tag", send_data);
+    },
+
+
+    remove_song_tag: function(song_id, tag_id){
+        let send_data = {
+            "song_id" 	: song_id,
+            "tag_id" 	: tag_id
+        }
+        return axios.post("/remove_song_tag", send_data);
     }
 }
 

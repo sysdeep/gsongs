@@ -2,11 +2,14 @@ import net from "./net";
 import Q from "q";
 
 var state = {
-    "singers": [],
-    "singers_loaded": false,
+    "singers"           : [],
+    "singers_loaded"    : false,
 
-    "songs": [],
-    "songs_loaded": false,
+    "songs"             : [],
+    "songs_loaded"      : false,
+
+    "tags"              : [],
+    "tags_loaded"       : false
 }
 
 
@@ -15,7 +18,10 @@ export default {
     "fetch_singers": fetch_singers,
     "fetch_songs": fetch_songs,
     "need_singers": need_singers,
-    "need_songs": need_songs
+    "need_songs": need_songs,
+
+    "fetch_tags"    : fetch_tags,
+    "need_tags"    : need_tags
 }
 
 
@@ -52,6 +58,23 @@ function fetch_songs() {
 
 
 
+
+function fetch_tags() {
+    var defer = Q.defer();
+
+    state.tags_loaded = false;
+    net.get_tags().then(response => {
+        state.tags = response.data.tags;
+        state.tags_loaded = true;
+
+        defer.resolve();
+    })
+
+    return defer.promise;
+}
+
+
+
 function need_singers() {
     var defer = Q.defer();
 
@@ -75,7 +98,17 @@ function need_songs() {
     }
 }
 
+function need_tags() {
+    var defer = Q.defer();
 
+    if (state.tags_loaded) {
+        defer.resolve();
+        return defer.promise;
+    } else {
+        return fetch_tags();
+    }
+
+}
 
 
 

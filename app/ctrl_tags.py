@@ -108,7 +108,14 @@ def get_tag_songs(tag_id):
 
 
 	songs_ids = []
+
+	# try:
+	# 	items = storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id)
+	# except:
+	# 	items = []
+
 	for row in storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id):
+	# for row in items:
 		# print("--->", row)
 		songs_ids.append(row.id_song.id)
 
