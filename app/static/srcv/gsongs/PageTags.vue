@@ -9,6 +9,7 @@
 						<tr>
 							<th>id</th>
 							<th>name</th>
+							<th>songs</th>
 							<th>options</th>
 						</tr>
 					</thead>
@@ -18,6 +19,9 @@
 							<td>
 								<!-- <a href="/#/tag/ tag.id }}">{{ tag.name }}</a> -->
 								<router-link :to="/tag/ + tag.id">{{tag.name}}</router-link>
+							</td>
+							<td>
+								{{ get_songs_count(tag.id) }}
 							</td>
 							<td>
 								<a href="javascript: void(0)" @click="show_edit(tag)">edit</a>
@@ -60,7 +64,10 @@ export default {
 			"is_ready"	: false,
 			"is_edit"	: false,
 			"item_edit"	: null,
-			"item_current": null
+			"item_current": null,
+
+
+			"links"		: []
 		}
 	},
 
@@ -73,7 +80,14 @@ export default {
 		refresh: function(){
 			this.is_edit = false;
 			storage.fetch_tags().then(()=>{
-				this.is_ready = true;
+
+
+				net.get_tags_songs().then(response => {
+					console.log(response);
+					this.links = response.data.result;
+
+					this.is_ready = true;
+				})
 			})
 		},
 
@@ -116,6 +130,12 @@ export default {
 					this.refresh();
 				})
 			}
+		},
+
+
+		get_songs_count: function(tag_id){
+			let result = this.links.filter(item => item.id_tag == tag_id);
+			return result.length;
 		}
 	}
 }

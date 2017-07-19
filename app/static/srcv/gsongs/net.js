@@ -86,6 +86,12 @@ const net_factory =  {
             "tag_id" 	: tag_id
         }
         return axios.post("/remove_song_tag", send_data);
+    },
+
+
+
+    get_tags_songs: function(){
+        return axios.get("/get_tags_songs");
     }
 }
 

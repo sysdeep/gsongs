@@ -114,6 +114,7 @@ app.add_url_rule("/add_song_tag",				view_func=ctrl_tags.add_song_tag, methods=[
 app.add_url_rule("/remove_song_tag",			view_func=ctrl_tags.remove_song_tag, methods=["POST"])
 
 app.add_url_rule("/get_tag_songs/<tag_id>",	view_func=ctrl_tags.get_tag_songs)
+app.add_url_rule("/get_tags_songs",			view_func=ctrl_tags.get_tags_songs)
 
 
 #--- service

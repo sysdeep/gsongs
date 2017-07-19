@@ -64,7 +64,15 @@ def remove_tag():
 
 
 
+def get_tags_songs():
 
+	tags = storage.RTagSong.select().dicts()
+	data = []
+	for tag in tags:
+		tag["created"] = str(tag["created"])
+		tag["updated"] = str(tag["updated"])
+		data.append(tag)
+	return jsonify(result=data)
 
 
 
