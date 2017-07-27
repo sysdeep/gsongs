@@ -124,6 +124,7 @@ app.add_url_rule("/service", 				view_func=ctrl_service.service_page)
 
 #--- todo
 app.add_url_rule("/service/todo", 			view_func=ctrl_todo.todo_page)
+app.add_url_rule("/service/todo2", 			view_func=ctrl_todo.todo2_page)
 app.add_url_rule("/service/todo_get", 		view_func=ctrl_todo.todo_json_get)
 app.add_url_rule("/service/todo_add", 		view_func=ctrl_todo.todo_json_add, 		methods=["POST"])
 app.add_url_rule("/service/todo_update", 	view_func=ctrl_todo.todo_json_update, 	methods=["POST"])

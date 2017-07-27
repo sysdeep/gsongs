@@ -10,6 +10,7 @@ var config = {
 	entry: {
 
         "gsongs":           path.join(__dirname, "app", "static", "srcv", "gsongs", "app.js"),
+        "todo":           path.join(__dirname, "app", "static", "srcv", "todo", "main.js"),
         //  __dirname + 'app/static/srcv/gsongs/app.js',
 		// 'polyfills': './src/polyfills.ts',
 		// 'vendor': './src/vendor.ts',
