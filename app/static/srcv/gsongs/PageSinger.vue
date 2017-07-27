@@ -40,7 +40,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="pull-right">
-                            <!--<lbutton-create href="#/song_edit/0"></lbutton-create>-->
+                            <button class="btn btn-success" @click="add_song" title="добавить запись">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Добавить
+                            </button>
                             
                         </div>
                     </div>
@@ -71,16 +73,10 @@
                     </tbody>
                 </table>
     
-                <!-- <div class="pull-right">
-    			<lbutton-create href="#/song_edit/0"></lbutton-create>
-    		</div> -->
     
             </div>
         </div>
-<!--    
-        <modal-remove ng-if="self.is_modal_remove" on-close="self.is_modal_remove = false" on-remove="self.remove()">
-            Удалить исполнителя?
-        </modal-remove>-->
+
     
     
         <modal-remove :showed="is_modal_remove" @on-cancel="is_modal_remove = false" @on-apply="remove_singer" @closed="remove_modal_closed">
@@ -114,6 +110,7 @@ export default {
             },
 
             "filter_songs": "",
+            "sort_dir"      : true,
 
 
             "is_modal_remove"   : false,
@@ -132,6 +129,7 @@ export default {
 
                 //--- singer songs
                 this.singer_songs = this.state.songs.filter(song => song.singer == singer_id);
+                this.act_sort();
 
                 this.is_ready = true;
             });
@@ -150,7 +148,15 @@ export default {
 
     methods: {
         act_sort: function(field){
-            console.log("need implement act_sort!!!")
+            this.singer_songs.sort((a, b) =>{
+                if(this.sort_dir){
+                    return a.name < b.name;
+                }else{
+                    return a.name > b.name;
+                }
+            })
+
+            this.sort_dir = !this.sort_dir;
         },
 
         show_remove: function(){
@@ -170,6 +176,14 @@ export default {
             if(this.is_removed){
                 go_back();
             }
+        },
+
+
+
+
+        add_song: function(){
+            this.state.current_singer_id = this.singer.id;
+            this.$router.push("/song_edit/0");
         }
     }
 }

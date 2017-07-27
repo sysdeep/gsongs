@@ -30,9 +30,10 @@ def index():
 	data = {
 		"VERSION": VERSION
 	}
-	return render_template("index.html", **data)
+	return render_template("gsongs_vue.html", **data)
+	
 
-@app.route("/vapp")
+@app.route("/angular")
 def vapp():
 	
 	if "username" not in session:
@@ -42,7 +43,8 @@ def vapp():
 	data = {
 		"VERSION": VERSION
 	}
-	return render_template("gsongs_vue.html", **data)
+	
+	return render_template("index.html", **data)
 
 @app.route("/login")
 def login():

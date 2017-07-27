@@ -9,7 +9,11 @@ var state = {
     "songs_loaded"      : false,
 
     "tags"              : [],
-    "tags_loaded"       : false
+    "tags_loaded"       : false,
+
+
+
+    "current_singer_id" : 0
 }
 
 

@@ -10,10 +10,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!--<a class="navbar-brand" href="#/">GSongs <small>v [[ VERSION ]]</small></a>-->
-
 
                 <router-link to="/" class="navbar-brand">GSongs <small>v {{ version }}</small></router-link>
+
             </div>
 
             <div class="navbar-collapse collapse">
@@ -28,7 +27,7 @@
 
 
                     <li class="main_menu main_menu_create">
-                        <router-link to="/song_create" title="создание новой песенки">
+                        <router-link to="/song_edit/0" title="создание новой песенки">
                             <strong><i class="fa fa-plus" aria-hidden="true"></i> Создание</strong>
                         </router-link>
                     </li>

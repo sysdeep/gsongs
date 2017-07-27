@@ -1,13 +1,17 @@
 <template>
     <div v-if="is_ready">
 
-        <nav class="navbar navbar-default">
+
+
+        <h3 class="page-header">
+            <span>{{ singer.name }}</span> -
+                        <span>{{ song.name }}</span>
+        </h3>
+
+        <!-- <nav class="navbar navbar-default">
             <div class="container-fluid">
     
                 <div class="navbar-header">
-                    <!-- <a class="navbar-brand" href="#">
-            		<img alt="Brand" src="...">
-          		</a> -->
                     <span class="navbar-brand">
                         <span>{{ singer.name }}</span> -
                         <span>{{ song.name }}</span>
@@ -15,25 +19,8 @@
     
                 </div>
     
-                <!-- <ul class="nav navbar-nav">
-        		<li>
-        			<a href="#/singer/[[ self.item.singer ]]">
-        				На страницу исполнителя
-        			</a>
-        		</li>
-        	</ul> -->
     
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- <li>
-    	  			<a href="javascript: void(0)" ng-click="self.go_back()" title="перейти на предыдущую страницу">
-    					<i class="fa fa-arrow-left" aria-hidden="true"></i> Назад
-    				</a>
-    			</li>
-    	  		<li>
-    	  			<a href="#/song_edit/[[ self.item.id ]]" title="перейти к редактированию">
-    					<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить
-    				</a>
-    			</li> -->
                     <li>
                         <router-link to="/song_edit/0" title="перейти к созданию">
                             <i class="fa fa-plus" aria-hidden="true"></i> Добавить
@@ -42,7 +29,7 @@
                 </ul>
     
             </div>
-        </nav>
+        </nav> -->
     
         <div class="row">
             <div class="col-md-5">
@@ -99,6 +86,10 @@
                 <div class="pull-right">
                     <!--<button-remove ng-click="self.show_remove()"></button-remove>
                     <lbutton-edit href="#/song_edit/[[ self.item.id ]]"></lbutton-edit>-->
+
+                    <button class="btn btn-success" @click="add_song" title="добавить запись">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Добавить
+                    </button>
 
                     <button-remove @click="show_remove"></button-remove>
                     <router-link class="btn btn-primary" :to="/song_edit/ + song.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link>
@@ -244,6 +235,13 @@ export default {
             }
         },
 
+
+
+
+        add_song: function(){
+            this.state.current_singer_id = this.singer.id;
+            this.$router.push("/song_edit/0");
+        },
 
 
         reload_tags: function(){

@@ -1,6 +1,13 @@
 <template>
     <div v-if="is_ready">
-        <nav class="navbar navbar-default">
+
+
+        <h3 class="page-header">
+            <span v-if="song_current.id == 0">Создание записи</span>
+            <span v-if="song_current.id != 0">Изменение записи <strong>{{ song_current.name }}</strong></span>
+        </h3>
+
+        <!-- <nav class="navbar navbar-default">
   	        <div class="container-fluid">
     	
             	<div class="navbar-header">
@@ -14,7 +21,7 @@
         
         
           	</div>
-        </nav>
+        </nav> -->
 
 
 
@@ -124,7 +131,6 @@
         
         
         created: function(){
-            // this.is_ready = true;
             storage.need_songs()
                 .then(storage.need_singers)
                 .then(() => {
@@ -137,6 +143,13 @@
                     }
                     this.song_current = song;
                     this.song = Object.assign({}, song);
+
+
+                    //--- если есть переменная - пришли со страницы исполнителя, скорее всего хотим добавить ему песенку - сразу выставляем)
+                    if(this.state.current_singer_id){
+                        this.song.singer = this.state.current_singer_id;
+                    }
+
                     this.is_ready = true;
                 });
         },

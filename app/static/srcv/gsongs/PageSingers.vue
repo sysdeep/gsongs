@@ -20,13 +20,39 @@
 
         <!-- <h3 class="page-header">Список исполнителей</h3> -->
     
-        <nav class="navbar navbar-default">
+       
+
+
+        <h3 class="page-header">
+            Список исполнителей
+            <small>{{ state.singers.length }}</small>
+        </h3>
+    
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" v-model="search_name" placeholder="быстрый поиск">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="pull-right">
+
+                    <a class="btn btn-success" href="#/singer_edit/0" title="добавить запись">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Добавить
+                    </a>
+
+                    <button class="btn btn-default" @click="refresh" title="загрузить список">
+                        <i class="fa fa-refresh" aria-hidden="true"></i> Обновить
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <nav class="navbar navbar-default">
             <div class="container-fluid">
     
                 <div class="navbar-header">
-                    <!-- <a class="navbar-brand" href="#">
-        					<img alt="Brand" src="...">
-        				</a> -->
+                    
                     <span class="navbar-brand">
                         Список исполнителей
                     </span>
@@ -46,9 +72,6 @@
                         </a>
                     </li>
                     <li>
-                        <!-- <a href="javascript: void(0)" ng-click="show_add_singer()" title="отобразить диалог добавления">
-        						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-        					</a> -->
     
                         <a href="#/singer_edit/0" title="отобразить диалог добавления">
                             <i class="fa fa-plus" aria-hidden="true"></i> Добавить
@@ -57,7 +80,7 @@
                 </ul>
     
             </div>
-        </nav>
+        </nav> -->
     
         <!--<chars select="self.select_char(char_value)"></chars>-->
     
@@ -80,7 +103,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="singer in singers_filtered">
+                <tr v-for="(singer, index) in singers_filtered" :key="index">
                     <td>{{ singer.id }}</td>
                     <td>
                         <router-link :to="/singer/ + singer.id" title="перейти на страницу исполнителя">
@@ -103,6 +126,15 @@
                 </tr>
             </tbody>
         </table>
+
+
+
+
+        <div class="pull-right">
+            <a class="btn btn-success" href="#/singer_edit/0" title="добавить запись">
+                <i class="fa fa-plus" aria-hidden="true"></i> Добавить
+            </a>
+        </div>
     
     </div>
 </template>

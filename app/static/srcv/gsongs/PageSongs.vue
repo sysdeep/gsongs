@@ -11,10 +11,15 @@
             </div>
             <div class="col-md-6">
                 <div class="pull-right">
+                    
+                    <a class="btn btn-success" href="#/song_edit/0" title="добавить запись">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Добавить
+                    </a>
+                    
                     <button class="btn btn-primary" @click="refresh" title="загрузить список">
                         <i class="fa fa-refresh" aria-hidden="true"></i> Обновить
                     </button>
-                    <!--<lbutton-create href="#/song_edit/0"></lbutton-create>-->
+                    
                 </div>
             </div>
         </div>
@@ -84,6 +89,13 @@
                 </tr>
             </tbody>
         </table>
+
+
+        <div class="pull-right">
+            <a class="btn btn-success" href="#/song_edit/0" title="добавить запись">
+                <i class="fa fa-plus" aria-hidden="true"></i> Добавить
+            </a>
+        </div>
     
         <!-- 
     <script type="text/ng-template" id="remove_modal_template">
