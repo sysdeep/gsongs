@@ -1,5 +1,24 @@
 <template>
     <div>
+
+
+
+        <!-- <span class="pull-right">
+            <div class="row">
+                <div class="col-md-6"><input type="text" class="form-control" placeholder="Быстрый поиск названию" v-model="search_name"></div>
+                <div class="col-md-6">
+
+                    <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Left</button>
+  <button type="button" class="btn btn-default">Middle</button>
+  <button type="button" class="btn btn-default">Right</button>
+</div>
+                </div>
+            </div>
+            
+        </span> -->
+
+        <!-- <h3 class="page-header">Список исполнителей</h3> -->
     
         <nav class="navbar navbar-default">
             <div class="container-fluid">

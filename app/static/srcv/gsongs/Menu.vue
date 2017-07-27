@@ -13,7 +13,7 @@
                 <!--<a class="navbar-brand" href="#/">GSongs <small>v [[ VERSION ]]</small></a>-->
 
 
-                <router-link to="/" class="navbar-brand">GSongs <small>v [[ VERSION ]]</small></router-link>
+                <router-link to="/" class="navbar-brand">GSongs <small>v {{ version }}</small></router-link>
             </div>
 
             <div class="navbar-collapse collapse">
@@ -82,6 +82,10 @@
 
 <script>
     export default {
-        
+        data: function(){
+            return {
+                "version"   : window.app.version,
+            }
+        }
     }
 </script>
