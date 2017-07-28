@@ -8,9 +8,9 @@
 {% block content %}
 
 
-	<div ng-app="app.todo" ng-cloak>
+	<div id="app">
 
-		<todo-list></todo-list>
+		Loading...
 
 	</div>
 
@@ -24,8 +24,7 @@
 
 {% block ext_inc_body %}
 
-	<script src="/static/app.todo/app.js?version={{ VERSION }}"></script>
-
-	<script src="/static/app.todo/comp.list.js?version={{ VERSION }}"></script>
+	<script src="/static/build/vendor.js?v={{ VERSION }}"></script>
+	<script src="/static/build/todo.js?v={{ VERSION }}"></script>
 
 {% endblock %}

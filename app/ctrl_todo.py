@@ -13,11 +13,7 @@ def todo_page():
 	}
 	return render_template("service/todo.html", **data)
 
-def todo2_page():
-	data = {
-		"VERSION": VERSION
-	}
-	return render_template("service/todo2.html", **data)
+
 
 
 def todo_json_get():
