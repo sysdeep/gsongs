@@ -5,19 +5,26 @@
 			<div class="col-md-3">
 				<h4 class="page-header">
 					Исполнители
-					<span class="pull-right badge">{{ state.singers.length }}</span>
+					<span class="pull-right badge">{{ singers.length }}</span>
 				</h4>
 	
-				<input type="text" class="form-control" v-model="singer_filter" placeholder="быстрый поиск">
+				<div class="input-group">
+					<input type="text" class="form-control" v-model="singer_filter" placeholder="быстрый поиск">
+					<span class="input-group-btn">
+        				<button class="btn btn-default" type="button" @click="singer_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
+      				</span>
+				</div>
 	
 				<br>
 	
 				<ul class="list-unstyled">
 					<li v-for="singer in filtered_singers">
-						<a href="javascript: void(0)" @click="show_songs(singer)" title="отобразить список песенок для этого исполнителя">
+						<a href="javascript: void(0)" @click="select_singer(singer)" title="отобразить список песенок для этого исполнителя">
+							<i v-if="singer == current_singer" class="fa fa-arrow-right" aria-hidden="true"></i>
+
 							{{ singer.name }}
 	
-							<i v-if="singer == current_singer" class="fa fa-arrow-left" aria-hidden="true"></i>
+							
 						</a>
 					</li>
 				</ul>
@@ -27,17 +34,24 @@
 				<h4 class="page-header">
 					Песни исполнителя:
 	
-					<span v-if="!current_singer">нет исполнителя</span>
-					<span v-if="current_singer">
-						<router-link :to="/singer/ + current_singer.id" title="перейти на страницу исполнителя">
-							{{ current_singer.name }}
+					<span v-if="!singer">нет исполнителя</span>
+					<span v-if="singer">
+						<router-link :to="/singer/ + singer.id" title="перейти на страницу исполнителя">
+							{{ singer.name }}
 						</router-link>
 						<span class="pull-right badge">{{ singer_songs.length }}</span>
 					</span>
 	
 				</h4>
-	
-				<input type="text" class="form-control" v-model="song_filter" placeholder="быстрый поиск">
+				
+
+				<div class="input-group">
+					<input type="text" class="form-control" v-model="song_filter" placeholder="быстрый поиск">
+					<span class="input-group-btn">
+        				<button class="btn btn-default" type="button" @click="song_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
+      				</span>
+				</div>
+
 	
 				<br>
 	
@@ -71,57 +85,37 @@
 
 
 <script>
-import storage from "./storage";
-// import Q from "q";
-
-
-// function delay() {
-// 	console.log("delay");
-// 	let deferred = Q.defer();
-
-// 	setTimeout(deferred.resolve, 1000);
-// 	return deferred.promise;
-// }
 
 
 export default {
 	data: function () {
 		return {
-			"state"				: storage.state,
-
 			"singer_filter"		: "",
 			"song_filter"		: "",
 
 			"current_singer"	: null,
-			"singer_songs"		: [],
 
-			"last_songs"		: [],
 			"last_songs_count"	: 10
 		}
 	},
 
 	created: function () {
 
-		storage.need_singers()
-			.then(storage.need_songs)
-			.then(() => {
-				this.state.songs.sort(function (a, b) { return b.id - a.id });
-				this.last_songs = this.state.songs.slice(0, this.last_songs_count);
-			})
-
+		this.$store.dispatch("fetch_singers");
+		this.$store.dispatch("fetch_songs");
 
 	},
 
 	methods: {
 		get_singer_name: function (singer_id) {
-			let singer = this.state.singers.find((item) => { return item.id == singer_id })
-			return singer ? singer.name : "---"
+			let singer = this.$store.state.singers.find((item) => { return item.id == singer_id })
+			return singer ? singer.name : "---";
 		},
 
 
-		show_songs: function (singer) {
+		select_singer: function (singer) {
+			this.$store.dispatch("select_singer", singer);
 			this.current_singer = singer;
-			this.singer_songs = this.state.songs.filter((item) => { return item.singer == singer.id });
 		}
 	},
 
@@ -129,18 +123,41 @@ export default {
 	computed: {
 		filtered_singers: function () {
 			let lfind = this.singer_filter.toLowerCase();
-			return this.state.singers.filter((item) => {
+			return this.$store.state.singers.filter((item) => {
+			// return this.state.singers.filter((item) => {
 				let name = item.name.toLowerCase();
 				return name.indexOf(lfind) > -1;
 			});
 		},
 
+		singer_songs: function(){
+			return this.$store.getters.get_current_singer_songs;
+		},
+
 		filtered_songs: function () {
+			
+			
 			let lfind = this.song_filter.toLowerCase();
 			return this.singer_songs.filter((item) => {
 				let name = item.name.toLowerCase();
 				return name.indexOf(lfind) > -1;
 			});
+			
+		},
+
+
+		last_songs: function(){
+			let songs_copy = this.$store.state.songs.slice();
+			songs_copy.sort(function (a, b) { return b.id - a.id });
+			return songs_copy.slice(0, this.last_songs_count);	
+		},
+
+		singer: function(){
+			return this.$store.state.singer;
+		},
+
+		singers: function(){
+			return this.$store.state.singers;	
 		}
 	}
 

@@ -25,6 +25,14 @@ export function get_default_song(){
     };
 }
 
+
+export function get_default_singer(){
+    return {
+        "id"        : 0,
+        "name"      : ""
+    }
+}
+
 // export function update_singer(idata){
 //     var defer = Q.defer();
 //     net.update_singer(idata).then((response)=>{

@@ -1,7 +1,7 @@
 import Vue from "vue";
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router';
 
-
+import {store} from "./storage/store";
 
 
 
@@ -46,6 +46,7 @@ const app = new Vue({
     el: "#app",
     template: require("./app.html"),
     router: router,
+    store,
 
     created: ()=>{
         console.log("app created");
