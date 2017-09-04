@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
 	state: {
 		"singers"			: [],
 		"singer"			: null,
+		"singers_loaded"	: false,
 
 		"songs"		: []
 	},
@@ -19,7 +20,9 @@ export const store = new Vuex.Store({
 
 	mutations: {
 		set_singers: function(state, singers){
+			console.log("set singers");
 			state.singers = singers;
+			state.singers_loaded = true;
 		},
 
 		set_singer: (state, singer) => state.singer = singer,

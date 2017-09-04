@@ -154,8 +154,7 @@ export default {
 
 
     created: function(){
-        this.$store.dispatch("need_singers");
-        // storage.need_singers();
+        storage.need_singers();
         // if(this.state.singers_loaded == false){
         //     storage.fetch_singers();
         // }
@@ -165,7 +164,7 @@ export default {
     computed: {
         singers_filtered: function(){
             var s_name = this.search_name.toLowerCase();
-            let result = this.$store.state.singers.filter((item)=>{
+            let result = this.state.singers.filter((item)=>{
                 let index = item.name.toLowerCase().indexOf(s_name);
                 return index > -1;
             });
@@ -175,8 +174,7 @@ export default {
 
     methods: {
         refresh: function(){
-            this.$store.dispatch("fetch_singers");
-            // storage.fetch_singers();
+            storage.fetch_singers();
         }
     }
 
