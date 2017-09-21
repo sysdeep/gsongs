@@ -1,0 +1,40 @@
+
+
+CREATE TABLE IF NOT EXISTS "groups" (
+	"id"			INTEGER PRIMARY KEY AUTOINCREMENT,
+	"name"			VARCHAR(12) NOT NULL,
+	"description"	TEXT
+	);
+
+
+CREATE TABLE IF NOT EXISTS "chords" (
+	"id"			INTEGER PRIMARY KEY AUTOINCREMENT,
+	"cgroup"		VARCHAR(12) NOT NULL,
+	"name"			VARCHAR(12) NOT NULL,
+	"description"	TEXT
+	);
+
+
+CREATE TABLE IF NOT EXISTS "variants" (
+	"id"			INTEGER PRIMARY KEY AUTOINCREMENT,
+	"chord"			VARCHAR(12) NOT NULL,
+	"level"			INTEGER NOT NULL,
+	"is_main"		BOOLEAN NOT NULL,
+	"body"			VARCHAR(64) NOT NULL,
+	"description"	TEXT
+	);
+
+
+CREATE TABLE IF NOT EXISTS "storage" (
+	"id"			INTEGER PRIMARY KEY AUTOINCREMENT,
+	"key"			VARCHAR(64) NOT NULL,
+	"value"			TEXT
+	);
+
+
+CREATE TABLE IF NOT EXISTS "versions" (
+	"id"			INTEGER PRIMARY KEY AUTOINCREMENT,
+	"version"		VARCHAR(12) NOT NULL,
+	"date"			DATE NOT NULL,
+	"description"	TEXT
+	);
