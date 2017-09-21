@@ -11,6 +11,11 @@
   <h1>Редактор аккордов</h1>
 </div>
 
+
+
+<div id="app"></div>
+
+
 <div class="panel panel-primary">
   	<div class="panel-heading">
     	<h3 class="panel-title">
@@ -70,12 +75,13 @@
 
 	<script type="text/javascript">
 		$("document").ready(function(){
-			$(".menu_service_db").addClass("active");
+			$(".menu_service_chords").addClass("active");
 		});
 	</script>
 
+	<script src="/static/build/vendor.js?version={{ VERSION }}"></script>
+	<script src="/static/build/chords.js?version={{ VERSION }}"></script>
 	<!--
-	<script src="/static/app.todo/app.js?version={{ VERSION }}"></script>
 
 	<script src="/static/app.todo/comp.list.js?version={{ VERSION }}"></script>
 -->

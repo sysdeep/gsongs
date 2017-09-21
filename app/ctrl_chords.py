@@ -8,7 +8,7 @@ from zipfile import ZipFile
 from vendor import auto
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_file
 
-from . import storage, VERSION
+from . import VERSION, chdb
 
 
 
@@ -36,7 +36,42 @@ def chords_page():
 
 
 
+def get_chords():
+	data = []
+	for row in chdb.Chord.select():
+		r = {"id": row.id, "name": row.name, "cgroup": row.cgroup, "description": row.description}
+		data.append(r)
 
+	return jsonify(chords=data)
+
+
+def get_chord_groups():
+
+	data = []
+	for row in chdb.Group.select():
+		r = {"id": row.id, "name": row.name, "description": row.description}
+		data.append(r)
+
+	# response = {
+	# 	"data": data
+	# }
+	return jsonify(chord_groups=data)
+
+
+
+
+def get_chords_for_group(group_name):
+	data = []
+	for row in chdb.Chord.select().where(chdb.Chord.cgroup == group_name):
+		r = {"id": row.id, "name": row.name, "cgroup": row.cgroup, "description": row.description}
+		data.append(r)
+
+	return jsonify(chords=data)
+
+
+
+def get_chord_variants(chord):
+	return jsonify(variants=[])
 
 
 # def db_backup():
