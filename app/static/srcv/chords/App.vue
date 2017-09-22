@@ -13,7 +13,7 @@
 				<chords :items="chords" @selected="on_select_chord"></chords>
 			</div>
 			<div class="col-md-3">
-				<variants></variants>
+				<variants :items="variants"></variants>
 			</div>
 
 		</div>
@@ -41,7 +41,8 @@ export default {
 	data: function(){
 		return {
 			"cgroups"		: [],
-			"chords"		: []
+			"chords"		: [],
+			"variants"		: []
 		}
 	},
 
@@ -61,16 +62,19 @@ export default {
 
 
 
-		on_select_group: function(group_name){
-			console.log(group_name);
-			net.get_chords_group(group_name).then(response => {
+		on_select_group: function(group_id){
+			// console.log(group_id);
+			net.get_chords_group(group_id).then(response => {
 				// console.log(response.data);
 				this.chords = response.data.chords;
 			})
 		},
 
-		on_select_chord: function(chord_name){
-			console.log(chord_name);
+		on_select_chord: function(chord_id){
+			// console.log(chord_id);
+			net.get_variants(chord_id).then(response => {
+				this.variants = response.data.variants;
+			})
 		}
 	},
 

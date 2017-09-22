@@ -6,9 +6,14 @@ export function get_groups(){
 }
 
 
-export function get_chords_group(group_name){
-    return axios.get("/api/chords_group/" + group_name);
+export function get_chords_group(group_id){
+    return axios.get("/api/chords_group/" + group_id);
 }
+
+export function get_variants(chord_id){
+    return axios.get("/api/chord_variants/" + chord_id);
+}
+
 
 
 // export function add_item(item){

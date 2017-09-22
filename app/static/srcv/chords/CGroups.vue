@@ -40,7 +40,7 @@ export default {
 	methods: {
 		act_select: function(item){
 			this.current_id = item.id;
-			this.$emit("selected", item.name);
+			this.$emit("selected", item.id);
 		},
 
 		is_active: function(item){

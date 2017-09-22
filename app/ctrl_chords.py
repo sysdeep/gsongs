@@ -60,18 +60,32 @@ def get_chord_groups():
 
 
 
-def get_chords_for_group(group_name):
+def get_chords_for_group(group_id):
 	data = []
-	for row in chdb.Chord.select().where(chdb.Chord.cgroup == group_name):
-		r = {"id": row.id, "name": row.name, "cgroup": row.cgroup, "description": row.description}
+	for row in chdb.Chord.select().where(chdb.Chord.cgroup_id == group_id):
+		r = {
+			"id": row.id, 
+			"name": row.name, 
+			"cgroup": row.cgroup, 
+			"cgroup_id": row.cgroup_id, 
+			"description": row.description}
 		data.append(r)
 
 	return jsonify(chords=data)
 
 
 
-def get_chord_variants(chord):
-	return jsonify(variants=[])
+def get_chord_variants(chord_id):
+	data = []
+	for row in chdb.Variant.select().where(chdb.Variant.chord_id == chord_id):
+		r = {
+			"id"	: row.id,
+			"body"	: row.body,
+			"id_main"	: row.is_main
+		}
+		data.append(r)
+
+	return jsonify(variants=data)
 
 
 # def db_backup():

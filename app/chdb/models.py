@@ -37,11 +37,30 @@ class Group(Base):
 class Chord(Base):
 	id 			= peewee.IntegerField(db_column='id', primary_key=True)
 	name 		= peewee.CharField(db_column='name')
+	sname 		= peewee.CharField(db_column='sname')
 	cgroup 		= peewee.CharField(db_column='cgroup')
+	cgroup_id	= peewee.IntegerField(db_column='cgroup_id')
 	description	= peewee.TextField(db_column="description")
 
 	class Meta:
 		db_table = 'chords'
+
+
+
+
+
+class Variant(Base):
+	id 			= peewee.IntegerField(db_column='id', primary_key=True)
+	chord 		= peewee.CharField(db_column='chord')
+	chord_id 	= peewee.IntegerField(db_column='chord_id')
+	level 		= peewee.IntegerField(db_column='level')
+	is_main		= peewee.BooleanField(db_column='is_main')
+	body		= peewee.CharField(db_column='body')
+	description	= peewee.TextField(db_column="description")
+
+	class Meta:
+		db_table = 'variants'
+
 
 
 

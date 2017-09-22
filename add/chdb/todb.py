@@ -40,13 +40,19 @@ def write_chords():
 	cursor = connection.cursor()
 	for group, chords in data.items():
 		# print(group, "->", chords)
+		
+		cursor.execute("INSERT INTO groups(name) VALUES(?)", (group,))
+		group_id = cursor.lastrowid
+
+
 		for ch, variants in chords.items():
 			print(group, "=>", ch, "->", len(variants))
-			cursor.execute("INSERT INTO chords(cgroup, name) VALUES(?,?)", (group, ch))
+			cursor.execute("INSERT INTO chords(cgroup, name, cgroup_id) VALUES(?,?,?)", (group, ch, group_id))
+			ch_id = cursor.lastrowid
 
 			for variant in variants:
 				print(variant)
-				cursor.execute("INSERT INTO variants(chord, level, is_main, body) VALUES(?,?,?,?)", (ch, 1, False, variant))
+				cursor.execute("INSERT INTO variants(chord, chord_id, level, is_main, body) VALUES(?,?,?,?,?)", (ch, ch_id, 1, False, variant))
 
 	connection.commit()
 
@@ -54,7 +60,7 @@ def write_chords():
 def main():
 
 	#--- 1 make groups	 
-	write_groups()
+	# write_groups()
 	
 	#--- 2 chords
 	write_chords()

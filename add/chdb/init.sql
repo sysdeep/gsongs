@@ -9,8 +9,10 @@ CREATE TABLE IF NOT EXISTS "groups" (
 
 CREATE TABLE IF NOT EXISTS "chords" (
 	"id"			INTEGER PRIMARY KEY AUTOINCREMENT,
+	"cgroup_id"		INTEGER NOT NULL,
 	"cgroup"		VARCHAR(12) NOT NULL,
 	"name"			VARCHAR(12) NOT NULL,
+	"sname"			VARCHAR(64),
 	"description"	TEXT
 	);
 
@@ -18,6 +20,7 @@ CREATE TABLE IF NOT EXISTS "chords" (
 CREATE TABLE IF NOT EXISTS "variants" (
 	"id"			INTEGER PRIMARY KEY AUTOINCREMENT,
 	"chord"			VARCHAR(12) NOT NULL,
+	"chord_id"		INTEGER NOT NULL,
 	"level"			INTEGER NOT NULL,
 	"is_main"		BOOLEAN NOT NULL,
 	"body"			VARCHAR(64) NOT NULL,

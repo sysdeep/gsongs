@@ -86,8 +86,8 @@ app.add_url_rule("/service/chords",						view_func=ctrl_chords.chords_page)
 
 
 app.add_url_rule("/api/chords_all", 					view_func=ctrl_chords.get_chords)
-app.add_url_rule("/api/chords_group/<group_name>", 		view_func=ctrl_chords.get_chords_for_group)
+app.add_url_rule("/api/chords_group/<group_id>", 		view_func=ctrl_chords.get_chords_for_group)
 app.add_url_rule("/api/chord_groups", 					view_func=ctrl_chords.get_chord_groups)
-app.add_url_rule("/api/chord_variants/<chord>", 		view_func=ctrl_chords.get_chord_variants)
+app.add_url_rule("/api/chord_variants/<chord_id>", 		view_func=ctrl_chords.get_chord_variants)
 #--- routes -------------------------------------------------------------------
 

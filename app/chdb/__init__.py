@@ -3,7 +3,7 @@
 
 # from .controller import init_db
 # from .loader import DB_FILE, DB_DIR, FILE_NAME, DIR_BACKUPS
-from .models import Group, Chord
+from .models import Group, Chord, Variant
 
 VERSION = "1.0.0"
 
