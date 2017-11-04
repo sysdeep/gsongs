@@ -41,5 +41,24 @@ export default {
 		net.get_tags_songs().then(response => {
 			context.commit("set_tag_song_links", response.data.result);
 		})
+	},
+
+
+
+
+
+
+
+
+	song_add_tag: function(context, params){
+		net.add_song_tag(params.song_id, params.tag_id).then(response => {
+			context.dispatch("fetch_tag_song_links");
+		});
+	},
+
+	song_remove_tag: function(context, params){
+		net.remove_song_tag(params.song_id, params.tag_id).then(response => {
+			context.dispatch("fetch_tag_song_links");
+		});
 	}
 }

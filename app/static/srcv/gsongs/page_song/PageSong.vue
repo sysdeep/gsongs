@@ -115,28 +115,8 @@
 					</li>
 				</ul>
 	
-				<h4 class="page-header">Tags</h4>
-	
-				<div class="row">
-					<div class="col-md-6">
-						<strong>Доступные</strong>
-						<ul>
-							<li v-for="(tag, index) in free_tags" :key="index">
-								<a href="javascript: void(0)" @click="add_tag(tag)">{{ tag.name }}</a>
-							</li> 
-						</ul>
-					</div>
-					<div class="col-md-6">
-						<strong>Выбранные</strong>
-						<ul>
-							<li v-for="(tag, index) in song_tags" :key="index">
-								<router-link :to="/tag/ + tag.id">go</router-link>
-								<a href="javascript: void(0)" @click="remove_tag(tag)">{{ tag.name }}</a>
-							</li>
-						</ul>
-	
-					</div>
-				</div>
+				<!-- tags -->
+				<c-tags :songid="song.id"></c-tags>
 	
 			</div>
 			<div class="col-md-7">
@@ -162,10 +142,10 @@
 
 
 <script>
-import storage from "./storage";
-import net from "./net";
-import {go_back} from "./utils";
-
+import storage from "../storage";
+import net from "../net";
+import {go_back} from "../utils";
+import component_tags from "./Tags.vue";
 
 
 export default {
@@ -173,18 +153,15 @@ export default {
 		return {
 			"state"     : storage.state,
 			"id"        : null,
-			"is_ready"  : false,
 
-			// "song"      : null,
-			// "singer"    : null,
-			// "singer_songs"  : [],
 
 			"is_modal_remove"   : false,
 
-
-			// "free_tags"     : [],
-			// "song_tags"     : []
 		}
+	},
+
+	components: {
+		"c-tags"	: component_tags
 	},
 
 
@@ -209,34 +186,7 @@ export default {
 
 		},
 
-		// refresh1: function(){
-		// 	this.id = this.$route.params.id;
-		// 	console.log("refresh");
-
-		// 	storage.need_songs()
-		// 		.then(storage.need_singers)
-		// 		.then(storage.need_tags)
-		// 		.then(()=>{
-		// 			let song = this.state.songs.find(item => item.id == this.id);
-		// 			let singer_id = song.singer;
-		// 			let singer = this.state.singers.find(item => item.id == singer_id);
-
-		// 			this.singer = singer;
-		// 			this.song = song;
-
-		// 			this.singer_songs = this.state.songs.filter(item => (item.singer == singer_id) && (item.id != this.id));
-
-
-					
-		// 			this.reload_tags();
-
-		// 			this.is_ready = true;
-		// 		});
-		// },
-
-
-
-
+		
 		show_remove: function(){
 			this.is_modal_remove = true;
 		},
@@ -265,45 +215,7 @@ export default {
 		},
 
 
-		reload_tags: function(){
-			this.song_tags = [];
-			this.free_tags = [];
-			var tmp_tags = Object.assign([], this.state.tags);
-			
-
-			net.get_song_tags(this.id).then(response => {
-				var song_tags_ids = response.data.result;
-
-				song_tags_ids.forEach(id => {
-					let tag = tmp_tags.find(tag => tag.id == id);
-					if(tag){
-						this.song_tags.push(tag);
-						var i = tmp_tags.indexOf(tag);
-						tmp_tags.splice(i, 1);
-					}
-				})
-
-				this.free_tags = tmp_tags;
-			})
-			
-		},
-
-
-
-
-		add_tag: function(tag){
-			net.add_song_tag(this.song.id, tag.id).then(response => {
-				this.reload_tags();
-			});
-		},
-
-
-		remove_tag: function(tag){
-			net.remove_song_tag(this.song.id, tag.id).then(response => {
-				this.reload_tags();
-			});
-		}
-
+		
 
 
 	},
@@ -330,33 +242,7 @@ export default {
 		},
 
 
-		song_tags: function(){
-			let links = this.$store.getters.get_song_tags(this.song.id);
-
-			let tags_id = links.map(item => item.id_tag);
-
-			
-			let result = this.$store.state.tags.filter(tag => {
-				return tags_id.indexOf(tag.id) > -1;
-			})
-
-			return result;
-		},
-
-
-
-		free_tags: function(){
-			let links = this.$store.getters.get_song_tags(this.song.id);
-
-			let tags_id = links.map(item => item.id_tag);
-
-			
-			let result = this.$store.state.tags.filter(tag => {
-				return tags_id.indexOf(tag.id) == -1;
-			})
-
-			return result;	
-		}
+		
 
 
 

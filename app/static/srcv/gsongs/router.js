@@ -2,7 +2,7 @@ import page_main from "./page_main/PageMain.vue";
 import page_singers from "./PageSingers.vue";
 import page_singer from "./PageSinger.vue";
 import page_songs from "./PageSongs.vue";
-import page_song from "./PageSong.vue";
+import page_song from "./page_song/PageSong.vue";
 import page_singer_edit from "./PageSingerEdit.vue";
 import page_song_edit from "./PageSongEdit.vue";
 import page_tags from "./PageTags.vue";
