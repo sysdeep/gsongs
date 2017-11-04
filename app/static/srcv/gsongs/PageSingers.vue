@@ -25,7 +25,7 @@
 
         <h3 class="page-header">
             Список исполнителей
-            <small>{{ state.singers.length }}</small>
+            <small>{{ singers.length }}</small>
         </h3>
     
         <div class="row">
@@ -142,11 +142,10 @@
 
 
 <script>
-import storage from "./storage";
+
 export default {
     data: () => {
         return {
-            "state": storage.state,
 
             "search_name": ""
         }
@@ -154,15 +153,16 @@ export default {
 
 
     created: function(){
-        this.$store.dispatch("need_singers");
-        // storage.need_singers();
-        // if(this.state.singers_loaded == false){
-        //     storage.fetch_singers();
-        // }
+        
     },
 
 
     computed: {
+        singers: function(){
+            return this.$store.state.singers;
+        },
+
+
         singers_filtered: function(){
             var s_name = this.search_name.toLowerCase();
             let result = this.$store.state.singers.filter((item)=>{
