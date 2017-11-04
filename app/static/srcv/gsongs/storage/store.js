@@ -16,7 +16,9 @@ export const store = new Vuex.Store({
 
 
 		"tags"				: [],
-		"tags_loaded"		: false
+		"tags_loaded"		: false,
+
+		"tag_song_links"	: []
 	},
 
 	actions,
@@ -39,6 +41,11 @@ export const store = new Vuex.Store({
 		set_tags: function(state, tags){
 			state.tags = tags;
 			state.tags_loaded = true;
+		},
+
+
+		set_tag_song_links: function(state, links){
+			state.tag_song_links = links;
 		}
 	}
 })

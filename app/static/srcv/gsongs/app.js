@@ -49,10 +49,13 @@ const app = new Vue({
     store,
 
     created: function(){
-        console.log("app created");
+
+
+        //--- preload main data
         this.$store.dispatch("fetch_singers");
         this.$store.dispatch("fetch_songs");
         this.$store.dispatch("fetch_tags");
+        this.$store.dispatch("fetch_tag_song_links");
     },
 
 

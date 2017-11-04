@@ -81,7 +81,8 @@ export default {
 	},
 
 	created: function(){
-		this.refresh();
+		// this.refresh();
+		
 		
 	},
 
@@ -157,7 +158,7 @@ export default {
 
 
 		get_songs_count: function(tag_id){
-			let result = this.links.filter(item => item.id_tag == tag_id);
+			let result = this.$store.getters.get_tag_songs(tag_id);
 			return result.length;
 		}
 	},

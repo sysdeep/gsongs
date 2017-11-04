@@ -34,5 +34,12 @@ export default {
 	need_tags: function(context){
 		if(context.state.tags_loaded) return false;
 		context.dispatch("fetch_tags");
+	},
+
+
+	fetch_tag_song_links: function(context){
+		net.get_tags_songs().then(response => {
+			context.commit("set_tag_song_links", response.data.result);
+		})
 	}
 }

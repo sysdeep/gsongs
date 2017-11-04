@@ -1,6 +1,6 @@
 <template>
-	<div v-if="is_ready">
-		<h3 class="page-header">Список песенок для тега <small>{{ tag.name }}</small></h3>
+	<div>
+		<h3 class="page-header">Список песенок для тега <small>{{ tag_name }}</small></h3>
 
 
 
@@ -16,12 +16,12 @@
 					</thead>
 					<tbody>
 						<tr v-for="(song, index) in tag_songs" :key="index">
-							<td>{{ song.song_id }}</td>
+							<td>{{ song.id }}</td>
 							<td>
-								<router-link :to="/song/ + song.song_id">{{ song.song_name }}</router-link>
+								<router-link :to="/song/ + song.id">{{ song.name }}</router-link>
 							</td>
 							<td>
-								<router-link :to="/singer/ + song.singer_id">{{ song.singer_name }}</router-link>
+								<router-link :to="/singer/ + song.singer">{{ get_singer_name(song.singer) }}</router-link>
 							</td>
 						</tr>
 					</tbody>
@@ -37,7 +37,6 @@
 
 
 
-
 	</div>
 </template>
 
@@ -48,66 +47,57 @@ export default {
 
 	data: function(){
 		return {
-			"state"			: storage.state,
-			"is_ready" 		: false,
-			"tag"			: null,
+			// "state"			: storage.state,
+			// "is_ready" 		: false,
+			// "tag"			: null,
 			"id"			: null,
-			"songs_id"		: []
+			// "songs_id"		: []
 		}
 	},
 
 	created: function(){
-		this.refresh();
+		
+		this.id = this.$route.params.id; 
 	},
 
 
 	methods: {
+
+		get_singer_name: function(singer_id){
+			return this.$store.getters.get_singer_name(singer_id);
+		}
 		
-		refresh: function(){
-			this.id = this.$route.params.id; 
-			storage.need_tags()
-				.then(storage.need_songs)
-				.then(storage.need_singers)
-				.then(()=>{
-					
-					this.tag = this.state.tags.find(item => item.id == this.id)
-
-
-					net.get_tag_songs(this.id).then(response => {
-						this.songs_id = response.data.result;
-					})
-
-					this.is_ready = true;
-				});
-		},
-
-
 		
 	},
 
 
 	computed: {
-		tag_songs: function(){
-			var songs = [];
-			this.songs_id.forEach(sid => {
-				
-				let song = this.state.songs.find(song => song.id == sid);
-				if(song){
-					var result = {};
-					result.song_id = song.id;
-					result.song_name = song.name;
-					let singer = this.state.singers.find(singer => singer.id == song.singer);
-					if(singer){
-						result.singer_id = singer.id;
-						result.singer_name = singer.name;
-					}
 
-					songs.push(result);
-				}
+		// tag: function(){
+		// 	return this.$store.state.tags.find(item => item.id == this.id);
+		// },
+
+		tag_name: function(){
+			let tag = this.$store.state.tags.find(item => item.id == this.id);
+			return tag? tag.name : "---"
+		},
+
+
+		tag_songs: function(){
+
+			//--- список ссылок песен, которые учавствуют в заданной метке
+			let links = this.$store.getters.get_tag_songs(this.id);
+
+			let songs_id = links.map(item => item.id_song);
+
+			
+			let result = this.$store.state.songs.filter(song => {
+				return songs_id.indexOf(song.id) > -1;
 			})
 
 
-			return songs;
+			return result;
+			
 		}
 	}
 }
