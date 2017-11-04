@@ -48,8 +48,11 @@ const app = new Vue({
     router: router,
     store,
 
-    created: ()=>{
+    created: function(){
         console.log("app created");
+        this.$store.dispatch("fetch_singers");
+        this.$store.dispatch("fetch_songs");
+        this.$store.dispatch("fetch_tags");
     },
 
 
