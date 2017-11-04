@@ -12,7 +12,11 @@ export const store = new Vuex.Store({
 		"singer"			: null,
 		"singers_loaded"	: false,
 
-		"songs"		: []
+		"songs"		: [],
+
+
+		"tags"				: [],
+		"tags_loaded"		: false
 	},
 
 	actions,
@@ -30,6 +34,11 @@ export const store = new Vuex.Store({
 
 		set_songs: function(state, songs){
 			state.songs = songs;
+		},
+
+		set_tags: function(state, tags){
+			state.tags = tags;
+			state.tags_loaded = true;
 		}
 	}
 })

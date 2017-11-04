@@ -22,5 +22,17 @@ export default {
 		net.get_songs().then(response => {
 			context.commit("set_songs", response.data.songs);
 		});
+	},
+
+
+	fetch_tags: function(context){
+		net.get_tags().then(response => {
+			context.commit("set_tags", response.data.tags);
+		})
+	},
+
+	need_tags: function(context){
+		if(context.state.tags_loaded) return false;
+		context.dispatch("fetch_tags");
 	}
 }

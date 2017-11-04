@@ -1,5 +1,5 @@
 <template>
-	<div v-if="is_ready">
+	<div>
 		<h3 class="page-header">Список тэгов</h3>
 	
 		<div class="row">
@@ -8,31 +8,33 @@
 					<thead>
 						<tr>
 							<th>id</th>
-							<th>name</th>
+							<th>название</th>
 							<th>songs</th>
-							<th>options</th>
+							<th>опции</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="(tag, index) in state.tags" :key="index">
+						<tr v-for="(tag, index) in ftags" :key="index">
 							<td>{{ tag.id }}</td>
 							<td>
-								<!-- <a href="/#/tag/ tag.id }}">{{ tag.name }}</a> -->
 								<router-link :to="/tag/ + tag.id">{{tag.name}}</router-link>
 							</td>
 							<td>
 								{{ get_songs_count(tag.id) }}
 							</td>
 							<td>
-								<a href="javascript: void(0)" @click="show_edit(tag)">edit</a>
+								<a href="javascript: void(0)" @click="show_edit(tag)">изменить</a>
 								|
-								<a href="javascript: void(0)" @click="show_remove(tag)">remove</a>
+								<a href="javascript: void(0)" @click="show_remove(tag)">удалить</a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<button-back></button-back>
-				<button class="btn btn-primary" @click="show_create">Create</button>
+				<button class="btn btn-primary" @click="show_create">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+					Добавить
+				</button>
 			</div>
 			<div class="col-md-4">
 	
@@ -44,8 +46,15 @@
 						</div>
 	
 					</form>
-						<button class="btn btn-default" @click="save_edit">Save</button>
-						<button class="btn btn-default" @click="hide_edit">cancel</button>
+					<button class="btn btn-primary" @click="save_edit">
+						<i class="fa fa-floppy-o" aria-hidden="true"></i>
+						Сохранить
+					</button>
+					
+					<button class="btn btn-default" @click="hide_edit">
+						<i class="fa fa-ban" aria-hidden="true"></i>
+						Отмена
+					</button>
 				</div>
 	
 			</div>
@@ -73,22 +82,34 @@ export default {
 
 	created: function(){
 		this.refresh();
+		
 	},
 
 	methods: {
 
 		refresh: function(){
-			this.is_edit = false;
-			storage.fetch_tags().then(()=>{
+
+			this.$store.dispatch("fetch_tags");
+
+			// this.is_edit = false;
+			// storage.fetch_tags().then(()=>{
 
 
-				net.get_tags_songs().then(response => {
+			// 	net.get_tags_songs().then(response => {
+			// 		console.log(response);
+			// 		this.links = response.data.result;
+
+			// 		this.is_ready = true;
+			// 	})
+			// })
+			
+
+			net.get_tags_songs().then(response => {
 					console.log(response);
 					this.links = response.data.result;
 
 					this.is_ready = true;
 				})
-			})
 		},
 
 		show_edit: function(item){
@@ -124,10 +145,12 @@ export default {
 			if(this.item_edit.id == 0){
 				net.create_tag(this.item_edit).then(response => {
 					this.refresh();
+					this.is_edit = false;
 				})
 			}else{
 				net.update_tag(this.item_edit).then(response => {
 					this.refresh();
+					this.is_edit = false;
 				})
 			}
 		},
@@ -136,6 +159,14 @@ export default {
 		get_songs_count: function(tag_id){
 			let result = this.links.filter(item => item.id_tag == tag_id);
 			return result.length;
+		}
+	},
+
+
+
+	computed: {
+		ftags: function(){
+			return this.$store.state.tags;
 		}
 	}
 }
