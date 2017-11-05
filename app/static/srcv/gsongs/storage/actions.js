@@ -60,5 +60,34 @@ export default {
 		net.remove_song_tag(params.song_id, params.tag_id).then(response => {
 			context.dispatch("fetch_tag_song_links");
 		});
-	}
+	},
+
+
+
+
+
+	singer_update: function(context, params){
+		return new Promise((resolve, reject) =>{
+			net.update_singer(params.singer).then(response => {
+				// console.log("update ok");
+				// let singer
+				context.dispatch("fetch_singers");
+				resolve();
+			})
+		})
+	},
+
+
+	singer_create: function(context, params){
+		return new Promise((resolve, reject) =>{
+			net.create_singer(params.singer).then(response => {
+				// console.log("create ok");
+				// let singer
+				context.dispatch("fetch_singers");
+				resolve(response.data.singer.id);
+			})
+		})
+	},
+
+
 }

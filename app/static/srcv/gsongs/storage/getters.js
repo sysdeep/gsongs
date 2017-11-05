@@ -46,5 +46,10 @@ export default {
 			SINGER_NAME_CACHE[singer_id] = singer.name;
 		}
 		return singer? singer.name : "---";
+	},
+
+
+	find_singer: (state, getters) => (singer_id) => {
+		return state.singers.find(singer => singer.id == singer_id);
 	}
 }

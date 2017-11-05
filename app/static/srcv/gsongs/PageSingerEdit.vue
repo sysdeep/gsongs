@@ -1,12 +1,12 @@
 <template>
-    <div v-if="is_ready">
+    <div v-if="singer">
 
 
 
 
         <h3 class="page-header">
-            <span v-if="singer_current.id == 0">Создание исполнителя</span>
-              			<span v-if="singer_current.id != 0">Изменение исполнителя <strong>{{ singer_current.name }}</strong></span>
+            <span v-if="is_new">Создание исполнителя</span>
+            <span v-if="!is_new">Изменение исполнителя <strong>{{ singer.name }}</strong></span>
         </h3>
 
         <!-- <nav class="navbar navbar-default">
@@ -50,6 +50,9 @@
         </pre>
         	</div>
         </div>
+
+
+        
     </div>
 </template>
 
@@ -64,56 +67,113 @@
         
         data: function(){
             return {
+                "singer_id"         : null,
+                "is_new"            : false,
+
+                // "singer_edit"       : 
+
                 "state"             : storage.state,
-                "singer"            : null,
+                // "singer"            : null,
                 "singer_current"    : null,
-                "is_ready"          : false
+                "is_ready"          : true
             }  
         },
         
         
         
         created: function(){
-            storage.need_singers()
+            this.singer_id = this.$route.params.id;
+            this.is_new = this.singer_id == 0;
+
+
+
+            // storage.need_singers()
             
-            .then(() => {
-                let singer_id = this.$route.params.id;
-                let singer = null;
-                if(singer_id == 0){
-                    singer = {
-                        id: 0,
-                        name: ""
-                    }    
-                }else{
-                    singer = this.state.singers.find(item => item.id == singer_id);
-                }
-                this.singer_current = singer;
-                this.singer = Object.assign({}, singer);
-                this.is_ready = true;
-            });
+            // .then(() => {
+            //     let singer_id = this.$route.params.id;
+            //     let singer = null;
+            //     if(singer_id == 0){
+            //         singer = {
+            //             id: 0,
+            //             name: ""
+            //         }    
+            //     }else{
+            //         singer = this.state.singers.find(item => item.id == singer_id);
+            //     }
+            //     this.singer_current = singer;
+            //     this.singer = Object.assign({}, singer);
+            //     this.is_ready = true;
+            // });
         },
         
         
         methods: {
             save: function(){
-                console.log("save");
-                if(this.singer.id == 0){
-                    net.create_singer(this.singer).then((response)=>{
-                        let singer = Object.assign({}, this.singer);
-                        singer.updated = response.data.singer.updated;
-                        singer.created = response.data.singer.created;
-                        singer.id      = response.data.singer.id;
-                        this.state.singers.push(singer);
-                        this.$router.push("/singer/" + singer.id);
+
+
+                // console.log(this.singer);
+
+
+
+                if(this.is_new){
+                    //create
+                    // console.log("create");
+                    this.$store.dispatch("singer_create", {"singer": this.singer}).then((new_singer_id) => {
+                        this.$router.push("/singer/" + new_singer_id);
                     });
                 }else{
-                    net.update_singer(this.singer).then((response)=>{
-                        Object.assign(this.singer_current, this.singer);
-                        this.singer_current.updated = response.data.singer.updated;
+                    //update
+                    // console.log("update");
+                    this.$store.dispatch("singer_update", {"singer": this.singer}).then(() => {
                         go_back();
                     });
+                    // console.log("after update");
                 }
+
+
+
+                return false;
+
+                // console.log("save");
+                // if(this.singer.id == 0){
+                //     net.create_singer(this.singer).then((response)=>{
+                //         let singer = Object.assign({}, this.singer);
+                //         singer.updated = response.data.singer.updated;
+                //         singer.created = response.data.singer.created;
+                //         singer.id      = response.data.singer.id;
+                //         this.state.singers.push(singer);
+                //         this.$router.push("/singer/" + singer.id);
+                //     });
+                // }else{
+                //     net.update_singer(this.singer).then((response)=>{
+                //         Object.assign(this.singer_current, this.singer);
+                //         this.singer_current.updated = response.data.singer.updated;
+                //         go_back();
+                //     });
+                // }
             }
+        },
+
+        computed: {
+            singer: function(){
+                let r = this.$store.getters.find_singer(this.singer_id);
+                if(r){
+                    return Object.assign({}, r);    
+                }
+
+                let new_row = {
+                    "id"        : 0,
+                    "name"      : ""
+                }
+
+                return new_row;
+                // return r;
+            },
+
+
+            // singer_edit: function(){
+            //     return Object.assign({}, this.singer);
+            // }
         }
     }
 </script>
