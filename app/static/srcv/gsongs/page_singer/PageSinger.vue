@@ -43,9 +43,9 @@
 
 		
 		
-			<modal-remove :showed="is_modal_remove" @on-cancel="is_modal_remove = false" @on-apply="remove_singer" @closed="remove_modal_closed">
+			<!-- <modal-remove :showed="is_modal_remove" @on-cancel="is_modal_remove = false" @on-apply="remove_singer" @closed="remove_modal_closed">
 				<p>Удалить исполнителя: {{ singer.name }} ?</p>
-			</modal-remove>
+			</modal-remove> -->
 		</div>
 	</div>
 </template>
@@ -111,7 +111,12 @@ export default {
 		},
 
 		show_remove: function(){
-			this.is_modal_remove = true;
+			let result = confirm("Удалить?");
+			if(result){
+				this.remove_singer()
+			}
+
+			// this.is_modal_remove = true;
 		},
 
 
@@ -125,13 +130,18 @@ export default {
 			// })
 			// 
 			console.log("need implement");
+			this.$store.dispatch("singer_remove", {"singer": this.singer}).then(() => {
+				// this.is_removed = true;
+				// this.is_modal_remove = false;
+				go_back();
+			})
 		},
 
-		remove_modal_closed: function(){
-			if(this.is_removed){
-				go_back();
-			}
-		},
+		// remove_modal_closed: function(){
+		// 	if(this.is_removed){
+		// 		go_back();
+		// 	}
+		// },
 
 
 

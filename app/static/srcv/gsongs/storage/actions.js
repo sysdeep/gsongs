@@ -89,5 +89,16 @@ export default {
 		})
 	},
 
+	singer_remove: function(context, params){
+		return new Promise((resolve, reject) =>{
+			net.remove_singer(params.singer).then(response => {
+				// console.log("create ok");
+				// let singer
+				context.dispatch("fetch_singers");
+				resolve();
+			})
+		})
+	},
+
 
 }

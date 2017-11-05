@@ -58,7 +58,7 @@
 
 
 <script>
-    import storage from "./storage";
+
     import {go_back} from "./utils";
     import net from "./net";
     
@@ -69,13 +69,6 @@
             return {
                 "singer_id"         : null,
                 "is_new"            : false,
-
-                // "singer_edit"       : 
-
-                "state"             : storage.state,
-                // "singer"            : null,
-                "singer_current"    : null,
-                "is_ready"          : true
             }  
         },
         
@@ -86,24 +79,6 @@
             this.is_new = this.singer_id == 0;
 
 
-
-            // storage.need_singers()
-            
-            // .then(() => {
-            //     let singer_id = this.$route.params.id;
-            //     let singer = null;
-            //     if(singer_id == 0){
-            //         singer = {
-            //             id: 0,
-            //             name: ""
-            //         }    
-            //     }else{
-            //         singer = this.state.singers.find(item => item.id == singer_id);
-            //     }
-            //     this.singer_current = singer;
-            //     this.singer = Object.assign({}, singer);
-            //     this.is_ready = true;
-            // });
         },
         
         
