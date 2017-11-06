@@ -108,6 +108,7 @@ export default {
 		
 		refresh: function(){
 			this.singer_id = this.$route.params.id;
+			this.$store.commit("set_singer_id", this.singer_id);
 		},
 
 		show_remove: function(){
