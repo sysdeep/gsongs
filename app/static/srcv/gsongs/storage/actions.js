@@ -11,6 +11,12 @@ export default {
 
 	select_singer: (context, singer) => context.commit("set_singer", singer),
 
+	set_current_singer: (context, singer_id) => {
+		let singer = context.state.singers.find(singer => singer.id == singer_id);
+		console.log(singer);
+		context.commit("set_singer", singer);
+	},
+
 	need_singers: function(context){
 		if(context.state.singers_loaded) return false;
 		context.dispatch("fetch_singers");

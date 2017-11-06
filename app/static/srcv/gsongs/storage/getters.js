@@ -50,6 +50,7 @@ export default {
 
 
 	find_singer: (state, getters) => (singer_id) => {
-		return state.singers.find(singer => singer.id == singer_id);
+		let singer = state.singers.find(singer => singer.id == singer_id);
+		return singer;
 	}
 }

@@ -26,7 +26,7 @@ export const store = new Vuex.Store({
 
 	mutations: {
 		set_singers: function(state, singers){
-			console.log("set singers");
+			// console.log("set singers");
 			state.singers = singers;
 			state.singers_loaded = true;
 		},
