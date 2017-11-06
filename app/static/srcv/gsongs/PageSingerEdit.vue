@@ -85,8 +85,8 @@
 		
 		
 		created: function(){
-			this.singer_id = this.$route.params.id;
-			this.is_new = this.singer_id == 0;
+			this.singer_id 	= this.$route.params.id;
+			this.is_new 	= this.singer_id == 0;
 
 			// this.$store.dispatch("set_current_singer", this.singer_id);
 

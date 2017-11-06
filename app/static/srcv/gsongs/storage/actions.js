@@ -3,11 +3,20 @@ import net from "../net";
 
 
 export default {
+
+
+	/**
+	 * получить список исполнителей
+	 */
 	fetch_singers: function(context){
 		net.get_singers().then(response => {
+			response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
 			context.commit("set_singers", response.data.singers);
 		});
 	},
+
+
+	
 
 	select_singer: (context, singer) => context.commit("set_singer", singer),
 

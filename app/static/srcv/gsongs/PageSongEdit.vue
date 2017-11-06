@@ -139,6 +139,9 @@
 			this.song_id = this.$route.params.id;
 			this.is_new = this.song_id == 0;
 
+			if(this.is_new)
+				this.song_edit.singer = this.$store.state.singer_id;
+
 			// this.is_ready
 
 			// storage.need_songs()
