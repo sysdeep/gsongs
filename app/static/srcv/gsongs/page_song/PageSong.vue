@@ -188,21 +188,31 @@ export default {
 
 		
 		show_remove: function(){
-			this.is_modal_remove = true;
+			let result = confirm("Удалить?");
+			if(result){
+				this.remove_song()
+			}
+			// this.is_modal_remove = true;
 		},
 
 		remove_song: function(){
-			net.remove_song(this.song).then((response)=>{
-				let index = this.state.songs.indexOf(this.song);
-				this.state.songs.splice(index, 1);
-				this.is_removed = true;
-				this.is_modal_remove = false;
-			})
+			this.$store.dispatch("song_remove", {"song": this.song}).then(() => {
+				this.$router.push("/songs");
+				// this.is_removed = true;
+				// this.is_modal_remove = false;
+			});
+			// net.remove_song(this.song).then((response)=>{
+			// 	let index = this.state.songs.indexOf(this.song);
+			// 	this.state.songs.splice(index, 1);
+			// 	this.is_removed = true;
+			// 	this.is_modal_remove = false;
+			// })
 		},
 
 		remove_modal_closed: function(){
 			if(this.is_removed){
-				go_back();
+				// go_back();
+				this.$router.push("/songs");
 			}
 		},
 
@@ -210,7 +220,7 @@ export default {
 
 
 		add_song: function(){
-			this.state.current_singer_id = this.singer.id;
+			// this.state.current_singer_id = this.singer.id;
 			this.$router.push("/song_edit/0");
 		},
 

@@ -94,10 +94,10 @@
 		
 		
 		methods: {
-			in_name: function(e){
-				console.log(e);
-				this.singer_edit.name = e.target.value;
-			},
+			// in_name: function(e){
+			// 	console.log(e);
+			// 	this.singer_edit.name = e.target.value;
+			// },
 
 			save: function(){
 

@@ -78,6 +78,7 @@ export default {
 				// console.log("update ok");
 				// let singer
 				context.dispatch("fetch_singers");
+
 				resolve();
 			})
 		})
@@ -105,6 +106,50 @@ export default {
 			})
 		})
 	},
+
+
+
+
+
+
+	song_update: function(context, params){
+		return new Promise((resolve, reject) =>{
+			net.update_song(params.song).then(response => {
+				// console.log("update ok");
+				// let song
+				context.dispatch("fetch_songs");
+				
+				resolve();
+			})
+		})
+	},
+
+
+	song_create: function(context, params){
+		return new Promise((resolve, reject) =>{
+			net.create_song(params.song).then(response => {
+				// console.log("create ok");
+				// let song
+				context.dispatch("fetch_songs");
+				resolve(response.data.result.id);
+			})
+		})
+	},
+
+	song_remove: function(context, params){
+		return new Promise((resolve, reject) =>{
+			net.remove_song(params.song).then(response => {
+				// console.log("create ok");
+				// let song
+				context.dispatch("fetch_songs");
+				resolve();
+			})
+		})
+	},
+
+
+
+
 
 
 }
