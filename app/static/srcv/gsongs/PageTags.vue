@@ -92,25 +92,6 @@ export default {
 
 			this.$store.dispatch("fetch_tags");
 
-			// this.is_edit = false;
-			// storage.fetch_tags().then(()=>{
-
-
-			// 	net.get_tags_songs().then(response => {
-			// 		console.log(response);
-			// 		this.links = response.data.result;
-
-			// 		this.is_ready = true;
-			// 	})
-			// })
-			
-
-			net.get_tags_songs().then(response => {
-					console.log(response);
-					this.links = response.data.result;
-
-					this.is_ready = true;
-				})
 		},
 
 		show_edit: function(item){

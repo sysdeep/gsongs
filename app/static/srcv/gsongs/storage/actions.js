@@ -81,29 +81,29 @@ export default {
 
 
 
-	singer_update: function(context, params){
-		return new Promise((resolve, reject) =>{
-			net.update_singer(params.singer).then(response => {
-				// console.log("update ok");
-				// let singer
-				context.dispatch("fetch_singers");
+	// singer_update: function(context, params){
+	// 	return new Promise((resolve, reject) =>{
+	// 		net.update_singer(params.singer).then(response => {
+	// 			// console.log("update ok");
+	// 			// let singer
+	// 			context.dispatch("fetch_singers");
 
-				resolve();
-			})
-		})
-	},
+	// 			resolve();
+	// 		})
+	// 	})
+	// },
 
 
-	singer_create: function(context, params){
-		return new Promise((resolve, reject) =>{
-			net.create_singer(params.singer).then(response => {
-				// console.log("create ok");
-				// let singer
-				context.dispatch("fetch_singers");
-				resolve(response.data.singer.id);
-			})
-		})
-	},
+	// singer_create: function(context, params){
+	// 	return new Promise((resolve, reject) =>{
+	// 		net.create_singer(params.singer).then(response => {
+	// 			// console.log("create ok");
+	// 			// let singer
+	// 			context.dispatch("fetch_singers");
+	// 			resolve(response.data.singer.id);
+	// 		})
+	// 	})
+	// },
 
 	singer_remove: function(context, params){
 		return new Promise((resolve, reject) =>{

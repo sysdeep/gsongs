@@ -111,16 +111,31 @@
 				if(this.is_new){
 					//create
 					// console.log("create");
-					this.$store.dispatch("singer_create", {"singer": this.singer_edit}).then((new_singer_id) => {
-						this.$router.push("/singer/" + new_singer_id);
-					});
+					
+					// this.$store.dispatch("singer_create", {"singer": this.singer_edit}).then((new_singer_id) => {
+					// 	this.$router.push("/singer/" + new_singer_id);
+					// });
+
+					net.create_singer(this.singer_edit).then(response => {
+						this.$store.dispatch("fetch_singers");
+						let singer_id = response.data.singer.id;
+						this.$router.push("/singer/" + singer_id);
+					})
 				}else{
 					//update
 					// console.log("update");
-					this.$store.dispatch("singer_update", {"singer": this.singer_edit}).then(() => {
-						go_back();
-					});
+					// this.$store.dispatch("singer_update", {"singer": this.singer_edit}).then(() => {
+					// 	go_back();
+					// });
 					// console.log("after update");
+					net.update_singer(this.singer_edit).then(response => {
+						// console.log("update ok");
+						// let singer
+						this.$store.dispatch("fetch_singers");
+
+						// resolve();
+						go_back();
+					})
 				}
 
 
@@ -157,16 +172,10 @@
 				let r = this.$store.getters.find_singer(this.singer_id);
 				if(r){
 					this.singer_edit = Object.assign({}, r);
-					return Object.assign({}, r);    
 				}
 
-				let new_row = {
-					"id"        : 0,
-					"name"      : ""
-				}
-
-				return new_row;
 				// return r;
+				return this.singer_edit;
 			},
 
 
