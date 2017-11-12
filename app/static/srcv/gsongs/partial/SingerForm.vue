@@ -1,7 +1,7 @@
 <template>
 	<div>
 		
-
+		Form
 
 	</div>
 </template>
@@ -13,12 +13,22 @@
 export default {
 
 
+	methods: {
+		qqq: function(){
+			console.log("qqq");
+		}
+	},
 
+	data: function(){
+		return {
+			"aaa": "aaa"
+		}
+	},
 
 	computed: {
-		singer: function(){
-			return {};
-		}
+		// singer: function(){
+		// 	return {};
+		// }
 	}
 }
 </script>

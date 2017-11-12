@@ -20,7 +20,7 @@
 
 		<!-- <h3 class="page-header">Список исполнителей</h3> -->
 	
-	   
+	   <!-- <c-qqq></c-qqq> -->
 
 
 		<h3 class="page-header">
@@ -135,6 +135,11 @@
 				<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 			</a>
 		</div>
+
+
+
+
+		<!-- <c-modal-edit></c-modal-edit> -->
 	
 	</div>
 </template>
@@ -142,6 +147,9 @@
 
 
 <script>
+
+// import component_qqq from "./partial/SingerForm.vue";
+// import component_modal_singer_edit from "./partial/ModalSingerEdit.vue";
 
 export default {
 	data: () => {
@@ -153,14 +161,23 @@ export default {
 		}
 	},
 
+	components: {
+		// "c-qqq": component_qqq,
+		// "c-modal-edit": component_modal_singer_edit,
+	},
+
 
 	created: function(){
-		
+		// console.log(component_qqq);
+		// window.vm = component_qqq;
 	},
 
 	methods: {
 		refresh: function(){
 			this.$store.dispatch("fetch_singers");
+			// console.log(component_qqq);
+			// console.log(component_modal_singer_edit.svc.show);;
+			// component_modal_singer_edit.svc.show();
 		},
 
 		sort: function(){
