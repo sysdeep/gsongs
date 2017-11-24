@@ -38,3 +38,10 @@
         added = yellow
         changed = green
         untracked = cyan
+
+
+## Tags
+
+    git tag                         # all tags
+    git tag v1.2.1                  # create tag
+    git push origin master --tags   # push tags to server
