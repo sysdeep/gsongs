@@ -60,9 +60,13 @@
                         <strong><i class="fa fa-cogs" aria-hidden="true"></i> Сервис</strong>
                     </a></li>
 
-                    <li id="main_menu_about"><a href="/logout" title="выход из системы">
+                    <li><a href="/logout" title="выход из системы">
                         <strong><i class="fa fa-sign-out" aria-hidden="true"></i> Выход</strong>
                     </a></li>
+
+                    <li id="main_menu_about"><router-link to="/about" title="Страница информации">
+                        <strong><span class="glyphicon glyphicon-credit-card"></span> О программе</strong>
+                    </router-link></li>
 
 
 

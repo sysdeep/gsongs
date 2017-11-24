@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 from vendor import auto
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 
 from . import storage, VERSION
 USERNAME = "diver"
 PASSWORD = "deep"
+
+
 
 def index():
 	
@@ -18,19 +21,6 @@ def index():
 	}
 	return render_template("gsongs_vue.html", **data)
 	
-
-
-def old_angular():
-	
-	if "username" not in session:
-		return redirect(url_for("login"))
-
-
-	data = {
-		"VERSION": VERSION
-	}
-	
-	return render_template("index.html", **data)
 
 
 
@@ -67,7 +57,7 @@ def login_post():
 		
 
 
-	print(form_username, form_password)
+	# print(form_username, form_password)
 	# print(request.form)
 	# return("Hello World!")
 	data = {
@@ -80,13 +70,24 @@ def login_post():
 
 
 
-def about():
-	return render_template("about.html")
-
-
 
 def chords_page111():
 	data = {
 		"VERSION": VERSION
 	}
 	return render_template("chords.html", **data)
+
+
+
+
+
+def releases_json():
+	"""releases content"""
+	FILE_NAME 	= "release.md"
+	DIR_SELF 	= os.path.dirname(os.path.abspath(__file__))
+	FILE_PATH	= os.path.normpath(os.path.join(DIR_SELF, "..", FILE_NAME))
+
+	with open(FILE_PATH, "r", encoding="utf-8") as fd:
+		rdata = fd.read()
+	
+	return jsonify(result=rdata)

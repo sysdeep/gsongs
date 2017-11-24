@@ -21,11 +21,9 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/asfdddfO'
 #--- routes -------------------------------------------------------------------
 
 app.add_url_rule("/", 						view_func=ctrl_main.index)
-app.add_url_rule("/angular", 				view_func=ctrl_main.old_angular)
 app.add_url_rule("/login", 					view_func=ctrl_main.login)
 app.add_url_rule("/login", 					view_func=ctrl_main.login_post, methods=["POST"])
 app.add_url_rule("/logout", 				view_func=ctrl_main.logout)
-app.add_url_rule("/about", 					view_func=ctrl_main.about)
 app.add_url_rule("/chords", 				view_func=ctrl_main.chords_page111)
 
 
@@ -90,5 +88,11 @@ app.add_url_rule("/api/chords_all", 					view_func=ctrl_chords.get_chords)
 app.add_url_rule("/api/chords_group/<group_id>", 		view_func=ctrl_chords.get_chords_for_group)
 app.add_url_rule("/api/chord_groups", 					view_func=ctrl_chords.get_chord_groups)
 app.add_url_rule("/api/chord_variants/<chord_id>", 		view_func=ctrl_chords.get_chord_variants)
+
+
+
+
+
+app.add_url_rule("/api/releases", 		view_func=ctrl_main.releases_json)
 #--- routes -------------------------------------------------------------------
 

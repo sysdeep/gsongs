@@ -32,6 +32,7 @@
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "raw-loader": "^0.5.1",
+    "snarkdown": "^1.2.2",
     "uglifyify": "^3.0.4",
     "vue-loader": "^12.2.1",
     "vue-template-compiler": "^2.3.4",
