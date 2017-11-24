@@ -1,27 +1,11 @@
 <template>
-	<div v-if="song">
+	<div>
 
 
 		<h3 class="page-header">
 			<span v-if="is_new">Создание записи</span>
-			<span v-if="!is_new">Изменение записи <strong>{{ song.name }}</strong></span>
+			<span v-if="!is_new">Изменение записи <strong>{{ song_name }}</strong></span>
 		</h3>
-
-		<!-- <nav class="navbar navbar-default">
-			<div class="container-fluid">
-		
-				<div class="navbar-header">
-					<span class="navbar-brand">
-						<span v-if="song_current.id == 0">Создание записи</span>
-						<span v-if="song_current.id != 0">Изменение записи <strong>{{ song_current.name }}</strong></span>
-						
-					</span>
-				</div>
-		
-		
-		
-			</div>
-		</nav> -->
 
 
 
@@ -124,12 +108,6 @@
 				"song_id"           : null,
 				"is_new"            : false,
 
-				"song_edit"			: get_default_song()
-
-				// "state"             : storage.state,
-				// "song"            : null,
-				// "song_current"    : null,
-				// "is_ready"          : false
 			}  
 		},
 		
@@ -138,88 +116,51 @@
 		created: function(){
 			this.song_id = this.$route.params.id;
 			this.is_new = this.song_id == 0;
-
-			if(this.is_new)
-				this.song_edit.singer = this.$store.state.singer_id;
-
-			// this.is_ready
-
-			// storage.need_songs()
-			// 	.then(storage.need_singers)
-			// 	.then(() => {
-			// 		let song_id = this.$route.params.id;
-			// 		let song = null;
-			// 		if(song_id == 0){
-			// 			song = get_default_song();
-			// 		}else{
-			// 			song = this.state.songs.find(item => item.id == song_id);
-			// 		}
-			// 		this.song_current = song;
-			// 		this.song = Object.assign({}, song);
-
-
-			// 		//--- если есть переменная - пришли со страницы исполнителя, скорее всего хотим добавить ему песенку - сразу выставляем)
-			// 		if(this.state.current_singer_id){
-			// 			this.song.singer = this.state.current_singer_id;
-			// 		}
-
-			// 		this.is_ready = true;
-			// 	});
 		},
 		
 		
 		methods: {
 			save: function(){
 
-				// return false;
-
 
 				if(this.is_new){
-					//create
-					// console.log("create");
-					this.$store.dispatch("song_create", {"song": this.song_edit}).then((new_song_id) => {
+					
+					this.$store.dispatch("song_create", this.song_edit).then((new_song_id) => {
 						this.$router.push("/song/" + new_song_id);
 					});
 				}else{
-					//update
-					// console.log("update");
-					this.$store.dispatch("song_update", {"song": this.song_edit}).then(() => {
+					
+					this.$store.dispatch("song_update", this.song_edit).then(() => {
 						go_back();
 					});
-					// console.log("after update");
+					
 				}
 
 
 				
-				// if(this.song.id == 0){
-				//     net.create_song(this.song).then((response)=>{
-				//         let song = Object.assign({}, this.song);
-				//         song.updated = response.data.result.updated;
-				//         song.created = response.data.result.created;
-				//         song.id      = response.data.result.id;
-				//         this.state.songs.push(song);
-				//         this.$router.push("/song/" + song.id);
-				//     });
-				// }else{
-				//     net.update_song(this.song).then((response)=>{
-				//         Object.assign(this.song_current, this.song);
-				//         this.song_current.updated = response.data.result.updated;
-				//         go_back();
-				//     });
-				// }
+				
 			}
 		},
 
 
 		computed: {
 			song: function(){
-				let song = this.$store.state.songs.find(song => song.id == this.song_id);
-				if(song){
-					this.song_edit = Object.assign({}, song);
-				}
-				return get_default_song();
+				return this.$store.getters.find_song(this.song_id);
 			},
 
+			song_name: function(){
+				return this.song? this.song.name : "---";
+			},
+
+			song_edit: function(){
+				if(this.is_new){
+					let result = get_default_song();
+					result.singer = this.$store.state.singer_id;
+					return result;
+				}else{
+					return Object.assign({}, this.song);
+				}
+			},
 
 
 			singers: function(){

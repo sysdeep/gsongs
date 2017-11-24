@@ -29,6 +29,7 @@ app.add_url_rule("/about", 					view_func=ctrl_main.about)
 app.add_url_rule("/chords", 				view_func=ctrl_main.chords_page111)
 
 
+
 #--- singers
 app.add_url_rule("/get_singers",						view_func=ctrl_singers.get_singers)
 app.add_url_rule("/create_singer",						view_func=ctrl_singers.create_singer, methods=["POST"])

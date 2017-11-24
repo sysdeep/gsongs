@@ -78,7 +78,7 @@ export default {
 
 	computed: {
 		songs: function(){
-			let result = this.$store.state.songs.filter(song => song.singer == this.singerid);
+			let result = this.$store.getters.singer_songs(this.singerid);
 			
 			result.sort((a, b) =>{
                 if(this.sort_dir){

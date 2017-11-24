@@ -1,14 +1,20 @@
 <template>
 	<div>
 		
-		<h4 class="page-header">Tags</h4>
+		<h4 class="page-header">Метки</h4>
 		
 		<div class="row">
 			<div class="col-md-6">
 				<strong>Доступные</strong>
 				<ul>
 					<li v-for="(tag, index) in free_tags" :key="index">
-						<a href="javascript: void(0)" @click="add_tag(tag)">{{ tag.name }}</a>
+						
+						[
+						<a href="javascript: void(0)" @click="add_tag(tag)" title="добавить метку к песне">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+						</a>
+						]
+						<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{ tag.name }}</router-link>
 					</li> 
 				</ul>
 			</div>
@@ -16,8 +22,15 @@
 				<strong>Выбранные</strong>
 				<ul>
 					<li v-for="(tag, index) in song_tags" :key="index">
-						<router-link :to="/tag/ + tag.id">go</router-link>
-						<a href="javascript: void(0)" @click="remove_tag(tag)">{{ tag.name }}</a>
+
+
+						[
+						<a href="javascript: void(0)" @click="remove_tag(tag)" title="удалить метку">
+							<i class="fa fa-minus" aria-hidden="true"></i>
+						</a>
+						]
+						<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{ tag.name }}</router-link>
+
 					</li>
 				</ul>
 		

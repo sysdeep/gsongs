@@ -20,6 +20,20 @@ export default {
 
 	select_singer: (context, singer) => context.commit("set_singer", singer),
 
+
+
+
+	set_singer_id: function(context, singer_id){
+		context.commit("set_singer_id", singer_id);
+		// console.log(singer_id);
+		// let singer = context.getters.find_singer(singer_id);
+		// console.log(context.state.singers);
+		// console.log(singer);
+		// context.commit("set_singer", singer);
+	},
+
+
+
 	set_current_singer: (context, singer_id) => {
 		let singer = context.state.singers.find(singer => singer.id == singer_id);
 		console.log(singer);
@@ -80,36 +94,10 @@ export default {
 
 
 
-
-	// singer_update: function(context, params){
-	// 	return new Promise((resolve, reject) =>{
-	// 		net.update_singer(params.singer).then(response => {
-	// 			// console.log("update ok");
-	// 			// let singer
-	// 			context.dispatch("fetch_singers");
-
-	// 			resolve();
-	// 		})
-	// 	})
-	// },
-
-
-	// singer_create: function(context, params){
-	// 	return new Promise((resolve, reject) =>{
-	// 		net.create_singer(params.singer).then(response => {
-	// 			// console.log("create ok");
-	// 			// let singer
-	// 			context.dispatch("fetch_singers");
-	// 			resolve(response.data.singer.id);
-	// 		})
-	// 	})
-	// },
-
-	singer_remove: function(context, params){
+	//--- singer actions ------------------------------------------------------
+	singer_update: function(context, esinger){
 		return new Promise((resolve, reject) =>{
-			net.remove_singer(params.singer).then(response => {
-				// console.log("create ok");
-				// let singer
+			net.update_singer(esinger).then(response => {
 				context.dispatch("fetch_singers");
 				resolve();
 			})
@@ -117,17 +105,34 @@ export default {
 	},
 
 
+	singer_create: function(context, esinger){
+		return new Promise((resolve, reject) =>{
+			net.create_singer(esinger).then(response => {
+				context.dispatch("fetch_singers");
+				resolve(response.data.singer.id);
+			})
+		})
+	},
+
+	singer_remove: function(context, esinger){
+		return new Promise((resolve, reject) =>{
+			net.remove_singer(esinger).then(response => {
+				context.dispatch("fetch_singers");
+				resolve();
+			})
+		})
+	},
+	//--- singer actions ------------------------------------------------------
 
 
 
 
+
+	//--- song actions --------------------------------------------------------
 	song_update: function(context, params){
 		return new Promise((resolve, reject) =>{
-			net.update_song(params.song).then(response => {
-				// console.log("update ok");
-				// let song
+			net.update_song(params).then(response => {
 				context.dispatch("fetch_songs");
-				
 				resolve();
 			})
 		})
@@ -136,9 +141,7 @@ export default {
 
 	song_create: function(context, params){
 		return new Promise((resolve, reject) =>{
-			net.create_song(params.song).then(response => {
-				// console.log("create ok");
-				// let song
+			net.create_song(params).then(response => {
 				context.dispatch("fetch_songs");
 				resolve(response.data.result.id);
 			})
@@ -147,14 +150,13 @@ export default {
 
 	song_remove: function(context, params){
 		return new Promise((resolve, reject) =>{
-			net.remove_song(params.song).then(response => {
-				// console.log("create ok");
-				// let song
+			net.remove_song(params).then(response => {
 				context.dispatch("fetch_songs");
 				resolve();
 			})
 		})
 	},
+	//--- song actions --------------------------------------------------------
 
 
 

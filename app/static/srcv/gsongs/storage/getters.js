@@ -31,7 +31,6 @@ export default {
 
 	/**
 	 * найти имя исполнителя по заданному id
-	 * TODO: - сделать кэш!
 	 */
 	get_singer_name: (state, getters) => (singer_id) => {
 		let cache_result = SINGER_NAME_CACHE[singer_id];
@@ -49,8 +48,30 @@ export default {
 	},
 
 
+
+	/**
+	 * найти исполнителя по id
+	 */
 	find_singer: (state, getters) => (singer_id) => {
 		let singer = state.singers.find(singer => singer.id == singer_id);
 		return singer;
-	}
+	},
+
+
+	/**
+	 * получить список песенок для исполнителя
+	 */
+	singer_songs: (state, getters) => (singer_id) => {
+		return state.songs.filter(song => song.singer == singer_id);
+	},
+
+
+
+	/**
+	 * найти исполнителя по id
+	 */
+	find_song: (state, getters) => (song_id) => {
+		let song = state.songs.find(song => song.id == song_id);
+		return song;
+	},
 }

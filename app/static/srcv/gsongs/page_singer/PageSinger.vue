@@ -68,7 +68,7 @@ export default {
 		return {
 
 			"singer_id"			: null,
-			"state": storage.state,
+			// "state": storage.state,
 
 			// "singer_songs": [],
 			// "singer": {
@@ -108,7 +108,7 @@ export default {
 		
 		refresh: function(){
 			this.singer_id = this.$route.params.id;
-			this.$store.commit("set_singer_id", this.singer_id);
+			this.$store.dispatch("set_singer_id", this.singer_id);
 		},
 
 		show_remove: function(){
@@ -121,20 +121,9 @@ export default {
 		},
 
 
-		//!!! - implement!!!!
 		remove_singer: function(){
-			// net.remove_singer(this.singer).then((response)=>{
-			// 	let index = this.state.singers.indexOf(this.singer);
-			// 	this.state.singers.splice(index, 1);
-			// 	this.is_removed = true;
-			// 	this.is_modal_remove = false;
-			// })
-			// 
-			console.log("need implement");
-			this.$store.dispatch("singer_remove", {"singer": this.singer}).then(() => {
-				// this.is_removed = true;
-				// this.is_modal_remove = false;
-				go_back();
+			this.$store.dispatch("singer_remove", this.singer).then(() => {
+				this.$router.push("/singers");
 			})
 		},
 
@@ -148,7 +137,7 @@ export default {
 
 
 		add_song: function(){
-			this.state.current_singer_id = this.singer.id;
+			// this.state.current_singer_id = this.singer.id;
 			this.$router.push("/song_edit/0");
 		}
 	},
@@ -157,12 +146,11 @@ export default {
 
 	computed: {
 		singer: function(){
-			return this.$store.state.singers.find(singer => singer.id == this.singer_id);
+			return this.$store.getters.find_singer(this.singer_id);
 		},
 
-
 		is_songs: function(){
-			let result = this.$store.state.songs.filter(song => song.singer == this.singer.id);
+			let result = this.$store.getters.singer_songs(this.singer_id);
 			return result.length > 0;
 		}
 	},

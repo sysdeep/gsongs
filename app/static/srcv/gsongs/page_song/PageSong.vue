@@ -13,32 +13,10 @@
 
 
 		<h3 class="page-header">
-			<span>{{ singer_name }}</span> -
-						<span>{{ song.name }}</span>
+			{{ singer_name }} - {{ song.name }}
 		</h3>
 
-		<!-- <nav class="navbar navbar-default">
-			<div class="container-fluid">
-	
-				<div class="navbar-header">
-					<span class="navbar-brand">
-						<span>{{ singer.name }}</span> -
-						<span>{{ song.name }}</span>
-					</span>
-	
-				</div>
-	
-	
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<router-link to="/song_edit/0" title="перейти к созданию">
-							<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-						</router-link>
-					</li>
-				</ul>
-	
-			</div>
-		</nav> -->
+		
 	
 		<div class="row">
 			<div class="col-md-5">
@@ -51,7 +29,7 @@
 								<router-link :to='/singer/ + song.singer' title='перейти на страницу исполнителя'>
         							{{ singer_name }}
     							</router-link>
-								<!-- <lsinger :cdata="singer"></lsinger> -->
+								
 							</td>
 						</tr>
 	
@@ -96,9 +74,6 @@
 				<button-back></button-back>
 	
 				<div class="pull-right">
-					<!--<button-remove ng-click="self.show_remove()"></button-remove>
-					<lbutton-edit href="#/song_edit/[[ self.item.id ]]"></lbutton-edit>-->
-
 					<button class="btn btn-success" @click="add_song" title="добавить запись">
 						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 					</button>
@@ -121,9 +96,9 @@
 			</div>
 			<div class="col-md-7">
 	
-				<pre>
-	{{ song.text }}
-	</pre>
+<pre>
+{{ song.text }}
+</pre>
 	
 			</div>
 		</div>
@@ -181,9 +156,6 @@ export default {
 	methods: {
 		refresh: function(){
 			this.id = this.$route.params.id;
-			// let song = this.$store.state.songs.find(song => song.id == this.id);
-			// console.log(song);
-
 		},
 
 		
@@ -196,17 +168,9 @@ export default {
 		},
 
 		remove_song: function(){
-			this.$store.dispatch("song_remove", {"song": this.song}).then(() => {
+			this.$store.dispatch("song_remove", this.song).then(() => {
 				this.$router.push("/songs");
-				// this.is_removed = true;
-				// this.is_modal_remove = false;
 			});
-			// net.remove_song(this.song).then((response)=>{
-			// 	let index = this.state.songs.indexOf(this.song);
-			// 	this.state.songs.splice(index, 1);
-			// 	this.is_removed = true;
-			// 	this.is_modal_remove = false;
-			// })
 		},
 
 		remove_modal_closed: function(){
@@ -235,6 +199,9 @@ export default {
 	computed: {
 		song: function(){
 			let song = this.$store.state.songs.find(song => song.id == this.id);
+			if(song){
+				this.$store.dispatch("set_singer_id", song.singer);
+			}
 			return song;
 		},
 

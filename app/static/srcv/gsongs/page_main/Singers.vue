@@ -44,6 +44,7 @@ export default {
 	methods: {
 		select_singer: function(singer){
 			this.$store.dispatch("select_singer", singer);
+			// this.$store.dispatch("set_singer_id", singer.id);
 			this.current_singer = singer;
 		}
 	},

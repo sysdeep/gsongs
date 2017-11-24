@@ -9,10 +9,10 @@ var webpack = require('webpack');
 var config = {
 	entry: {
 
-        "gsongs"	: path.join(__dirname, "app", "static", "srcv", "gsongs", "app.js"),
-        "todo"		: path.join(__dirname, "app", "static", "srcv", "todo", "main.js"),
-        "chords"	: path.join(__dirname, "app", "static", "srcv", "chords", "main.js"),
-        
+		"gsongs"	: path.join(__dirname, "app", "static", "srcv", "gsongs", "app.js"),
+		"todo"		: path.join(__dirname, "app", "static", "srcv", "todo", "main.js"),
+		"chords"	: path.join(__dirname, "app", "static", "srcv", "chords", "main.js"),
+		
 		"vendor"	: ["vue", "axios"]
 		
 	},
@@ -54,8 +54,8 @@ var config = {
 				test: /\.vue$/,
 				loader: 'vue-loader',
 				// query: {
-                //     presets: ['es2015']
-                // },
+				//     presets: ['es2015']
+				// },
 				options: {
 					loaders: {
 						js: 'babel-loader?presets[]=es2015'

@@ -36,32 +36,32 @@ Vue.use(VueRouter);
 
 
 const router = new VueRouter({
-    routes
+	routes
 });
 
 
 
 
 const app = new Vue({
-    el: "#app",
-    template: require("./app.html"),
-    router: router,
-    store,
+	el: "#app",
+	template: require("./app.html"),
+	router: router,
+	store,
 
-    created: function(){
-
-
-        //--- preload main data
-        this.$store.dispatch("fetch_singers");
-        this.$store.dispatch("fetch_songs");
-        this.$store.dispatch("fetch_tags");
-        this.$store.dispatch("fetch_tag_song_links");
-    },
+	created: function(){
 
 
-    
+		//--- preload main data
+		this.$store.dispatch("fetch_singers");
+		this.$store.dispatch("fetch_songs");
+		this.$store.dispatch("fetch_tags");
+		this.$store.dispatch("fetch_tag_song_links");
+	},
 
-    components: {
-        "mainMenu": component_menu
-    }
+
+	
+
+	components: {
+		"mainMenu": component_menu
+	}
 });

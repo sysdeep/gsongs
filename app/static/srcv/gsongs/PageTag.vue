@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h3 class="page-header">Список песенок для тега <small>{{ tag_name }}</small></h3>
+		<h3 class="page-header">{{ tag_name }} <small>список песенок</small></h3>
 
 
 
@@ -9,14 +9,14 @@
 				<table class="table table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th>id</th>
-							<th>song</th>
-							<th>singer</th>
+							<!-- <th>id</th> -->
+							<th>Песенка</th>
+							<th>Исполнитель</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr v-for="(song, index) in tag_songs" :key="index">
-							<td>{{ song.id }}</td>
+							<!-- <td>{{ song.id }}</td> -->
 							<td>
 								<router-link :to="/song/ + song.id">{{ song.name }}</router-link>
 							</td>

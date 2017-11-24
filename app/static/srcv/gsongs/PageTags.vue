@@ -7,25 +7,29 @@
 				<table class="table table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th>id</th>
-							<th>название</th>
-							<th>songs</th>
-							<th>опции</th>
+							<!-- <th>id</th> -->
+							<th>Название</th>
+							<th>Кол-во песенок</th>
+							<th>Опции</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr v-for="(tag, index) in ftags" :key="index">
-							<td>{{ tag.id }}</td>
+							<!-- <td>{{ tag.id }}</td> -->
 							<td>
-								<router-link :to="/tag/ + tag.id">{{tag.name}}</router-link>
+								<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{tag.name}}</router-link>
 							</td>
-							<td>
+							<td style="text-align: center">
 								{{ get_songs_count(tag.id) }}
 							</td>
-							<td>
-								<a href="javascript: void(0)" @click="show_edit(tag)">изменить</a>
-								|
-								<a href="javascript: void(0)" @click="show_remove(tag)">удалить</a>
+							<td style="text-align: center">
+								<a href="javascript: void(0)" @click="show_edit(tag)">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i> изменить
+								</a>
+								<!-- |
+								<a href="javascript: void(0)" @click="show_remove(tag)">
+									<i class="fa fa-trash" aria-hidden="true"></i> удалить
+								</a> -->
 							</td>
 						</tr>
 					</tbody>
@@ -39,6 +43,10 @@
 			<div class="col-md-4">
 	
 				<div v-if="is_edit">
+
+					<h4 v-if="is_new">Создание</h4>
+					<h4 v-if="!is_new">Изменение</h4>
+
 					<form>
 						<div class="form-group">
 							<label for="tag_name">Название</label>
@@ -46,15 +54,23 @@
 						</div>
 	
 					</form>
-					<button class="btn btn-primary" @click="save_edit">
-						<i class="fa fa-floppy-o" aria-hidden="true"></i>
-						Сохранить
-					</button>
+
 					
 					<button class="btn btn-default" @click="hide_edit">
-						<i class="fa fa-ban" aria-hidden="true"></i>
-						Отмена
-					</button>
+						<i class="fa fa-ban" aria-hidden="true"></i> Отмена
+					</button>	
+					
+					<div class="pull-right">
+						<button class="btn btn-danger" @click="show_remove" :disabled="get_songs_count(item_edit.id) > 0" v-if="!is_new">
+								<i class="fa fa-trash" aria-hidden="true"></i> удалить
+						</button>
+
+						<button class="btn btn-primary" @click="save_edit">
+							<i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить
+						</button>
+					</div>
+					
+					
 				</div>
 	
 			</div>
@@ -72,6 +88,7 @@ export default {
 			"state"		: storage.state,
 			"is_ready"	: false,
 			"is_edit"	: false,
+			"is_new"	: false,
 			"item_edit"	: null,
 			"item_current": null,
 
@@ -97,6 +114,7 @@ export default {
 		show_edit: function(item){
 			this.item_current = item;
 			this.item_edit = Object.assign({}, item);
+			this.is_new = false;
 			this.is_edit = true;
 		},
 
@@ -109,11 +127,12 @@ export default {
 				"name" 	: "",
 				"id"	: 0
 			}
+			this.is_new = true;
 			this.is_edit = true;
 		},
 
-		show_remove: function(item){
-			this.item_edit = item;
+		show_remove: function(){
+			// this.item_edit = item;
 
 			let result = confirm("Удалить?");
 			if(result){
@@ -124,7 +143,7 @@ export default {
 		},
 
 		save_edit: function(){
-			if(this.item_edit.id == 0){
+			if(this.is_new){
 				net.create_tag(this.item_edit).then(response => {
 					this.refresh();
 					this.is_edit = false;
