@@ -1,4 +1,5 @@
 import page_main from "./page_main/PageMain.vue";
+import page_main2 from "./page_main2/PageMain2.vue";
 import page_singers from "./PageSingers.vue";
 import page_singer from "./page_singer/PageSinger.vue";
 import page_songs from "./PageSongs.vue";
@@ -15,6 +16,7 @@ import page_about from "./PageAbout.vue";
 
 export const routes = [
     { path: '/', component: page_main },
+    { path: '/main2', component: page_main2 },
     { path: '/singers', component: page_singers },
     { path: '/singer/:id', component: page_singer },
     { path: '/singer_edit/:id', component: page_singer_edit },
