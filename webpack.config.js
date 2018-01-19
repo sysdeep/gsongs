@@ -9,9 +9,10 @@ var webpack = require('webpack');
 var config = {
 	entry: {
 
-		"gsongs"	: path.join(__dirname, "app", "static", "srcv", "gsongs", "app.js"),
-		"todo"		: path.join(__dirname, "app", "static", "srcv", "todo", "main.js"),
-		"chords"	: path.join(__dirname, "app", "static", "srcv", "chords", "main.js"),
+		"gsongs"		: path.join(__dirname, "app", "srcv", "gsongs", "app.js"),
+		"todo"			: path.join(__dirname, "app", "srcv", "todo", "main.js"),
+		"chords_edit"	: path.join(__dirname, "app", "srcv", "chords_edit", "main.js"),
+		"chords_view"	: path.join(__dirname, "app", "srcv", "chords_view", "main.js"),
 		
 		"vendor"	: ["vue", "axios"]
 		
@@ -82,24 +83,35 @@ var config = {
 // 		"proto2": './public/src/protos2/proto_page/app.js',
 // 	}
 // }
+
+
+// if(process.env.hasOwnProperty("PRODUCTION")){
+// 	console.log("Start build app");
+// 	config.watch = false;
+// 	config.devtool = 'source-map';
+// 	config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool}));
+// 	// config.stats = "normal";
+// }else{
+// 	console.log("Start watch app");
+// 	config.watch = true;
+// 	config.devtool = 'inline-source-map';
+// }
+
+
+
 var ENV = process.env.npm_lifecycle_event;
-// console.log(ENV)
+
 switch(ENV){
 	
 	case "dev":
-		// config.entry["projects"] = entries["projects"];
+		console.log("Start watch app");
 		config.devtool = 'inline-source-map';
 		break;
-	// case "templates":
-	// 	config.entry["templates"] = entries["templates"];
-	// 	config.entry["template"] = entries["template"];
-	// 	config.devtool = 'inline-source-map';
-	// 	break;
+
 	case "build":
-		// config.entry["projects"] = entries["projects"];
+		console.log("Start build app");
 		config.devtool = 'source-map';
 		config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool, compress: {	warnings: false	}}));
-		// config.plugins.push(new webpack.LoaderOptionsPlugin({minimize: true}))
 		break;
 }
 module.exports = config;
