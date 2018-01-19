@@ -59,7 +59,7 @@ def write_chords():
 
 def main():
 
-	#--- 1 make groups	 
+	#--- 1 make groups	 (make on 2)
 	# write_groups()
 	
 	#--- 2 chords
