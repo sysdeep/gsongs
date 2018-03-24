@@ -5,11 +5,11 @@ import {store} from "./storage/store";
 
 
 
-
+import App from "./App.vue";
 // import component_menu from "./menu/menu";
 // import page_main from "./page_main/page_main";
 // import page_singers from "./page_singers/page_singers";
-import component_menu from "./Menu.vue";
+// import component_menu from "./Menu.vue";
 
 
 import component_button_back from "./components/ButtonBack.vue";
@@ -44,12 +44,12 @@ const router = new VueRouter({
 
 const app = new Vue({
 	el: "#app",
-	template: require("./app.html"),
+	// template: require("./app.html"),
+	render: (h) => h(App),
 	router: router,
 	store,
 
 	created: function(){
-
 
 		//--- preload main data
 		this.$store.dispatch("fetch_singers");
@@ -61,7 +61,7 @@ const app = new Vue({
 
 	
 
-	components: {
-		"mainMenu": component_menu
-	}
+	// components: {
+	// 	"mainMenu": component_menu
+	// }
 });
