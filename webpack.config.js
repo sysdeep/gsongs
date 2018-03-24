@@ -1,3 +1,7 @@
+/**
+ * 2018.03.24 - DEPRICATED
+ * see separate configs for each app
+ */
 var path = require("path");
 var webpack = require('webpack');
 
