@@ -42,9 +42,9 @@ app.add_url_rule("/app/<path:path>",		view_func=ctrl_main.app)
 #--- singers
 app.add_url_rule("/api/get_singers",					view_func=ctrl_singers.get_singers)
 app.add_url_rule("/api/get_singer/<singer_id>",			view_func=ctrl_singers.get_singer)
-app.add_url_rule("/create_singer",						view_func=ctrl_singers.create_singer, methods=["POST"])
-app.add_url_rule("/update_singer",						view_func=ctrl_singers.update_singer, methods=["POST"])
-app.add_url_rule("/remove_singer",						view_func=ctrl_singers.remove_singer, methods=["POST"])
+app.add_url_rule("/api/create_singer",					view_func=ctrl_singers.create_singer, methods=["POST"])
+app.add_url_rule("/api/update_singer",					view_func=ctrl_singers.update_singer, methods=["POST"])
+app.add_url_rule("/api/remove_singer",					view_func=ctrl_singers.remove_singer, methods=["POST"])
 
 
 #--- songs

@@ -121,9 +121,13 @@
 					<td>{{ singer.updated }}</td> -->
 					<td>
 						
-						<router-link :to="/singer_edit/ + singer.id" title="изменить запись">
+						<a href="javascript: void(0)" title="изменить запись" @click="show_edit_singer(singer.id)">
 							<i class="fa fa-pencil"></i> изменить
-						</router-link>
+						</a>
+
+						<!-- <router-link :to="/singer_edit/ + singer.id" title="изменить запись">
+							<i class="fa fa-pencil"></i> изменить
+						</router-link> -->
 						<!-- |
 							<a href="javascript: void(0)" ng-click="show_remove_singer(singer)" title="отобразить запрос удаления">
 								<i class="fa fa-trash-o"></i> удалить
@@ -136,11 +140,11 @@
 
 
 
-		<div class="pull-right">
+		<!-- <div class="pull-right">
 			<a class="btn btn-success" href="#/singer_edit/0" title="добавить запись">
 				<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 			</a>
-		</div>
+		</div> -->
 
 
 
@@ -155,8 +159,6 @@
 <script>
 
 import bus from "./bus";
-// import component_qqq from "./partial/SingerForm.vue";
-// import component_modal_singer_edit from "./partial/ModalSingerEdit.vue";
 
 export default {
 	data: () => {
@@ -168,28 +170,23 @@ export default {
 		}
 	},
 
-	components: {
-		// "c-qqq": component_qqq,
-		// "c-modal-edit": component_modal_singer_edit,
-	},
 
-
-	created: function(){
-		// console.log(component_qqq);
-		// window.vm = component_qqq;
-	},
+	
 
 	methods: {
 		show_create_singer(){
 			bus.$emit("show_create_singer");
 		},
 
+		show_edit_singer(singer_id){
+			bus.$emit("show_edit_singer", singer_id);
+		},
+
 
 		refresh: function(){
-			this.$store.dispatch("fetch_singers");
-			// console.log(component_qqq);
-			// console.log(component_modal_singer_edit.svc.show);;
-			// component_modal_singer_edit.svc.show();
+			this.$store.dispatch("fetch_singers").then(() => {
+				this.$toastr.success("Список обновлён");
+			});
 		},
 
 		sort: function(){

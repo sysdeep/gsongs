@@ -8,21 +8,28 @@ const net_factory =  {
         return axios.get("/api/get_singers");
     },
 
+    get_singer(singer_id){
+        return axios.get("/api/get_singer/" + singer_id);
+    },
+
     get_songs: function(){
         return axios.get("/api/get_songs");
     },
 
 
     update_singer: function(idata){
+        console.log("net update_singer - depricated");
         return axios.post("/update_singer", idata);
     },
 
     create_singer: function(idata){
+        console.log("net create_singer - depricated");
         return axios.post("/create_singer", idata);
     },
 
 
     remove_singer: function(idata){
+        console.log("net remove_singer - depricated");
         return axios.post("/remove_singer", idata);
     },
 

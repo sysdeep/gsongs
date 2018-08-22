@@ -19,6 +19,10 @@ import component_lsinger from "./components/LSinger.vue";
 import component_lsong from "./components/LSong.vue";
 import component_modal_remove from "./components/ModalRemove.vue";
 
+import toastr from "./toastr";
+import alert from "./alert";
+
+
 import {routes} from "./router";
 
 
@@ -32,6 +36,8 @@ Vue.component("modal-remove", component_modal_remove);
 
 
 Vue.use(VueRouter);
+Vue.use(toastr);
+Vue.use(alert);
 
 
 

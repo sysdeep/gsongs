@@ -6,7 +6,7 @@
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         		<h4 class="modal-title">
         			<span v-if="is_new">Создание исполнителя</span>
-        			<span v-else>Изменение исполнителя</span>
+        			<span v-else>Изменение исполнителя <strong>{{ org_name }}</strong></span>
 					<!-- <span v-if="!is_new">Изменение исполнителя <strong>{{ singer_name }}</strong></span> -->
         		</h4>
       		</div>
@@ -21,7 +21,7 @@
       		</div>
       
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Закрыть</button>
         		<button-save @click="save()"></button-save>
       		</div>
     	</div><!-- /.modal-content -->
@@ -31,6 +31,7 @@
 
 <script>
 import bus from "../bus";
+import net from "../net";
 import {get_default_singer} from "../utils";
 
 const MODAL_ID = "#modal_singer_edit";
@@ -38,40 +39,58 @@ const MODAL_ID = "#modal_singer_edit";
 export default {
 	data(){
 		return {
-			item 	: get_default_singer(),
-			is_new	: false,
+			item 		: get_default_singer(),
+			is_new		: false,
+			org_name	: ""
 		}
 	},
 
 	created(){
 		bus.$on("show_create_singer", this.show_create);
+		bus.$on("show_edit_singer", this.show_edit);
 	},
 
 
 	methods: {
 		show_create(){
-			console.log("show_create");
 			this.item = get_default_singer();
 			this.is_new = true;
 			this.__open();
 		},
 
+		show_edit(singer_id){
+			net.get_singer(singer_id).then(response => {
+				this.item = response.data.singer;
+				this.is_new = false;
+				this.org_name = this.item.name;
+				this.__open();
+			});
+		},
+
 		save(){
-			// console.log(this.item);
-			// this.__close();
+			
+			let validation_result = this.__validate(this.item);
+			if(validation_result.length > 0){
+				this.$toastr.warning(validation_result);
+				return false;
+			}
 			
 			if(this.is_new){
 
-				this.$store.dispatch("singer_create", this.item).then((new_singer_id) => {
-					// this.$router.push("/singer/" + new_singer_id);
+				this.$store.dispatch("singer_create", this.item).then(() => {
+					this.$toastr.success("Исполнитель создан");
+					this.$store.dispatch("fetch_singers");
 					this.__close();
 				});
 
 			}else{
 
-				// this.$store.dispatch("singer_update", this.singer_edit).then((new_singer_id) => {
-				// 	go_back();
-				// });
+				this.$store.dispatch("singer_update", this.item).then((updated_singer) => {
+					this.$toastr.success("Исполнитель обновлён");
+					this.$store.dispatch("fetch_singers");
+					this.$store.commit("set_singer", updated_singer);
+					this.__close();
+				});
 
 				
 			}
@@ -84,6 +103,14 @@ export default {
 		__close(){
 			$(MODAL_ID).modal("hide");
 		},
+
+		__validate(data){
+			if(data.name.length < 1){
+				return "Название должно содержать как минимум 1 символ";
+			}
+
+			return "";
+		}
 	}
 }
 </script>

@@ -9,10 +9,13 @@ export default {
 	 * получить список исполнителей
 	 */
 	fetch_singers: function(context){
-		axios.get("/api/get_singers").then(response => {
-			response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
-			context.commit("set_singers", response.data.singers);
-		});
+		return new Promise((resolve, reject) => {
+			axios.get("/api/get_singers").then(response => {
+				response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+				context.commit("set_singers", response.data.singers);
+				resolve();
+			});
+		})
 	},
 
 
@@ -28,7 +31,7 @@ export default {
 		context.commit("set_singer_id", singer_id);
 		axios.get("/api/get_singer/" + singer_id).then(response => {
 			context.commit("set_singer", response.data.singer);
-		})
+		});
 		
 		// console.log(singer_id);
 		// let singer = context.getters.find_singer(singer_id);
@@ -102,9 +105,8 @@ export default {
 	//--- singer actions ------------------------------------------------------
 	singer_update: function(context, esinger){
 		return new Promise((resolve, reject) =>{
-			net.update_singer(esinger).then(response => {
-				context.dispatch("fetch_singers");
-				resolve();
+			axios.post("/api/update_singer", esinger).then(response => {
+				resolve(response.data.singer);
 			})
 		})
 	},
@@ -112,16 +114,15 @@ export default {
 
 	singer_create: function(context, esinger){
 		return new Promise((resolve, reject) =>{
-			net.create_singer(esinger).then(response => {
-				context.dispatch("fetch_singers");
-				resolve(response.data.singer.id);
+			axios.post("/api/create_singer", esinger).then(response => {
+				resolve();
 			})
 		})
 	},
 
 	singer_remove: function(context, esinger){
 		return new Promise((resolve, reject) =>{
-			net.remove_singer(esinger).then(response => {
+			axios.post("/api/remove_singer", esinger).then(response => {
 				context.dispatch("fetch_singers");
 				resolve();
 			})

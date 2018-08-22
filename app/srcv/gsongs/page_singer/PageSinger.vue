@@ -28,7 +28,9 @@
 		
 					<div class="pull-right">
 						<button-remove @click="show_remove" :disabled="is_songs"></button-remove>
-						<router-link class="btn btn-primary" :to="/singer_edit/ + singer.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link>
+
+						<!-- <router-link class="btn btn-primary" :to="/singer_edit/ + singer.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link> -->
+						<button class="btn btn-primary" @click="show_edit_singer()"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</button>
 					</div>
 		
 				</div>
@@ -60,6 +62,7 @@
 <script>
 import storage from "../storage";
 import net from "../net";
+import bus from "../bus";
 import {go_back} from "../utils";
 import component_songs from "./Songs.vue";
 
@@ -68,19 +71,8 @@ export default {
 		return {
 
 			"singer_id"			: null,
-			// "state": storage.state,
-
-			// "singer_songs": [],
-			// "singer": {
-			// 	"name": "---",
-			// 	"created": "---",
-			// 	"updated": "---"
-			// },
-
-
 			"is_modal_remove"   : false,
 			"is_removed"        : false,
-			// "is_ready"          : false
 		}
 	},
 
@@ -90,7 +82,7 @@ export default {
 	},
 
 
-	created: function () {
+	created(){
 		this.refresh();
 	},
 
@@ -106,37 +98,32 @@ export default {
 
 	methods: {
 		
-		refresh: function(){
+		refresh(){
 			this.singer_id = this.$route.params.id;
 			this.$store.dispatch("set_singer_id", this.singer_id);
 		},
 
-		show_remove: function(){
-			let result = confirm("Удалить?");
-			if(result){
-				this.remove_singer()
-			}
 
-			// this.is_modal_remove = true;
+		show_edit_singer(){
+			bus.$emit("show_edit_singer", this.singer.id);
+		},
+
+		show_remove(){
+			this.$alert.remove("Удалить исполнителя: "+ this.singer.name+"?").then(() => {
+				this.remove_singer();
+			})
 		},
 
 
-		remove_singer: function(){
+		remove_singer(){
 			this.$store.dispatch("singer_remove", this.singer).then(() => {
 				this.$router.push("/singers");
 			})
 		},
 
-		// remove_modal_closed: function(){
-		// 	if(this.is_removed){
-		// 		go_back();
-		// 	}
-		// },
 
 
-
-
-		add_song: function(){
+		add_song(){
 			// this.state.current_singer_id = this.singer.id;
 			this.$router.push("/song_edit/0");
 		}
