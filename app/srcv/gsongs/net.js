@@ -4,11 +4,12 @@ import axios from "axios";
 
 const net_factory =  {
     get_singers: function(){
-        return axios.get("/get_singers");
+        console.log("net get_singers - depricated");
+        return axios.get("/api/get_singers");
     },
 
     get_songs: function(){
-        return axios.get("/get_songs");
+        return axios.get("/api/get_songs");
     },
 
 
@@ -43,7 +44,7 @@ const net_factory =  {
 
 
     get_tags: function(){
-        return axios.get("/get_tags");
+        return axios.get("/api/get_tags");
     },
 
     update_tag: function(idata){
@@ -91,7 +92,7 @@ const net_factory =  {
 
 
     get_tags_songs: function(){
-        return axios.get("/get_tags_songs");
+        return axios.get("/api/get_tags_songs");
     }
 }
 

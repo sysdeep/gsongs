@@ -40,14 +40,15 @@ app.add_url_rule("/app/<path:path>",		view_func=ctrl_main.app)
 
 
 #--- singers
-app.add_url_rule("/get_singers",						view_func=ctrl_singers.get_singers)
+app.add_url_rule("/api/get_singers",					view_func=ctrl_singers.get_singers)
+app.add_url_rule("/api/get_singer/<singer_id>",			view_func=ctrl_singers.get_singer)
 app.add_url_rule("/create_singer",						view_func=ctrl_singers.create_singer, methods=["POST"])
 app.add_url_rule("/update_singer",						view_func=ctrl_singers.update_singer, methods=["POST"])
 app.add_url_rule("/remove_singer",						view_func=ctrl_singers.remove_singer, methods=["POST"])
 
 
 #--- songs
-app.add_url_rule("/get_songs",						view_func=ctrl_songs.get_songs)
+app.add_url_rule("/api/get_songs",					view_func=ctrl_songs.get_songs)
 app.add_url_rule("/create_song",					view_func=ctrl_songs.create_song, methods=["POST"])
 app.add_url_rule("/update_song",					view_func=ctrl_songs.update_song, methods=["POST"])
 app.add_url_rule("/remove_song",					view_func=ctrl_songs.remove_song, methods=["POST"])
@@ -55,7 +56,7 @@ app.add_url_rule("/remove_song",					view_func=ctrl_songs.remove_song, methods=[
 
 
 #--- tags
-app.add_url_rule("/get_tags", 				view_func=ctrl_tags.get_tags)
+app.add_url_rule("/api/get_tags", 					view_func=ctrl_tags.get_tags)
 app.add_url_rule("/create_tag",				view_func=ctrl_tags.create_tag, methods=["POST"])
 app.add_url_rule("/update_tag",				view_func=ctrl_tags.update_tag, methods=["POST"])
 app.add_url_rule("/remove_tag",				view_func=ctrl_tags.remove_tag, methods=["POST"])
@@ -67,7 +68,7 @@ app.add_url_rule("/add_song_tag",				view_func=ctrl_tags.add_song_tag, methods=[
 app.add_url_rule("/remove_song_tag",			view_func=ctrl_tags.remove_song_tag, methods=["POST"])
 
 app.add_url_rule("/get_tag_songs/<tag_id>",	view_func=ctrl_tags.get_tag_songs)
-app.add_url_rule("/get_tags_songs",			view_func=ctrl_tags.get_tags_songs)
+app.add_url_rule("/api/get_tags_songs",				view_func=ctrl_tags.get_tags_songs)
 
 
 #--- service

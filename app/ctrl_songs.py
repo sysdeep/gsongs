@@ -11,13 +11,15 @@ from . import storage, VERSION
 
 
 def get_songs():
-	songs = storage.Song.select().dicts()
-	data = []
-	for song in songs:
-		song["created"] = str(song["created"])
-		song["updated"] = str(song["updated"])
-		data.append(song)
-	return jsonify(songs=data)
+	songs = storage.Song.select(storage.Song.id, storage.Song.name, storage.Song.singer).dicts()
+	# songs = storage.Song.select().dicts()
+	# data = []
+	# for song in songs:
+	# 	song["created"] = str(song["created"])
+	# 	song["updated"] = str(song["updated"])
+	# 	data.append(song)
+	# return jsonify(songs=data)
+	return jsonify(songs=list(songs))
 
 
 

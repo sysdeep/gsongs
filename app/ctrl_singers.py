@@ -9,14 +9,32 @@ from . import storage, VERSION
 
 
 def get_singers():
-	singers = storage.Singer.select().dicts()
-	data = []
-	for singer in singers:
-		singer["created"] = str(singer["created"])
-		singer["updated"] = str(singer["updated"])
-		data.append(singer)
-	return jsonify(singers=data)
+	singers = storage.Singer.select(storage.Singer.id, storage.Singer.name).dicts()
+	# data = []
+	# for singer in singers:
+	# 	singer["created"] = str(singer["created"])
+	# 	singer["updated"] = str(singer["updated"])
+	# 	data.append(singer)
+	# return jsonify(singers=data)
+	return jsonify(singers=list(singers))
+	
 
+def get_singer(singer_id):
+	singer = storage.Singer.get(storage.Singer.id == singer_id)
+	response = {
+		"id"		: singer.id,
+		"name"		: singer.name,
+		"created"	: str(singer.created),
+		"updated"	: str(singer.updated),
+	}
+	# data = []
+	# for singer in singers:
+	# 	singer["created"] = str(singer["created"])
+	# 	singer["updated"] = str(singer["updated"])
+	# 	data.append(singer)
+	# return jsonify(singers=data)
+	# print(singer)
+	return jsonify(singer=response)
 
 
 

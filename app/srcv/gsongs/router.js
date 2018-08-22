@@ -26,6 +26,7 @@ export const routes = [
     { path: '/tags', component: page_tags },
     { path: '/tag/:id', component: page_tag },
     { path: '/about', component: page_about },
+    { path: '/*', redirect: "/" }
 ];
 
 

@@ -35,9 +35,15 @@
 			<div class="col-md-6 col-sm-6">
 				<div class="pull-right">
 
-					<a class="btn btn-success" href="#/singer_edit/0" title="добавить запись">
+					<!-- <router-link class="btn btn-success" to="/singer_edit/0" title="добавить запись">
 						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-					</a>
+					</router-link> -->
+
+					<button class="btn btn-success" @click="show_create_singer" title="добавить запись">
+						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
+					</button>
+
+
 
 					<button class="btn btn-default" @click="refresh" title="загрузить список">
 						<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
@@ -148,6 +154,7 @@
 
 <script>
 
+import bus from "./bus";
 // import component_qqq from "./partial/SingerForm.vue";
 // import component_modal_singer_edit from "./partial/ModalSingerEdit.vue";
 
@@ -173,6 +180,11 @@ export default {
 	},
 
 	methods: {
+		show_create_singer(){
+			bus.$emit("show_create_singer");
+		},
+
+
 		refresh: function(){
 			this.$store.dispatch("fetch_singers");
 			// console.log(component_qqq);

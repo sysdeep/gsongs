@@ -1,5 +1,5 @@
 import net from "../net";
-
+import axios from "axios";
 
 
 export default {
@@ -9,7 +9,7 @@ export default {
 	 * получить список исполнителей
 	 */
 	fetch_singers: function(context){
-		net.get_singers().then(response => {
+		axios.get("/api/get_singers").then(response => {
 			response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
 			context.commit("set_singers", response.data.singers);
 		});
@@ -24,7 +24,12 @@ export default {
 
 
 	set_singer_id: function(context, singer_id){
+		context.commit("set_singer", null);
 		context.commit("set_singer_id", singer_id);
+		axios.get("/api/get_singer/" + singer_id).then(response => {
+			context.commit("set_singer", response.data.singer);
+		})
+		
 		// console.log(singer_id);
 		// let singer = context.getters.find_singer(singer_id);
 		// console.log(context.state.singers);

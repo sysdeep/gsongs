@@ -146,7 +146,8 @@ export default {
 
 	computed: {
 		singer: function(){
-			return this.$store.getters.find_singer(this.singer_id);
+			// return this.$store.getters.find_singer(this.singer_id);
+			return this.$store.state.singer;
 		},
 
 		is_songs: function(){
