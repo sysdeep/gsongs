@@ -121,7 +121,7 @@ export default {
 						let pos_x = x * GLIF_SPACE;
 						let pos_y = (row+1) * STRING_SPACE;
 						// this.ctx.fillText("x", pos_x, pos_y);
-						this.draw_frect(pos_x, pos_y, "X");
+						this.draw_frect(pos_x, pos_y, "x");
 					}
 				}
 
@@ -157,28 +157,7 @@ export default {
 
 
 
-		make_line: function(value){
-			var text = "";
-			if(value == "X"){
-				for(var p=1; p<this.max_len; p++){
-						if(p == 1){
-							text += "X";
-						}else{
-							text += "-";
-						}
-					}
-			}else{
-				for(var p=1; p<this.max_len; p++){
-						if(p == value){
-							text += value;
-						}else{
-							text += "-";
-						}
-					}
-			}
-
-			return text;
-		}
+		
 	}
 }
 </script>

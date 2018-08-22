@@ -16,14 +16,19 @@ def index():
 	if "username" not in session:
 		return redirect(url_for("login"))
 
+	# data = {
+	# 	"VERSION": VERSION
+	# }
+	# return render_template("gsongs_vue.html", **data)
+	return redirect(url_for('app'))
+	
+
+
+def app(path=None):
 	data = {
 		"VERSION": VERSION
 	}
 	return render_template("gsongs_vue.html", **data)
-	
-
-
-
 
 
 def login():
@@ -53,7 +58,7 @@ def login_post():
 	if(form_username == USERNAME and form_password == PASSWORD):
 		session['username'] = form_username
 		# return redirect('/')
-		return redirect(url_for('index'))
+		return redirect(url_for('app'))
 		
 
 

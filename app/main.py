@@ -20,11 +20,22 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/asfdddfO'
 
 #--- routes -------------------------------------------------------------------
 
+#-- index
 app.add_url_rule("/", 						view_func=ctrl_main.index)
+
+#-- auth
 app.add_url_rule("/login", 					view_func=ctrl_main.login)
 app.add_url_rule("/login", 					view_func=ctrl_main.login_post, methods=["POST"])
 app.add_url_rule("/logout", 				view_func=ctrl_main.logout)
-app.add_url_rule("/chords", 				view_func=ctrl_main.chords_page111)
+
+
+#-- gsongs SPA
+app.add_url_rule("/app",					view_func=ctrl_main.app)
+app.add_url_rule("/app/",					view_func=ctrl_main.app)
+app.add_url_rule("/app/<path:path>",		view_func=ctrl_main.app)
+
+
+
 
 
 
@@ -81,7 +92,7 @@ app.add_url_rule("/service/db_remove/<file_name>", 		view_func=ctrl_db.db_remove
 
 #--- chords
 app.add_url_rule("/service/chords",						view_func=ctrl_chords.chords_page)
-
+app.add_url_rule("/chords", 				view_func=ctrl_main.chords_page111)
 
 
 app.add_url_rule("/api/chords_all", 					view_func=ctrl_chords.get_chords)

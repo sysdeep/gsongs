@@ -13,8 +13,6 @@ from . import VERSION, chdb
 
 
 
-
-
 def chords_page():
 	"""страница для обслуживания базы данных"""
 	
