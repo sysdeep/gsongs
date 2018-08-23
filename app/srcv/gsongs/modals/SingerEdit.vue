@@ -31,7 +31,6 @@
 
 <script>
 import bus from "../bus";
-import net from "../net";
 import {get_default_singer} from "../utils";
 
 const MODAL_ID = "#modal_singer_edit";
@@ -59,8 +58,8 @@ export default {
 		},
 
 		show_edit(singer_id){
-			net.get_singer(singer_id).then(response => {
-				this.item = response.data.singer;
+			this.$store.dispatch("fetch_singer_simple", singer_id).then(singer => {
+				this.item = singer;
 				this.is_new = false;
 				this.org_name = this.item.name;
 				this.__open();

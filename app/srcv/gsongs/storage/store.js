@@ -14,6 +14,8 @@ export const store = new Vuex.Store({
 		"singer_id"			: null,
 
 		"songs"		: [],
+		"song"		: null,
+		"song_id"	: null,
 
 
 		"tags"				: [],
@@ -33,6 +35,8 @@ export const store = new Vuex.Store({
 		},
 
 		set_singer: (state, singer) => state.singer = singer,
+		set_song: (state, song) => state.song = song,
+		set_song_id: (state, song_id) => state.song_id = song_id,
 
 
 		set_songs: function(state, songs){

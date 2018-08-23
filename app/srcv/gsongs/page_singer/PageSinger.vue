@@ -100,7 +100,7 @@ export default {
 		
 		refresh(){
 			this.singer_id = this.$route.params.id;
-			this.$store.dispatch("set_singer_id", this.singer_id);
+			this.$store.dispatch("fetch_singer", this.singer_id);
 		},
 
 
@@ -124,8 +124,7 @@ export default {
 
 
 		add_song(){
-			// this.state.current_singer_id = this.singer.id;
-			this.$router.push("/song_edit/0");
+			bus.$emit("show_create_song_for_singer", this.singer.id)
 		}
 	},
 

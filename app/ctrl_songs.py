@@ -21,7 +21,22 @@ def get_songs():
 	# return jsonify(songs=data)
 	return jsonify(songs=list(songs))
 
+def get_song(song_id):
+	song = storage.Song.get(storage.Song.id == song_id)
+	response = {
+		"id"			: song.id,
+		"singer"		: song.singer.id,
+		"name"			: song.name,
+		"author"		: song.author,
+		"album"			: song.album,
+		"text"			: song.text,
+		"description"	: song.description,
+		"genre"			: song.genre,
+		"created"		: str(song.created),
+		"updated"		: str(song.updated),
+	}
 
+	return jsonify(song=response)
 
 
 def create_song():
@@ -43,7 +58,7 @@ def create_song():
 	in_data["created"] = str(last_song.created)
 	in_data["updated"] = str(last_song.updated)
 
-	return jsonify(result=in_data)
+	return jsonify(song=in_data)
 
 
 
@@ -63,10 +78,10 @@ def update_song():
 		song.genre = in_data["genre"]
 		song.save()
 		in_data["updated"] = str(song.updated)
-		return jsonify(result=in_data)
+		return jsonify(song=in_data)
 	except:
 		song = None
-		return jsonify(result="")
+		return jsonify(song="")
 
 		
 

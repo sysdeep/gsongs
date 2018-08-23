@@ -12,9 +12,9 @@
 			<div class="col-md-6">
 				<div class="pull-right">
 					
-					<a class="btn btn-success" href="#/song_edit/0" title="добавить запись">
+					<button class="btn btn-success" title="добавить запись" @click="show_create">
 						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-					</a>
+					</button>
 					
 					<!-- <button class="btn btn-primary" @click="refresh" title="загрузить список">
 						<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
@@ -78,9 +78,13 @@
 					<!-- <td>{{ song.updated }}</td> -->
 					<!-- <td>{{ song.api }}</td> -->
 					<td>
-						<router-link :to="/song_edit/ + song.id">
+						<!-- <router-link :to="/song_edit/ + song.id">
 							<i class="fa fa-pencil"></i> изменить
-							</router-link>
+							</router-link> -->
+
+						<a href="javascript: void(0)" @click="show_edit_song(song.id)" title="изменить">
+							<i class="fa fa-pencil"></i> изменить
+						</a>
 						<!--<a href="#/song/{{ song.id }}" title="">&nbsp
 							<i class="fa fa-folder-open-o"></i>&nbsp</a>
 						|
@@ -95,11 +99,11 @@
 		</table>
 
 
-		<div class="pull-right">
+		<!-- <div class="pull-right">
 			<a class="btn btn-success" href="#/song_edit/0" title="добавить запись">
 				<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 			</a>
-		</div>
+		</div> -->
 	
 		<!-- 
 	<script type="text/ng-template" id="remove_modal_template">
@@ -125,6 +129,7 @@
 
 
 <script>
+import bus from "./bus";
 
 export default {
 	data: () => {
@@ -150,6 +155,14 @@ export default {
 
 		get_singer: function(singer_id){
 			return this.$store.getters.get_singer_name(singer_id);
+		},
+
+		show_edit_song(song_id){
+			bus.$emit("show_edit_song", song_id);
+		},
+
+		show_create(){
+			bus.$emit("show_create_song");	
 		}
 	},
 

@@ -19,47 +19,105 @@ export default {
 	},
 
 
+	/**
+	 * получить с сервера заданную запись исполнителя
+	 */
+	fetch_singer: function(context, singer_id){
+		context.commit("set_singer_id", singer_id);
+		return new Promise((resolve, reject) => {
+			axios.get("/api/get_singer/" + singer_id).then(response => {
+				context.commit("set_singer", response.data.singer);
+				resolve(response.data.singer);
+			});
+		})
+	},
+
+
+	/**
+	 * получить с сервера данные заданного исполнителя(для редактирования)
+	 */
+	fetch_singer_simple: function(context, singer_id){
+		return new Promise((resolve, reject) => {
+			axios.get("/api/get_singer/" + singer_id).then(response => {
+				resolve(response.data.singer);
+			});
+		})
+	},
+
+
 	
+	//--- ?
+	select_singer: (context, singer) => {
+		console.log("??? select_singer");
+		context.commit("set_singer", singer)
+	},
 
-	select_singer: (context, singer) => context.commit("set_singer", singer),
 
 
-
-
+	//--- ?
 	set_singer_id: function(context, singer_id){
+		console.log("??? set_singer_id");
 		context.commit("set_singer", null);
 		context.commit("set_singer_id", singer_id);
 		axios.get("/api/get_singer/" + singer_id).then(response => {
 			context.commit("set_singer", response.data.singer);
 		});
-		
-		// console.log(singer_id);
-		// let singer = context.getters.find_singer(singer_id);
-		// console.log(context.state.singers);
-		// console.log(singer);
-		// context.commit("set_singer", singer);
 	},
 
 
 
+	//--- ?
 	set_current_singer: (context, singer_id) => {
+		console.log("??? set_current_singer");
 		let singer = context.state.singers.find(singer => singer.id == singer_id);
 		console.log(singer);
 		context.commit("set_singer", singer);
 	},
 
+	//--- ?
 	need_singers: function(context){
+		console.log("??? need_singers");
 		if(context.state.singers_loaded) return false;
 		context.dispatch("fetch_singers");
 	},
 
 
-
+	/**
+	 * получить краткий список песенок
+	 */
 	fetch_songs: function(context){
-		net.get_songs().then(response => {
+		axios.get("/api/get_songs").then(response => {
 			context.commit("set_songs", response.data.songs);
 		});
 	},
+
+	/**
+	 * получить заданную песенку
+	 */
+	fetch_song: function(context, song_id){
+		context.commit("set_song_id", song_id);
+		return new Promise((resolve, reject) => {
+			axios.get("/api/get_song/" + song_id).then(response => {
+				context.commit("set_song", response.data.song);
+				resolve(response.data.song);
+			});
+		})
+	},
+
+	/**
+	 * получить данные заданной песенки(для редактирования)
+	 */
+	fetch_song_simple: function(context, song_id){
+		return new Promise((resolve, reject) => {
+			axios.get("/api/get_song/" + song_id).then(response => {
+				resolve(response.data.song);
+			});
+		})
+	},
+
+
+
+
 
 
 	fetch_tags: function(context){
@@ -137,9 +195,9 @@ export default {
 	//--- song actions --------------------------------------------------------
 	song_update: function(context, params){
 		return new Promise((resolve, reject) =>{
-			net.update_song(params).then(response => {
-				context.dispatch("fetch_songs");
-				resolve();
+			axios.post("/api/update_song", params).then(response => {
+				// context.dispatch("fetch_songs");
+				resolve(response.data.song);
 			})
 		})
 	},
@@ -147,16 +205,17 @@ export default {
 
 	song_create: function(context, params){
 		return new Promise((resolve, reject) =>{
-			net.create_song(params).then(response => {
-				context.dispatch("fetch_songs");
-				resolve(response.data.result.id);
+			axios.post("/api/create_song", params).then(response => {
+				// context.dispatch("fetch_songs");
+				// resolve(response.data.result.id);
+				resolve();
 			})
 		})
 	},
 
 	song_remove: function(context, params){
 		return new Promise((resolve, reject) =>{
-			net.remove_song(params).then(response => {
+			axios.post("/api/remove_song", params).then(response => {
 				context.dispatch("fetch_songs");
 				resolve();
 			})

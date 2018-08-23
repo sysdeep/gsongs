@@ -74,12 +74,13 @@
 				<button-back></button-back>
 	
 				<div class="pull-right">
-					<button class="btn btn-success" @click="add_song" title="добавить запись">
+					<button class="btn btn-success" @click="show_create" title="добавить запись">
 						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 					</button>
 
 					<button-remove @click="show_remove"></button-remove>
-					<router-link class="btn btn-primary" :to="/song_edit/ + song.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link>
+					<button class="btn btn-primary" @click="show_edit" title="изменить запись"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</button>
+					<!-- <router-link class="btn btn-primary" :to="/song_edit/ + song.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link> -->
 				</div>
 	
 				<h4 class="page-header">Другие песни исполнителя</h4>
@@ -119,6 +120,7 @@
 <script>
 import storage from "../storage";
 import net from "../net";
+import bus from "../bus";
 import {go_back} from "../utils";
 import component_tags from "./Tags.vue";
 
@@ -156,15 +158,22 @@ export default {
 	methods: {
 		refresh: function(){
 			this.id = this.$route.params.id;
+			this.$store.dispatch("fetch_song", this.id);
+		},
+
+		show_edit(){
+			bus.$emit("show_edit_song", this.song.id);
+		},
+
+		show_create(){
+			bus.$emit("show_create_song_for_singer", this.song.singer);
 		},
 
 		
 		show_remove: function(){
-			let result = confirm("Удалить?");
-			if(result){
-				this.remove_song()
-			}
-			// this.is_modal_remove = true;
+			this.$alert.remove("Удалить песенку: "+ this.song.name+"?").then(() => {
+				this.remove_song();
+			})
 		},
 
 		remove_song: function(){
@@ -181,14 +190,6 @@ export default {
 		},
 
 
-
-
-		add_song: function(){
-			// this.state.current_singer_id = this.singer.id;
-			this.$router.push("/song_edit/0");
-		},
-
-
 		
 
 
@@ -197,12 +198,16 @@ export default {
 
 
 	computed: {
-		song: function(){
-			let song = this.$store.state.songs.find(song => song.id == this.id);
-			if(song){
-				this.$store.dispatch("set_singer_id", song.singer);
-			}
-			return song;
+		// song: function(){
+		// 	let song = this.$store.state.songs.find(song => song.id == this.id);
+		// 	if(song){
+		// 		this.$store.dispatch("set_singer_id", song.singer);
+		// 	}
+		// 	return song;
+		// },
+		// 
+		song(){
+			return this.$store.state.song;
 		},
 
 
