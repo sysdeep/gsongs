@@ -5,14 +5,14 @@
 			<div class="col-md-3">
 
 				<!-- singers list -->
-				<c-singers></c-singers>
+				<c-singers @select_singer="on_select_singer"></c-singers>
 
 			</div>
 	
 			<div class="col-md-5">
 				
 				<!-- singer songs list -->
-				<c-songs></c-songs>
+				<c-songs :singer="selected_singer"></c-songs>
 	
 			</div>
 	
@@ -47,6 +47,7 @@ import component_songs from "./SingerSongs.vue";
 export default {
 	data: function () {
 		return {
+			"selected_singer"	: null
 		}
 	},
 
@@ -62,7 +63,9 @@ export default {
 	},
 
 	methods: {
-
+		on_select_singer(singer){
+			this.selected_singer = singer;
+		}
 	},
 
 

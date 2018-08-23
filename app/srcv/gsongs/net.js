@@ -68,21 +68,21 @@ const net_factory =  {
 
 
 
-	get_tags: function(){
-		return axios.get("/api/get_tags");
-	},
+	// get_tags: function(){
+	// 	return axios.get("/api/get_tags");
+	// },
 
-	update_tag: function(idata){
-		return axios.post("/update_tag", idata);
-	},
+	// update_tag: function(idata){
+	// 	return axios.post("/update_tag", idata);
+	// },
 
-	create_tag: function(idata){
-		return axios.post("/create_tag", idata);
-	},
+	// create_tag: function(idata){
+	// 	return axios.post("/create_tag", idata);
+	// },
 
-	remove_tag: function(idata){
-		return axios.post("/remove_tag", idata);
-	},
+	// remove_tag: function(idata){
+	// 	return axios.post("/remove_tag", idata);
+	// },
 
 
 	get_tag_songs: function(tag_id){
@@ -116,9 +116,9 @@ const net_factory =  {
 
 
 
-	get_tags_songs: function(){
-		return axios.get("/api/get_tags_songs");
-	}
+	// get_tags_songs: function(){
+	// 	return axios.get("/api/get_tags_songs");
+	// }
 }
 
 

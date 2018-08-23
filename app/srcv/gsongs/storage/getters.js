@@ -7,13 +7,13 @@ const SINGER_NAME_CACHE = {};
 
 
 export default {
-	/**
-	 * получить песни, связанные с тек. исполнителем
-	 */
-	get_current_singer_songs: (state) => {
-		if(!state.singer) return [];
-		return state.songs.filter(song => song.singer == state.singer.id);
-	},
+	// /**
+	//  * получить песни, связанные с тек. исполнителем
+	//  */
+	// get_current_singer_songs: (state) => {
+	// 	if(!state.singer) return [];
+	// 	return state.songs.filter(song => song.singer == state.singer.id);
+	// },
 
 
 

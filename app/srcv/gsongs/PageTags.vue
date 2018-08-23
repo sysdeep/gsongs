@@ -132,26 +132,30 @@ export default {
 		},
 
 		show_remove: function(){
-			// this.item_edit = item;
 
-			let result = confirm("Удалить?");
-			if(result){
-				net.remove_tag(this.item_edit).then(response => {
+			this.$alert.remove("Удалить тэг: "+ this.item_edit.name+"?").then(() => {
+				this.$store.dispatch("tag_remove", this.item_edit).then(removed_tag => {
+					this.is_edit = false;
+					this.$toastr.success("Запись удалена");
 					this.refresh();
 				})
-			}
+			})
+
+			
 		},
 
 		save_edit: function(){
 			if(this.is_new){
-				net.create_tag(this.item_edit).then(response => {
-					this.refresh();
+				this.$store.dispatch("tag_create", this.item_edit).then(new_tag => {
+					this.$toastr.success("Запись создана");
 					this.is_edit = false;
+					this.refresh();
 				})
 			}else{
-				net.update_tag(this.item_edit).then(response => {
-					this.refresh();
+				this.$store.dispatch("tag_update", this.item_edit).then(updated_tag => {
 					this.is_edit = false;
+					this.$toastr.success("Запись обновлена");
+					this.refresh();
 				})
 			}
 		},

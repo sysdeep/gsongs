@@ -43,6 +43,7 @@
 
 <script>
 export default {
+	props: ["singer"],
 
 	data: function(){
 		return {
@@ -51,16 +52,15 @@ export default {
 	},
 
 	computed: {
-		singer: function(){
-			return this.$store.state.singer;
+	
+		singer_songs(){
+			if(this.singer){
+				return this.$store.state.songs.filter(song => song.singer == this.singer.id);
+			}
+			return [];
 		},
 
-
-		singer_songs: function(){
-			return this.$store.getters.get_current_singer_songs;
-		},
-
-		filtered_songs: function(){
+		filtered_songs(){
 			let lfind = this.song_filter.toLowerCase();
 			return this.singer_songs.filter((item) => {
 				let name = item.name.toLowerCase();

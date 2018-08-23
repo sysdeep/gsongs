@@ -57,10 +57,10 @@ app.add_url_rule("/api/remove_song",					view_func=ctrl_songs.remove_song, metho
 
 
 #--- tags
-app.add_url_rule("/api/get_tags", 					view_func=ctrl_tags.get_tags)
-app.add_url_rule("/create_tag",				view_func=ctrl_tags.create_tag, methods=["POST"])
-app.add_url_rule("/update_tag",				view_func=ctrl_tags.update_tag, methods=["POST"])
-app.add_url_rule("/remove_tag",				view_func=ctrl_tags.remove_tag, methods=["POST"])
+app.add_url_rule("/api/get_tags", 						view_func=ctrl_tags.get_tags)
+app.add_url_rule("/api/create_tag",						view_func=ctrl_tags.create_tag, methods=["POST"])
+app.add_url_rule("/api/update_tag",						view_func=ctrl_tags.update_tag, methods=["POST"])
+app.add_url_rule("/api/remove_tag",						view_func=ctrl_tags.remove_tag, methods=["POST"])
 
 
 #--- song tags

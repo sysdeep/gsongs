@@ -46,40 +46,40 @@ export default {
 
 
 	
-	//--- ?
-	select_singer: (context, singer) => {
-		console.log("??? select_singer");
-		context.commit("set_singer", singer)
-	},
+	// //--- ?
+	// select_singer: (context, singer) => {
+	// 	console.log("??? select_singer");
+	// 	context.commit("set_singer", singer)
+	// },
 
 
 
-	//--- ?
-	set_singer_id: function(context, singer_id){
-		console.log("??? set_singer_id");
-		context.commit("set_singer", null);
-		context.commit("set_singer_id", singer_id);
-		axios.get("/api/get_singer/" + singer_id).then(response => {
-			context.commit("set_singer", response.data.singer);
-		});
-	},
+	// //--- ?
+	// set_singer_id: function(context, singer_id){
+	// 	console.log("??? set_singer_id");
+	// 	context.commit("set_singer", null);
+	// 	context.commit("set_singer_id", singer_id);
+	// 	axios.get("/api/get_singer/" + singer_id).then(response => {
+	// 		context.commit("set_singer", response.data.singer);
+	// 	});
+	// },
 
 
 
-	//--- ?
-	set_current_singer: (context, singer_id) => {
-		console.log("??? set_current_singer");
-		let singer = context.state.singers.find(singer => singer.id == singer_id);
-		console.log(singer);
-		context.commit("set_singer", singer);
-	},
+	// //--- ?
+	// set_current_singer: (context, singer_id) => {
+	// 	console.log("??? set_current_singer");
+	// 	let singer = context.state.singers.find(singer => singer.id == singer_id);
+	// 	console.log(singer);
+	// 	context.commit("set_singer", singer);
+	// },
 
-	//--- ?
-	need_singers: function(context){
-		console.log("??? need_singers");
-		if(context.state.singers_loaded) return false;
-		context.dispatch("fetch_singers");
-	},
+	// //--- ?
+	// need_singers: function(context){
+	// 	console.log("??? need_singers");
+	// 	if(context.state.singers_loaded) return false;
+	// 	context.dispatch("fetch_singers");
+	// },
 
 
 	/**
@@ -117,32 +117,58 @@ export default {
 
 
 
+	//--- tags ----------------------------------------------------------------
 
-
-
+	/**
+	 * получить список тэгов
+	 */
 	fetch_tags: function(context){
-		net.get_tags().then(response => {
+		axios.get("/api/get_tags").then(response => {
 			context.commit("set_tags", response.data.tags);
 		})
 	},
 
-	need_tags: function(context){
-		if(context.state.tags_loaded) return false;
-		context.dispatch("fetch_tags");
-	},
+
+	// //--- ???
+	// need_tags: function(context){
+	// 	if(context.state.tags_loaded) return false;
+	// 	context.dispatch("fetch_tags");
+	// },
 
 
+	/**
+	 * получить список связей тэгов и песенок
+	 */
 	fetch_tag_song_links: function(context){
-		net.get_tags_songs().then(response => {
+		axios.get("/api/get_tags_songs").then(response => {
 			context.commit("set_tag_song_links", response.data.result);
 		})
 	},
 
 
+	tag_create: function(context, params){
+		return new Promise((resolve, reject) => {
+			axios.post("/api/create_tag", params).then(response => {
+				resolve(response.data.tag);
+			});
+		})
+	},
 
+	tag_update: function(context, params){
+		return new Promise((resolve, reject) => {
+			axios.post("/api/update_tag", params).then(response => {
+				resolve(response.data.tag);
+			});
+		})
+	},
 
-
-
+	tag_remove: function(context, params){
+		return new Promise((resolve, reject) => {
+			axios.post("/api/remove_tag", params).then(response => {
+				resolve(response.data.tag);
+			});
+		})
+	},
 
 
 	song_add_tag: function(context, params){
@@ -156,6 +182,8 @@ export default {
 			context.dispatch("fetch_tag_song_links");
 		});
 	},
+
+	//--- tags ----------------------------------------------------------------
 
 
 
