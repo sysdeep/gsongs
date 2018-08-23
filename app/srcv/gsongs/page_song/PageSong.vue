@@ -117,9 +117,8 @@
 
 
 
+
 <script>
-import storage from "../storage";
-import net from "../net";
 import bus from "../bus";
 import {go_back} from "../utils";
 import component_tags from "./Tags.vue";
@@ -128,7 +127,6 @@ import component_tags from "./Tags.vue";
 export default {
 	data: function(){
 		return {
-			"state"     : storage.state,
 			"id"        : null,
 
 

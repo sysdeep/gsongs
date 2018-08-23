@@ -58,10 +58,7 @@
 
 
 
-
 <script>
-import storage from "../storage";
-import net from "../net";
 import bus from "../bus";
 import {go_back} from "../utils";
 import component_songs from "./Songs.vue";

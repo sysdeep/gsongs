@@ -95,45 +95,45 @@ def remove_song_tag():
 	return jsonify(result=in_data)
 
 
-def get_song_tags(song_id):
+# def get_song_tags(song_id):
 
-	result = []
-	for row in storage.RTagSong.select().where(storage.RTagSong.id_song == song_id):
-		# print(row.id_tag)
-		result.append(row.id_tag.id)
+# 	result = []
+# 	for row in storage.RTagSong.select().where(storage.RTagSong.id_song == song_id):
+# 		# print(row.id_tag)
+# 		result.append(row.id_tag.id)
 
 
-	return jsonify(result=result)
+# 	return jsonify(result=result)
 #--- song tags ----------------------------------------------------------------
 
 
 #--- tag songs ----------------------------------------------------------------
-def get_tag_songs(tag_id):
+# def get_tag_songs(tag_id):
 
 
 
 
 
 
-	songs_ids = []
+# 	songs_ids = []
 
-	# try:
-	# 	items = storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id)
-	# except:
-	# 	items = []
+# 	# try:
+# 	# 	items = storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id)
+# 	# except:
+# 	# 	items = []
 
-	for row in storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id):
-	# for row in items:
-		# print("--->", row)
-		songs_ids.append(row.id_song.id)
+# 	for row in storage.RTagSong.select().where(storage.RTagSong.id_tag == tag_id):
+# 	# for row in items:
+# 		# print("--->", row)
+# 		songs_ids.append(row.id_song.id)
 
-	# print(songs_ids)
-	# # for song in storage.Song.select().where(storage.Song.id in songs_ids):
-	# for song in storage.Song.select().where(storage.Song.id << songs_ids).join(storage.Singer):
-	# 	print(song.name)
-	# 	print(dir(song))
+# 	# print(songs_ids)
+# 	# # for song in storage.Song.select().where(storage.Song.id in songs_ids):
+# 	# for song in storage.Song.select().where(storage.Song.id << songs_ids).join(storage.Singer):
+# 	# 	print(song.name)
+# 	# 	print(dir(song))
 
 
-	result = songs_ids
-	return jsonify(result=result)
+# 	result = songs_ids
+# 	return jsonify(result=result)
 #--- tag songs ----------------------------------------------------------------

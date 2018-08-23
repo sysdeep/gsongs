@@ -1,4 +1,3 @@
-import net from "../net";
 import axios from "axios";
 
 
@@ -171,14 +170,20 @@ export default {
 	},
 
 
+	/**
+	 * добавить связь песенки с тэгом
+	 */
 	song_add_tag: function(context, params){
-		net.add_song_tag(params.song_id, params.tag_id).then(response => {
+		axios.post("/api/add_song_tag", params).then(response => {
 			context.dispatch("fetch_tag_song_links");
 		});
 	},
 
+	/**
+	 * удалить связи песенки с тэгом
+	 */
 	song_remove_tag: function(context, params){
-		net.remove_song_tag(params.song_id, params.tag_id).then(response => {
+		return axios.post("/api/remove_song_tag", params).then(response => {
 			context.dispatch("fetch_tag_song_links");
 		});
 	},

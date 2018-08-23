@@ -41,17 +41,12 @@
 </template>
 
 <script>
-import storage from "./storage";
-import net from "./net";
 export default {
 
 	data: function(){
 		return {
-			// "state"			: storage.state,
-			// "is_ready" 		: false,
-			// "tag"			: null,
+			
 			"id"			: null,
-			// "songs_id"		: []
 		}
 	},
 

@@ -79,13 +79,10 @@
 </template>
 
 <script>
-import storage from "./storage";
-import net from "./net";
 
 export default {
 	data: function(){
 		return {
-			"state"		: storage.state,
 			"is_ready"	: false,
 			"is_edit"	: false,
 			"is_new"	: false,
