@@ -96,11 +96,19 @@
 	
 			</div>
 			<div class="col-md-7">
-	
+
+
+
 <pre>
 {{ song.text }}
 </pre>
-	
+
+
+
+<!-- <div>
+	<div v-for="(row, i) in mtext" :key="i" v-html="row" style="white-space: pre" class="mono"></div>
+</div> -->
+
 			</div>
 		</div>
 	
@@ -196,6 +204,35 @@ export default {
 
 
 	computed: {
+
+
+		/**
+		 *
+		 *
+		 * 
+		 * var s = "qqq [E] ddd [A] ddd"
+		 * s.match(/\[(.*?)\]/g)
+		 * ["[E]", "[A]"]
+		 *
+		 *
+		 * 
+		 * @return {[type]} [description]
+		 */
+		mtext(){
+			let result = this.song.text;
+			let lines = result.split("\n");
+			let qqq = [];
+			lines.forEach(line => {
+				let r = line.replace(/\[/g, "<b>").replace(/\]/g, "</b>");
+				qqq.push(r);
+			});
+			console.log(qqq);
+			// let qqq = result.replace(/\[/g, "<b>");
+			// qqq = qqq.replace(/\]/g, "</b>");
+			// console.log(qqq);
+			return qqq;
+			// return result;
+		},
 		// song: function(){
 		// 	let song = this.$store.state.songs.find(song => song.id == this.id);
 		// 	if(song){
