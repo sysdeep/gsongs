@@ -43,42 +43,7 @@ export default {
 		})
 	},
 
-
 	
-	// //--- ?
-	// select_singer: (context, singer) => {
-	// 	console.log("??? select_singer");
-	// 	context.commit("set_singer", singer)
-	// },
-
-
-
-	// //--- ?
-	// set_singer_id: function(context, singer_id){
-	// 	console.log("??? set_singer_id");
-	// 	context.commit("set_singer", null);
-	// 	context.commit("set_singer_id", singer_id);
-	// 	axios.get("/api/get_singer/" + singer_id).then(response => {
-	// 		context.commit("set_singer", response.data.singer);
-	// 	});
-	// },
-
-
-
-	// //--- ?
-	// set_current_singer: (context, singer_id) => {
-	// 	console.log("??? set_current_singer");
-	// 	let singer = context.state.singers.find(singer => singer.id == singer_id);
-	// 	console.log(singer);
-	// 	context.commit("set_singer", singer);
-	// },
-
-	// //--- ?
-	// need_singers: function(context){
-	// 	console.log("??? need_singers");
-	// 	if(context.state.singers_loaded) return false;
-	// 	context.dispatch("fetch_singers");
-	// },
 
 
 	/**
@@ -128,12 +93,6 @@ export default {
 	},
 
 
-	// //--- ???
-	// need_tags: function(context){
-	// 	if(context.state.tags_loaded) return false;
-	// 	context.dispatch("fetch_tags");
-	// },
-
 
 	/**
 	 * получить список связей тэгов и песенок
@@ -145,6 +104,9 @@ export default {
 	},
 
 
+	/**
+	 * создание тэга
+	 */
 	tag_create: function(context, params){
 		return new Promise((resolve, reject) => {
 			axios.post("/api/create_tag", params).then(response => {
@@ -153,6 +115,9 @@ export default {
 		})
 	},
 
+	/**
+	 * обновление тэга
+	 */
 	tag_update: function(context, params){
 		return new Promise((resolve, reject) => {
 			axios.post("/api/update_tag", params).then(response => {
@@ -161,6 +126,9 @@ export default {
 		})
 	},
 
+	/**
+	 * удаление тэга
+	 */
 	tag_remove: function(context, params){
 		return new Promise((resolve, reject) => {
 			axios.post("/api/remove_tag", params).then(response => {

@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-md-4">
 				<button-back></button-back>
-				
+				<button-remove @click="show_remove" :disabled="tag_songs.length > 0"></button-remove>
 
 			</div>
 		</div>
@@ -60,7 +60,24 @@ export default {
 
 		get_singer_name: function(singer_id){
 			return this.$store.getters.get_singer_name(singer_id);
-		}
+		},
+
+		show_remove: function(){
+
+			this.$alert.remove("Удалить тэг: "+ this.tag_name+"?").then(() => {
+				let data = {
+					"id"	: this.id,
+					"name"	: this.tag_name
+				}
+				this.$store.dispatch("tag_remove", data).then(removed_tag => {
+					this.$toastr.success("Запись удалена");
+					this.$store.dispatch("fetch_tags");
+					this.$router.push("/tags");
+				})
+			})
+
+			
+		},
 		
 		
 	},

@@ -26,14 +26,35 @@
 
 
 
-					<li class="main_menu main_menu_create">
+					<li class="dropdown">
+          				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          					<strong><i class="fa fa-plus" aria-hidden="true"></i> Создание</strong> <span class="caret"></span></a>
+          				<ul class="dropdown-menu">
+            				<li>
+            					<a href="javascript: void(0)" title="создание нового исполнителя" @click="show_create_singer">
+									<i class="fa fa-users" aria-hidden="true"></i> Исполнитель
+								</a>
+            				</li>
+            				<li>
+            					<a href="javascript: void(0)" title="создание новой песенки" @click="show_create_song">
+									<i class="fa fa-align-center" aria-hidden="true"></i> Песенка
+								</a>
+            				</li>
+            				<li>
+            					<a href="javascript: void(0)" title="создание нового тэга" @click="show_create_tag">
+									<i class="fa fa-tags" aria-hidden="true"></i> Тэг
+								</a>
+            				</li>
+            
+          				</ul>
+        			</li>
+
+
+					<!-- <li class="main_menu main_menu_create">
 						<a href="javascript: void(0)" title="создание новой песенки" @click="show_create_song">
 							<strong><i class="fa fa-plus" aria-hidden="true"></i> Создание</strong>
 						</a>
-						<!-- <router-link to="/song_edit/0" title="создание новой песенки">
-							<strong><i class="fa fa-plus" aria-hidden="true"></i> Создание</strong>
-						</router-link> -->
-					</li>
+					</li> -->
 					<li class="main_menu main_menu_singers">
 						<router-link to="/singers" title="список исполнителей">
 							<strong><i class="fa fa-users" aria-hidden="true"></i> Исполнители</strong>
@@ -99,6 +120,14 @@ export default {
 	methods: {
 		show_create_song(){
 			bus.$emit("show_create_song");
+		},
+
+		show_create_singer(){
+			bus.$emit("show_create_singer");
+		},
+
+		show_create_tag(){
+			bus.$emit("show_create_tag");
 		}
 	}
 }
