@@ -41,9 +41,14 @@
 				<td>[[ song.album ]]</td>
 				<td>[[ song.description ]]</td>
 				<td>[[ song.genre ]]</td> -->
+					
 				</tr>
+				
 			</tbody>
 		</table>
+		<div class="pull-right">
+			Всего: {{ songs.length }}
+		</div>
 
 	</div>
 </template>
@@ -86,9 +91,9 @@ export default {
 			
 			result.sort((a, b) =>{
                 if(this.sort_dir){
-                    return a.name < b.name;
+                    return (a.name < b.name)? 1 : -1;
                 }else{
-                    return a.name > b.name;
+                    return (a.name > b.name)? 1 : -1;
                 }
             })
 
