@@ -2,14 +2,14 @@
 	<div>
 		<h4 class="page-header">
 			Исполнители
-			<span class="pull-right badge">{{ singers.length }}</span>
+			<span class="pull-right badge badge-secondary">{{ singers.length }}</span>
 		</h4>
 
 		<div class="input-group">
 			<input type="text" class="form-control" v-model="singer_filter" placeholder="быстрый поиск">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button" @click="singer_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
-				</span>
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary" type="button" @click="singer_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
+				</div>
 		</div>
 
 		<br>

@@ -2,7 +2,7 @@
 	<div>
 		<h4 class="page-header">
 			Метки
-			<span class="pull-right badge">{{ ftags.length }}</span>
+			<span class="pull-right badge badge-secondary">{{ ftags.length }}</span>
 		</h4>
 
 		<ul>

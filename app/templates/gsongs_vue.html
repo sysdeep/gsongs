@@ -18,8 +18,10 @@
 
 	
 	<!-- bootstrap -->
-	<link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="/static/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+	<!-- <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/static/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> -->
+	<link href="/static/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<!-- <link href="/static/vendor/bootstrap4/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> -->
 
 	<!-- font-awesome -->
 	<link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -32,6 +34,22 @@
 	
 	<!-- my style -->
 	<link href="/static/css/style.css" rel="stylesheet" media="screen">
+
+
+	<style type="text/css">
+			html{
+				/* задаёт базовый размер шрифтов, 1rem = this.font-size */
+				font-size: 14px;
+			}
+			body{
+				padding-top: 60px;
+				font-family: 'UbuntuRegular', Arial, sans-serif;
+			}
+
+			pre {
+				font-family: 'UbuntuMonoRegular';
+			}
+		</style>
 
 
 
@@ -72,7 +90,8 @@
 
 	<!-- vendors -->
 	<script src="/static/vendor/jquery/jquery.min.js?version={{ VERSION }}"></script>
-	<script src="/static/vendor/bootstrap/js/bootstrap.min.js?version={{ VERSION }}"></script>
+	<!-- <script src="/static/vendor/bootstrap/js/bootstrap.min.js?version={{ VERSION }}"></script> -->
+	<script src="/static/vendor/bootstrap4/js/bootstrap.min.js?version={{ VERSION }}"></script>
 	<script src="/static/vendor/toastr/toastr.min.js?version={{ VERSION }}"></script>
 	<script src="/static/vendor/jquery-confirm/jquery-confirm.min.js?version={{ VERSION }}"></script>
 	<!-- vendors -->
@@ -81,6 +100,7 @@
 
 	<!-- app -->
 	<!-- <script src="/static/build/vendor.js"></script> -->
+	<script src="/static/build/gsongs_vendor.js"></script>
 	<script src="/static/build/gsongs.js"></script>
 	<!--<script src="/static/build/gsongs.js?version={{ VERSION }}"></script>-->
 

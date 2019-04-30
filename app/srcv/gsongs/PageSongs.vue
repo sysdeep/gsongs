@@ -12,13 +12,15 @@
 			<div class="col-md-6">
 				<div class="pull-right">
 					
-					<button class="btn btn-success" title="добавить запись" @click="show_create">
+					<!-- <button class="btn btn-success" title="добавить запись" @click="show_create">
 						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-					</button>
+					</button> -->
 					
 					<!-- <button class="btn btn-primary" @click="refresh" title="загрузить список">
 						<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
 					</button> -->
+
+					<BtnCreate @click="show_create" title="добавить запись" >Добавить</BtnCreate>
 					
 				</div>
 			</div>
@@ -26,7 +28,7 @@
 	
 		<br>
 	
-		<table class="table table-bordered table-condensed">
+		<table class="table table-bordered table-sm">
 			<thead>
 				<tr>
 					<th>
@@ -51,7 +53,7 @@
 					<!-- <th>Создание</th> -->
 					<!-- <th>Обновление</th> -->
 					<!-- <th>api</th> -->
-					<th>options</th>
+					<th>Опции</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -77,7 +79,7 @@
 					<!-- <td>{{ song.created }}</td> -->
 					<!-- <td>{{ song.updated }}</td> -->
 					<!-- <td>{{ song.api }}</td> -->
-					<td>
+					<td style="text-align: center;">
 						<!-- <router-link :to="/song_edit/ + song.id">
 							<i class="fa fa-pencil"></i> изменить
 							</router-link> -->

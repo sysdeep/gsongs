@@ -19,6 +19,10 @@ import component_lsinger from "./components/LSinger.vue";
 import component_lsong from "./components/LSong.vue";
 import component_modal_remove from "./components/ModalRemove.vue";
 
+import BtnRefresh from "./components/BtnRefresh.vue";
+import BtnCreate from "./components/BtnCreate.vue";
+import BtnBack from "./components/BtnBack.vue";
+
 import toastr from "./toastr";
 import alert from "./alert";
 
@@ -27,12 +31,15 @@ import {routes} from "./router";
 
 
 
-Vue.component("button-back", component_button_back);
+// Vue.component("button-back", component_button_back);
 Vue.component("button-save", component_button_save);
 Vue.component("button-remove", component_button_remove);
 Vue.component("lsinger", component_lsinger);
 Vue.component("lsong", component_lsong);
 Vue.component("modal-remove", component_modal_remove);
+Vue.component("BtnRefresh", BtnRefresh);
+Vue.component("BtnCreate", BtnCreate);
+Vue.component("BtnBack", BtnBack);
 
 
 Vue.use(VueRouter);
@@ -58,6 +65,8 @@ const app = new Vue({
 	store,
 
 	created: function(){
+		//--- preload - big
+		// this.$store.dispatch("preload_data");
 
 		//--- preload main data
 		this.$store.dispatch("fetch_singers");

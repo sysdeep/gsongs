@@ -12,15 +12,15 @@
 			</div>
 			<div class="col-md-6">
 				<div class="pull-right">
-					<button class="btn btn-success" @click="add_song" title="добавить запись">
-						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-					</button>
+				
+
+					<BtnCreate @click="add_song()" title="добавить запись">Добавить</BtnCreate>
 					
 				</div>
 			</div>
 		</div>
 
-		<table class="table table-bordered table-condensed">
+		<table class="table table-bordered table-sm">
 			<thead>
 				<tr>
 					<th>

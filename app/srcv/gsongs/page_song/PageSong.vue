@@ -71,7 +71,7 @@
 					</tbody>
 				</table>
 	
-				<button-back></button-back>
+				<BtnBack />
 	
 				<div class="pull-right">
 					<button class="btn btn-success" @click="show_create" title="добавить запись">

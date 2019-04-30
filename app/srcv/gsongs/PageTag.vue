@@ -29,7 +29,7 @@
 				<!-- <button class="btn btn-primary" ng-click="self.show_create()">Create</button> -->
 			</div>
 			<div class="col-md-4">
-				<button-back></button-back>
+				<BtnBack />
 				<button-remove @click="show_remove" :disabled="tag_songs.length > 0"></button-remove>
 
 			</div>

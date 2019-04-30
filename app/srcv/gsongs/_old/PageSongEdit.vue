@@ -73,7 +73,7 @@
 				</form>
 
 
-				<button-back></button-back>
+				<BtnBack />
 				<div class="pull-right">
 					<button-save @click="save"></button-save>
 				</div>

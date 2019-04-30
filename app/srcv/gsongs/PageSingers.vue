@@ -39,15 +39,19 @@
 						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
 					</router-link> -->
 
-					<button class="btn btn-success" @click="show_create_singer" title="добавить запись">
+					<!-- <button class="btn btn-success" @click="show_create_singer" title="добавить запись">
 						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-					</button>
+					</button> -->
 
 
 
-					<button class="btn btn-default" @click="refresh" title="загрузить список">
+					<!-- <button class="btn btn-default" @click="refresh" title="загрузить список">
 						<i class="fa fa-refresh" aria-hidden="true"></i> Обновить
-					</button>
+					</button> -->
+
+					<BtnCreate @click="show_create_singer()" />
+
+					<BtnRefresh @click="refresh()"/>
 					
 				</div>
 			</div>
@@ -92,7 +96,7 @@
 	
 		<br>
 	
-		<table class="table table-bordered table-condensed">
+		<table class="table table-bordered table-sm">
 			<thead>
 				<tr>
 					<!-- <th>id</th> -->
@@ -119,7 +123,7 @@
 					<!--<td>{{ singer.created | date:'yyyy-MM-dd' }}</td>-->
 					<!-- <td>{{ singer.created }}</td>
 					<td>{{ singer.updated }}</td> -->
-					<td>
+					<td style="text-align: center">
 						
 						<a href="javascript: void(0)" title="изменить запись" @click="show_edit_singer(singer.id)">
 							<i class="fa fa-pencil"></i> изменить

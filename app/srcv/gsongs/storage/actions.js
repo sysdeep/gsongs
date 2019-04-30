@@ -4,6 +4,18 @@ import axios from "axios";
 export default {
 
 
+	// preload_data: function(context){
+	// 	return new Promise((resolve, reject) => {
+	// 		axios.get("/api/preload_data").then(response => {
+	// 			response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+	// 			context.commit("set_singers", response.data.singers);
+	// 			resolve();
+	// 		});
+	// 	})
+	// },
+
+
+
 	/**
 	 * получить список исполнителей
 	 */

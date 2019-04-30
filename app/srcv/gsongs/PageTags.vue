@@ -3,7 +3,7 @@
 		<h3 class="page-header">Список тэгов</h3>
 	
 		
-			<table class="table table-bordered table-condensed">
+			<table class="table table-bordered table-sm">
 				<thead>
 					<tr>
 						<!-- <th>id</th> -->
@@ -33,11 +33,10 @@
 					</tr>
 				</tbody>
 			</table>
-			<button-back></button-back>
-			<button class="btn btn-primary" @click="show_create">
-				<i class="fa fa-plus" aria-hidden="true"></i>
-				Добавить
-			</button>
+
+
+			<BtnBack />
+			<BtnCreate @click="show_create">Добавить</BtnCreate>
 			
 		</div>
 	</div>

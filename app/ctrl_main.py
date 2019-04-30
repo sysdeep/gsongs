@@ -96,3 +96,39 @@ def releases_json():
 		rdata = fd.read()
 	
 	return jsonify(result=rdata)
+
+
+# def preload_gsongs_data():
+# 	"""загрузка всех данных"""
+# 	singers = storage.Singer.select(storage.Singer.id, storage.Singer.name).dicts()
+# 	songs = storage.Song.select(storage.Song.id, storage.Song.name, storage.Song.singer).dicts()
+
+
+# 	all_tags_models = storage.Tag.select().dicts()
+# 	all_tags = []
+# 	for tag in all_tags_models:
+# 		tag["created"] = str(tag["created"])
+# 		tag["updated"] = str(tag["updated"])
+# 		all_tags.append(tag)
+	
+
+
+
+# 	link_tags_models = storage.RTagSong.select().dicts()
+# 	link_tags = []
+# 	for tag in link_tags_models:
+# 		tag["created"] = str(tag["created"])
+# 		tag["updated"] = str(tag["updated"])
+# 		link_tags.append(tag)
+	
+
+# 	result = {
+# 		"singers"	: list(singers),
+# 		"songs"		: list(songs),
+# 		"tags"		: all_tags,
+# 		"tags_links"	: link_tags
+# 	}
+	
+# 	# return jsonify(singers=list(singers))
+
+# 	return jsonify(result)

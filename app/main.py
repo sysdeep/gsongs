@@ -36,7 +36,7 @@ app.add_url_rule("/app/<path:path>",		view_func=ctrl_main.app)
 
 
 
-
+# app.add_url_rule("/api/preload_data",					view_func=ctrl_main.preload_gsongs_data)
 
 
 #--- singers

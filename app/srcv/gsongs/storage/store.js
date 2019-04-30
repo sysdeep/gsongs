@@ -4,9 +4,17 @@ import actions from "./actions";
 import getters from "./getters";
 import {get_default_singer} from "../utils";
 
+import module_singers from "./modules/singers";
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+
+	modules: {
+		// singers 	: module_singers,
+	},
+
+
 	state: {
 		"singers"			: [],
 		"singer"			: null,

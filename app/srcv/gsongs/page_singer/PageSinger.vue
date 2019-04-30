@@ -6,25 +6,25 @@
 
 		<div v-if="singer">
 		
-			<div class="page-header">
+			<div class="page-header border-bottom mb-4">
 				<h3>Исполнитель - {{ singer.name }}</h3>
 			</div>
 		
 			<div class="row">
 				<div class="col-md-6">
 		
-					<dl class="dl-horizontal">
-						<dt>Название</dt>
-						<dd>{{ singer.name }}</dd>
+					<dl class="row">
+						<dt class="col-sm-3">Название</dt>
+						<dd class="col-sm-9">{{ singer.name }}</dd>
 		
-						<dt>Создание</dt>
-						<dd>{{ singer.created }}</dd>
+						<dt class="col-sm-3">Создание</dt>
+						<dd class="col-sm-9">{{ singer.created }}</dd>
 		
-						<dt>Обновление</dt>
-						<dd>{{ singer.updated }}</dd>
+						<dt class="col-sm-3">Обновление</dt>
+						<dd class="col-sm-9">{{ singer.updated }}</dd>
 					</dl>
 		
-					<button-back></button-back>
+					<BtnBack />
 		
 					<div class="pull-right">
 						<button-remove @click="show_remove" :disabled="is_songs"></button-remove>

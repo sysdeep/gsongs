@@ -4,7 +4,7 @@
 
 		<h4 class="page-header">
 			Последние добавленные
-			<span class="pull-right badge">{{ last_songs.length }}</span>
+			<span class="pull-right badge badge-secondary">{{ last_songs.length }}</span>
 		</h4>
 		<ul>
 			<li v-for="song in last_songs">

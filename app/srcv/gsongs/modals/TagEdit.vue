@@ -3,11 +3,11 @@
   	<div class="modal-dialog" role="document">
     	<div class="modal-content">
       		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         		<h4 class="modal-title">
         			<span v-if="is_new">Создание тэга</span>
         			<span v-else>Изменение тэга <strong>{{ org_name }}</strong></span>
         		</h4>
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       		</div>
       
       		<div class="modal-body">
@@ -20,8 +20,8 @@
       		</div>
       
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Закрыть</button>
         		<button-save @click="save()"></button-save>
+        		<button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Закрыть</button>
       		</div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->

@@ -10,7 +10,7 @@
 				<router-link :to="/singer/ + singer.id" title="перейти на страницу исполнителя">
 					{{ singer.name }}
 				</router-link>
-				<span class="pull-right badge">{{ singer_songs.length }}</span>
+				<span class="pull-right badge badge-secondary">{{ singer_songs.length }}</span>
 			</span>
 
 		</h4>
@@ -18,9 +18,9 @@
 
 		<div class="input-group">
 			<input type="text" class="form-control" v-model="song_filter" placeholder="быстрый поиск">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button" @click="song_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
-				</span>
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary" type="button" @click="song_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
+				</div>
 		</div>
 
 
