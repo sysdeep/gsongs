@@ -118,7 +118,7 @@ if(process.env.hasOwnProperty("PRODUCTION")){
 	console.log("Start build app");
 	config.watch = false;
 	config.devtool = 'source-map';
-	config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool}));
+	// config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool}));
 	// config.stats = "normal";
 	config.mode = "production";
 }else{
