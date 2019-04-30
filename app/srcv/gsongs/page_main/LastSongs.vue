@@ -1,11 +1,11 @@
 <template>
-	<div>
+	<div class="card">
 		
 
-		<h4 class="page-header">
+		<div class="card-header">
 			Последние добавленные
 			<span class="pull-right badge badge-secondary">{{ last_songs.length }}</span>
-		</h4>
+		</div>
 		<ul>
 			<li v-for="song in last_songs">
 				<router-link :to="/singer/ + song.singer" title="перейти к странице исполнителя">{{ get_singer_name(song.singer) }}</router-link>
@@ -19,6 +19,7 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 export default {
 
 	data: function(){
@@ -29,15 +30,20 @@ export default {
 
 
 	methods: {
+		
+
 		get_singer_name: function(singer_id){
-			let singer = this.$store.state.singers.find((item) => { return item.id == singer_id })
+			let singer = this.singers.find((item) => { return item.id == singer_id })
 			return singer ? singer.name : "---";
 		},
 	},
 
 	computed: {
+
+		...mapGetters(["singers", "songs"]),
+
 		last_songs: function(){
-			let songs_copy = this.$store.state.songs.slice();
+			let songs_copy = this.songs.slice();
 			songs_copy.sort(function (a, b) { return b.id - a.id });
 			return songs_copy.slice(0, this.last_songs_count);	
 

@@ -6,7 +6,7 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				<table class="table table-bordered table-condensed">
+				<table class="table table-bordered table-sm">
 					<thead>
 						<tr>
 							<!-- <th>id</th> -->
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 export default {
 
 	data: function(){
@@ -85,6 +86,8 @@ export default {
 
 	computed: {
 
+		...mapGetters(["songs"]),
+
 		// tag: function(){
 		// 	return this.$store.state.tags.find(item => item.id == this.id);
 		// },
@@ -103,7 +106,7 @@ export default {
 			let songs_id = links.map(item => item.id_song);
 
 			
-			let result = this.$store.state.songs.filter(song => {
+			let result = this.songs.filter(song => {
 				return songs_id.indexOf(song.id) > -1;
 			})
 

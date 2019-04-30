@@ -16,18 +16,18 @@ export default {
 
 
 
-	/**
-	 * получить список исполнителей
-	 */
-	fetch_singers: function(context){
-		return new Promise((resolve, reject) => {
-			axios.get("/api/get_singers").then(response => {
-				response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
-				context.commit("set_singers", response.data.singers);
-				resolve();
-			});
-		})
-	},
+	// /**
+	//  * получить список исполнителей
+	//  */
+	// fetch_singers: function(context){
+	// 	return new Promise((resolve, reject) => {
+	// 		axios.get("/api/get_singers").then(response => {
+	// 			response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+	// 			context.commit("set_singers", response.data.singers);
+	// 			resolve();
+	// 		});
+	// 	})
+	// },
 
 
 	/**

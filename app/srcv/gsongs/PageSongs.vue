@@ -131,6 +131,7 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 import bus from "./bus";
 
 export default {
@@ -172,9 +173,11 @@ export default {
 
 
 	computed: {
-		songs: function(){
-			return this.$store.state.songs;
-		},
+		...mapGetters(["songs"]),
+		
+		// songs: function(){
+		// 	return this.$store.state.songs;
+		// },
 
 
 

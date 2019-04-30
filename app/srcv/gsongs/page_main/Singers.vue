@@ -1,20 +1,23 @@
 <template>
-	<div>
-		<h4 class="page-header">
+	<div class="card">
+		<div class="card-header">
 			Исполнители
 			<span class="pull-right badge badge-secondary">{{ singers.length }}</span>
-		</h4>
+		</div>
 
-		<div class="input-group">
-			<input type="text" class="form-control" v-model="singer_filter" placeholder="быстрый поиск">
-			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button" @click="singer_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
-				</div>
+		<div class="card-body">
+			
+			<div class="input-group">
+				<input type="text" class="form-control" v-model="singer_filter" placeholder="быстрый поиск">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button" @click="singer_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
+					</div>
+			</div>
 		</div>
 
 		<br>
 
-		<ul class="list-unstyled">
+		<ul class="list-unstyled1">
 			<li v-for="singer in fsingers">
 				<a href="javascript: void(0)" @click="select_singer(singer)" title="отобразить список песенок для этого исполнителя">
 					<i v-if="singer == current_singer" class="fa fa-arrow-right" aria-hidden="true"></i>
@@ -32,6 +35,7 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 export default {
 
 	data: function(){
@@ -52,13 +56,11 @@ export default {
 
 	computed: {
 
-		singers: function(){
-			return this.$store.state.singers;
-		},
+		...mapGetters(["singers"]),
 
 		fsingers: function(){
 			let lfind = this.singer_filter.toLowerCase();
-			return this.$store.state.singers.filter((item) => {
+			return this.singers.filter((item) => {
 				let name = item.name.toLowerCase();
 				return name.indexOf(lfind) > -1;
 			});

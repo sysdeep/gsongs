@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 import bus from "../bus";
 import {get_default_song} from "../utils";
 
@@ -184,9 +185,10 @@ export default {
 
 
 	computed: {
-		singers(){
-			return this.$store.state.singers;
-		}
+		...mapGetters(["singers"]),
+		// singers(){
+		// 	return this.$store.state.singers;
+		// }
 	}
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
-	<div>
+	<div class="card">
 		
 
-		<h4 class="page-header">
+		<div class="card-header">
 			Песни исполнителя:
 
 			<span v-if="!singer">нет исполнителя</span>
@@ -13,7 +13,7 @@
 				<span class="pull-right badge badge-secondary">{{ singer_songs.length }}</span>
 			</span>
 
-		</h4>
+		</div>
 		
 
 		<div class="input-group">
@@ -26,7 +26,7 @@
 
 		<br>
 
-		<ul class="list-unstyled">
+		<ul class="list-unstyled1">
 			<li v-for="song in filtered_songs">
 				<router-link :to="/song/ + song.id" title="перейти к странице песни">
 					{{ song.name }}
@@ -42,6 +42,7 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 export default {
 	props: ["singer"],
 
@@ -52,10 +53,11 @@ export default {
 	},
 
 	computed: {
+		...mapGetters(["songs"]),
 	
 		singer_songs(){
 			if(this.singer){
-				return this.$store.state.songs.filter(song => song.singer == this.singer.id);
+				return this.songs.filter(song => song.singer == this.singer.id);
 			}
 			return [];
 		},

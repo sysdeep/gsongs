@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-md-5">
 	
-				<table class="table table-bordered table-condensed">
+				<table class="table table-bordered table-sm">
 					<tbody>
 						<tr>
 							<td>Исполнитель</td>
@@ -127,6 +127,7 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 import bus from "../bus";
 import {go_back} from "../utils";
 import component_tags from "./Tags.vue";
@@ -204,7 +205,7 @@ export default {
 
 
 	computed: {
-
+		...mapGetters(["songs"]),
 
 		/**
 		 *
@@ -226,7 +227,7 @@ export default {
 				let r = line.replace(/\[/g, "<b>").replace(/\]/g, "</b>");
 				qqq.push(r);
 			});
-			console.log(qqq);
+			// console.log(qqq);
 			// let qqq = result.replace(/\[/g, "<b>");
 			// qqq = qqq.replace(/\]/g, "</b>");
 			// console.log(qqq);
@@ -253,7 +254,7 @@ export default {
 
 
 		singer_songs: function(){
-			let result = this.$store.state.songs.filter(item => (item.singer == this.song.singer) && (item.id != this.id));
+			let result = this.songs.filter(item => (item.singer == this.song.singer) && (item.id != this.id));
 
 			return result;
 		},

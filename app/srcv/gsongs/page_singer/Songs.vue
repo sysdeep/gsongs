@@ -51,6 +51,7 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 export default {
 	props: ["singerid"],
 
@@ -77,6 +78,9 @@ export default {
 
 
 	computed: {
+
+		// ...mapGetters(["songs"]),
+
 		songs: function(){
 			let result = this.$store.getters.singer_songs(this.singerid);
 			

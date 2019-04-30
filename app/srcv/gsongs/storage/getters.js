@@ -1,7 +1,7 @@
 
 
 
-const SINGER_NAME_CACHE = {};
+// const SINGER_NAME_CACHE = {};
 
 
 
@@ -29,23 +29,23 @@ export default {
 	},
 
 
-	/**
-	 * найти имя исполнителя по заданному id
-	 */
-	get_singer_name: (state, getters) => (singer_id) => {
-		let cache_result = SINGER_NAME_CACHE[singer_id];
-		if(cache_result){
-			// console.log("in cache");
-			return cache_result;
-		}
+	// /**
+	//  * найти имя исполнителя по заданному id
+	//  */
+	// get_singer_name: (state, getters) => (singer_id) => {
+	// 	let cache_result = SINGER_NAME_CACHE[singer_id];
+	// 	if(cache_result){
+	// 		// console.log("in cache");
+	// 		return cache_result;
+	// 	}
 
-		let singer = state.singers.find(item => item.id == singer_id);
-		if(singer){
-			// console.log("add cache");
-			SINGER_NAME_CACHE[singer_id] = singer.name;
-		}
-		return singer? singer.name : "---";
-	},
+	// 	let singer = state.singers.find(item => item.id == singer_id);
+	// 	if(singer){
+	// 		// console.log("add cache");
+	// 		SINGER_NAME_CACHE[singer_id] = singer.name;
+	// 	}
+	// 	return singer? singer.name : "---";
+	// },
 
 
 
@@ -58,12 +58,12 @@ export default {
 	},
 
 
-	/**
-	 * получить список песенок для исполнителя
-	 */
-	singer_songs: (state, getters) => (singer_id) => {
-		return state.songs.filter(song => song.singer == singer_id);
-	},
+	// /**
+	//  * получить список песенок для исполнителя
+	//  */
+	// singer_songs: (state, getters) => (singer_id) => {
+	// 	return state.songs.filter(song => song.singer == singer_id);
+	// },
 
 
 

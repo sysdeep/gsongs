@@ -161,7 +161,7 @@
 
 
 <script>
-
+import {mapGetters} from "vuex";
 import bus from "./bus";
 
 export default {
@@ -200,14 +200,13 @@ export default {
 
 
 	computed: {
-		singers: function(){
-			return this.$store.state.singers;
-		},
+		...mapGetters(["singers"]),
 
+		
 
 		singers_filtered: function(){
 			var s_name = this.search_name.toLowerCase();
-			let result = this.$store.state.singers.filter((item)=>{
+			let result = this.singers.filter((item)=>{
 				let index = item.name.toLowerCase().indexOf(s_name);
 				return index > -1;
 			});
