@@ -98,14 +98,17 @@
 			<div class="col-md-7">
 
 
+<Chords :text="song.text" />
 
-<pre>
+<SongText :text="song.text" />
+
+<!-- <pre>
 {{ song.text }}
-</pre>
+</pre> -->
 
 
-
-<!-- <div>
+<!-- 
+<div>
 	<div v-for="(row, i) in mtext" :key="i" v-html="row" style="white-space: pre" class="mono"></div>
 </div> -->
 
@@ -132,6 +135,8 @@ import bus from "../bus";
 import {go_back} from "../utils";
 import component_tags from "./Tags.vue";
 
+import SongText from "./SongText.vue";
+import Chords from "./Chords.vue";
 
 export default {
 	data: function(){
@@ -145,7 +150,9 @@ export default {
 	},
 
 	components: {
-		"c-tags"	: component_tags
+		"c-tags"	: component_tags,
+		SongText,
+		Chords
 	},
 
 
@@ -267,4 +274,14 @@ export default {
 
 	}
 }
+
+
+
+
+// function parse(text){
+
+// 	return text;
+// }
+
+
 </script>
