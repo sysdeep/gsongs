@@ -38,13 +38,20 @@
 			<BtnBack />
 			<BtnCreate @click="show_create">Добавить</BtnCreate>
 			
-		</div>
+		
+		<!-- <TstModal /> -->
+
 	</div>
 </template>
 
 <script>
 import bus from "./bus";
+// import TstModal from "./tcomponents/ModalCompWrap.vue"
 export default {
+
+	// components: {
+	// 	TstModal
+	// },
 
 	methods: {
 
