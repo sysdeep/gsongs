@@ -15,7 +15,6 @@ if not DIR_VENDOR in sys.path:
 	sys.path.insert( 0, DIR_VENDOR )
 
 
-
 from app.main import app
 
 # app = create_app()
