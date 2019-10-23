@@ -4,7 +4,7 @@ logs/*
 .idea
 node_modules
 app/static/bower_components
-package-lock.json
+
 
 ### Python template
 # Byte-compiled / optimized / DLL files

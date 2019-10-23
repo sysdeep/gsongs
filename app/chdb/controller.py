@@ -19,7 +19,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from vendor import auto
+# from vendor import auto
 import peewee
 import os.path
 import time

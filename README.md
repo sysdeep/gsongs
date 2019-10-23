@@ -7,9 +7,19 @@ https://github.com/sysdeep/gsongs.git
 git@github.com:sysdeep/gsongs.git
 
 
+## Dependencies
+
+	pip install flask==1.1.1 -t vendor
+	pip install peewee==2.8.0 -t vendor
 
 
-# Comcon deploy(2016.12.15)
+## Dependencies old
+
+	pip install flask==0.10.1 -t vendor
+	pip install peewee==2.8.0 -t vendor
+
+
+## Comcon deploy(2016.12.15)
 
 Изменена система перезапуска проекта. Основной сервис стартует от системы, он запускает оболочку слежения gvisor, которая в свою очередь следит за наличием файлов команд в каталоге cdir. При появлении файлов start и stop gvisor запускает процесс или останавливает.
 

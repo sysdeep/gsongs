@@ -4,7 +4,7 @@ import os.path
 # import sqlite3
 
 
-from vendor import auto
+# from vendor import auto
 import peewee
 
 #--- main

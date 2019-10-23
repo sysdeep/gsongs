@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from vendor import auto
+# from vendor import auto
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 
 from . import storage, VERSION

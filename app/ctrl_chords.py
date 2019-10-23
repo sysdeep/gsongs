@@ -5,7 +5,7 @@ import time
 from shutil import make_archive
 from zipfile import ZipFile
 
-from vendor import auto
+# from vendor import auto
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_file
 
 from . import VERSION, chdb
