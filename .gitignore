@@ -1,5 +1,5 @@
 logs/*
-# vendor/*
+vendor/*
 .vscode
 .idea
 node_modules

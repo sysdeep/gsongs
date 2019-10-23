@@ -1,7 +1,12 @@
 # Git settings
 
 
+## edit config
 
+    git config -e                   # open repo config file in editor
+    git config -e --global          # open global config file in editor
+
+## my settings
 
     [user]
         name = username
