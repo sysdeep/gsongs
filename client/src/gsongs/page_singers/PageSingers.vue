@@ -26,7 +26,10 @@
 		<h3 class="page-header">
 			Список исполнителей
 			<small>{{ singers.length }}</small>
+			
 		</h3>
+
+		<Spinner v-if="!singers_loaded" />
 	
 		<div class="row">
 			<div class="col-md-6 col-sm-6 col-xs-6">
@@ -51,7 +54,7 @@
 
 					<BtnCreate @click="show_create_singer()" />
 
-					<BtnRefresh @click="refresh()"/>
+					<BtnRefresh :loading="!singers_loaded" @click="refresh()"/>
 					
 				</div>
 			</div>
@@ -162,7 +165,7 @@
 
 <script>
 import {mapGetters} from "vuex";
-import bus from "./bus";
+import bus from "../bus";
 
 export default {
 	data: () => {
@@ -200,7 +203,7 @@ export default {
 
 
 	computed: {
-		...mapGetters(["singers"]),
+		...mapGetters(["singers", "singers_loaded"]),
 
 		
 

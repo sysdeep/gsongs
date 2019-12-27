@@ -1,7 +1,7 @@
 <template>
 	<div class="card">
 		
-
+		
 		<div class="card-header">
 			Песни исполнителя:
 
@@ -23,11 +23,12 @@
 				</div>
 		</div>
 
+		<Spinner v-if="!singer_loaded" />
 
 		<br>
 
 		<ul class="list-unstyled1">
-			<li v-for="song in filtered_songs">
+			<li v-for="(song, i) in filtered_songs" :key="i">
 				<router-link :to="/song/ + song.id" title="перейти к странице песни">
 					{{ song.name }}
 				</router-link>
@@ -44,7 +45,7 @@
 <script>
 import {mapGetters} from "vuex";
 export default {
-	props: ["singer"],
+	// props: ["singer"],
 
 	data: function(){
 		return {
@@ -53,14 +54,14 @@ export default {
 	},
 
 	computed: {
-		...mapGetters(["songs"]),
+		...mapGetters(["singer", "singer_songs", "singer_loaded"]),
 	
-		singer_songs(){
-			if(this.singer){
-				return this.songs.filter(song => song.singer == this.singer.id);
-			}
-			return [];
-		},
+		// singer_songs(){
+		// 	if(this.singer){
+		// 		return this.songs.filter(song => song.singer == this.singer.id);
+		// 	}
+		// 	return [];
+		// },
 
 		filtered_songs(){
 			let lfind = this.song_filter.toLowerCase();

@@ -36,7 +36,15 @@ def get_song(song_id):
 		"updated"		: str(song.updated),
 	}
 
-	return jsonify(song=response)
+	singer_songs = storage.Song.select(storage.Song.id, storage.Song.name).where(storage.Song.singer == song.singer.id).dicts()
+
+	res = {
+		"song"	: response,
+		"singer_songs"	: list(singer_songs)
+	}
+
+	# return jsonify(song=response)
+	return jsonify(res)
 
 
 def create_song():

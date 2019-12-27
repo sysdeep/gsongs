@@ -5,14 +5,16 @@
 			<div class="col-md-3">
 
 				<!-- singers list -->
-				<c-singers @select_singer="on_select_singer"></c-singers>
+				<!-- <c-singers @select_singer="on_select_singer"></c-singers> -->
+				<c-singers />
 
 			</div>
 	
 			<div class="col-md-5">
 				
 				<!-- singer songs list -->
-				<c-songs :singer="selected_singer"></c-songs>
+				<!-- <c-songs :singer="selected_singer"></c-songs> -->
+				<c-songs />
 	
 			</div>
 	
@@ -21,12 +23,12 @@
 				
 
 				<!-- last -->
-				<c-last></c-last>
+				<!-- <c-last></c-last> -->
 
-				<br>
+				<!-- <br> -->
 
 				<!-- tags -->
-				<c-tags></c-tags>
+				<c-tags />
 
 
 
@@ -40,7 +42,7 @@
 <script>
 import component_tags from "./Tags.vue";
 import component_singers from "./Singers.vue";
-import component_last from "./LastSongs.vue";
+// import component_last from "./LastSongs.vue";
 import component_songs from "./SingerSongs.vue";
 
 
@@ -48,14 +50,14 @@ import component_songs from "./SingerSongs.vue";
 export default {
 	data: function () {
 		return {
-			"selected_singer"	: null
+			// "selected_singer"	: null
 		}
 	},
 
 	components: {
 		"c-singers"	: component_singers,
 		"c-tags"	: component_tags,
-		"c-last"	: component_last,
+		// "c-last"	: component_last,
 		"c-songs"	: component_songs
 	},
 
@@ -64,9 +66,9 @@ export default {
 	},
 
 	methods: {
-		on_select_singer(singer){
-			this.selected_singer = singer;
-		}
+		// on_select_singer(singer){
+		// 	this.selected_singer = singer;
+		// }
 	},
 
 

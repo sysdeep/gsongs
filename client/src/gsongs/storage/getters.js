@@ -17,17 +17,7 @@ export default {
 
 
 
-	/**
-	 * получить список ссылок для песен, связанных с заданной меткой
-	 */
-	get_tag_songs: (state, getters) => (tag_id) => {
-		return state.tag_song_links.filter(item => item.id_tag == tag_id);
-	},
-
-	get_song_tags: (state, getters) => (song_id) => {
-		return state.tag_song_links.filter(item => item.id_song == song_id);
-	},
-
+	
 
 	// /**
 	//  * найти имя исполнителя по заданному id

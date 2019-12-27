@@ -22,7 +22,7 @@ export default {
 		/**
 		 * получить список исполнителей
 		 */
-		fetch_singers: function(context){
+		fetch_songs: function(context){
 			return new Promise((resolve, reject) => {
 				context.commit("set_songs_loaded", false);
 				axios.get("/api/get_songs").then(response => {
@@ -44,9 +44,9 @@ export default {
 		/**
 		 * получить список песенок для исполнителя
 		 */
-		singer_songs: (state, getters) => (singer_id) => {
-			return state.songs.filter(song => song.singer == singer_id);
-		},
+		// singer_songs: (state, getters) => (singer_id) => {
+		// 	return state.songs.filter(song => song.singer == singer_id);
+		// },
 
 		// /**
 		//  * найти имя исполнителя по заданному id

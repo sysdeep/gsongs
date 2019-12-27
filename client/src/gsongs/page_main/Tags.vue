@@ -2,7 +2,7 @@
 	<div class="card">
 		<div class="card-header">
 			Метки
-			<span class="pull-right badge badge-secondary">{{ ftags.length }}</span>
+			<span class="pull-right badge badge-secondary">{{ tags.length }}</span>
 		</div>
 
 		<!-- <table class="table table-sm">
@@ -20,7 +20,7 @@
 
 		<!-- <div class="card-body"> -->
 			<ul>
-				<li v-for="(tag, index) in ftags" :key="index">
+				<li v-for="(tag, index) in tags" :key="index">
 					<router-link :to="/tag/ + tag.id">{{ tag.name }}</router-link>
 				</li>
 			</ul>
@@ -32,15 +32,16 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 export default {
 
 
 
 
 	computed: {
-		ftags: function(){
-			return this.$store.state.tags;
-		}
+		...mapGetters(["tags", "tags_loaded"]),
+
+		
 	}
 }
 </script>

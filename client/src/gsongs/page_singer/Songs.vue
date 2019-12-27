@@ -58,7 +58,7 @@
 <script>
 import {mapGetters} from "vuex";
 export default {
-	props: ["singerid"],
+	props: ["songs"],
 
 	data: function(){
 		return {
@@ -86,10 +86,11 @@ export default {
 
 		// ...mapGetters(["songs"]),
 
-		songs: function(){
-			let result = this.$store.getters.singer_songs(this.singerid);
+		ssongs: function(){
 			
-			result.sort((a, b) =>{
+
+			
+			return [...this.songs].sort((a, b) =>{
                 if(this.sort_dir){
                     return (a.name < b.name)? 1 : -1;
                 }else{
@@ -98,12 +99,11 @@ export default {
             })
 
             
-			return result;
 		},
 
 		filtered_songs: function(){
 			let lfind = this.filter_songs.toLowerCase();
-            return this.songs.filter(item => {
+            return this.ssongs.filter(item => {
                 let name = item.name.toLowerCase();
                 return name.indexOf(lfind) > -1;
             })

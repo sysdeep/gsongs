@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div v-if="!singer">
-			loading...
+			<Spinner />
 		</div>
 
 		<div v-if="singer">
@@ -37,7 +37,7 @@
 				<div class="col-md-6">
 		
 
-					<c-songs :singerid="singer.id" @addsong="add_song"></c-songs>
+					<c-songs :songs="singer_songs" @addsong="add_song"></c-songs>
 		
 		
 				</div>
@@ -59,6 +59,7 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 import bus from "../bus";
 import {go_back} from "../utils";
 import component_songs from "./Songs.vue";
@@ -67,7 +68,7 @@ export default {
 	data: function () {
 		return {
 
-			"singer_id"			: null,
+			// "singer_id"			: null,
 			"is_modal_remove"   : false,
 			"is_removed"        : false,
 		}
@@ -96,8 +97,8 @@ export default {
 	methods: {
 		
 		refresh(){
-			this.singer_id = this.$route.params.id;
-			this.$store.dispatch("fetch_singer", this.singer_id);
+			let singer_id = this.$route.params.id;
+			this.$store.dispatch("get_singer", singer_id);
 		},
 
 
@@ -128,14 +129,17 @@ export default {
 
 
 	computed: {
-		singer: function(){
-			// return this.$store.getters.find_singer(this.singer_id);
-			return this.$store.state.singer;
-		},
+		...mapGetters(["singer", "singer_loaded", "singer_songs"]),
+
+		// singer: function(){
+		// 	// return this.$store.getters.find_singer(this.singer_id);
+		// 	return this.$store.state.singer;
+		// },
 
 		is_songs: function(){
-			let result = this.$store.getters.singer_songs(this.singer_id);
-			return result.length > 0;
+			return this.singer_songs.length > 0;
+			// let result = this.$store.getters.singer_songs(this.singer_id);
+			// return result.length > 0;
 		}
 	},
 }

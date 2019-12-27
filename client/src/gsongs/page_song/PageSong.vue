@@ -86,7 +86,7 @@
 				<h4 class="page-header">Другие песни исполнителя</h4>
 	
 				<ul>
-					<li v-for="(song, index) in singer_songs" :key="index">
+					<li v-for="(song, index) in singer_songs_without" :key="index">
 						<lsong :cdata="song"></lsong>
 					</li>
 				</ul>
@@ -212,7 +212,7 @@ export default {
 
 
 	computed: {
-		...mapGetters(["songs"]),
+		...mapGetters(["songs", "singer_songs"]),
 
 		/**
 		 *
@@ -258,13 +258,16 @@ export default {
 			return this.$store.getters.get_singer_name(this.song.singer);
 		},
 
+		singer_songs_without(){
+			return this.singer_songs.filter(r => r.id != this.song.id);
+		}
 
 
-		singer_songs: function(){
-			let result = this.songs.filter(item => (item.singer == this.song.singer) && (item.id != this.id));
+		// singer_songs: function(){
+		// 	let result = this.songs.filter(item => (item.singer == this.song.singer) && (item.id != this.id));
 
-			return result;
-		},
+		// 	return result;
+		// },
 
 
 		

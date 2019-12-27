@@ -27,14 +27,19 @@ def get_singer(singer_id):
 		"created"	: str(singer.created),
 		"updated"	: str(singer.updated),
 	}
-	# data = []
-	# for singer in singers:
-	# 	singer["created"] = str(singer["created"])
-	# 	singer["updated"] = str(singer["updated"])
-	# 	data.append(singer)
-	# return jsonify(singers=data)
-	# print(singer)
-	return jsonify(singer=response)
+
+	
+	songs = storage.Song.select(storage.Song.id, storage.Song.name).where(storage.Song.singer == singer_id).dicts()
+	
+
+	res = {
+		"singer" 	: response,
+		"songs" 	: list(songs)
+	}
+
+
+	# return jsonify(singer=response)
+	return jsonify(res)
 
 
 

@@ -19,6 +19,7 @@ import component_lsinger from "./components/LSinger.vue";
 import component_lsong from "./components/LSong.vue";
 import component_modal_remove from "./components/ModalRemove.vue";
 
+import Spinner from "./components/Spinner.vue";
 import BtnRefresh from "./components/BtnRefresh.vue";
 import BtnCreate from "./components/BtnCreate.vue";
 import BtnBack from "./components/BtnBack.vue";
@@ -40,6 +41,7 @@ Vue.component("modal-remove", component_modal_remove);
 Vue.component("BtnRefresh", BtnRefresh);
 Vue.component("BtnCreate", BtnCreate);
 Vue.component("BtnBack", BtnBack);
+Vue.component("Spinner", Spinner);
 
 
 Vue.use(VueRouter);
@@ -70,9 +72,9 @@ const app = new Vue({
 
 		//--- preload main data
 		this.$store.dispatch("fetch_singers");
-		this.$store.dispatch("fetch_songs");
+		// this.$store.dispatch("fetch_songs");
 		this.$store.dispatch("fetch_tags");
-		this.$store.dispatch("fetch_tag_song_links");
+		// this.$store.dispatch("fetch_tag_song_links");
 	},
 
 

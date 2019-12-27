@@ -62,31 +62,33 @@ export default {
 
 	computed: {
 		song_tags: function(){
-			let links = this.$store.getters.get_song_tags(this.songid);
+			// let links = this.$store.getters.get_song_tags(this.songid);
 
-			let tags_id = links.map(item => item.id_tag);
+			// let tags_id = links.map(item => item.id_tag);
 
 			
-			let result = this.$store.state.tags.filter(tag => {
-				return tags_id.indexOf(tag.id) > -1;
-			})
+			// let result = this.$store.state.tags.filter(tag => {
+			// 	return tags_id.indexOf(tag.id) > -1;
+			// })
 
-			return result;
+			// return result;
+			return []
 		},
 
 
 
 		free_tags: function(){
-			let links = this.$store.getters.get_song_tags(this.songid);
+			return []
+			// let links = this.$store.getters.get_song_tags(this.songid);
 
-			let tags_id = links.map(item => item.id_tag);
+			// let tags_id = links.map(item => item.id_tag);
 
 			
-			let result = this.$store.state.tags.filter(tag => {
-				return tags_id.indexOf(tag.id) == -1;
-			})
+			// let result = this.$store.state.tags.filter(tag => {
+			// 	return tags_id.indexOf(tag.id) == -1;
+			// })
 
-			return result;	
+			// return result;	
 		}
 	}
 }

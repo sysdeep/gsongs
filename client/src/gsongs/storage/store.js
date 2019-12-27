@@ -5,7 +5,9 @@ import getters from "./getters";
 import {get_default_singer} from "../utils";
 
 import module_singers from "./modules/singers";
+import module_singer from "./modules/singer";
 import module_songs from "./modules/songs";
+import module_tags from "./modules/tags";
 
 Vue.use(Vuex);
 
@@ -13,13 +15,15 @@ export const store = new Vuex.Store({
 
 	modules: {
 		singers 	: module_singers,
+		singer 		: module_singer,
 		songs 		: module_songs,
+		module_tags
 	},
 
 
 	state: {
 		// "singers"			: [],
-		"singer"			: null,
+		// "singer"			: null,
 		// "singers_loaded"	: false,
 		"singer_id"			: null,
 
@@ -28,10 +32,7 @@ export const store = new Vuex.Store({
 		"song_id"			: null,
 
 
-		"tags"				: [],
-		"tags_loaded"		: false,
-
-		"tag_song_links"	: []
+		
 	},
 
 	actions,
@@ -44,8 +45,8 @@ export const store = new Vuex.Store({
 		// 	state.singers_loaded = true;
 		// },
 
-		set_singer: (state, singer) => state.singer = singer,
-		set_singer_id: (state, singer_id) => state.singer_id = singer_id,
+		// set_singer: (state, singer) => state.singer = singer,
+		// set_singer_id: (state, singer_id) => state.singer_id = singer_id,
 		
 		set_song: (state, song) => state.song = song,
 		set_song_id: (state, song_id) => state.song_id = song_id,
