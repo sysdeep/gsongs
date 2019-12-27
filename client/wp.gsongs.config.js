@@ -10,13 +10,13 @@ const { VueLoaderPlugin } = require('vue-loader');
 var config = {
 	entry: {
 
-		"gsongs"			: path.normalize(path.join(__dirname, "app", "srcv", "gsongs", "app.js")),
+		"gsongs"			: path.normalize(path.join(__dirname, "src", "gsongs", "app.js")),
 		"gsongs_vendor"		: ["vue", "vue-router", "vuex", "axios"],
 		
 	},
 	
 	output: {
-		path: path.normalize(path.join(__dirname, "app", "static", "build")),
+		path: path.normalize(path.join(__dirname, "..", "app", "static", "build")),
 		filename: '[name].js',
 	},
 

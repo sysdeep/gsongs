@@ -1,5 +1,6 @@
 var path = require("path");
 var webpack = require('webpack');
+const { VueLoaderPlugin } = require('vue-loader');
 
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -10,15 +11,15 @@ var config = {
 	entry: {
 
 		// "gsongs"		: path.join(__dirname, "app", "srcv", "gsongs", "app.js"),
-		// "todo"			: path.join(__dirname, "app", "srcv", "todo", "main.js"),
-		"chords_edit"	: path.join(__dirname, "app", "srcv", "chords_edit", "main.js"),
+		"todo"			: path.join(__dirname, "src", "todo", "main.js"),
+		// "chords_edit"	: path.join(__dirname, "app", "srcv", "chords_edit", "main.js"),
 		// "chords_view"	: path.join(__dirname, "app", "srcv", "chords_view", "main.js"),
 		
 		// "vendor"	: ["vue", "axios"]
 		
 	},
 	output: {
-		path: path.join(__dirname, "app", "static", "build"),
+		path: path.join(__dirname, "..", "app", "static", "build"),
 		// path: __dirname + 'app/static/build',
 		filename: '[name].js',
 		// filename: 'templates.js',
@@ -34,9 +35,9 @@ var config = {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,
-				query: {
-					presets: ['es2015']
-				}
+				// query: {
+				// 	presets: ['es2015']
+				// }
 			},
 			{
 				test: /\.(css|html)$/,
@@ -59,7 +60,7 @@ var config = {
 				// },
 				options: {
 					loaders: {
-						js: 'babel-loader?presets[]=es2015'
+						// js: 'babel-loader?presets[]=es2015'
 					}
 					// other vue-loader options go here
 				}
@@ -73,7 +74,34 @@ var config = {
 	// plugins : [
 	// 	new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' })
 	// ]
-	plugins : []
+	plugins : [
+		new VueLoaderPlugin(),
+	],
+
+
+	// //--- new cunks api
+	// optimization: {
+	// 	splitChunks: {
+	// 		// chunks: "all"
+	// 		cacheGroups: {
+	// 			mdispatch_vendor: {
+	// 				name: 'gsongs_vendor',
+    //       			chunks: 'initial',
+    //       			minChunks: 2,
+	// 				// filename: '[name].bundle.js'
+	// 			},
+
+	// 			// mdispatch_store: {
+	// 			// 	name: 'mdispatch_store',
+    // //       			chunks: 'initial',
+    // //       			minChunks: 2,
+	// 			// 	// filename: '[name].bundle.js'
+	// 			// }
+	// 		}
+	// 	}
+	// }
+
+
 };
 
 
@@ -82,12 +110,14 @@ if(process.env.hasOwnProperty("PRODUCTION")){
 	console.log("Start build app");
 	config.watch = false;
 	config.devtool = 'source-map';
-	config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool}));
+	// config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool}));
 	// config.stats = "normal";
+	config.mode = "production";
 }else{
 	console.log("Start watch app");
 	config.watch = true;
 	config.devtool = 'inline-source-map';
+	config.mode = "development";
 }
 
 
