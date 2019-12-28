@@ -23,6 +23,8 @@ import Spinner from "./components/Spinner.vue";
 import BtnRefresh from "./components/BtnRefresh.vue";
 import BtnCreate from "./components/BtnCreate.vue";
 import BtnBack from "./components/BtnBack.vue";
+// import bmodal from "./components/bmodal/index.js";						// пока не используем...
+import confirm_modal from "./components/confirm_modal/index.js";
 
 import toastr from "./toastr";
 import alert from "./alert";
@@ -47,6 +49,8 @@ Vue.component("Spinner", Spinner);
 Vue.use(VueRouter);
 Vue.use(toastr);
 Vue.use(alert);
+// Vue.use(bmodal);														// пока не используем...
+Vue.use(confirm_modal);
 
 
 

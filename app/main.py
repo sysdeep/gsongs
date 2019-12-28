@@ -72,6 +72,9 @@ app.add_url_rule("/api/remove_song_tag",				view_func=ctrl_tags.remove_song_tag,
 
 
 
+app.add_url_rule("/api/get_tag_songs/<tag_id>",					view_func=ctrl_tags.get_tag_songs)
+
+
 
 
 

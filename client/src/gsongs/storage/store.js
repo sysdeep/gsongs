@@ -7,17 +7,21 @@ import {get_default_singer} from "../utils";
 import module_singers from "./modules/singers";
 import module_singer from "./modules/singer";
 import module_songs from "./modules/songs";
+import module_song from "./modules/song";
 import module_tags from "./modules/tags";
+import module_tag from "./modules/tag";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
 
 	modules: {
-		singers 	: module_singers,
-		singer 		: module_singer,
-		songs 		: module_songs,
-		module_tags
+		module_singers,
+		module_singer,
+		module_songs,
+		module_tags,
+		module_tag,
+		module_song
 	},
 
 
@@ -27,47 +31,13 @@ export const store = new Vuex.Store({
 		// "singers_loaded"	: false,
 		"singer_id"			: null,
 
-		// "songs"				: [],
-		"song"				: null,
-		"song_id"			: null,
-
-
-		
+				
 	},
 
 	actions,
 	getters,
 
 	mutations: {
-		// set_singers: function(state, singers){
-		// 	// console.log("set singers");
-		// 	state.singers = singers;
-		// 	state.singers_loaded = true;
-		// },
-
-		// set_singer: (state, singer) => state.singer = singer,
-		// set_singer_id: (state, singer_id) => state.singer_id = singer_id,
-		
-		set_song: (state, song) => state.song = song,
-		set_song_id: (state, song_id) => state.song_id = song_id,
-
-
-		// set_songs: function(state, songs){
-		// 	state.songs = songs;
-		// },
-
-		set_tags: function(state, tags){
-			state.tags = tags;
-			state.tags_loaded = true;
-		},
-
-
-		set_tag_song_links: function(state, links){
-			state.tag_song_links = links;
-		},
-
-
-
-		
+			
 	}
 })

@@ -67,30 +67,7 @@ export default {
 	// 	});
 	// },
 
-	/**
-	 * получить заданную песенку
-	 */
-	fetch_song: function(context, song_id){
-		context.commit("set_song_id", song_id);
-		return new Promise((resolve, reject) => {
-			axios.get("/api/get_song/" + song_id).then(response => {
-				context.commit("set_song", response.data.song);
-				context.commit("set_singer_songs", response.data.singer_songs || []);
-				resolve(response.data.song);
-			});
-		})
-	},
-
-	/**
-	 * получить данные заданной песенки(для редактирования)
-	 */
-	fetch_song_simple: function(context, song_id){
-		return new Promise((resolve, reject) => {
-			axios.get("/api/get_song/" + song_id).then(response => {
-				resolve(response.data.song);
-			});
-		})
-	},
+	
 
 
 
@@ -136,36 +113,7 @@ export default {
 
 
 
-	//--- song actions --------------------------------------------------------
-	song_update: function(context, params){
-		return new Promise((resolve, reject) =>{
-			axios.post("/api/update_song", params).then(response => {
-				// context.dispatch("fetch_songs");
-				resolve(response.data.song);
-			})
-		})
-	},
-
-
-	song_create: function(context, params){
-		return new Promise((resolve, reject) =>{
-			axios.post("/api/create_song", params).then(response => {
-				// context.dispatch("fetch_songs");
-				// resolve(response.data.result.id);
-				resolve();
-			})
-		})
-	},
-
-	song_remove: function(context, params){
-		return new Promise((resolve, reject) =>{
-			axios.post("/api/remove_song", params).then(response => {
-				context.dispatch("fetch_songs");
-				resolve();
-			})
-		})
-	},
-	//--- song actions --------------------------------------------------------
+	
 
 
 

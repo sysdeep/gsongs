@@ -60,7 +60,7 @@ export default {
 	/**
 	 * найти исполнителя по id
 	 */
-	find_song: (state, getters) => (song_id) => {
+	find_song_____: (state, getters) => (song_id) => {
 		let song = state.songs.find(song => song.id == song_id);
 		return song;
 	},

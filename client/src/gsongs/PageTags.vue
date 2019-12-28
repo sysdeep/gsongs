@@ -8,19 +8,19 @@
 					<tr>
 						<!-- <th>id</th> -->
 						<th>Название</th>
-						<th>Кол-во песенок</th>
+						<!-- <th>Кол-во песенок</th> -->
 						<th>Опции</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="(tag, index) in ftags" :key="index">
+					<tr v-for="(tag, index) in tags" :key="index">
 						<!-- <td>{{ tag.id }}</td> -->
 						<td>
 							<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{tag.name}}</router-link>
 						</td>
-						<td style="text-align: center">
+						<!-- <td style="text-align: center">
 							{{ get_songs_count(tag.id) }}
-						</td>
+						</td> -->
 						<td style="text-align: center">
 							<a href="javascript: void(0)" @click="show_edit(tag)">
 								<i class="fa fa-pencil-square-o" aria-hidden="true"></i> изменить
@@ -38,13 +38,13 @@
 			<BtnBack />
 			<BtnCreate @click="show_create">Добавить</BtnCreate>
 			
-		
 		<!-- <TstModal /> -->
 
 	</div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 import bus from "./bus";
 // import TstModal from "./tcomponents/ModalCompWrap.vue"
 export default {
@@ -76,18 +76,19 @@ export default {
 
 		
 
-		get_songs_count: function(tag_id){
-			let result = this.$store.getters.get_tag_songs(tag_id);
-			return result.length;
-		}
+		// get_songs_count: function(tag_id){
+		// 	let result = this.$store.getters.get_tag_songs(tag_id);
+		// 	return result.length;
+		// }
 	},
 
 
 
 	computed: {
-		ftags: function(){
-			return this.$store.state.tags;
-		}
+		...mapGetters(["tags"]),
+		// ftags: function(){
+		// 	return this.$store.state.tags;
+		// }
 	}
 }
 </script>

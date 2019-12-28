@@ -1,47 +1,51 @@
 <template>
-	<div>
+	<div class="card">
+		<div class="card-body">
+
 		
-		<h4 class="page-header">Метки</h4>
-		
-		<div class="row">
-			<div class="col-md-6">
-				<strong>Доступные</strong>
-				<ul>
-					<li v-for="(tag, index) in free_tags" :key="index">
-						
-						[
-						<a href="javascript: void(0)" @click="add_tag(tag)" title="добавить метку к песне">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-						</a>
-						]
-						<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{ tag.name }}</router-link>
-					</li> 
-				</ul>
+			<h4 class="page-header">Метки</h4>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<strong>Доступные</strong>
+					<ul>
+						<li v-for="(tag, index) in free_tags" :key="index">
+							
+							[
+							<a href="javascript: void(0)" @click="add_tag(tag)" title="добавить метку к песне">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</a>
+							]
+							<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{ tag.name }}</router-link>
+						</li> 
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<strong>Выбранные</strong>
+					<ul>
+						<li v-for="(tag, index) in song_tags" :key="index">
+
+
+							[
+							<a href="javascript: void(0)" @click="remove_tag(tag)" title="удалить метку">
+								<i class="fa fa-minus" aria-hidden="true"></i>
+							</a>
+							]
+							<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{ tag.name }}</router-link>
+
+						</li>
+					</ul>
+			
+				</div>
 			</div>
-			<div class="col-md-6">
-				<strong>Выбранные</strong>
-				<ul>
-					<li v-for="(tag, index) in song_tags" :key="index">
 
-
-						[
-						<a href="javascript: void(0)" @click="remove_tag(tag)" title="удалить метку">
-							<i class="fa fa-minus" aria-hidden="true"></i>
-						</a>
-						]
-						<router-link :to="/tag/ + tag.id" title="перейти на страницу метки">{{ tag.name }}</router-link>
-
-					</li>
-				</ul>
-		
-			</div>
 		</div>
-
 	</div>
 </template>
 
 
 <script>
+import {mapGetters} from "vuex";
 export default {
 
 	props: ["songid"],
@@ -61,34 +65,23 @@ export default {
 	},
 
 	computed: {
-		song_tags: function(){
-			// let links = this.$store.getters.get_song_tags(this.songid);
+		...mapGetters(["song_tag_links", "tags"]),
 
-			// let tags_id = links.map(item => item.id_tag);
 
-			
-			// let result = this.$store.state.tags.filter(tag => {
-			// 	return tags_id.indexOf(tag.id) > -1;
-			// })
 
-			// return result;
-			return []
+		song_tags(){
+			let used_tags_ids = this.song_tag_links.map(t => t.id_tag);
+			return this.tags.filter(tag => {
+				return used_tags_ids.indexOf(tag.id) > -1;
+			})
 		},
 
-
-
 		free_tags: function(){
-			return []
-			// let links = this.$store.getters.get_song_tags(this.songid);
-
-			// let tags_id = links.map(item => item.id_tag);
-
+			let used_tags_ids = this.song_tag_links.map(t => t.id_tag);
+			return this.tags.filter(tag => {
+				return used_tags_ids.indexOf(tag.id) < 0;
+			})
 			
-			// let result = this.$store.state.tags.filter(tag => {
-			// 	return tags_id.indexOf(tag.id) == -1;
-			// })
-
-			// return result;	
 		}
 	}
 }

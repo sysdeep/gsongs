@@ -38,9 +38,12 @@ def get_song(song_id):
 
 	singer_songs = storage.Song.select(storage.Song.id, storage.Song.name).where(storage.Song.singer == song.singer.id).dicts()
 
+	song_tag_links = storage.RTagSong.select().where(storage.RTagSong.id_song == song_id).dicts()
+
 	res = {
-		"song"	: response,
-		"singer_songs"	: list(singer_songs)
+		"song"			: response,
+		"singer_songs"	: list(singer_songs),
+		"tag_links"			: list(song_tag_links)
 	}
 
 	# return jsonify(song=response)

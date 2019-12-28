@@ -77,13 +77,36 @@ def get_tags_songs():
 
 
 
+def get_tag_songs(tag_id):
+
+	links = storage.RTagSong.select(storage.RTagSong.id_song).where(storage.RTagSong.id_tag == tag_id)
+
+	song_ids = [v.id_song for v in links]
+	songs = storage.Song.select(storage.Song.id, storage.Song.name, storage.Song.singer).where(storage.Song.id.in_(song_ids)).dicts()
+
+	res = {
+		"songs"	: list(songs)
+	}
+	return jsonify(res)
+
+
+
+
 #--- song tags ----------------------------------------------------------------
 def add_song_tag():
 	in_data = request.get_json()
 
 	storage.RTagSong.create(id_song=in_data["song_id"], id_tag=in_data["tag_id"])
 
-	return jsonify(result=in_data)
+	song_tag_links = storage.RTagSong.select().where(storage.RTagSong.id_song == in_data["song_id"]).dicts()
+
+	res = {
+		"song_tag_links"			: list(song_tag_links)
+	}
+
+
+	return jsonify(res)
+	# return jsonify(result=in_data)
 
 
 def remove_song_tag():
@@ -92,7 +115,16 @@ def remove_song_tag():
 	record = storage.RTagSong.get(id_song=in_data["song_id"], id_tag=in_data["tag_id"])
 	record.delete_instance()
 
-	return jsonify(result=in_data)
+	song_tag_links = storage.RTagSong.select().where(storage.RTagSong.id_song == in_data["song_id"]).dicts()
+
+	res = {
+		"song_tag_links"			: list(song_tag_links)
+	}
+
+
+	return jsonify(res)
+
+	# return jsonify(result=in_data)
 
 
 # def get_song_tags(song_id):

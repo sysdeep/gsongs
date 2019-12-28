@@ -2,7 +2,7 @@
 	<div>
 		<h3 class="page-header">{{ tag_name }} <small>список песенок</small></h3>
 
-
+		<Spinner v-if="!tag_songs_loaded"/>
 
 		<div class="row">
 			<div class="col-md-8">
@@ -36,7 +36,6 @@
 		</div>
 
 
-
 	</div>
 </template>
 
@@ -52,12 +51,27 @@ export default {
 	},
 
 	created: function(){
+		this.refresh();
 		
-		this.id = this.$route.params.id; 
+	},
+
+	watch: {
+		"$route": function(to, from){
+			this.refresh();
+		}
 	},
 
 
 	methods: {
+
+		
+
+		refresh(){
+			this.id = this.$route.params.id; 
+			this.$store.dispatch("get_tag_songs", this.id).then(r => {
+
+			})
+		},
 
 		get_singer_name: function(singer_id){
 			return this.$store.getters.get_singer_name(singer_id);
@@ -65,7 +79,7 @@ export default {
 
 		show_remove: function(){
 
-			this.$alert.remove("Удалить тэг: "+ this.tag_name+"?").then(() => {
+			this.$show_confirm("Удалить тэг: "+ this.tag_name+"?").then(() => {
 				let data = {
 					"id"	: this.id,
 					"name"	: this.tag_name
@@ -86,34 +100,16 @@ export default {
 
 	computed: {
 
-		...mapGetters(["songs"]),
+		...mapGetters(["tags", "tag_songs", "tag_songs_loaded"]),
 
-		// tag: function(){
-		// 	return this.$store.state.tags.find(item => item.id == this.id);
-		// },
+	
 
 		tag_name: function(){
-			let tag = this.$store.state.tags.find(item => item.id == this.id);
+			let tag = this.tags.find(item => item.id == this.id);
 			return tag? tag.name : "---"
 		},
 
 
-		tag_songs: function(){
-
-			//--- список ссылок песен, которые учавствуют в заданной метке
-			let links = this.$store.getters.get_tag_songs(this.id);
-
-			let songs_id = links.map(item => item.id_song);
-
-			
-			let result = this.songs.filter(song => {
-				return songs_id.indexOf(song.id) > -1;
-			})
-
-
-			return result;
-			
-		}
 	}
 }
 </script>

@@ -1,12 +1,11 @@
 <template>
+<div>
 
+	<div v-if="!song">
+		не найдено...
+	</div>
 
-
-	<div>
-
-		<div v-if="!song">
-			не найдено...
-		</div>
+	<Spinner v-if="!song_loaded"/>
 
 	<div v-if="song">
 
@@ -83,17 +82,18 @@
 					<!-- <router-link class="btn btn-primary" :to="/song_edit/ + song.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link> -->
 				</div>
 	
-				<h4 class="page-header">Другие песни исполнителя</h4>
-	
-				<ul>
-					<li v-for="(song, index) in singer_songs_without" :key="index">
-						<lsong :cdata="song"></lsong>
-					</li>
-				</ul>
-	
+
+
+				<AnotherSongs />
+
+				<br />
+
 				<!-- tags -->
-				<c-tags :songid="song.id"></c-tags>
+				<Tasg :songid="song.id"></Tasg>
 	
+
+			
+
 			</div>
 			<div class="col-md-7">
 
@@ -123,6 +123,7 @@
 		</modal-remove>
 	</div>
 
+	
 	</div>
 </template>
 
@@ -133,10 +134,11 @@
 import {mapGetters} from "vuex";
 import bus from "../bus";
 import {go_back} from "../utils";
-import component_tags from "./Tags.vue";
+import Tasg from "./Tags.vue";
 
 import SongText from "./SongText.vue";
 import Chords from "./Chords.vue";
+import AnotherSongs from "./AnotherSongs.vue";
 
 export default {
 	data: function(){
@@ -150,9 +152,10 @@ export default {
 	},
 
 	components: {
-		"c-tags"	: component_tags,
+		Tasg,
 		SongText,
-		Chords
+		Chords,
+		AnotherSongs
 	},
 
 
@@ -212,7 +215,7 @@ export default {
 
 
 	computed: {
-		...mapGetters(["songs", "singer_songs"]),
+		...mapGetters(["song", "songs", "singer_songs", "song_singer", "song_loaded"]),
 
 		/**
 		 *
@@ -241,50 +244,19 @@ export default {
 			return qqq;
 			// return result;
 		},
-		// song: function(){
-		// 	let song = this.$store.state.songs.find(song => song.id == this.id);
-		// 	if(song){
-		// 		this.$store.dispatch("set_singer_id", song.singer);
-		// 	}
-		// 	return song;
-		// },
-		// 
-		song(){
-			return this.$store.state.song;
-		},
-
-
-		singer_name: function(){
-			return this.$store.getters.get_singer_name(this.song.singer);
-		},
-
-		singer_songs_without(){
-			return this.singer_songs.filter(r => r.id != this.song.id);
-		}
-
-
-		// singer_songs: function(){
-		// 	let result = this.songs.filter(item => (item.singer == this.song.singer) && (item.id != this.id));
-
-		// 	return result;
-		// },
-
-
 		
 
+		singer_name: function(){
+			return this.song_singer? this.song_singer.name : "---";
+		},
 
+		
 
 
 	}
 }
 
 
-
-
-// function parse(text){
-
-// 	return text;
-// }
 
 
 </script>

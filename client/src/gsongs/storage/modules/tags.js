@@ -23,6 +23,10 @@ export default {
 		},
 
 		set_tags_loaded: (state, value) => state.tags_loaded = value,
+
+		set_tag_song_links: function(state, links){
+			state.tag_song_links = links;
+		},
 	},
 
 	actions: {
@@ -82,23 +86,7 @@ export default {
 		},
 
 
-		/**
-		 * добавить связь песенки с тэгом
-		 */
-		song_add_tag: function(context, params){
-			axios.post("/api/add_song_tag", params).then(response => {
-				context.dispatch("fetch_tag_song_links");
-			});
-		},
-
-		/**
-		 * удалить связи песенки с тэгом
-		 */
-		song_remove_tag: function(context, params){
-			return axios.post("/api/remove_song_tag", params).then(response => {
-				context.dispatch("fetch_tag_song_links");
-			});
-		},
+		
 
 	},
 
