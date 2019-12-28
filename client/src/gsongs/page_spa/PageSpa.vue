@@ -1,24 +1,43 @@
 <template>
 <div class="row">
 	<div class="col-md-4">
+
+		<SelectFrame />
+
+
 		<SingersList />
+
+		<SingerSongsList />
+
+
+
+		<!--  -->
 	</div>
-	<div class="col-md-4">
-		<router-view>
+	<div class="col-md-8">
+		<SongPage />
+		<!-- <router-view>
 			songs list
-		</router-view>
+		</router-view> -->
 	</div>
-	<div class="col-md-4"></div>
+	
 </div>
 </template>
 
 
 <script>
 import SingersList from "./SingersList.vue";
+import SingerSongsList from "./SingerSongsList.vue";
+import SongPage from "./SongPage.vue";
+
+import SelectFrame from "./select_frame/SelectFrame.vue";
+
 export default {
 
 	components: {
-		SingersList
+		SelectFrame,
+		SingersList,
+		SingerSongsList,
+		SongPage
 	}
 	
 }

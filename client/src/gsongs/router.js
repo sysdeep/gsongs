@@ -10,14 +10,15 @@ import page_tags from "./PageTags.vue";
 import page_tag from "./PageTag.vue";
 import page_about from "./PageAbout.vue";
 
-// import PageSpa from "./page_spa/PageSpa.vue";
+import PageSpa from "./page_spa/PageSpa.vue";
 // import SpaSingerFrame from "./page_spa/singer_frame/SingerFrame.vue";
 
 
 
 
 export const routes = [
-    { path: '/', component: page_main },
+	{ path: '/', component: page_main },
+	{ path: '/spa', component: PageSpa},
     // { path: '/spa', component: PageSpa , children: [
 	// 	{ path: '/singer_songs/:id', component: SpaSingerFrame },	
 	// ]},

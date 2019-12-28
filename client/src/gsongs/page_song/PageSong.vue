@@ -19,56 +19,12 @@
 	
 		<div class="row">
 			<div class="col-md-5">
+
+				<SongInfo />
+
+				<br />
 	
-				<table class="table table-bordered table-sm">
-					<tbody>
-						<tr>
-							<td>Исполнитель</td>
-							<td>
-								<router-link :to='/singer/ + song.singer' title='перейти на страницу исполнителя'>
-        							{{ singer_name }}
-    							</router-link>
-								
-							</td>
-						</tr>
-	
-						<tr>
-							<td>Автор</td>
-							<td>{{ song.author }}</td>
-						</tr>
-	
-						<tr>
-							<td>Название</td>
-							<td>{{ song.name }}</td>
-						</tr>
-	
-						<tr>
-							<td>Альбом</td>
-							<td>{{ song.album }}</td>
-						</tr>
-	
-						<tr>
-							<td>Описание</td>
-							<td>{{ song.description }}</td>
-						</tr>
-	
-						<tr>
-							<td>Жанр</td>
-							<td>{{ song.genre }}</td>
-						</tr>
-	
-						<tr>
-							<td>Создание</td>
-							<td>{{ song.created }}</td>
-						</tr>
-	
-						<tr>
-							<td>Обновление</td>
-							<td>{{ song.updated }}</td>
-						</tr>
-	
-					</tbody>
-				</table>
+				
 	
 				<BtnBack />
 	
@@ -81,8 +37,10 @@
 					<button class="btn btn-primary" @click="show_edit" title="изменить запись"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</button>
 					<!-- <router-link class="btn btn-primary" :to="/song_edit/ + song.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link> -->
 				</div>
-	
 
+				<div class="clear-fix"></div>
+
+				<br />
 
 				<AnotherSongs />
 
@@ -139,6 +97,7 @@ import Tasg from "./Tags.vue";
 import SongText from "./SongText.vue";
 import Chords from "./Chords.vue";
 import AnotherSongs from "./AnotherSongs.vue";
+import SongInfo from "./SongInfo.vue";
 
 export default {
 	data: function(){
@@ -155,7 +114,8 @@ export default {
 		Tasg,
 		SongText,
 		Chords,
-		AnotherSongs
+		AnotherSongs,
+		SongInfo
 	},
 
 
