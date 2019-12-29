@@ -28,11 +28,15 @@ app.add_url_rule("/login", 					view_func=ctrl_main.login_post, methods=["POST"]
 app.add_url_rule("/logout", 				view_func=ctrl_main.logout)
 
 
-#-- gsongs SPA
+#-- gsongs
 app.add_url_rule("/app",					view_func=ctrl_main.app)
 app.add_url_rule("/app/",					view_func=ctrl_main.app)
 app.add_url_rule("/app/<path:path>",		view_func=ctrl_main.app)
 
+#-- gsongs SPA
+app.add_url_rule("/spa",					view_func=ctrl_main.spa)
+app.add_url_rule("/spa/",					view_func=ctrl_main.spa)
+app.add_url_rule("/spa/<path:path>",		view_func=ctrl_main.spa)
 
 
 # app.add_url_rule("/api/preload_data",					view_func=ctrl_main.preload_gsongs_data)

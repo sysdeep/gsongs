@@ -10,6 +10,13 @@ gsongs_production:
 	PRODUCTION=1 npm run gsongs
 
 
+spa_dev:
+	npm run spa
+
+spa_production:
+	PRODUCTION=1 npm run spa
+
+
 todo_dev:
 	npm run todo
 

@@ -31,6 +31,14 @@ def app(path=None):
 	return render_template("gsongs_vue.html", **data)
 
 
+
+def spa(path=None):
+	data = {
+		"VERSION": VERSION
+	}
+	return render_template("gsongs_spa.html", **data)
+
+
 def login():
 	data = {
 		"VERSION": VERSION,
