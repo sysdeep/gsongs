@@ -27,14 +27,36 @@
                 }
 
                 .sidebar-sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 48px; /* Height of navbar */
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: 98px; /* Height of navbar */
+                    height: calc(100vh - 200px);
+                    padding-top: .5rem;
+                    overflow-x: hidden;
+                    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+                    }
+
+                .sidebar-sticky-after {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: calc(100vh - 50px); /* Height of navbar */
+                    height: 50px;
+                    padding-top: .5rem;
+                    overflow-x: hidden;
+                    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+                    }
+                
+                .sidebar-sticky-before {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: 48px; /* Height of navbar */
+                    height: 50px;
+                    padding-top: .5rem;
+                    overflow-x: hidden;
+                    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+                    }
+
+
 
 .sidebar .nav-link {
   font-weight: 500;
@@ -81,6 +103,7 @@
         <div class="container-fluid">
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar11" id="sidebar111">
+                    <div class="sidebar-sticky-before">before</div>
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column" id="sidebar1_items">
                             <li class="nav-item">
@@ -124,6 +147,8 @@
                             </li>
                         </ul>
                     </div>
+
+                    <div class="sidebar-sticky-after">after</div>
                 </nav>
 
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar11" id="sidebar211">
