@@ -1,6 +1,6 @@
 <template>
 <!-- <nav class="col-md-2 d-none d-md-block bg-light sidebar11" id="sidebar111"> -->
-<div class="col-md-3 d-none d-md-block bg-light sidebar">
+<div class="col-md-3 d-none d-md-block bg-light1 sidebar">
 
 
     <div class="sidebar-sticky-before">
@@ -20,7 +20,7 @@
         <ul class="nav flex-column" id="sidebar1_items">
             <li class="nav-item" v-for="(singer, i) in singers" :key="i">
                 <!-- <a class="nav-link active" href="#"> -->
-                <router-link class="nav-link" :to="'/singer/' + singer.id">
+                <router-link class="nav-link" :class="{'active': is_current(singer.id)}" :to="'/singer/' + singer.id">
                     <!-- <span data-feather="home"></span> -->
                     {{ singer.name }} 
                     <!-- <span class="sr-only">(current)</span> -->
@@ -32,7 +32,7 @@
     </div>
 
     <div class="sidebar-sticky-after">
-        <button class="btn btn-primary">add</button>
+        <button class="btn btn-primary" @click="show_add_song">add</button>
 
         <span class="text-right">
             Всего: {{ singers.length }}
@@ -45,11 +45,23 @@
 
 <script>
 import {mapGetters} from "vuex";
+import bus from "../bus";
 export default {
     
+    methods: {
+        show_add_song(){
+            bus.$emit("show_create_singer");
+        },
+
+        is_current(singer_id){
+            if(!this.singer)    return false;
+
+            return this.singer.id == singer_id;
+        }
+    },
 
     computed: {
-        ...mapGetters(["singers", "singers_loaded"]),
+        ...mapGetters(["singers", "singers_loaded", "singer"]),
 
     }
 }
@@ -102,9 +114,20 @@ export default {
 
 
 
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
 
 
-/* .sidebar .nav-link {
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+/* 
+
+
+.sidebar .nav-link {
   font-weight: 500;
   color: #333;
 }
@@ -114,9 +137,7 @@ export default {
   color: #999;
 }
 
-.sidebar .nav-link.active {
-  color: #007bff;
-}
+
 
 .sidebar .nav-link:hover .feather,
 .sidebar .nav-link.active .feather {

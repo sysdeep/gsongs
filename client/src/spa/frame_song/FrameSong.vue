@@ -1,22 +1,33 @@
 <template>
-<div>
+<div id="song_frame">
 
-    Song
+    <div v-if="song">
+        <!-- title -->
+        <h4>{{ singer_name }} - {{ song.name }}</h4>
+        <!-- title -->
 
+        <SongText :text="song.text" />
 
-    {{ song }}
+        {{ song }}
+    </div>
+
+    
 </div>
 </template>
 
 
 <script>
 import {mapGetters} from 'vuex';
+import SongText from "./SongText.vue";
 export default {
     
-     created(){
+    created(){
 		this.refresh();
 	},
 
+    components: {
+        SongText
+    },
 
 	watch: {
 		"$route": function(to, from){
@@ -37,10 +48,26 @@ export default {
     },
 
     computed: {
-        ...mapGetters(["song"]),
+        ...mapGetters(["song", "singer"]),
 
+        singer_name(){
+            return this.singer? this.singer.name : "---";
+        }
     }
 
 
 }
 </script>
+
+
+<style scoped>
+#song_frame{
+     position: -webkit-sticky;
+    position: sticky;
+    top: 50px; /*48px;*/ /* Height of navbar */
+    height: calc(100vh - 80px);
+    /* padding-top: .5rem; */
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+</style>

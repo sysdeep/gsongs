@@ -2,6 +2,7 @@
 <div class="row">
     <nav class="col-md-4 d-none d-md-block bg-light sidebar">
 
+        <Spinner v-if="!singer_loaded"/>
 
         <div class="sidebar-sticky-before">
             <input type="text" class="form-control" />
@@ -14,7 +15,7 @@
             
                 <li class="nav-item" v-for="(song, i) in singer_songs" :key="i">
                     <!-- <a class="nav-link active" href="#"> -->
-                    <router-link class="nav-link" :to="'/singer/' + singer_id + '/song/' + song.id">
+                    <router-link class="nav-link" :class="{'active': is_current(song.id)}" :to="'/singer/' + singer_id + '/song/' + song.id">
                         <span data-feather="home"></span>
                         {{ song.name }} 
                         <!-- <span class="sr-only">(current)</span> -->
@@ -29,14 +30,14 @@
         <div class="sidebar-sticky-after">
             
 
-            <button class="btn btn-primary">add</button>
+            <button class="btn btn-primary" @click="show_add_song">add</button>
 
             <span class="text-right">
                 Всего: {{ singer_songs.length }}
             </span>
 
             <div>
-                singer info
+                {{ singer }}
             </div>
 
     
@@ -59,6 +60,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
+import bus from "../bus";
 export default {
     data(){
         return {
@@ -92,10 +94,21 @@ export default {
             }
 
         },
+
+
+        show_add_song(){
+            bus.$emit("show_create_song_for_singer", this.singer.id);
+        },
+
+        is_current(song_id){
+            if(!this.song) return false;
+
+            return this.song.id == song_id;
+        }
     },
 
     computed: {
-        ...mapGetters(["singer_songs"]),
+        ...mapGetters(["singer_songs", "singer", "singer_loaded", "song"]),
 
     }
 }
@@ -149,6 +162,21 @@ export default {
     padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+
+
+
+
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+
+.sidebar .nav-link.active {
+  color: #007bff;
 }
 
 </style>
