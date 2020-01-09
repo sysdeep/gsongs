@@ -16,8 +16,12 @@ var config = {
 	},
 	
 	output: {
-		path: path.normalize(path.join(__dirname, "..", "app", "static", "build")),
-		filename: '[name].js',
+		path 			: path.normalize(path.join(__dirname, "..", "app", "static", "build")),
+		filename 		: '[name].js',
+
+		//--- for dynamic imports
+		publicPath 		: "/static/build/", 		// path for net loading(hostname/static/build/0.spa.js) 
+		chunkFilename 	: '[name].spa.js',			// split chunk name
 	},
 
 	resolve: {
@@ -98,7 +102,7 @@ var config = {
 					name: 'spa_vendor',
           			chunks: 'initial',
           			minChunks: 2,
-					// filename: '[name].bundle.js'
+					filename: 'spa_vendor.js'
 				},
 
 				// mdispatch_store: {

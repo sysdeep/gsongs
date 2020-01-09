@@ -14,8 +14,8 @@
       		<div class="modal-body">
         		<form>
 					<div class="form-group">
-						<label for="singer_name">Название</label>
-						<input type="text" class="form-control" id="singer_name" placeholder="Название" v-model="item.name">
+						<label for="singer_name_main">Название</label>
+						<input type="text" class="form-control" id="singer_name_main" placeholder="Название" v-model="item.name">
 					</div>
 				</form>
       		</div>

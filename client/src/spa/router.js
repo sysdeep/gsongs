@@ -13,8 +13,11 @@ import page_main from "./page_main/PageMain.vue";
 // import PageSpa from "./page_spa/PageSpa.vue";
 // import SpaSingerFrame from "./page_spa/singer_frame/SingerFrame.vue";
 
-import FrameSingerSongs from "./frame_singer_songs/FrameSingerSongs.vue";
-import FrameSong from "./frame_song/FrameSong.vue";
+// import FrameSingerSongs from "./frame_singer_songs/FrameSingerSongs.vue";
+// import FrameSong from "./frame_song/FrameSong.vue";
+
+const FrameSingerSongs = () => import("./frame_singer_songs/FrameSingerSongs.vue");
+const FrameSong = () => import("./frame_song/FrameSong.vue");
 
 
 export const routes = [
