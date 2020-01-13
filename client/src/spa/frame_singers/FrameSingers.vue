@@ -71,6 +71,7 @@ export default {
 .sidebar{
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     /* height: 100vmax; */
+    /* height: 100vh; */
     /* top: 0;
     bottom: 0;
     padding: 0;
@@ -80,33 +81,38 @@ export default {
 .sidebar-sticky-before {
     position: -webkit-sticky;
     position: sticky;
-    top: 50px; /*48px;*/ /* Height of navbar */
+    top: 60px; /*48px;*/ /* Height of navbar */
     height: 50px;
-    padding-top: .5rem;
+    /* padding-top: .5rem; */
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+	border: 1px solid grey;
 }
 
 
 .sidebar-sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 100px; /* Height of navbar */
-    height: calc(100vh - 200px);
-    padding-top: .5rem;
+    top: 110px; /* Height of navbar */
+    height: calc(100vh - 250px);
+	/* bottom: 50px; */
+    /* padding-top: .5rem; */
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+	border: 1px solid grey;
 }
 
 
 .sidebar-sticky-after {
     position: -webkit-sticky;
     position: sticky;
-    top: calc(100vh - 70px); /* Height of navbar */
-    height: 50px;
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    top: calc(100vh - 60px);
+	/* bottom: 0; */
+    height: 60px;
+    /* padding-top: .5rem; */
+    /* overflow-x: hidden; */
+    /* overflow-y: auto;  */
+	border: 1px solid grey;
 }
 
 
