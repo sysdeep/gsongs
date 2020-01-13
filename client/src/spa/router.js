@@ -13,18 +13,21 @@ import page_main from "./page_main/PageMain.vue";
 // import PageSpa from "./page_spa/PageSpa.vue";
 // import SpaSingerFrame from "./page_spa/singer_frame/SingerFrame.vue";
 
-// import FrameSingerSongs from "./frame_singer_songs/FrameSingerSongs.vue";
-// import FrameSong from "./frame_song/FrameSong.vue";
+import FrameSingerSongs from "./frame_singer_songs/FrameSingerSongs.vue";
+import FrameSong from "./frame_song/FrameSong.vue";
 
-const FrameSingerSongs = () => import("./frame_singer_songs/FrameSingerSongs.vue");
-const FrameSong = () => import("./frame_song/FrameSong.vue");
+
+
+//--- dynamic routes
+// const FrameSingerSongs = () => import("./frame_singer_songs/FrameSingerSongs.vue");
+// const FrameSong = () => import("./frame_song/FrameSong.vue");
 
 
 export const routes = [
 	// { path: '/', component: page_main },
-	{ path: '/', component: {"template": `<div>main route</div>`} },
+	{ path: '/', component: {"template": `<div style="padding-top: 200px">main route</div>`} },
 	{ path: '/singer/:singer_id', component: FrameSingerSongs, children: [
-        { path: "", component: {template: "<div>null song</div>"} },
+        { path: "", component: {template: `<div style="padding-top: 200px">null song</div>`} },
         { path: "song/:song_id", component: FrameSong },
      ] },
 	// { path: '/spa', component: PageSpa},

@@ -1,17 +1,15 @@
 <template>
 <div class="row">
-    <nav class="col-md-4 d-none d-md-block bg-light column_field column_breaker">
+    <nav class="col-md-4 d-none d-md-block bg-light sidebar">
 
         <Spinner v-if="!singer_loaded"/>
 
-        <div class="column_header">
-			<input type="text" class="form-control" />
-			
-		</div>
+        <div class="sidebar-sticky-before">
+            <input type="text" class="form-control" />
+        </div>
 
-		<hr />
 
-        <div class="column_scroll">
+        <div class="sidebar-sticky">
 
             <ul class="nav flex-column" id="sidebar2_items">
             
@@ -28,9 +26,9 @@
             
         </div>
 
-		<hr />
 
-        <div class="column_footer">
+        <div class="sidebar-sticky-after">
+            
 
             <button class="btn btn-primary" @click="show_add_song">add</button>
 
@@ -38,9 +36,9 @@
                 Всего: {{ singer_songs.length }}
             </span>
 
-            <!-- <div>
+            <div>
                 {{ singer }}
-            </div> -->
+            </div>
 
     
         </div>
@@ -124,8 +122,7 @@ export default {
 
 .sidebar{
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-    height: 100vh;
-	padding-top: 50px;
+    /* height: 100vmax; */
 
     /* top: 0;
     bottom: 0;
@@ -135,25 +132,22 @@ export default {
 }
 
 .sidebar-sticky-before {
-    /* position: -webkit-sticky;
-    position: sticky; */
-    /* top: 50px;  */
-	/*48px;*/ /* Height of navbar */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px; /*48px;*/ /* Height of navbar */
     height: 50px;
-    /* padding-top: .5rem; */
-	margin-top: 20px;
+    padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
 
 .sidebar-sticky {
-    /* position: -webkit-sticky;
-    position: sticky; */
-    /* top: 100px;  */
-	/* Height of navbar */
-    height: calc(100vh - 300px);
-    /* padding-top: .5rem; */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px; /* Height of navbar */
+    height: calc(100vh - 400px);
+    padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
@@ -161,13 +155,11 @@ export default {
 
 .sidebar-sticky-after {
     /* border: solid 1px; */
-    /* position: -webkit-sticky;
-    position: sticky; */
-    /* top: calc(100vh - 270px);  */
-	/* Height of navbar */
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(100vh - 270px); /* Height of navbar */
     /* height: calc(100vh - 120px); */
-    /* padding-top: .5rem; */
-	/* height: 60px; */
+    padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }

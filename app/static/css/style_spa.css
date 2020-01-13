@@ -1,0 +1,56 @@
+@import 'ubuntu/ubuntu.css';
+
+body{
+	/*padding-top: 20px;*/
+	/* padding-bottom: 20px; */
+
+	font-family: 'UbuntuRegular', Arial, sans-serif;
+}
+
+
+
+
+.mono{
+	font-family: 'UbuntuMonoRegular';
+}
+
+pre {
+	font-family: 'UbuntuMonoRegular';
+}
+
+
+/* колонка */
+.column_field{
+	height: 100vh;
+	padding-top: 50px;
+	
+}
+
+.column_breaker{
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.column_header{
+	margin-top: 20px;
+    height: 30px;
+}
+
+.column_scroll{
+	height: calc(100vh - 220px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.column_footer{
+	
+	
+	margin-top: 20px;
+    min-height: 50px;
+}
+
+
+
+/* 
+.chars_line{text-align: center}
+.char_item{margin-right: 10px; margin-left: 10px;}
+.char_item_active{color: red; font-weight: bold;} */
