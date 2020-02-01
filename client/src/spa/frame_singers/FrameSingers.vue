@@ -2,13 +2,10 @@
 <!-- <nav class="col-md-2 d-none d-md-block bg-light sidebar11" id="sidebar111"> -->
 <div class="col-md-3 d-none d-md-block bg-light column_field column_breaker">
 
-	<!-- <div style="height: 60px"></div> -->
 
-    <!-- <div class="sidebar-sticky-before"> -->
-    <div class="column_header">
+    <SectionHeader>
         <input type="text" class="form-control" />
-		
-    </div>
+    </SectionHeader>
     
     <hr />
 
@@ -37,14 +34,14 @@
 
 	<hr />
 
-    <div class="column_footer">
+    <SectionFooter>
 		
         <button class="btn btn-primary" @click="show_add_song">add</button>
 
         <span class="text-right">
             Всего: {{ singers.length }}
         </span>
-    </div>
+    </SectionFooter>
 <!-- </nav> -->
 </div>
 </template>
@@ -53,8 +50,15 @@
 <script>
 import {mapGetters} from "vuex";
 import bus from "../bus";
+import SectionHeader from "../components/SectionHeader.vue";
+import SectionFooter from "../components/SectionFooter.vue";
+
 export default {
-    
+    components: {
+        SectionHeader,
+        SectionFooter
+    },
+
     methods: {
         show_add_song(){
             bus.$emit("show_create_singer");
