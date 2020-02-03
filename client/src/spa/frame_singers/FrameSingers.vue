@@ -1,15 +1,16 @@
 <template>
 <!-- <nav class="col-md-2 d-none d-md-block bg-light sidebar11" id="sidebar111"> -->
-<div class="col-md-3 d-none d-md-block bg-light column_field column_breaker">
+<div id="singers_side"
+class="col-md-311 d-none11 d-md-block11 bg-light11 column_field11 column_breaker11">
 
 
     <SectionHeader>
         <input type="text" class="form-control" />
     </SectionHeader>
     
-    <hr />
+    <!-- <hr /> -->
 
-    <div class="column_scroll">
+    <div class="column_scroll_q">
         
         <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Saved reports</span>
@@ -18,7 +19,7 @@
             </a>
         </h6> -->
         
-        <ul class="nav flex-column" id="sidebar1_items">
+        <ul class="nav flex-column" id="sidebar1_items1">
             <li class="nav-item" v-for="(singer, i) in singers" :key="i">
                 <!-- <a class="nav-link active" href="#"> -->
                 <router-link class="nav-link" :class="{'active': is_current(singer.id)}" :to="'/singer/' + singer.id">
@@ -32,7 +33,7 @@
         
     </div>
 
-	<hr />
+	<!-- <hr /> -->
 
     <SectionFooter>
 		
@@ -80,16 +81,34 @@ export default {
 
 <style scoped>
 
+#singers_side{
+    min-width: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #b8b8b8;
+}
+
+
+.column_scroll_q{
+	height: calc(100vh - 50px - 50px - 50px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
 
 
 .nav-link {
   font-weight: 500;
   color: #333;
+
+  padding: .3rem 1rem;
 }
 
 
 .nav-link.active {
-  color: #007bff;
+  background-color: #007bff;
 }
 
 </style>

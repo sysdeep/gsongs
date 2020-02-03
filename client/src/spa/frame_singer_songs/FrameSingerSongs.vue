@@ -1,17 +1,20 @@
 <template>
-<div class="row">
-    <nav class="col-md-4 d-none d-md-block bg-light column_field column_breaker">
+<div class="row11111" id="singer_content">
+    <div 
+        class="col-md-4111 d-none111 d-md-block111 bg-light1111 column_field111 column_breaker1111"
+        id="singers_side"
+    >
 
         <Spinner v-if="!singer_loaded"/>
 
-        <div class="column_header">
+        <SectionHeader>
 			<input type="text" class="form-control" />
 			
-		</div>
+		</SectionHeader>
 
-		<hr />
+		<!-- <hr /> -->
 
-        <div class="column_scroll">
+        <div class="column_scroll_q" >
 
             <ul class="nav flex-column" id="sidebar2_items">
             
@@ -28,9 +31,17 @@
             
         </div>
 
-		<hr />
+        <div id="singer_info">
+            Singer info
 
-        <div class="column_footer">
+            <p>
+                {{ singer }}
+            </p>
+        </div>
+
+		<!-- <hr /> -->
+
+        <SectionFooter>
 
             <button class="btn btn-primary" @click="show_add_song">add</button>
 
@@ -43,14 +54,14 @@
             </div> -->
 
     
-        </div>
+        </SectionFooter>
 
 
-    </nav>
+    </div>
 
 
 
-    <div class="col-md-8">
+    <div class="col-md-811111">
         <router-view></router-view>
     </div>
 
@@ -63,11 +74,20 @@
 <script>
 import {mapGetters} from 'vuex';
 import bus from "../bus";
+
+import SectionHeader from "../components/SectionHeader.vue";
+import SectionFooter from "../components/SectionFooter.vue";
+
 export default {
     data(){
         return {
             "singer_id" : null,
         }
+    },
+
+    components: {
+        SectionHeader,
+        SectionFooter
     },
 
     created(){
@@ -122,6 +142,70 @@ export default {
 
 <style scoped>
 
+
+#singer_content{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#singers_side{
+    min-width: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #b8b8b8;
+}
+
+
+.column_scroll_q{
+	height: calc(100vh - 50px - 50px - 50px - 200px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+#singer_info{
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-top: 1px solid #b8b8b8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.nav-link {
+  font-weight: 500;
+  color: #333;
+
+  padding: .3rem 1rem;
+}
+
+
+.nav-link.active {
+  background-color: #007bff;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------ old --------------------------- */
 .sidebar{
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     height: 100vh;
@@ -170,21 +254,6 @@ export default {
 	/* height: 60px; */
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
-
-
-
-
-
-
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
-
-
-.sidebar .nav-link.active {
-  color: #007bff;
 }
 
 </style>

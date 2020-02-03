@@ -1,26 +1,26 @@
 <template>
-<div class="column_field">
+<div class="column_field1111" id="song_side">
 
 	<Spinner v-if="!song_loaded"/>
 
     <div v-if="song">
 
-		<div class="column_header">
+		<SectionHeader>
         	<!-- title -->
-			<h4>{{ singer_name }} - {{ song.name }}</h4>
+			<h4 class="clip">{{ singer_name }} - {{ song.name }}</h4>
 			<!-- title -->
 
-    	</div>
+    	</SectionHeader>
 		
-		<hr />
+		<!-- <hr /> -->
         
-		<div class="column_scroll" ref="scroll_field">
+		<div class="column_scroll_q" ref="scroll_field">
         	<SongText :text="song.text" />
         	{{ song }}
 		</div>
 
-		<hr />
-		<div class="column_footer">
+		<!-- <hr /> -->
+		<SectionFooter>
 
 			<!-- <nav class="navbar navbar-dark bg-dark">
 				<ul class="navbar-nav mr-auto">
@@ -47,7 +47,7 @@
 </ul> -->
 
 			<button class="btn btn-success" @click="show_edit()">edit</button>
-		</div>
+		</SectionFooter>
 
     </div>
 
@@ -60,6 +60,10 @@
 import {mapGetters} from 'vuex';
 import SongText from "./SongText.vue";
 import bus from "../bus";
+
+import SectionHeader from "../components/SectionHeader.vue";
+import SectionFooter from "../components/SectionFooter.vue";
+
 export default {
     
     created(){
@@ -67,7 +71,9 @@ export default {
 	},
 
     components: {
-        SongText
+		SongText,
+		SectionHeader,
+		SectionFooter
     },
 
 	watch: {
@@ -113,15 +119,38 @@ export default {
 
 
 <style scoped>
-#song_frame{
+
+
+#song_side{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.column_scroll_q{
+	height: calc(100vh - 50px - 50px - 50px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.clip{
+	white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+
+/* #song_frame{
 	margin-top: 20px;
      /* position: -webkit-sticky;
     position: sticky; */
     /* top: 50px;  */
 	/*48px;*/ /* Height of navbar */
-    height: calc(100vh - 100px);
+    /* height: calc(100vh - 100px); */
     /* padding-top: .5rem; */
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
+    /* overflow-x: hidden; */
+	/* overflow-y: auto;  */
+	/* Scrollable contents if viewport is shorter than content. */
+/* } */ 
 </style>

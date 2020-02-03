@@ -7,8 +7,12 @@
 
 	<!-- <div style="height: 60px"></div> -->
 
+	<div id="full_body">
+		<FrameSingers />
+		<router-view>router loading...</router-view>
+	</div>
 
-	<div class="container-fluid">
+	<!-- <div class="container-fluid">
 		<div class="row">
 			<FrameSingers />
 			<div class="col-md-9">
@@ -16,7 +20,7 @@
 			</div>
 		</div>
 	</div>
-
+ -->
 
 	<!-- singers -->
 	
@@ -58,3 +62,11 @@ export default {
 	}
 }	
 </script>
+
+<style scoped>
+#full_body{
+	padding-top: 50px; 
+	display: flex;
+	flex-direction: row;
+}
+</style>
