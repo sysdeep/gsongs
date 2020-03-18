@@ -5,9 +5,15 @@
 	<main-menu></main-menu>
 
 
+
+
+	<Sidebar style="padding-top: 50px" />
+
+
 	<!-- <div style="height: 60px"></div> -->
 
 	<div id="full_body">
+
 		<FrameSingers />
 		<router-view>router loading...</router-view>
 	</div>
@@ -43,6 +49,7 @@
 
 
 <script>
+import Sidebar from "./sidebar/Sidebar.vue"
 import component_menu from "./Menu.vue";
 import modal_singer_edit from "./modals/SingerEdit.vue";
 import modal_song_edit from "./modals/SongEdit.vue";
@@ -58,7 +65,9 @@ export default {
 		"modal-song-edit"	: modal_song_edit,
 		"modal-tag-edit"	: modal_tag_edit,
 
-		FrameSingers
+		FrameSingers,
+
+		Sidebar
 	}
 }	
 </script>
