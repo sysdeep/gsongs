@@ -1,9 +1,9 @@
 <template>
-	<div class="card">
+	<div class="card1">
 		<div class="card-body">
 
 		
-			<h4 class="page-header">Метки</h4>
+			<!-- <h4 class="page-header">Метки</h4> -->
 			
 			<div class="row">
 				<div class="col-md-6">

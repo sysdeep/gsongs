@@ -14,7 +14,7 @@ import MainNav from "./main_nav/MainNav.vue";
 export default {
 	data(){
 		return {
-			is_menu 	: true,
+			is_menu 	: false,
 		}
 	},
 

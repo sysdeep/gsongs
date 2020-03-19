@@ -2,6 +2,8 @@
 <div>
     <h4>Аккорды</h4>
 
+	<hr />
+
     <ul class="list-inline">
         <li class="list-inline-item" v-for="(chord, i) in chords_list" :key="i">{{ chord }}</li>
     </ul>

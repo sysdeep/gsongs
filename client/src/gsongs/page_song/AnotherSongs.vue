@@ -1,8 +1,8 @@
 <template>
-<div class="card">
+<div class="card1">
 
 	<div class="card-body">
-		<h4 class="page-header">Другие песни исполнителя</h4>
+		<!-- <h4 class="page-header">Другие песни исполнителя</h4> -->
 		
 		<ul>
 			<li v-for="(song, index) in singer_songs" :key="index">

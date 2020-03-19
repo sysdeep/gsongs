@@ -15,48 +15,48 @@
 			{{ singer_name }} - {{ song.name }}
 		</h3>
 
+		<hr/>
+
 		
 	
 		<div class="row">
 			<div class="col-md-5">
 
-				<SongInfo />
 
-				<br />
-	
-				
-	
-				<BtnBack />
-	
-				<div class="pull-right">
-					<button class="btn btn-success" @click="show_create" title="добавить запись">
-						<i class="fa fa-plus" aria-hidden="true"></i> Добавить
-					</button>
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+    					<a class="nav-link" :class="{'active': cpage == 1}" href="javascript: void(0)" @click="cpage=1">Инфо</a>
+  					</li>
+					<li class="nav-item">
+    					<a class="nav-link" :class="{'active': cpage == 2}" href="javascript: void(0)" @click="cpage=2">Другие</a>
+  					</li>
+					<li class="nav-item">
+    					<a class="nav-link" :class="{'active': cpage == 3}" href="javascript: void(0)" @click="cpage=3">Метки</a>
+  					</li>
+  					
+				</ul>
 
-					<button-remove @click="show_remove"></button-remove>
-					<button class="btn btn-primary" @click="show_edit" title="изменить запись"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</button>
-					<!-- <router-link class="btn btn-primary" :to="/song_edit/ + song.id"><i class="fa fa-pencil" aria-hidden="true"></i> Изменить</router-link> -->
+				<div>
+					<SongInfo v-if="cpage==1 "/>
+					
+					<AnotherSongs v-if="cpage==2" />
+					
+					<!-- tags -->
+					<Tasg :songid="song.id" v-if="cpage==3"></Tasg>
 				</div>
 
-				<div class="clear-fix"></div>
-
 				<br />
 
-				<AnotherSongs />
-
-				<br />
-
-				<!-- tags -->
-				<Tasg :songid="song.id"></Tasg>
+				<div>
+					<Chords :text="song.text" />
+				</div>
 	
 
-			
-
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-7 scrolled">
 
 
-<Chords :text="song.text" />
+
 
 <SongText :text="song.text" />
 
@@ -76,9 +76,7 @@
 	  
 
 
-		<modal-remove :showed="is_modal_remove" @on-cancel="is_modal_remove = false" @on-apply="remove_song" @closed="remove_modal_closed">
-			<p>Удалить песенку: {{ song.name }} ?</p>
-		</modal-remove>
+		
 	</div>
 
 	
@@ -105,7 +103,9 @@ export default {
 			"id"        : null,
 
 
-			"is_modal_remove"   : false,
+			
+
+			cpage 		: 1,	
 
 		}
 	},
@@ -138,33 +138,13 @@ export default {
 			this.$store.dispatch("fetch_song", this.id);
 		},
 
-		show_edit(){
-			bus.$emit("show_edit_song", this.song.id);
-		},
 
-		show_create(){
-			bus.$emit("show_create_song_for_singer", this.song.singer);
-		},
-
-		
-		show_remove: function(){
-			this.$alert.remove("Удалить песенку: "+ this.song.name+"?").then(() => {
-				this.remove_song();
-			})
-		},
-
-		remove_song: function(){
-			this.$store.dispatch("song_remove", this.song).then(() => {
-				this.$router.push("/songs");
-			});
-		},
-
-		remove_modal_closed: function(){
-			if(this.is_removed){
-				// go_back();
-				this.$router.push("/songs");
-			}
-		},
+		// remove_modal_closed: function(){
+		// 	if(this.is_removed){
+		// 		// go_back();
+		// 		this.$router.push("/songs");
+		// 	}
+		// },
 
 
 		
@@ -220,3 +200,10 @@ export default {
 
 
 </script>
+
+<style scoped>
+.scrolled{
+	height: calc(100vh - 200px);
+	overflow-y: auto;
+}
+</style>
