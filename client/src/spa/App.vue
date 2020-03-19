@@ -7,15 +7,21 @@
 
 
 
-	<Sidebar style="padding-top: 50px" />
+	
 
 
 	<!-- <div style="height: 60px"></div> -->
 
 	<div id="full_body">
 
-		<FrameSingers />
-		<router-view>router loading...</router-view>
+		<Sidebar style="padding-top: 0px" />
+		<div>
+
+			song text
+		</div>
+
+		<!-- <FrameSingers />
+		<router-view>router loading...</router-view> -->
 	</div>
 
 	<!-- <div class="container-fluid">
