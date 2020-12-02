@@ -1,4 +1,4 @@
-# gsongs
+# GSongs
 
 
 
@@ -60,3 +60,9 @@ config: /etc/init/nia.conf
 
 
 
+## Sites
+
+- https://amdm.ru
+- https://mychords.net
+- https://www.5lad.ru
+- https://muzachos.com
