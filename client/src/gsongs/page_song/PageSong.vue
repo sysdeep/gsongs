@@ -20,20 +20,21 @@
 		
 	
 		<div class="row">
-			<div class="col-md-5">
+
+			<div class="col-md-5" v-show="is_left">
 
 
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-    					<a class="nav-link" :class="{'active': cpage == 1}" href="javascript: void(0)" @click="cpage=1">Инфо</a>
-  					</li>
+						<a class="nav-link" :class="{'active': cpage == 1}" href="javascript: void(0)" @click="cpage=1">Инфо</a>
+					</li>
 					<li class="nav-item">
-    					<a class="nav-link" :class="{'active': cpage == 2}" href="javascript: void(0)" @click="cpage=2">Другие</a>
-  					</li>
+						<a class="nav-link" :class="{'active': cpage == 2}" href="javascript: void(0)" @click="cpage=2">Другие</a>
+					</li>
 					<li class="nav-item">
-    					<a class="nav-link" :class="{'active': cpage == 3}" href="javascript: void(0)" @click="cpage=3">Метки</a>
-  					</li>
-  					
+						<a class="nav-link" :class="{'active': cpage == 3}" href="javascript: void(0)" @click="cpage=3">Метки</a>
+					</li>
+					
 				</ul>
 
 				<div>
@@ -53,12 +54,49 @@
 	
 
 			</div>
-			<div class="col-md-7 scrolled">
+			
+			<div :class="{'col-md-7' : is_left, 'col-md-12' : !is_left}">
 
+				<div class="btn-toolbar mb-3 justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+					
+					<button type="button" class="btn btn-secondary" @click="toggle_left">
+						<i class="fa fa-expand" aria-hidden="true" v-if="is_left"></i>
+						<i class="fa fa-compress" aria-hidden="true" v-else></i>
+					</button>
 
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="button" class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i></button>
+						<button type="button" class="btn btn-primary">Прокрутка</button>
+						<button type="button" class="btn btn-secondary"><i class="fa fa-minus" aria-hidden="true"></i></button>
+					</div>
 
+					
 
-<SongText :text="song.text" />
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="button" class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i></button>
+						<button type="button" class="btn btn-primary">Тональность</button>
+						<button type="button" class="btn btn-secondary"><i class="fa fa-minus" aria-hidden="true"></i></button>
+					</div>
+
+					<div class="btn-group" role="group" aria-label="Basic example">
+						
+						<button type="button" class="btn btn-secondary" @click="font_scale = font_scale - 0.2">
+							<i class="fa fa-minus" aria-hidden="true"></i>
+						</button>
+						<button type="button" class="btn btn-primary" @click="font_scale = 1.0">
+							Шрифт
+						</button>
+						<button type="button" class="btn btn-secondary" @click="font_scale = font_scale + 0.2">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+						</button>
+						
+					</div>
+					
+				</div>
+
+<div class="scrolled">
+<SongText :text="song.text" :font_scale="font_scale" />
+</div>
 
 <!-- <pre>
 {{ song.text }}
@@ -103,6 +141,9 @@ export default {
 			"id"        : null,
 
 
+			is_left 	: true,
+			font_scale 	: 1.0,
+
 			
 
 			cpage 		: 1,	
@@ -146,7 +187,9 @@ export default {
 		// 	}
 		// },
 
-
+		toggle_left(){
+			this.is_left = !this.is_left;
+		},
 		
 
 
