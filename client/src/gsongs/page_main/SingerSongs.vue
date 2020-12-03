@@ -14,26 +14,35 @@
 			</span>
 
 		</div>
+
+		<div class="card-body">
+			<div class="input-group">
+				<input type="text" class="form-control" v-model="song_filter" placeholder="быстрый поиск">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button" @click="song_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
+					</div>
+			</div>
+		</div>
 		
 
-		<div class="input-group">
-			<input type="text" class="form-control" v-model="song_filter" placeholder="быстрый поиск">
-			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button" @click="song_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
-				</div>
+		
+
+		
+
+		
+
+		<div class="scroll_wrapper">
+
+			<Spinner v-if="!singer_loaded" />
+
+			<ul class="list-unstyled1">
+				<li v-for="(song, i) in filtered_songs" :key="i">
+					<router-link :to="/song/ + song.id" title="перейти к странице песни">
+						{{ song.name }}
+					</router-link>
+				</li>
+			</ul>
 		</div>
-
-		<Spinner v-if="!singer_loaded" />
-
-		<br>
-
-		<ul class="list-unstyled1">
-			<li v-for="(song, i) in filtered_songs" :key="i">
-				<router-link :to="/song/ + song.id" title="перейти к странице песни">
-					{{ song.name }}
-				</router-link>
-			</li>
-		</ul>
 
 
 	</div>
@@ -73,3 +82,13 @@ export default {
 	}
 }
 </script>
+
+
+<style scoped>
+.scroll_wrapper{
+	height: calc(100vh - 230px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+</style>

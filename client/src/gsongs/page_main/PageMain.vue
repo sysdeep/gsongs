@@ -2,7 +2,7 @@
 	<div>
 	
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 
 				<!-- singers list -->
 				<!-- <c-singers @select_singer="on_select_singer"></c-singers> -->
@@ -10,7 +10,7 @@
 
 			</div>
 	
-			<div class="col-md-5">
+			<div class="col-md-4">
 				
 				<!-- singer songs list -->
 				<!-- <c-songs :singer="selected_singer"></c-songs> -->
@@ -22,13 +22,17 @@
 				
 				
 
-				<!-- last -->
-				<!-- <c-last></c-last> -->
+				
 
 				<!-- <br> -->
 
 				<!-- tags -->
 				<c-tags />
+
+				<!-- <br/> -->
+				
+				<!-- last -->
+				<!-- <c-last></c-last> -->
 
 
 

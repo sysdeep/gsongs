@@ -32,6 +32,19 @@ export default {
 				});
 			})
 		},
+
+		fetch_filtered_songs: function(context, search_term){
+			return new Promise((resolve, reject) => {
+				context.commit("set_songs_loaded", false);
+				axios.get("/api/get_filtered_songs?search_term=" + search_term).then(response => {
+					response.data.songs.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+					context.commit("set_songs", response.data.songs);
+					resolve();
+				});
+			})
+		},
+
+
 	},
 
 

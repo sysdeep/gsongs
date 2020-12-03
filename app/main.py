@@ -52,6 +52,7 @@ app.add_url_rule("/api/remove_singer",					view_func=ctrl_singers.remove_singer,
 
 #--- songs
 app.add_url_rule("/api/get_songs",						view_func=ctrl_songs.get_songs)
+app.add_url_rule("/api/get_filtered_songs",				view_func=ctrl_songs.get_filtered_songs)
 app.add_url_rule("/api/get_song/<song_id>",				view_func=ctrl_songs.get_song)
 app.add_url_rule("/api/create_song",					view_func=ctrl_songs.create_song, methods=["POST"])
 app.add_url_rule("/api/update_song",					view_func=ctrl_songs.update_song, methods=["POST"])

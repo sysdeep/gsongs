@@ -7,7 +7,10 @@
 	
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" class="form-control" v-model="search_name" placeholder="быстрый поиск">
+				<input type="text" class="form-control" 
+					v-model.trim="search_name" 
+					@input="debounce_search"
+					placeholder="быстрый поиск">
 			</div>
 			<div class="col-md-6">
 				<div class="pull-right">
@@ -145,7 +148,7 @@ export default {
 
 
 	created: function(){
-	
+		// this.refresh();
 	},
 
 
@@ -166,7 +169,26 @@ export default {
 
 		show_create(){
 			bus.$emit("show_create_song");	
-		}
+		},
+
+		start_search(){
+			// this.$store.commit("tasks_ms2/set_tasks_search_value", this.search_value);
+			// this.$store.commit("tasks_ms2/set_tasks_page", 1);
+			// this.$store.dispatch("tasks_ms2/get_tasks_list");
+			if(this.search_name.length < 3){
+				return false;
+			}
+			// console.log("serach term: " + this.search_name);
+			this.$store.dispatch("fetch_filtered_songs", this.search_name);
+		},
+
+		//--- отправка запроса с поиском по истечению задержки на ввод
+		debounce_search(event){
+      		clearTimeout(this.sdebounce)
+      		this.sdebounce = setTimeout(() => {
+				this.start_search();
+      		}, 600)
+		},
 	},
 
 
@@ -182,12 +204,14 @@ export default {
 
 
 		songs_filtered: function(){
-			var s_name = this.search_name.toLowerCase();
-			let result = this.songs.filter((item)=>{
-				let index = item.name.toLowerCase().indexOf(s_name);
-				return index > -1;
-			});
-			return result;
+			// var s_name = this.search_name.toLowerCase();
+			// let result = this.songs.filter((item)=>{
+			// 	let index = item.name.toLowerCase().indexOf(s_name);
+			// 	return index > -1;
+			// });
+			// return result;
+
+			return this.songs;
 		}
 	},
 

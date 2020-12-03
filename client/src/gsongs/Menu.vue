@@ -49,6 +49,12 @@
 					</router-link>
 				</li>
 
+				<li class="nav-item">
+					<a class="nav-link"  href="javascript: void(0)" title="поиск" @click="show_search_modal">
+						<strong><i class="fa fa-search" aria-hidden="true"></i> Поиск</strong>
+					</a>
+				</li>
+
 
 
 				
@@ -113,6 +119,10 @@ export default {
 
 		show_create_tag(){
 			bus.$emit("show_create_tag");
+		},
+
+		show_search_modal(){
+			bus.$emit("show_search_modal");	
 		}
 	}
 }

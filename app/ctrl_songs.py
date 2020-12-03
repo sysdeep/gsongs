@@ -21,6 +21,30 @@ def get_songs():
 	# return jsonify(songs=data)
 	return jsonify(songs=list(songs))
 
+
+def get_filtered_songs():
+	"""запрос песен по фильтру"""
+
+	search_term = request.args.get("search_term")			# поиск по имени
+	
+	if (search_term is None) or (len(search_term) == 0):
+		return jsonify(songs=list())	
+
+
+	songs = storage.Song.select(storage.Song.id, storage.Song.name, storage.Song.singer) \
+						.where(storage.Song.name.contains(search_term)) \
+						.dicts()
+
+
+	# songs = storage.Song.select().dicts()
+	# data = []
+	# for song in songs:
+	# 	song["created"] = str(song["created"])
+	# 	song["updated"] = str(song["updated"])
+	# 	data.append(song)
+	# return jsonify(songs=data)
+	return jsonify(songs=list(songs))
+
 def get_song(song_id):
 	song = storage.Song.get(storage.Song.id == song_id)
 	response = {

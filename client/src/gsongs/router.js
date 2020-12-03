@@ -1,4 +1,4 @@
-import page_main from "./page_main/PageMain.vue";
+import PageMain from "./page_main/PageMain.vue";
 import page_main2 from "./page_main2/PageMain2.vue";
 import page_singers from "./page_singers/PageSingers.vue";
 import page_singer from "./page_singer/PageSinger.vue";
@@ -17,7 +17,7 @@ import PageSpa from "./page_spa/PageSpa.vue";
 
 
 export const routes = [
-	{ path: '/', component: page_main },
+	{ path: '/', component: PageMain },
 	{ path: '/spa', component: PageSpa},
     // { path: '/spa', component: PageSpa , children: [
 	// 	{ path: '/singer_songs/:id', component: SpaSingerFrame },	

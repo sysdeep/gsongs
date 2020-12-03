@@ -5,35 +5,36 @@
 			<span class="pull-right badge badge-secondary">{{ singers.length }}</span>
 		</div>
 
-		<!-- <div class="card-body">
-			
-			
-		</div> -->
-
-		<div class="input-group">
+		<div class="card-body">
+			<div class="input-group">
 				<input type="text" class="form-control" v-model="singer_filter" placeholder="быстрый поиск">
 				<div class="input-group-append">
 					<button class="btn btn-outline-secondary" type="button" @click="singer_filter = ''">&nbsp <i class="fa fa-times" aria-hidden="true"></i> &nbsp</button>
 					</div>
 			</div>
-
-		<br>
-
-
-
-		<div class="list-group list-group-flush">
-  			<a href="javascript: void(0)" 
-			  v-for="(singer, i) in fsingers" :key="i"
-			  @click.prevent="select_singer(singer)" title="отобразить список песенок для этого исполнителя"
-			  class="list-group-item list-group-item-action" :class="{'active': is_current(singer)}"
-			  style="padding: .25rem 1.25rem;"
-			  >
-					{{ singer.name }}
-  			</a>
-  			<!-- <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a> -->
-  
+			
 		</div>
 
+		
+
+		<!-- <br> -->
+
+
+		<div class="scroll_wrapper" >
+			<div class="list-group list-group-flush">
+	  			<a href="javascript: void(0)" 
+				  v-for="(singer, i) in fsingers" :key="i"
+				  @click.prevent="select_singer(singer)" title="отобразить список песенок для этого исполнителя"
+				  class="list-group-item list-group-item-action" :class="{'active': is_current(singer)}"
+				  style="padding: .25rem 1.25rem;"
+				  >
+						{{ singer.name }}
+	  			</a>
+	  			<!-- <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a> -->
+	  
+			</div>
+
+		</div>
 		<!-- <ul class="list-unstyled1">
 			<li v-for="(singer, i) in fsingers" :key="i">
 				<a href="javascript: void(0)" @click="select_singer(singer)" title="отобразить список песенок для этого исполнителя">
@@ -92,3 +93,12 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+.scroll_wrapper{
+	height: calc(100vh - 230px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+</style>

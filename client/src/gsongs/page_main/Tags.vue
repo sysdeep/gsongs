@@ -19,11 +19,13 @@
   </ul> -->
 
 		<!-- <div class="card-body"> -->
+		<div class="scroll_wrapper">
 			<ul>
 				<li v-for="(tag, index) in tags" :key="index">
 					<router-link :to="/tag/ + tag.id">{{ tag.name }}</router-link>
 				</li>
 			</ul>
+		</div>
 		<!-- </div> -->
 	</div>
 </template>
@@ -45,3 +47,14 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+.scroll_wrapper{
+	/*height: calc(100vh - 230px);*/
+	height: 40vh;
+	/*height: 500px;*/
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+</style>
