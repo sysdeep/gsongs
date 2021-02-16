@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/webpack --config webpack.config.js --watch --progress",
     "build": "./node_modules/.bin/webpack --config webpack.config.js --progress --hide-modules",
-    "gsongs": "./node_modules/.bin/webpack --config wp.gsongs.config.js --progress --hide-modules",
-    "spa": "./node_modules/.bin/webpack --config wp.spa.config.js --progress --hide-modules",
+    "gsongs": "npx webpack --config wp.gsongs.config.js --progress --hide-modules",
+    "spa": "npx webpack --config wp.spa.config.js --progress --hide-modules",
     "todo": "./node_modules/.bin/webpack --config wp.todo.config.js --progress --hide-modules",
     "chords_edit": "./node_modules/.bin/webpack --config wp.chords_edit.config.js --progress --hide-modules",
     "chords_view": "./node_modules/.bin/webpack --config wp.chords_view.config.js --progress --hide-modules"

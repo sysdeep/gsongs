@@ -1,25 +1,39 @@
 <template>
-<div class="row">
-	<div class="col-md-4">
 
-		<SelectFrame />
-
-
-		<SingersList />
-
-		<SingerSongsList />
-
-
-
-		<!--  -->
-	</div>
-	<div class="col-md-8">
-		<SongPage />
-		<!-- <router-view>
-			songs list
-		</router-view> -->
-	</div>
+<div>
 	
+	<p>
+		Идея - навигация от исполнителя к списку песенок и конкретной песенке - 3 колонки
+	</p>
+
+	<p class="text-warning">
+		Текущее состояние непонятное....
+	</p>
+
+
+	<div class="row">
+		<div class="col-md-4">
+
+			<SelectFrame />
+
+
+			<SingersList />
+
+			<SingerSongsList />
+
+
+
+			<!--  -->
+		</div>
+		<div class="col-md-8">
+			<SongPage />
+			<!-- <router-view>
+				songs list
+			</router-view> -->
+		</div>
+		
+	</div>
+
 </div>
 </template>
 
