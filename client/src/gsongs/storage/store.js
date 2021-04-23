@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
 		module_singers,
 		module_singer,
 		module_songs,
-		module_tags,
+		"tags" 	: module_tags,
 		module_tag,
 		module_song
 	},

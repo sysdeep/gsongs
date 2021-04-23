@@ -31,6 +31,7 @@
 <script>
 import bus from "../bus";
 import {get_default_tag} from "../utils";
+import { actionTypes } from "@/storage/modules/tags";
 
 const MODAL_ID = "#modal_tag_edit";
 
@@ -75,7 +76,7 @@ export default {
 
 				this.$store.dispatch("tag_create", this.item).then(new_tag => {
 					this.$toastr.success("Тэг создан");
-					this.$store.dispatch("fetch_tags");
+					this.$store.dispatch(actionTypes.GetTags);
 					this.__close();
 				})
 				
@@ -84,7 +85,7 @@ export default {
 
 				this.$store.dispatch("tag_update", this.item).then(updated_tag => {
 					this.$toastr.success("Тэг обновлён");
-					this.$store.dispatch("fetch_tags");
+					this.$store.dispatch(actionTypes.GetTags);
 					this.__close();
 				})
 

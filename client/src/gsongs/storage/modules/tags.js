@@ -26,7 +26,7 @@ const mutations = {
 	[mutationTypes.GetTagsStart]: (state) => {
 		state.is_loading = true;
 		state.errors = [];
-		state.tags = [];
+		// state.tags = [];
 	},
 
 	[mutationTypes.GetTagsSuccess]: (state, tags) => {
