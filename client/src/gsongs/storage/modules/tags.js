@@ -1,30 +1,28 @@
-import axios from "axios";
-
-const SINGER_NAME_CACHE = {};
+import tagsApi from "@/api/tags";
 
 
 export default {
 	state: {
-		"tags"			: [],
-		"tags_loaded"	: false,
+		"tags": [],
+		"tags_loaded": false,
 
 
 
 		// "tags"				: [],
 		// "tags_loaded"		: false,
 
-		"tag_song_links"	: []
+		"tag_song_links": []
 	},
 
 	mutations: {
-		set_tags: function(state, tags){
+		set_tags: function (state, tags) {
 			state.tags = tags;
 			state.tags_loaded = true;
 		},
 
 		set_tags_loaded: (state, value) => state.tags_loaded = value,
 
-		set_tag_song_links: function(state, links){
+		set_tag_song_links: function (state, links) {
 			state.tag_song_links = links;
 		},
 	},
@@ -33,9 +31,15 @@ export default {
 		/**
 		 * получить список тэгов
 		 */
-		fetch_tags: function(context){
-			axios.get("/api/get_tags").then(response => {
-				context.commit("set_tags", response.data.tags);
+		fetch_tags: function (context) {
+			return new Promise((resolve, reject) => {
+				tagsApi.fetch_tags().then(data => {
+					context.commit("set_tags", data.data.tags);
+					resolve(data)
+				}).catch(err => {
+					console.log(err);
+					reject(err);
+				})
 			})
 		},
 
@@ -44,9 +48,16 @@ export default {
 		/**
 		 * получить список связей тэгов и песенок
 		 */
-		fetch_tag_song_links: function(context){
-			axios.get("/api/get_tags_songs").then(response => {
-				context.commit("set_tag_song_links", response.data.result);
+		fetch_tag_song_links: function (context) {
+			return new Promise((resolve, reject) => {
+
+				tagsApi.fetch_tag_song_links().then(data => {
+					context.commit("set_tag_song_links", data.result);
+					resolve(data)
+				}).catch(err => {
+					console.log(err)
+					reject(err);
+				})
 			})
 		},
 
@@ -55,10 +66,13 @@ export default {
 		/**
 		 * создание тэга
 		 */
-		tag_create: function(context, params){
+		tag_create: function (context, params) {
 			return new Promise((resolve, reject) => {
-				axios.post("/api/create_tag", params).then(response => {
-					resolve(response.data.tag);
+				tagsApi.create_tag(params).then(data => {
+					resolve(data.tag);
+				}).catch(err => {
+					console.log(err);
+					reject(err);
 				});
 			})
 		},
@@ -66,10 +80,13 @@ export default {
 		/**
 		 * обновление тэга
 		 */
-		tag_update: function(context, params){
+		tag_update: function (context, params) {
 			return new Promise((resolve, reject) => {
-				axios.post("/api/update_tag", params).then(response => {
-					resolve(response.data.tag);
+				tagsApi.update_tag(params).then(data => {
+					resolve(data.tag);
+				}).catch(err => {
+					console.log(err);
+					reject(err);
 				});
 			})
 		},
@@ -77,16 +94,19 @@ export default {
 		/**
 		 * удаление тэга
 		 */
-		tag_remove: function(context, params){
+		tag_remove: function (context, params) {
 			return new Promise((resolve, reject) => {
-				axios.post("/api/remove_tag", params).then(response => {
-					resolve(response.data.tag);
+				tagsApi.remove_tag(params).then(data => {
+					resolve(data.tag);
+				}).catch(err => {
+					console.log(err);
+					reject(err);
 				});
 			})
 		},
 
 
-		
+
 
 	},
 

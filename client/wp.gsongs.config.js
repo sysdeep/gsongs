@@ -25,7 +25,7 @@ var config = {
 		// alias: { vue: 'vue/dist/vue.js' }
 		alias: { 
 			'vue$': 'vue/dist/vue.esm.js',
-			"@"	: path.resolve(path.join(__dirname, "app", "srcv", "gsongs"))
+			"@"	: path.resolve(path.join(__dirname, "src", "gsongs"))
 		}
 	},
 

@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import singersApi from "@/api/singers";
 
 const SINGER_NAME_CACHE = {};
 
@@ -25,11 +26,17 @@ export default {
 		fetch_singers: function(context){
 			return new Promise((resolve, reject) => {
 				context.commit("set_singers_loaded", false);
-				axios.get("/api/get_singers").then(response => {
-					response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
-					context.commit("set_singers", response.data.singers);
+				singersApi.get_singers().then(data => {
+					data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+					context.commit("set_singers", data.singers);
 					resolve();
 				});
+
+				// axios.get("/api/get_singers").then(response => {
+				// 	response.data.singers.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+				// 	context.commit("set_singers", response.data.singers);
+				// 	resolve();
+				// });
 			})
 		},
 	},

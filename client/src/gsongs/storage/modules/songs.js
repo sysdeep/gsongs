@@ -1,6 +1,7 @@
-import axios from "axios";
+import songsApi from "@/api/songs";
 
-const SINGER_NAME_CACHE = {};
+
+// const SINGER_NAME_CACHE = {};
 
 
 export default {
@@ -25,9 +26,9 @@ export default {
 		fetch_songs: function(context){
 			return new Promise((resolve, reject) => {
 				context.commit("set_songs_loaded", false);
-				axios.get("/api/get_songs").then(response => {
-					response.data.songs.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
-					context.commit("set_songs", response.data.songs);
+				songsApi.get_songs().then(data => {
+					data.songs.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+					context.commit("set_songs", data.songs);
 					resolve();
 				});
 			})
@@ -36,9 +37,9 @@ export default {
 		fetch_filtered_songs: function(context, search_term){
 			return new Promise((resolve, reject) => {
 				context.commit("set_songs_loaded", false);
-				axios.get("/api/get_filtered_songs?search_term=" + search_term).then(response => {
-					response.data.songs.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
-					context.commit("set_songs", response.data.songs);
+				songsApi.get_filtered_songs(search_term).then(data => {
+					data.songs.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
+					context.commit("set_songs", data.songs);
 					resolve();
 				});
 			})
