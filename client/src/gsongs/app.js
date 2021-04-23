@@ -31,7 +31,7 @@ import alert from "./alert";
 
 
 import {routes} from "./router";
-
+import {actionTypes as tagsActionTypes} from "./storage/modules/tags";
 
 
 // Vue.component("button-back", component_button_back);
@@ -77,7 +77,10 @@ const app = new Vue({
 		//--- preload main data
 		this.$store.dispatch("fetch_singers");
 		// this.$store.dispatch("fetch_songs");
-		this.$store.dispatch("fetch_tags");
+		this.$store.dispatch(tagsActionTypes.GetTags);
+		
+		
+		
 		// this.$store.dispatch("fetch_tag_song_links");
 	},
 

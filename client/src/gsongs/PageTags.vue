@@ -1,8 +1,6 @@
 <template>
 	<div>
 		<h3 class="page-header">Список тэгов</h3>
-	
-		
 			<table class="table table-bordered table-sm">
 				<thead>
 					<tr>

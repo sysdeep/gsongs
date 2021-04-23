@@ -1,43 +1,83 @@
 import tagsApi from "@/api/tags";
 
+const state = {
+	tags: [],					// список меток
+	tags_loaded: false,			// DEPRICATED
+
+	is_loading: false,			// факт загрузки данных
+	is_submitting: false,		// факт отправки данных
+	errors: [],					// список ошибок при работе с api
+
+
+
+	tag_song_links: []
+}
+
+
+
+export const mutationTypes = {
+	GetTagsStart 	: "[tags] GetTagsStart",
+	GetTagsSuccess 	: "[tags] GetTagsSuccess",
+	GetTagsFailure 	: "[tags] GetTagsFailure",
+}
+
+const mutations = {
+
+	[mutationTypes.GetTagsStart]: (state) => {
+		state.is_loading = true;
+		state.errors = [];
+		state.tags = [];
+	},
+
+	[mutationTypes.GetTagsSuccess]: (state, tags) => {
+		state.tags = tags;
+		state.is_loading = false;
+	},
+
+	[mutationTypes.GetTagsFailure]: (state, errors) => {
+		state.errors = errors;
+		state.is_loading = false;
+	},
+
+	//--- old -----------------------------------------------------------------
+	set_tags: function (state, tags) {
+		state.tags = tags;
+		state.tags_loaded = true;
+	},
+
+	set_tags_loaded: (state, value) => state.tags_loaded = value,
+
+	set_tag_song_links: function (state, links) {
+		state.tag_song_links = links;
+	},
+}
+
+
+
+export const actionTypes = {
+	GetTags 		: "[tags] GetTags",
+}
+
+
 
 export default {
-	state: {
-		"tags": [],
-		"tags_loaded": false,
+	state,
 
-
-
-		// "tags"				: [],
-		// "tags_loaded"		: false,
-
-		"tag_song_links": []
-	},
-
-	mutations: {
-		set_tags: function (state, tags) {
-			state.tags = tags;
-			state.tags_loaded = true;
-		},
-
-		set_tags_loaded: (state, value) => state.tags_loaded = value,
-
-		set_tag_song_links: function (state, links) {
-			state.tag_song_links = links;
-		},
-	},
+	mutations,
 
 	actions: {
 		/**
 		 * получить список тэгов
 		 */
-		fetch_tags: function (context) {
+		[actionTypes.GetTags]: function (context) {
 			return new Promise((resolve, reject) => {
+				context.commit(mutationTypes.GetTagsStart);
 				tagsApi.fetch_tags().then(data => {
-					context.commit("set_tags", data.data.tags);
+					context.commit(mutationTypes.GetTagsSuccess, data.tags);
 					resolve(data)
 				}).catch(err => {
 					console.log(err);
+					context.commit(mutationTypes.GetTagsFailure, [err]);
 					reject(err);
 				})
 			})
@@ -45,21 +85,22 @@ export default {
 
 
 
+		//--- UNUSED
 		/**
 		 * получить список связей тэгов и песенок
 		 */
-		fetch_tag_song_links: function (context) {
-			return new Promise((resolve, reject) => {
+		// fetch_tag_song_links: function (context) {
+		// 	return new Promise((resolve, reject) => {
 
-				tagsApi.fetch_tag_song_links().then(data => {
-					context.commit("set_tag_song_links", data.result);
-					resolve(data)
-				}).catch(err => {
-					console.log(err)
-					reject(err);
-				})
-			})
-		},
+		// 		tagsApi.fetch_tag_song_links().then(data => {
+		// 			context.commit("set_tag_song_links", data.result);
+		// 			resolve(data)
+		// 		}).catch(err => {
+		// 			console.log(err)
+		// 			reject(err);
+		// 		})
+		// 	})
+		// },
 
 
 
