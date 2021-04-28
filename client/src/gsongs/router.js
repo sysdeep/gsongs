@@ -14,10 +14,12 @@ import PageSpa from "./page_spa/PageSpa.vue";
 // import SpaSingerFrame from "./page_spa/singer_frame/SingerFrame.vue";
 
 
-
+const routeNames = {
+    Main    : "Main",
+}
 
 export const routes = [
-	{ path: '/', component: PageMain },
+	{ path: '/', name: routeNames.Main, component: PageMain },
 	{ path: '/spa', component: PageSpa},
     // { path: '/spa', component: PageSpa , children: [
 	// 	{ path: '/singer_songs/:id', component: SpaSingerFrame },	
