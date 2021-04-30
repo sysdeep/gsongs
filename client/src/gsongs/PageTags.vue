@@ -8,19 +8,35 @@
 			</ul>
 		</div>
 
+		<!-- <block-spinner status="true"> -->
+		
 		<div v-if="errors.length == 0">
-			<table class="table table-bordered table-sm">
+			<table class="table table-bordered table-sm table-striped">
 				<thead>
-					<tr>
+					<tr width="60%">
 						<!-- <th>id</th> -->
-						<th>Название</th>
+						<th class="pointer" @click.prevent="set_sort_field('name')">
+							Название
+							<sort-item class="pull-right" 
+								dname="name" 
+								:cname="sort_field" 
+								:direction="sort_direction" 
+								/>
+						</th>
 						<!-- <th>Кол-во песенок</th> -->
-						<th>Дата изменения</th>
-						<th>Опции</th>
+						<th width="20%" class="pointer" @click.prevent="set_sort_field('updated')">
+							Дата изменения
+							<sort-item class="pull-right"
+								dname="updated" 
+								:cname="sort_field" 
+								:direction="sort_direction" 
+								/>
+						</th>
+						<th width="20%">Опции</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="(tag, index) in tags" :key="index">
+					<tr v-for="(tag, index) in sorted_tags" :key="index">
 						<!-- <td>{{ tag.id }}</td> -->
 						<td>
 							<router-link
@@ -61,7 +77,7 @@
 				<BtnRefresh @click="refresh" />
 			</span>
 		</div>
-
+		<!-- </block-spinner> -->
 		<Spinner v-if="is_loading" />
 		<!-- <TstModal /> -->
 	</div>
@@ -71,12 +87,23 @@
 import { mapState } from "vuex";
 import bus from "./bus";
 import { actionTypes } from "@/storage/modules/tags";
+// import BlockSpinner from "@/components/BlockSpinner.vue";
+import SortItem from "@/components/SortItem.vue";
 
 // import TstModal from "./tcomponents/ModalCompWrap.vue"
 export default {
-	// components: {
-	// 	TstModal
-	// },
+	data(){
+		return {
+			sort_field 		: "name",
+			sort_direction 	: 1,		// 1 - asc, -1 - desc
+		}
+	},
+
+	components: {
+		SortItem,
+		// BlockSpinner
+		// TstModal
+	},
 
 	methods: {
 		refresh: function () {
@@ -99,6 +126,15 @@ export default {
 		// 	let result = this.$store.getters.get_tag_songs(tag_id);
 		// 	return result.length;
 		// }
+
+		set_sort_field(field_name){
+
+			if(field_name === this.sort_field){
+				this.sort_direction = this.sort_direction * -1;
+			}
+			
+			this.sort_field = field_name;
+		}
 	},
 
 	computed: {
@@ -107,10 +143,17 @@ export default {
 			is_loading: (state) => state.tags.is_loading,
 			errors: (state) => state.tags.errors,
 		}),
-		// ...mapGetters(["tags"]),
-		// ftags: function(){
-		// 	return this.$store.state.tags;
-		// }
+
+		sorted_tags(){
+			let items = [...this.tags];
+
+			items.sort((a, b) => {
+				let r = a[this.sort_field] > b[this.sort_field]? 1 : -1;
+				return r * this.sort_direction;
+			})
+
+			return items;
+		}
 	},
 };
 </script>
