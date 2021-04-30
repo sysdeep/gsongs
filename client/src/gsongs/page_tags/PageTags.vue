@@ -85,10 +85,11 @@
 
 <script>
 import { mapState } from "vuex";
-import bus from "./bus";
-import { actionTypes } from "@/storage/modules/tags";
+import bus from "../bus";
+import { actionTypes } from "../storage/modules/tags";
 // import BlockSpinner from "@/components/BlockSpinner.vue";
 import SortItem from "@/components/SortItem.vue";
+
 
 // import TstModal from "./tcomponents/ModalCompWrap.vue"
 export default {

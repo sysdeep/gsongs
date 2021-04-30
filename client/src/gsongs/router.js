@@ -6,7 +6,7 @@ import page_songs from "./PageSongs.vue";
 import page_song from "./page_song/PageSong.vue";
 // import page_singer_edit from "./PageSingerEdit.vue";
 // import page_song_edit from "./PageSongEdit.vue";
-import page_tags from "./PageTags.vue";
+import page_tags from "./page_tags/PageTags.vue";
 import page_tag from "./PageTag.vue";
 import page_about from "./PageAbout.vue";
 
