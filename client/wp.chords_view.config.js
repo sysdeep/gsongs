@@ -1,5 +1,5 @@
 var path = require("path");
-var webpack = require('webpack');
+// var webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -39,31 +39,40 @@ var config = {
 				// 	presets: ['es2015']
 				// }
 			},
+			// {
+			// 	test: /\.(css|html)$/,
+			// 	loader: 'raw-loader'
+			// },
+
 			{
-				test: /\.(css|html)$/,
-				loader: 'raw-loader'
+				test: /\.css$/,
+				use: [
+					'vue-style-loader',
+					'css-loader'
+				]
 			},
 
 
-			{
-				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'file-loader',
-				options: {
-					name: '[name].[ext]?[hash]'
-				}
-			},
+			// {
+			// 	test: /\.(png|jpg|gif|svg)$/,
+			// 	loader: 'file-loader',
+			// 	options: {
+			// 		name: '[name].[ext]?[hash]'
+			// 	}
+			// },
+
 			{
 				test: /\.vue$/,
 				loader: 'vue-loader',
 				// query: {
 				//     presets: ['es2015']
 				// },
-				options: {
-					loaders: {
-						// js: 'babel-loader?presets[]=es2015'
-					}
-					// other vue-loader options go here
-				}
+				// options: {
+				// 	loaders: {
+				// 		// js: 'babel-loader?presets[]=es2015'
+				// 	}
+				// 	// other vue-loader options go here
+				// }
 			}
 			
 		]

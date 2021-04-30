@@ -38,3 +38,9 @@ chords_view_production:
 	PRODUCTION=1 npm run chords_view
 #--- frontend -----------------------------------------------------------------
 
+
+remake_all:
+	PRODUCTION=1 npm run gsongs
+	PRODUCTION=1 npm run todo
+	PRODUCTION=1 npm run chords_view
+	PRODUCTION=1 npm run chords_edit

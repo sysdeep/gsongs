@@ -1,9 +1,14 @@
+/**
+ * 
+ * 
+ */
 const path = require("path");
-const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+//--- dev - used in plugins
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 
 
@@ -11,7 +16,9 @@ var config = {
 	entry: {
 
 		"gsongs"			: path.normalize(path.join(__dirname, "src", "gsongs", "app.js")),
-		"gsongs_vendor"		: ["vue", "vue-router", "vuex", "axios"],
+		
+		//--- 2021.04.30 - disable - see in chunks
+		// "gsongs_vendor"		: ["vue", "vue-router", "vuex", "axios"],
 		
 	},
 	
@@ -24,7 +31,7 @@ var config = {
 		// extensions: ['.js'],
 		// alias: { vue: 'vue/dist/vue.js' }
 		alias: { 
-			'vue$': 'vue/dist/vue.esm.js',
+			// 'vue$': 'vue/dist/vue.esm.js',
 			"@"	: path.resolve(path.join(__dirname, "src", "gsongs"))
 		}
 	},
@@ -55,25 +62,26 @@ var config = {
 			// },
 
 
-			{
-				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'file-loader',
-				options: {
-					name: '[name].[ext]?[hash]'
-				}
-			},
+			// {
+			// 	test: /\.(png|jpg|gif|svg)$/,
+			// 	loader: 'file-loader',
+			// 	options: {
+			// 		name: '[name].[ext]?[hash]'
+			// 	}
+			// },
+
 			{
 				test: /\.vue$/,
 				loader: 'vue-loader',
 				// query: {
 				//     presets: ['es2015']
 				// },
-				options: {
-					loaders: {
-						// js: 'babel-loader?presets[]=es2015'
-					}
-					// other vue-loader options go here
-				}
+				// options: {
+				// 	loaders: {
+				// 		// js: 'babel-loader?presets[]=es2015'
+				// 	}
+				// 	// other vue-loader options go here
+				// }
 			}
 			
 		]
@@ -86,7 +94,14 @@ var config = {
 	// ]
 	plugins : [
 		new VueLoaderPlugin(),
+
+		//--- dev
+		// new BundleAnalyzerPlugin(),
 	],
+
+
+
+	// mode: "production", // "production" | "development" | "none"
 
 
 	//--- new cunks api
@@ -94,22 +109,50 @@ var config = {
 		splitChunks: {
 			// chunks: "all"
 			cacheGroups: {
-				mdispatch_vendor: {
-					name: 'gsongs_vendor',
-          			chunks: 'initial',
-          			minChunks: 2,
-					// filename: '[name].bundle.js'
-				},
-
-				// mdispatch_store: {
-				// 	name: 'mdispatch_store',
+	// 			gsongs_vendor_split: {
+	// 				name: 'gsongs_vendor_split',
     //       			chunks: 'initial',
     //       			minChunks: 2,
-				// 	// filename: '[name].bundle.js'
-				// }
+	// // 				// filename: '[name].bundle.js'
+	// 			},
+
+				//--- new webpack(Create a vendors chunk, which includes all code from node_modules in the whole application)
+				commons: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'gsongs_vendor',
+					chunks: 'all',
+				},
+
+				
+				//--- не очень работает....
+				//--- Create a commons chunk, which includes all code shared between entry points.
+				// shared: {
+				// 	name: 'shared',
+				// 	chunks: 'initial',
+				// 	minChunks: 2,
+				// },
+
+
+	// 			// mdispatch_store: {
+	// 			// 	name: 'mdispatch_store',
+    // //       			chunks: 'initial',
+    // //       			minChunks: 2,
+	// 			// 	// filename: '[name].bundle.js'
+	// 			// }
 			}
 		}
-	}
+	},
+
+
+
+	// stats: {
+
+	// }
+
+
+
+
+
 };
 
 

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from 'vue-router';
 
+import "./app.css";
 import {store} from "./storage/store";
 
 

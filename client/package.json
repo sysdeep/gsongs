@@ -4,14 +4,14 @@
   "description": "https://github.com/sysdeep/gsongs.git",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/webpack --config webpack.config.js --watch --progress",
-    "build": "./node_modules/.bin/webpack --config webpack.config.js --progress --hide-modules",
-    "gsongs": "npx webpack --config wp.gsongs.config.js --progress --hide-modules",
-    "spa": "npx webpack --config wp.spa.config.js --progress --hide-modules",
-    "todo": "./node_modules/.bin/webpack --config wp.todo.config.js --progress --hide-modules",
-    "chords_edit": "./node_modules/.bin/webpack --config wp.chords_edit.config.js --progress --hide-modules",
-    "chords_view": "./node_modules/.bin/webpack --config wp.chords_view.config.js --progress --hide-modules"
+    "__test": "echo \"Error: no test specified\" && exit 1",
+    "__dev": "./node_modules/.bin/webpack --config webpack.config.js --watch --progress",
+    "__build": "./node_modules/.bin/webpack --config webpack.config.js --progress --hide-modules",
+    "gsongs": "npx webpack --config wp.gsongs.config.js --progress",
+    "todo": "npx webpack --config wp.todo.config.js --progress",
+    "chords_edit": "npx webpack --config wp.chords_edit.config.js --progress",
+    "chords_view": "npx webpack --config wp.chords_view.config.js --progress",
+    "spa": "npx webpack --config wp.spa.config.js --progress"
   },
   "repository": {
     "type": "git",
@@ -24,11 +24,11 @@
   },
   "homepage": "https://github.com/sysdeep/gsongs#readme",
   "dependencies": {
-    "@babel/core": "^7.13.16",
-    "@babel/preset-env": "^7.13.15",
     "axios": "^0.21.1",
     "vue": "^2.6.12",
-    "vue-router": "^3.5.1"
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2",
+    "snarkdown": "^2.0.0"
   },
   "babel": {
     "presets": [
@@ -36,16 +36,19 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.4",
     "file-loader": "^6.2.0",
     "raw-loader": "^4.0.2",
-    "snarkdown": "^2.0.0",
+    
     "vue-loader": "^15.9.6",
     "vue-style-loader": "^4.1.3",
     "vue-template-compiler": "^2.6.12",
-    "vuex": "^3.6.2",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    
+    "webpack": "^5.36.1",
+    "webpack-bundle-analyzer": "^4.4.1",
+    "webpack-cli": "^4.6.0"
   }
 }
