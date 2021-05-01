@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar navbar-default fixed-top navbar-light bg-light navbar-expand-lg">
+	<nav class="navbar navbar-default fixed-top navbar-dark bg-dark navbar-expand-lg">
 		<router-link to="/" class="navbar-brand col-sm-3 col-md-2 mr-0">GSongs <small>v {{ version }}</small></router-link>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

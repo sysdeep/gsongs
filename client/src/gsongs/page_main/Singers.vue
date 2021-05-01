@@ -1,8 +1,11 @@
 <template>
-	<div class="card">
-		<div class="card-header">
-			Исполнители
-			<span class="pull-right badge badge-secondary">{{ singers.length }}</span>
+	<div class="card border-primary">
+		<div class="card-header bg-primary text-white">
+			<i class="fa fa-users" aria-hidden="true"></i> 
+			<strong> Исполнители </strong>
+			<span class="pull-right badge1 badge-secondary1">
+				{{ fsingers.length }} из {{ singers.length }}
+			</span>
 		</div>
 
 		<div class="card-body">

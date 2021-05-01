@@ -103,8 +103,9 @@
 			<thead>
 				<tr>
 					<!-- <th>id</th> -->
-					<th>
-						<a href="javascript: void(0)" @click="sort()">Исполнитель</a>
+					<th class="pointer" @click="sort()">
+						Исполнитель
+						<SortItem class="pull-right" dname="name" cname="name" :direction="sort_dir" />
 					</th>
 					<!-- <th>
 						<a href="javascript: void(0)" ng-click="self.sort('created')">Создание</a>
@@ -166,6 +167,7 @@
 <script>
 import {mapGetters} from "vuex";
 import bus from "../bus";
+import SortItem from "../components/SortItem.vue";
 
 export default {
 	data: () => {
@@ -173,11 +175,13 @@ export default {
 
 			"search_name": "",
 
-			"sort_dir"  : true
+			"sort_dir"  : 1,		// 1 asc, -1 desc
 		}
 	},
 
-
+	components: {
+		SortItem,
+	},
 	
 
 	methods: {
@@ -197,7 +201,7 @@ export default {
 		},
 
 		sort: function(){
-			this.sort_dir = !this.sort_dir;
+			this.sort_dir = this.sort_dir * -1;
 		}
 	},
 
@@ -215,11 +219,8 @@ export default {
 			});
 
 			result.sort((a, b) => {
-				if(this.sort_dir){
-					return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0;
-				}else{
-					return (a.name > b.name) ? -1 : (a.name < b.name) ? 1 : 0;
-				}
+				let r = (a.name > b.name) ? 1 : -1;
+				return r * this.sort_dir;
 			})
 			return result;
 		}

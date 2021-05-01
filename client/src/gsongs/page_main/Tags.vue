@@ -1,6 +1,6 @@
 <template>
-	<div class="card">
-		<div class="card-header">
+	<div class="card border-warning">
+		<div class="card-header bg-warning text-white">
 			Метки
 			<span class="pull-right badge badge-secondary">{{ tags.length }}</span>
 		</div>

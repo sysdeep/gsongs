@@ -1,8 +1,8 @@
 <template>
-	<div class="card">
+	<div class="card border-success">
 		
 		
-		<div class="card-header">
+		<div class="card-header bg-success text-white">
 			Песни исполнителя:
 
 			<span v-if="!singer">нет исполнителя</span>
