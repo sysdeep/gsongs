@@ -6,7 +6,7 @@
 				<h4 class="modal-title">
 					<i class="fa fa-search" aria-hidden="true"></i> Поиск
 				</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 	  
 			<div class="modal-body">
@@ -59,7 +59,7 @@
 					</span>
 				</div>
 
-				<button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Закрыть</button>
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Закрыть</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -77,11 +77,17 @@ export default {
 		return {
 			search_term	: "",
 			processed 	: false,
+
+			__modal 	: null,
 		}
 	},
 
 	created(){
 		bus.$on("show_search_modal", this.show);
+	},
+
+	mounted(){
+		this.__modal = new bootstrap.Modal(this.$el);
 	},
 
 
@@ -119,11 +125,11 @@ export default {
 		},
 
 		__open(){
-			$(this.$el).modal("show");
+			this.__modal.show();
 		},
 
 		__close(){
-			$(this.$el).modal("hide");
+			this.__modal.hide();
 		},
 
 		

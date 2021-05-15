@@ -7,7 +7,7 @@
         			<span v-if="is_new">Создание тэга</span>
         			<span v-else>Изменение тэга <strong>{{ org_name }}</strong></span>
         		</h4>
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       		</div>
       
       		<div class="modal-body">
@@ -21,7 +21,7 @@
       
       		<div class="modal-footer">
         		<button-save @click="save()"></button-save>
-        		<button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Закрыть</button>
+        		<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Закрыть</button>
       		</div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
@@ -40,13 +40,19 @@ export default {
 		return {
 			item 		: get_default_tag(),
 			is_new		: false,
-			org_name	: ""
+			org_name	: "",
+
+			__modal 	: null,
 		}
 	},
 
 	created(){
 		bus.$on("show_create_tag", this.show_create);
 		bus.$on("show_edit_tag", this.show_edit);
+	},
+
+	mounted(){
+		this.__modal = new bootstrap.Modal(this.$el);
 	},
 
 
@@ -94,11 +100,14 @@ export default {
 		},
 
 		__open(){
-			$(MODAL_ID).modal("show");
+			// $(MODAL_ID).modal("show");
+			this.__modal.show();
+
 		},
 
 		__close(){
-			$(MODAL_ID).modal("hide");
+			// $(MODAL_ID).modal("hide");
+			this.__modal.hide();
 		},
 
 		__validate(data){

@@ -15,7 +15,8 @@
 
 
 	
-	<link href="/static/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<!-- <link href="/static/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+	<link href="/static/vendor/bootstrap5/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/static/vendor/font-awesome/css/font-awesome.min.css?version={{ VERSION }}" rel="stylesheet">
 
 
@@ -45,26 +46,30 @@
 				<h3 style="text-align: center;">Вход</h3>
 			</div> -->
 
-			<div class="well">
+			<div class="card">
 
-				<form id="login_form" class="" role="form" action="/login" method="POST" style="margin-bottom: 0px">
-				    	
-				    <div class="form-group">
-					    <label for="inputUsername" class="control-label">Пользователь</label>
-				      	<input type="text" class="form-control" id="inputUsername" name="username">
-					</div>
+				<div class="card-body">
 
-					<div class="form-group">
-					    <label for="inputPassword" class="control-label">Пароль</label>
-				      	<input type="password" class="form-control" id="inputPassword" name="password">
-					</div>
+					<form id="login_form" class="" role="form" action="/login" method="POST" style="margin-bottom: 0px">
+							
+						<div class="form-group mb-3">
+							<label for="inputUsername" class="control-label">Пользователь</label>
+							<input type="text" class="form-control" id="inputUsername" name="username">
+						</div>
+
+						<div class="form-group mb-3">
+							<label for="inputPassword" class="control-label">Пароль</label>
+							<input type="password" class="form-control" id="inputPassword" name="password">
+						</div>
 
 
-					<div class="form-group clearfix">
-				      	<button type="submit" class="btn btn-block1 btn-primary pull-right" title="войти в систему"><i class="fa fa-sign-in"></i> Вход</button>
-					</div>
+						<div class="form-group clearfix">
+							<button type="submit" class="btn btn-primary pull-right" title="войти в систему"><i class="fa fa-sign-in"></i> Вход</button>
+						</div>
 
-				</form>
+					</form>
+
+				</div>
 			</div>
 
 
