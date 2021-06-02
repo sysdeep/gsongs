@@ -5,7 +5,7 @@
 		<Spinner v-if="!tag_songs_loaded"/>
 
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<table class="table table-bordered table-sm">
 					<thead>
 						<tr>
@@ -28,7 +28,10 @@
 				</table>
 				<!-- <button class="btn btn-primary" ng-click="self.show_create()">Create</button> -->
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-6">
+
+				<SongsFrame :songs="tag_songs" />
+
 				<BtnBack />
 				<button-remove @click="show_remove" :disabled="tag_songs.length > 0"></button-remove>
 
@@ -41,6 +44,7 @@
 
 <script>
 import {mapGetters} from "vuex";
+import SongsFrame from "@/components/SongsFrame/SongsFrame.vue"
 export default {
 
 	data: function(){
@@ -48,6 +52,10 @@ export default {
 			
 			"id"			: null,
 		}
+	},
+
+	components: {
+		SongsFrame
 	},
 
 	created: function(){
