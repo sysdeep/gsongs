@@ -18,5 +18,5 @@ if not DIR_VENDOR in sys.path:
 from app.main import app
 
 # app = create_app()
-app.run(debug=True, host="127.0.0.1", port=5000)
+app.run(debug=True, host="127.0.0.1", port=5050)
 # app.run(debug=False)
