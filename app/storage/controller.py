@@ -2,7 +2,7 @@ import os.path
 
 from rc import DB_FILE_PATH
 from .loader import db
-from .models import *
+from .models import Todo, Singer, Song, Tag, RTagSong
 
 
 def init_db():
@@ -10,7 +10,6 @@ def init_db():
         print("файл базы данных не найден - создаём: {}".format(DB_FILE_PATH))
         db.create_tables([Singer, Song])
 
-    #--- auto migrations
     if not Todo.table_exists():
         Todo.create_table()
 

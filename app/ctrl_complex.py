@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from flask import jsonify
 
-# from vendor import auto
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
-
-from . import storage, VERSION
+from . import storage
 
 
 def get_main_page_data():

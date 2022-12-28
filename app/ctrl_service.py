@@ -1,13 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from flask import render_template
 
-# from vendor import auto
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from rc import VERSION
 
-from . import storage, VERSION
 
 def service_page():
-	data = {
-		"VERSION": VERSION
-	}
-	return render_template("service/main.html", **data)
+    data = {"VERSION": VERSION}
+    return render_template("service/main.html", **data)
