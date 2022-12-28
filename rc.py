@@ -1,6 +1,6 @@
 import os.path
 
-VERSION = '1.0.0'
+VERSION = '1.3.0'
 
 SELF_DIR = os.path.dirname(os.path.abspath(__file__))
 VAR_DIR = os.path.join(os.path.dirname(SELF_DIR), 'var')

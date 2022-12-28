@@ -1,7 +1,4 @@
 import os.path
-import time
-
-import peewee
 
 from rc import DB_FILE_PATH
 from .loader import db

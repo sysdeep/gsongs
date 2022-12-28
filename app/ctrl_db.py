@@ -2,7 +2,7 @@ import os
 import time
 from zipfile import ZipFile
 
-from flask import Flask, render_template, redirect, send_file
+from flask import render_template, redirect, send_file
 
 from rc import DB_FILE_NAME, BACKUPS_DIR, VERSION
 
@@ -17,6 +17,7 @@ def db_page():
     files = os.listdir(BACKUPS_DIR)
     files.sort()
 
+    # NOTE: VERSION = 1.0.0 in db - whats version used?
     data = {"VERSION": VERSION, "DB_FILE": DB_FILE_NAME, "SHARED_FILES": files}
     return render_template("service/db.html", **data)
 
