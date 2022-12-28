@@ -5,8 +5,6 @@
 #
 # app.run(debug=True)
 
-
-
 from app.main import app
 
 # app = create_app()
