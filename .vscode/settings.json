@@ -1,9 +1,0 @@
-{
-    "vsicons.presets.angular": false,
-    "python.linting.pylintEnabled": false,
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#2E300D",
-        "titleBar.activeBackground": "#404312",
-        "titleBar.activeForeground": "#FBFBF2"
-    }
-}
