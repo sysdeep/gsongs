@@ -1,6 +1,6 @@
 [style]
 based_on_style = facebook
-column_limit = 140
+column_limit = 120
 indent_dictionary_value = false
 split_arguments_when_comma_terminated = true
 allow_multiline_lambdas = true
