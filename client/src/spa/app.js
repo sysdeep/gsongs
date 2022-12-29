@@ -1,16 +1,13 @@
 import Vue from "vue";
-import VueRouter from 'vue-router';
+import VueRouter from "vue-router";
 
-import {store} from "./storage/store";
-
-
+import { store } from "./storage/store";
 
 import App from "./App.vue";
 // import component_menu from "./menu/menu";
 // import page_main from "./page_main/page_main";
 // import page_singers from "./page_singers/page_singers";
 // import component_menu from "./Menu.vue";
-
 
 import component_button_back from "./components/ButtonBack.vue";
 import component_button_save from "./components/ButtonSave.vue";
@@ -29,10 +26,7 @@ import confirm_modal from "./components/confirm_modal/index.js";
 import toastr from "./toastr";
 import alert from "./alert";
 
-
-import {routes} from "./router";
-
-
+import { routes } from "./router";
 
 // Vue.component("button-back", component_button_back);
 Vue.component("button-save", component_button_save);
@@ -45,23 +39,17 @@ Vue.component("BtnCreate", BtnCreate);
 Vue.component("BtnBack", BtnBack);
 Vue.component("Spinner", Spinner);
 
-
 Vue.use(VueRouter);
 Vue.use(toastr);
 Vue.use(alert);
 // Vue.use(bmodal);														// пока не используем...
 Vue.use(confirm_modal);
 
-
-
 const router = new VueRouter({
 	routes,
-	mode 	: 'history',
-	base	: "/spa/",
+	mode: "history",
+	base: "/spa/",
 });
-
-
-
 
 const app = new Vue({
 	el: "#app",
@@ -70,7 +58,7 @@ const app = new Vue({
 	router: router,
 	store,
 
-	created: function(){
+	created: function() {
 		//--- preload - big
 		// this.$store.dispatch("preload_data");
 
@@ -80,9 +68,6 @@ const app = new Vue({
 		this.$store.dispatch("fetch_tags");
 		// this.$store.dispatch("fetch_tag_song_links");
 	},
-
-
-	
 
 	// components: {
 	// 	"mainMenu": component_menu

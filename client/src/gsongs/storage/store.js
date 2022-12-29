@@ -1,8 +1,7 @@
-import Vue from "vue";
+//import * as Vue from "vue";
 import Vuex from "vuex";
 import actions from "./actions";
 import getters from "./getters";
-import {get_default_singer} from "../utils";
 
 import module_singers from "./modules/singers";
 import module_singer from "./modules/singer";
@@ -11,33 +10,27 @@ import module_song from "./modules/song";
 import module_tags from "./modules/tags";
 import module_tag from "./modules/tag";
 
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-
 	modules: {
 		module_singers,
 		module_singer,
 		module_songs,
-		"tags" 	: module_tags,
+		tags: module_tags,
 		module_tag,
-		module_song
+		module_song,
 	},
-
 
 	state: {
 		// "singers"			: [],
 		// "singer"			: null,
 		// "singers_loaded"	: false,
-		"singer_id"			: null,
-
-				
+		singer_id: null,
 	},
 
 	actions,
 	getters,
 
-	mutations: {
-			
-	}
-})
+	mutations: {},
+});

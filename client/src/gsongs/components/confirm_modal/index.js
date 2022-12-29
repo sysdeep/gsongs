@@ -13,15 +13,16 @@
  */
 import Modal from "./Modal.vue";
 export default {
-	install: function(Vue, options){
-
-		let component = Vue.extend(Modal);
-		let instance = new component();
-		instance.$mount();
-		document.body.appendChild(instance.$el);
-
-		Vue.prototype.$show_confirm = function(text, title){
-			return instance.show(text, title)
-		}
-	}
-}
+	install: function(Vue, options) {
+		// console.log(Vue);
+		//
+		// let component = Vue.extend(Modal);
+		// let instance = new component();
+		// instance.$mount();
+		// document.body.appendChild(instance.$el);
+		//
+		// Vue.prototype.$show_confirm = function(text, title) {
+		// 	return instance.show(text, title);
+		// };
+	},
+};

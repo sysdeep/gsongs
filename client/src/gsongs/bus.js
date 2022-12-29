@@ -1,5 +1,11 @@
-import Vue from "vue";
+import mitt from "mitt";
 
-const bus = new Vue();
+const emitter = mitt();
 
-export default bus;
+export default {
+  $on: (...args) => emitter.on(...args),
+  $once: (...args) => emitter.once(...args),
+  $off: (...args) => emitter.off(...args),
+  $emit: (...args) => emitter.emit(...args),
+};
+// const bus = Vue.createApp();
