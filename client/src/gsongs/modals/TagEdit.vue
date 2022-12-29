@@ -1,5 +1,5 @@
 <template>
-	<div class="modal fade" tabindex="-1" role="dialog" id="modal_tag_edit">
+	<div class="modal fade" tabindex="-1" role="dialog" :id="modal_id">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -38,8 +38,6 @@ import bus from "../bus";
 import { get_default_tag } from "../utils";
 import { actionTypes } from "@/storage/modules/tags";
 
-const MODAL_ID = "#modal_tag_edit";
-
 export default {
 	data() {
 		return {
@@ -47,6 +45,7 @@ export default {
 			is_new: false,
 			org_name: "",
 
+			modal_id: "modal_tag_edit",
 			__modal: null,
 		};
 	},
@@ -57,7 +56,7 @@ export default {
 	},
 
 	mounted() {
-		// this.__modal = new bootstrap.Modal(this.$el);
+		this.__modal = new bootstrap.Modal("#" + this.modal_id);
 	},
 
 	methods: {

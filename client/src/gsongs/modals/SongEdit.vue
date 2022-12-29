@@ -1,5 +1,5 @@
 <template>
-	<div class="modal fade" tabindex="-1" role="dialog" id="modal_song_edit">
+	<div class="modal fade" tabindex="-1" role="dialog" :id="modal_id">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -99,6 +99,7 @@ export default {
 			is_new: false,
 			org_name: "",
 
+			modal_id: "modal_song_edit",
 			__modal: null,
 		};
 	},
@@ -110,7 +111,7 @@ export default {
 	},
 
 	mounted() {
-		// this.__modal = new bootstrap.Modal(this.$el);
+		this.__modal = new bootstrap.Modal("#" + this.modal_id);
 	},
 
 	methods: {

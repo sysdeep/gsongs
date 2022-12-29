@@ -57,7 +57,7 @@ export default {
 	},
 
 	mounted() {
-		// this.__modal = new bootstrap.Modal(this.$el);
+		this.__modal = new bootstrap.Modal(MODAL_ID);
 	},
 
 	methods: {

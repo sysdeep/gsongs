@@ -1,5 +1,5 @@
 <template>
-	<div class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal fade" tabindex="-1" role="dialog" :id="modal_id">
 		<div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -63,7 +63,6 @@
 <script>
 import { mapGetters } from "vuex";
 import bus from "../bus";
-import { get_default_tag } from "../utils";
 
 export default {
 	data() {
@@ -71,6 +70,7 @@ export default {
 			search_term: "",
 			processed: false,
 
+			modal_id: "serach_modal",
 			__modal: null,
 		};
 	},
@@ -80,7 +80,7 @@ export default {
 	},
 
 	mounted() {
-		// this.__modal = new bootstrap.Modal(this.$el);
+		this.__modal = new bootstrap.Modal("#" + this.modal_id);
 	},
 
 	methods: {
