@@ -1,39 +1,25 @@
 var path = require("path");
-// var webpack = require('webpack');
-const { VueLoaderPlugin } = require('vue-loader');
-
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-
+const { VueLoaderPlugin } = require("vue-loader");
 
 var config = {
 	entry: {
-
-		// "gsongs"		: path.join(__dirname, "app", "srcv", "gsongs", "app.js"),
-		// "todo"			: path.join(__dirname, "app", "srcv", "todo", "main.js"),
-		// "chords_edit"	: path.join(__dirname, "app", "srcv", "chords_edit", "main.js"),
-		"chords_view"	: path.join(__dirname, "src", "chords_view", "main.js"),
-		
-		// "vendor"	: ["vue", "axios"]
-		
+		chords_view: path.join(__dirname, "src", "chords_view", "main.js"),
 	},
 	output: {
 		path: path.join(__dirname, "..", "app", "static", "build"),
-		// path: __dirname + 'app/static/build',
-		filename: '[name].js',
-		// filename: 'templates.js',
+		filename: "[name].js",
 	},
 	resolve: {
-		// extensions: ['.js'],
-		// alias: { vue: 'vue/dist/vue.js' }
-		alias: { 'vue$': 'vue/dist/vue.esm.js' }
+		alias: {
+			// 'vue$': 'vue/dist/vue.esm.js'
+			"@": path.resolve(path.join(__dirname, "src", "gsongs")),
+		},
 	},
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				loader: 'babel-loader',
+				loader: "babel-loader",
 				exclude: /node_modules/,
 				// query: {
 				// 	presets: ['es2015']
@@ -46,12 +32,8 @@ var config = {
 
 			{
 				test: /\.css$/,
-				use: [
-					'vue-style-loader',
-					'css-loader'
-				]
+				use: ["vue-style-loader", "css-loader"],
 			},
-
 
 			// {
 			// 	test: /\.(png|jpg|gif|svg)$/,
@@ -63,7 +45,7 @@ var config = {
 
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader',
+				loader: "vue-loader",
 				// query: {
 				//     presets: ['es2015']
 				// },
@@ -73,9 +55,8 @@ var config = {
 				// 	}
 				// 	// other vue-loader options go here
 				// }
-			}
-			
-		]
+			},
+		],
 	},
 	// plugins: [
 	//   new webpack.optimize.UglifyJsPlugin(),
@@ -83,27 +64,21 @@ var config = {
 	// plugins : [
 	// 	new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' })
 	// ]
-	plugins : [
-		new VueLoaderPlugin(),
-	],
+	plugins: [new VueLoaderPlugin()],
 };
 
-
-
-if(process.env.hasOwnProperty("PRODUCTION")){
+if (process.env.hasOwnProperty("PRODUCTION")) {
 	console.log("Start build app");
 	config.watch = false;
-	config.devtool = 'source-map';
+	config.devtool = "source-map";
 	// config.plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: config.devtool}));
 	// config.stats = "normal";
 	config.mode = "production";
-}else{
+} else {
 	console.log("Start watch app");
 	config.watch = true;
-	config.devtool = 'inline-source-map';
+	config.devtool = "inline-source-map";
 	config.mode = "development";
 }
-
-
 
 module.exports = config;
