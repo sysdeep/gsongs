@@ -57,6 +57,7 @@ export default {
 
 	mounted() {
 		this.__modal = new bootstrap.Modal("#" + this.modal_id);
+		console.log("tag mounted");
 	},
 
 	methods: {
@@ -74,6 +75,8 @@ export default {
 		},
 
 		save() {
+			console.log("save called");
+			return false;
 			let validation_result = this.__validate(this.item);
 			if (validation_result.length > 0) {
 				this.$toastr.warning(validation_result);

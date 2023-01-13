@@ -5,15 +5,14 @@
     </button>
 </template>
 
-
 <script>
 export default {
     methods: {
-        save: function(){
-            this.$emit("click");
-        }
-    }
-}
+        save: function () {
+            // NOTE: 2023.01.13 - после перехода на vue 3 стало отрабатывать 2 раза
+            // console.log("save clicked");
+            // this.$emit("click");
+        },
+    },
+};
 </script>
-
-

@@ -2,9 +2,9 @@ import os
 import time
 from zipfile import ZipFile
 
-from flask import render_template, redirect, send_file
+from flask import redirect, render_template, send_file
 
-from rc import DB_FILE_NAME, BACKUPS_DIR, VERSION
+from rc import BACKUPS_DIR, DB_FILE_NAME, DB_FILE_PATH, VERSION
 
 
 def db_page():
@@ -25,25 +25,22 @@ def db_page():
 def db_backup():
     """создание backup для базы данных"""
 
-    # исходный файл
-    db_dir = os.path.dirname(DB_FILE_NAME)
-    db_name = os.path.basename(DB_FILE_NAME)
+    db_dir = os.path.dirname(DB_FILE_PATH)
 
     # новый файл
-    now_time = time.strftime("%Y.%m.%d-%H.%M.%S")  # дата
+    now_time = time.strftime("%Y.%m.%d-%H.%M.%S")
     dest_file = os.path.join(BACKUPS_DIR, DB_FILE_NAME + "." + now_time)
 
     cwd = os.getcwd()
 
     # создание архива
     with ZipFile(dest_file + ".zip", "w") as zfile:
-        # перемещаемся в каталог базы данных(штоб путь в архиве был нормальный)
+        # перемещаемся в каталог базы данных(чтобы путь в архиве был нормальный)
         os.chdir(db_dir)
-        zfile.write(db_name)
+        zfile.write(DB_FILE_NAME)
 
     os.chdir(cwd)
 
-    # redirect
     return redirect("/service/db")
 
 
