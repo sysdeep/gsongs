@@ -1,115 +1,89 @@
 <!DOCTYPE html>
 <html ng-app="app">
-<head lang="ru">
-	<meta charset="UTF-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
-	<meta http-equiv="content-language" content="ru" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="nia" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head lang="ru">
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+    <meta http-equiv="content-language" content="ru" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="nia" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<link rel="shortcut icon" type="image/png" href="/static/img/fav.png" />
+    <link rel="shortcut icon" type="image/png" href="/static/img/fav.png" />
 
+    <title>GSongs - vue</title>
 
-	<title>GSongs - vue</title>
+    <!-- bootstrap -->
+    <link
+      href="/static/vendor/bootstrap5/css/bootstrap.min.css"
+      rel="stylesheet"
+      media="screen"
+    />
 
+    <!-- <link -->
+    <!--   href="/static/vendor/bootstrap5/css/spacelab.min.css" -->
+    <!--   rel="stylesheet" -->
+    <!--   media="screen" -->
+    <!-- /> -->
 
+    <!-- font-awesome -->
+    <link
+      href="/static/vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
 
-	
-	<!-- bootstrap -->
-	<!-- <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="/static/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"> -->
-	<!-- <link href="/static/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-	<link href="/static/vendor/bootstrap5/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- toastr -->
+    <link href="/static/vendor/toastr/toastr.min.css" rel="stylesheet" />
 
-	<!-- font-awesome -->
-	<link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- jquery-confirm -->
+    <link
+      href="/static/vendor/jquery-confirm/jquery-confirm.min.css"
+      rel="stylesheet"
+    />
 
-	<!-- toastr -->
-	<link href="/static/vendor/toastr/toastr.min.css" rel="stylesheet">
+    <!-- my style -->
+    <link href="/static/css/style.css" rel="stylesheet" media="screen" />
 
-	<!-- jquery-confirm -->
-	<link href="/static/vendor/jquery-confirm/jquery-confirm.min.css" rel="stylesheet">    
-	
-	<!-- my style -->
-	<link href="/static/css/style.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      html {
+        /* задаёт базовый размер шрифтов, 1rem = this.font-size */
+        font-size: 14px;
+      }
 
+      body {
+        padding-top: 60px;
+        font-family: "UbuntuRegular", Arial, sans-serif;
+        /* background-color: #F5F4EF; */
+      }
 
-	<style type="text/css">
-			html{
-				/* задаёт базовый размер шрифтов, 1rem = this.font-size */
-				font-size: 14px;
-			}
-			body{
-				padding-top: 60px;
-				font-family: 'UbuntuRegular', Arial, sans-serif;
-				/* background-color: #F5F4EF; */
-			}
+      pre {
+        font-family: "UbuntuMonoRegular";
+      }
+    </style>
+  </head>
 
-			pre {
-				font-family: 'UbuntuMonoRegular';
-			}
-		</style>
+  <body style="margin-top: 10px">
+    <!-- <div class="container"> -->
+    <div class="container-fluid">
+      <div id="app"></div>
+    </div>
 
+    <script>
+      window.app = {
+        version: "{{ VERSION }}",
+      };
+    </script>
 
+    <!-- vendors -->
+    <script src="/static/vendor/jquery/jquery.min.js?version={{ VERSION }}"></script>
+    <script src="/static/vendor/popper/popper.min.js?version={{ VERSION }}"></script>
+    <script src="/static/vendor/bootstrap5/js/bootstrap.min.js?version={{ VERSION }}"></script>
+    <script src="/static/vendor/toastr/toastr.min.js?version={{ VERSION }}"></script>
+    <script src="/static/vendor/jquery-confirm/jquery-confirm.min.js?version={{ VERSION }}"></script>
+    <!-- vendors -->
 
-</head>
-
-
-<body style="margin-top: 10px;" >
-
-
-	
-
-
-
-	
-
-
-	<!-- <div class="container"> -->
-	<div class="container-fluid">
-
-		
-		<div id="app">
-
-		</div>
-
-		
-
-
-
-		
-	</div>
-
-	<script>
-		window.app = {
-			"version"	: "{{ VERSION }}"
-		}
-	</script>
-
-
-
-	<!-- vendors -->
-	<script src="/static/vendor/jquery/jquery.min.js?version={{ VERSION }}"></script>
-	<!-- <script src="/static/vendor/bootstrap/js/bootstrap.min.js?version={{ VERSION }}"></script> -->
-	<!-- <script src="/static/vendor/bootstrap4/js/bootstrap.min.js?version={{ VERSION }}"></script> -->
-	<script src="/static/vendor/bootstrap5/js/bootstrap.min.js?version={{ VERSION }}"></script>
-	<script src="/static/vendor/toastr/toastr.min.js?version={{ VERSION }}"></script>
-	<script src="/static/vendor/jquery-confirm/jquery-confirm.min.js?version={{ VERSION }}"></script>
-	<!-- vendors -->
-	
-
-
-	<!-- app -->
-	<!-- <script src="/static/build/vendor.js"></script> -->
-	<script src="/static/build/gsongs_vendor.js"></script>
-	<!-- <script src="/static/build/gsongs_vendor_split.js"></script> -->
-	<script src="/static/build/gsongs.js"></script>
-	<!--<script src="/static/build/gsongs.js?version={{ VERSION }}"></script>-->
-
-	
-
-
-</body>
+    <!-- app -->
+    <script src="/static/build/gsongs_vendor.js"></script>
+    <script src="/static/build/gsongs.js"></script>
+  </body>
 </html>
