@@ -48,9 +48,15 @@ def get_chord_groups():
 
 
 def get_chords_for_group(group_id):
-    data = []
+    data = [],
     for row in chdb.Chord.select().where(chdb.Chord.cgroup_id == group_id):
-        r = {"id": row.id, "name": row.name, "cgroup": row.cgroup, "cgroup_id": row.cgroup_id, "description": row.description}
+        r = {
+            "id": row.id,
+            "name": row.name,
+            "cgroup": row.cgroup,
+            "cgroup_id": row.cgroup_id,
+            "description": row.description
+        }
         data.append(r)
 
     return jsonify(chords=data)
