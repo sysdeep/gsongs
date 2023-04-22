@@ -4,7 +4,8 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<strong>GSongs</strong> - сервис для накопления и просмотра песенок с аккордами))
+				<strong>GSongs</strong> - сервис для накопления и просмотра песенок с
+				аккордами))
 			</div>
 			<div class="col-md-6">
 				<span v-html="releases"></span>
@@ -13,29 +14,24 @@
 	</div>
 </template>
 
-
-
 <script>
-import axios from "axios";
-import snarkdown from "snarkdown";					// https://github.com/developit/snarkdown
+import { ref, onMounted } from "vue";
+import snarkdown from "snarkdown"; // https://github.com/developit/snarkdown
+import { get_releses } from "./api/other.js";
 
 export default {
-	data: function(){
+	setup() {
+		const releases = ref("");
+
+		onMounted(() => {
+			get_releses().then((result) => {
+				releases.value = snarkdown(result);
+			});
+		});
+
 		return {
-			"releases"	: ""
-		}
+			releases,
+		};
 	},
-
-	created: function(){
-		this.fetch_releases();
-	},
-
-	methods: {
-		fetch_releases: function(){
-			axios.get("/api/releases").then(response => {
-				this.releases = snarkdown(response.data.result);
-			})
-		}
-	}
-}
+};
 </script>
