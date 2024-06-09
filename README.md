@@ -1,5 +1,7 @@
 # GSongs
 
+WARNING - проект закрыт в связи с закрытием локального хостинга, весь материал был переведён в статический вид - https://gitlab.com/sysdeep/gsongs
+
 ## Repo
 
 - https://github.com/sysdeep/gsongs.git
